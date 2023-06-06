@@ -1,0 +1,28 @@
+.details {
+    padding-top: 48px;
+}
+
+.details__nav {
+    margin-bottom: 30px;
+}
+
+.details__header{
+    margin-bottom: 32px;
+}
+
+.details__flight-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.details__hotel-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 64px;
+
+    &>*:not(:last-child) {
+        padding-bottom: 64px;
+        border-bottom: 1px solid transparentize($color: $black, $amount: calc(1 - 0.25));
+    }
+}

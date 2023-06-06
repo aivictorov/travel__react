@@ -1,0 +1,41 @@
+.login {
+    padding-top: 104px;
+    padding-bottom: 104px;
+
+    .input__label {
+        background-color: $background;
+    }
+}
+
+.login__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 104px;
+}
+
+.login__left {
+    width: 512px;
+
+    &--narrow{
+        width: 488px;
+    }
+}
+
+.login__logo {
+    margin-bottom: 64px;
+}
+
+.login__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+.login__right {
+    width: 616px;
+
+    &--wide{
+        width: 640px;
+    }
+}

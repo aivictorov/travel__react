@@ -1,0 +1,103 @@
+@import './../../../scss/base/_vars.scss';
+
+.header-nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    min-height: 96px;
+    z-index: 99;
+
+    svg {
+        fill: #FFF;
+    }
+
+    button.button{
+        border-radius: 8px;
+    }
+
+    &--inner-page {
+        padding-left: 0;
+        padding-right: 0;
+
+        a.header-nav__item,
+        .header-nav__item,
+        .header-nav__item-wrapper {
+            color: $black;
+        }
+
+        a.header-nav__sign-up {
+            background-color: $black;
+            color: #FFF;
+        }
+
+        svg {
+            fill: $black;
+        }
+    }
+}
+
+.header-nav__left,
+.header-nav__right {
+    display: flex;
+    align-items: center;
+    column-gap: 32px;
+}
+
+a.header-nav__item,
+.header-nav__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFF;
+}
+
+.header-nav__item-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 16px;
+    color: #FFF;
+}
+
+.header-nav__avatar {
+    position: relative;
+}
+
+.header-nav__avatar-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.header-nav__avatar-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $accent;
+}
+
+.header-nav__logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
