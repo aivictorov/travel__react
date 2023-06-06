@@ -15,11 +15,17 @@ import SetPassword from './pages/SetPassword';
 import ResetPassword from './pages/ResetPassword';
 import VerifyCode from './pages/VerifyCode';
 import Account from './pages/Account';
+import ScrollToTop from './utils/scrollToTop';
+import RunScripts from './utils/runScripts';
+import Svg from './helpers/Svg';
 
 function App() {
+
     return (
         <div className="App">
             <Router>
+                <ScrollToTop />
+                <Svg />
                 <Routes>
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/flight-booking" element={<FlightBooking />}></Route>
@@ -37,6 +43,7 @@ function App() {
                     <Route path="/verify-code" element={<VerifyCode />}></Route>
                     <Route path="/account" element={<Account />}></Route>
                 </Routes>
+                <RunScripts />
             </Router>
         </div>
     );

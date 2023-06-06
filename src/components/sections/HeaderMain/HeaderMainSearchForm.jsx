@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './HeaderMainSearchForm.scss';
 
 const HeaderMainSearchForm = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="search-form search-form--full" tabs="search">
             <div className="search-form__tabs">
@@ -105,7 +108,11 @@ const HeaderMainSearchForm = () => {
                         </svg>
                         Add Promo Code
                     </button>
-                    <button className="button" type="button">
+                    <button
+                        className="button"
+                        type="button"
+                        onClick={() => { navigate("/flight-listing") }}
+                    >
                         <div className="button__icon">
                             <svg width={16} height={16}>
                                 <use href="#send-icon" />
@@ -174,7 +181,11 @@ const HeaderMainSearchForm = () => {
                         </svg>
                         Add Promo Code
                     </button>
-                    <button className="button" type="button">
+                    <button
+                        className="button"
+                        type="button"
+                        onClick={() => { navigate("/hotel-listing"); }}
+                    >
                         <div className="button__icon">
                             <svg width={16} height={16}>
                                 <use href="#building-icon" />

@@ -20,7 +20,6 @@
 @import './blocks/listing-sort';
 @import './blocks/login-form';
 @import './blocks/login-slider';
-@import './blocks/social-icons';
 @import './blocks/track-nav';
 
 // Mixins
@@ -35,27 +34,23 @@
 @import './mixins/flight-card'; 
 @import './mixins/flight-ticket';
 @import './mixins/footer-nav';
-@import './mixins/header-inner';
 @import './mixins/hotel-card'; 
 @import './mixins/hotel-reservation';
 @import './mixins/inputs';
 @import './mixins/location';
 @import './mixins/login-header'; 
 @import './mixins/login-with'; 
-@import './mixins/logo'; 
 @import './mixins/payment-radio';
 @import './mixins/price';
 @import './mixins/rating'; 
 @import './mixins/section-header'; 
 @import './mixins/select'; 
-@import './mixins/slider-inner';
 @import './mixins/stars';
 @import './mixins/tabs';
 
 // Sections
 @import './sections/account-cover';
 @import './sections/account-tabs';
-@import './sections/fall-into-travel';
 @import './sections/flight-features';
 @import './sections/flight-policies';
 @import './sections/hotel-amenities';
@@ -64,9 +59,3 @@
 @import './sections/hotel-overview';
 @import './sections/hotel-reviews';
 @import './sections/hotel-rooms';
-@import './sections/last-minute-tours';
-@import './sections/places-on-map';
-@import './sections/recent-searches';
-
-// Utils
-@import './utils/project-nav'; 

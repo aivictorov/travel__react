@@ -1,5 +1,5 @@
 import './HeaderMain.scss';
-import HeaderMainNav from './HeaderMainNav';
+import HeaderNav from '../../blocks/HeaderNav/HeaderNav';
 import HeaderMainSearchForm from './HeaderMainSearchForm';
 
 const Header = () => {
@@ -7,7 +7,10 @@ const Header = () => {
         <header className="header">
             <div className="bg-wrapper">
                 <div className="header__bg">
-                    <HeaderMainNav />
+                    <HeaderNav
+                        style=""
+                        btnStyle="light"
+                    />
                     <div className="header__content">
                         <div className="container">
                             <div className="header__subtitle">Helping Others</div>
