@@ -1,11 +1,59 @@
-import Footer from "../components/sections/Footer/Footer";
+import { useState, useEffect, createContext } from "react";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
+import FlightFilters from "../components/blocks/FlightFilters/FlightFilters";
+import FlightListingCard from "../components/blocks/FlightListingCard/FlightListingCard";
+import Footer from "../components/sections/Footer/Footer";
+
+export const AppContext = createContext(null);
 
 const FlightListing = () => {
-    return (
-        <>
-            <HeaderInner />
 
+    const flightsData = [
+        { id: 0, start: '12:00 pm', end: '01:28 pm', price: 104 },
+        { id: 1, start: '15:00 pm', end: '18:28 pm', price: 208 },
+        { id: 2, start: '18:00 pm', end: '18:28 pm', price: 312 },
+    ];
+
+    let minPrice = flightsData.reduce((prev, curr) => curr.price < prev ? curr.price : prev, flightsData[0].price);
+    let maxPrice = flightsData.reduce((prev, curr) => curr.price > prev ? curr.price : prev, flightsData[0].price);
+
+    const [flights, setFlights] = useState(flightsData);
+    const [filters, setFilter] = useState({});
+    // const [fetchData, setFetchData] = useState(true);
+
+    const changeFilter = (filter) => {
+        setFilter({ ...filters, ...filter });
+        console.log(filters);
+        // setFetchData(value => !value);
+    };
+
+    const applyFilters = (filters) => {
+        let filtered = flightsData;
+
+        if (filters.minPrice) {
+            filtered = filtered.filter((flight) => {
+                return flight.price >= filters.minPrice;
+            })
+        };
+
+        if (filters.maxPrice) {
+            filtered = filtered.filter((flight) => {
+                return flight.price <= filters.maxPrice;
+            })
+        };
+
+        setFlights(filtered);
+    }
+
+    useEffect(() => {
+        console.log('useEffect applied');
+        applyFilters(filters)
+    }, [filters]);
+
+    return (
+        <AppContext.Provider value={{ changeFilter }}>
+            {JSON.stringify(filters)}
+            <HeaderInner />
             <main className="listing">
                 <div className="listing-form">
                     <div className="container">
@@ -98,313 +146,10 @@ const FlightListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-                                <div className="listing-filters">
-                                    <h3 className="listing-filters__title">Filters</h3>
-                                    <div className="filter-item">
-                                        <div className="filter-item__header">
-                                            <h4 className="filter-item__title">Price</h4>
-                                            <button
-                                                className="filter-item__button"
-                                                type="button"
-                                                accordeon-button="Price"
-                                            >
-                                                <svg width={24} height={24}>
-                                                    <use href="#arrow-down" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div
-                                            className="filter-item__content filter-item__content--column"
-                                            accordeon-content="Price"
-                                        >
-                                            <div className="dual-range-input">
-                                                <div className="dual-range-input__track-wrapper">
-                                                    <div
-                                                        className="dual-range-input__track"
-                                                        data-name="track"
-                                                    />
-                                                    <input
-                                                        data-name="range-1"
-                                                        type="range"
-                                                        min={50}
-                                                        max={1200}
-                                                        defaultValue={0}
-                                                        step={1}
-                                                    />
-                                                    <input
-                                                        data-name="range-2"
-                                                        type="range"
-                                                        min={50}
-                                                        max={1200}
-                                                        defaultValue={1200}
-                                                        step={1}
-                                                    />
-                                                </div>
-                                                <div className="dual-range-input__values">
-                                                    <span data-name="value-1">100$</span>
-                                                    <span data-name="value-2">1500$</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="filter-item">
-                                        <div className="filter-item__header">
-                                            <h4 className="filter-item__title">Departure Time</h4>
-                                            <button
-                                                className="filter-item__button"
-                                                type="button"
-                                                accordeon-button="Departure Time"
-                                            >
-                                                <svg width={24} height={24}>
-                                                    <use href="#arrow-down" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div
-                                            className="filter-item__content filter-item__content--column"
-                                            accordeon-content="Departure Time"
-                                        >
-                                            <div className="dual-range-input">
-                                                <div className="dual-range-input__track-wrapper">
-                                                    <div
-                                                        className="dual-range-input__track"
-                                                        data-name="track"
-                                                    />
-                                                    <input
-                                                        data-name="range-1"
-                                                        type="range"
-                                                        min={50}
-                                                        max={1200}
-                                                        defaultValue={0}
-                                                        step={1}
-                                                    />
-                                                    <input
-                                                        data-name="range-2"
-                                                        type="range"
-                                                        min={50}
-                                                        max={1200}
-                                                        defaultValue={1200}
-                                                        step={1}
-                                                    />
-                                                </div>
-                                                <div className="dual-range-input__values">
-                                                    <span data-name="value-1">100$</span>
-                                                    <span data-name="value-2">1500$</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="filter-item">
-                                        <div className="filter-item__header">
-                                            <h4 className="filter-item__title">Rating</h4>
-                                            <button
-                                                className="filter-item__button"
-                                                type="button"
-                                                accordeon-button="Rating"
-                                            >
-                                                <svg width={24} height={24}>
-                                                    <use href="#arrow-down" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div
-                                            className="filter-item__content filter-item__content--row"
-                                            accordeon-content="Rating"
-                                        >
-                                            <div className="rating-filter-checkbox">
-                                                <label className="rating-filter-checkbox__label">
-                                                    <input
-                                                        className="rating-filter-checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div
-                                                        className="rating-filter-checkbox__custom"
-                                                        style={{ width: 40 }}
-                                                    >
-                                                        0+
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div className="rating-filter-checkbox">
-                                                <label className="rating-filter-checkbox__label">
-                                                    <input
-                                                        className="rating-filter-checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div
-                                                        className="rating-filter-checkbox__custom"
-                                                        style={{ width: 40 }}
-                                                    >
-                                                        1+
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div className="rating-filter-checkbox">
-                                                <label className="rating-filter-checkbox__label">
-                                                    <input
-                                                        className="rating-filter-checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div
-                                                        className="rating-filter-checkbox__custom"
-                                                        style={{ width: 40 }}
-                                                    >
-                                                        2+
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div className="rating-filter-checkbox">
-                                                <label className="rating-filter-checkbox__label">
-                                                    <input
-                                                        className="rating-filter-checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div
-                                                        className="rating-filter-checkbox__custom"
-                                                        style={{ width: 40 }}
-                                                    >
-                                                        3+
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div className="rating-filter-checkbox">
-                                                <label className="rating-filter-checkbox__label">
-                                                    <input
-                                                        className="rating-filter-checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div
-                                                        className="rating-filter-checkbox__custom"
-                                                        style={{ width: 40 }}
-                                                    >
-                                                        4+
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="filter-item">
-                                        <div className="filter-item__header">
-                                            <h4 className="filter-item__title">Airlines</h4>
-                                            <button
-                                                className="filter-item__button"
-                                                type="button"
-                                                accordeon-button="Airlines"
-                                            >
-                                                <svg width={24} height={24}>
-                                                    <use href="#arrow-down" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div
-                                            className="filter-item__content filter-item__content--column"
-                                            accordeon-content="Airlines"
-                                        >
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> Emirated</div>
-                                                </label>
-                                            </div>
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> Fly Dubai</div>
-                                                </label>
-                                            </div>
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> Qatar</div>
-                                                </label>
-                                            </div>
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> Etihad</div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="filter-item">
-                                        <div className="filter-item__header">
-                                            <h4 className="filter-item__title">Trips</h4>
-                                            <button
-                                                className="filter-item__button"
-                                                type="button"
-                                                accordeon-button="Trips"
-                                            >
-                                                <svg width={24} height={24}>
-                                                    <use href="#arrow-down" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div
-                                            className="filter-item__content filter-item__content--column"
-                                            accordeon-content="Trips"
-                                        >
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> Round trip</div>
-                                                </label>
-                                            </div>
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> On Way</div>
-                                                </label>
-                                            </div>
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value"> Multi-City</div>
-                                                </label>
-                                            </div>
-                                            <div className="checkbox">
-                                                <label className="checkbox__label">
-                                                    <input
-                                                        className="checkbox__hidden visually-hidden"
-                                                        type="checkbox"
-                                                    />
-                                                    <div className="checkbox__custom" />
-                                                    <div className="checkbox__value">
-                                                        {" "}
-                                                        My Dates Are Flexible
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <FlightFilters
+                                    minPrice={minPrice}
+                                    maxPrice={maxPrice}
+                                />
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
@@ -449,402 +194,17 @@ const FlightListing = () => {
                                         </div>
                                     </div>
                                     <div className="listing-content__cards">
-                                        <div className="flight-card">
-                                            <div className="flight-card__image">
-                                                {" "}
-                                                <img
-                                                    src="./img/flights/airline-example-1/logo.png"
-                                                    alt="airline logo"
+                                        {flights.length === 0 ? "Flights not found" : null}
+                                        {flights.map((flight) => {
+                                            return (
+                                                <FlightListingCard
+                                                    key={flight.id}
+                                                    start={flight.start}
+                                                    end={flight.end}
+                                                    price={flight.price}
                                                 />
-                                            </div>
-                                            <div className="flight-card__content">
-                                                <div className="flight-card__header">
-                                                    <div className="flight-card__rating">
-                                                        <div className="rating">
-                                                            <div className="rating__value">4.2</div>
-                                                            <span className="rating__text">
-                                                                <strong>Very good</strong>
-                                                            </span>
-                                                            <a className="rating__link" href="#!">
-                                                                54 reviews
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flight-card__price">
-                                                        starting from
-                                                        <div className="price">
-                                                            <span className="price-value">$104</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <ul className="flight-card__flights">
-                                                    <li className="flight__row">
-                                                        <div className="checkbox">
-                                                            <label className="checkbox__label checkbox__label--flight-card">
-                                                                <input
-                                                                    className="checkbox__hidden visually-hidden"
-                                                                    type="checkbox"
-                                                                />
-                                                                <div className="checkbox__custom" />
-                                                                <div className="checkbox__value">
-                                                                    <div className="flight__row">
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__shedule">
-                                                                                12:00 pm - 01:28 pm
-                                                                            </div>
-                                                                            <div className="flight__airline">
-                                                                                Emirates
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__transfers">
-                                                                                non stop
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__duration">2h 28m</div>
-                                                                            <div className="flight__codes">EWR-BNA</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li className="flight__row">
-                                                        <div className="checkbox">
-                                                            <label className="checkbox__label checkbox__label--flight-card">
-                                                                <input
-                                                                    className="checkbox__hidden visually-hidden"
-                                                                    type="checkbox"
-                                                                />
-                                                                <div className="checkbox__custom" />
-                                                                <div className="checkbox__value">
-                                                                    <div className="flight__row">
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__shedule">
-                                                                                12:00 pm - 01:28 pm
-                                                                            </div>
-                                                                            <div className="flight__airline">
-                                                                                Emirates
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__transfers">
-                                                                                non stop
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__duration">2h 28m</div>
-                                                                            <div className="flight__codes">EWR-BNA</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div className="flight-card__buttons">
-                                                    <div className="fav-checkbox">
-                                                        <label className="fav-checkbox__label">
-                                                            <input
-                                                                className="fav-checkbox__hidden visually-hidden"
-                                                                type="checkbox"
-                                                            />
-                                                            <div
-                                                                className="fav-checkbox__custom"
-                                                                style={{ width: 48 }}
-                                                            >
-                                                                <svg
-                                                                    width={20}
-                                                                    height={20}
-                                                                    viewBox="0 0 20 20"
-                                                                    stroke="#4C4850"
-                                                                    fill="none"
-                                                                >
-                                                                    <path
-                                                                        d="M13.7863 3.625C11.2504 3.625 10.0004 6.125 10.0004 6.125C10.0004 6.125 8.7504 3.625 6.21446 3.625C4.15352 3.625 2.52149 5.34922 2.5004 7.40664C2.45743 11.6773 5.88829 14.7145 9.64884 17.2668C9.75251 17.3373 9.87501 17.3751 10.0004 17.3751C10.1258 17.3751 10.2483 17.3373 10.352 17.2668C14.1121 14.7145 17.543 11.6773 17.5004 7.40664C17.4793 5.34922 15.8473 3.625 13.7863 3.625V3.625Z"
-                                                                        strokeWidth="1.5"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                    />
-                                                                </svg>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <button
-                                                        className="button button--bold"
-                                                        type="button"
-                                                        style={{ width: 536 }}
-                                                    >
-                                                        View Details
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flight-card">
-                                            <div className="flight-card__image">
-                                                {" "}
-                                                <img
-                                                    src="./img/flights/airline-example-1/logo.png"
-                                                    alt="airline logo"
-                                                />
-                                            </div>
-                                            <div className="flight-card__content">
-                                                <div className="flight-card__header">
-                                                    <div className="flight-card__rating">
-                                                        <div className="rating">
-                                                            <div className="rating__value">4.2</div>
-                                                            <span className="rating__text">
-                                                                <strong>Very good</strong>
-                                                            </span>
-                                                            <a className="rating__link" href="#!">
-                                                                54 reviews
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flight-card__price">
-                                                        starting from
-                                                        <div className="price">
-                                                            <span className="price-value">$104</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <ul className="flight-card__flights">
-                                                    <li className="flight__row">
-                                                        <div className="checkbox">
-                                                            <label className="checkbox__label checkbox__label--flight-card">
-                                                                <input
-                                                                    className="checkbox__hidden visually-hidden"
-                                                                    type="checkbox"
-                                                                />
-                                                                <div className="checkbox__custom" />
-                                                                <div className="checkbox__value">
-                                                                    <div className="flight__row">
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__shedule">
-                                                                                12:00 pm - 01:28 pm
-                                                                            </div>
-                                                                            <div className="flight__airline">
-                                                                                Emirates
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__transfers">
-                                                                                non stop
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__duration">2h 28m</div>
-                                                                            <div className="flight__codes">EWR-BNA</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li className="flight__row">
-                                                        <div className="checkbox">
-                                                            <label className="checkbox__label checkbox__label--flight-card">
-                                                                <input
-                                                                    className="checkbox__hidden visually-hidden"
-                                                                    type="checkbox"
-                                                                />
-                                                                <div className="checkbox__custom" />
-                                                                <div className="checkbox__value">
-                                                                    <div className="flight__row">
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__shedule">
-                                                                                12:00 pm - 01:28 pm
-                                                                            </div>
-                                                                            <div className="flight__airline">
-                                                                                Emirates
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__transfers">
-                                                                                non stop
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__duration">2h 28m</div>
-                                                                            <div className="flight__codes">EWR-BNA</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div className="flight-card__buttons">
-                                                    <div className="fav-checkbox">
-                                                        <label className="fav-checkbox__label">
-                                                            <input
-                                                                className="fav-checkbox__hidden visually-hidden"
-                                                                type="checkbox"
-                                                            />
-                                                            <div
-                                                                className="fav-checkbox__custom"
-                                                                style={{ width: 48 }}
-                                                            >
-                                                                <svg
-                                                                    width={20}
-                                                                    height={20}
-                                                                    viewBox="0 0 20 20"
-                                                                    stroke="#4C4850"
-                                                                    fill="none"
-                                                                >
-                                                                    <path
-                                                                        d="M13.7863 3.625C11.2504 3.625 10.0004 6.125 10.0004 6.125C10.0004 6.125 8.7504 3.625 6.21446 3.625C4.15352 3.625 2.52149 5.34922 2.5004 7.40664C2.45743 11.6773 5.88829 14.7145 9.64884 17.2668C9.75251 17.3373 9.87501 17.3751 10.0004 17.3751C10.1258 17.3751 10.2483 17.3373 10.352 17.2668C14.1121 14.7145 17.543 11.6773 17.5004 7.40664C17.4793 5.34922 15.8473 3.625 13.7863 3.625V3.625Z"
-                                                                        strokeWidth="1.5"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                    />
-                                                                </svg>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <button
-                                                        className="button button--bold"
-                                                        type="button"
-                                                        style={{ width: 536 }}
-                                                    >
-                                                        View Details
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="flight-card">
-                                            <div className="flight-card__image">
-                                                {" "}
-                                                <img
-                                                    src="./img/flights/airline-example-1/logo.png"
-                                                    alt="airline logo"
-                                                />
-                                            </div>
-                                            <div className="flight-card__content">
-                                                <div className="flight-card__header">
-                                                    <div className="flight-card__rating">
-                                                        <div className="rating">
-                                                            <div className="rating__value">4.2</div>
-                                                            <span className="rating__text">
-                                                                <strong>Very good</strong>
-                                                            </span>
-                                                            <a className="rating__link" href="#!">
-                                                                54 reviews
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div className="flight-card__price">
-                                                        starting from
-                                                        <div className="price">
-                                                            <span className="price-value">$104</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <ul className="flight-card__flights">
-                                                    <li className="flight__row">
-                                                        <div className="checkbox">
-                                                            <label className="checkbox__label checkbox__label--flight-card">
-                                                                <input
-                                                                    className="checkbox__hidden visually-hidden"
-                                                                    type="checkbox"
-                                                                />
-                                                                <div className="checkbox__custom" />
-                                                                <div className="checkbox__value">
-                                                                    <div className="flight__row">
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__shedule">
-                                                                                12:00 pm - 01:28 pm
-                                                                            </div>
-                                                                            <div className="flight__airline">
-                                                                                Emirates
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__transfers">
-                                                                                non stop
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__duration">2h 28m</div>
-                                                                            <div className="flight__codes">EWR-BNA</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li className="flight__row">
-                                                        <div className="checkbox">
-                                                            <label className="checkbox__label checkbox__label--flight-card">
-                                                                <input
-                                                                    className="checkbox__hidden visually-hidden"
-                                                                    type="checkbox"
-                                                                />
-                                                                <div className="checkbox__custom" />
-                                                                <div className="checkbox__value">
-                                                                    <div className="flight__row">
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__shedule">
-                                                                                12:00 pm - 01:28 pm
-                                                                            </div>
-                                                                            <div className="flight__airline">
-                                                                                Emirates
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__transfers">
-                                                                                non stop
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="flight__column">
-                                                                            <div className="flight__duration">2h 28m</div>
-                                                                            <div className="flight__codes">EWR-BNA</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div className="flight-card__buttons">
-                                                    <div className="fav-checkbox">
-                                                        <label className="fav-checkbox__label">
-                                                            <input
-                                                                className="fav-checkbox__hidden visually-hidden"
-                                                                type="checkbox"
-                                                            />
-                                                            <div
-                                                                className="fav-checkbox__custom"
-                                                                style={{ width: 48 }}
-                                                            >
-                                                                <svg
-                                                                    width={20}
-                                                                    height={20}
-                                                                    viewBox="0 0 20 20"
-                                                                    stroke="#4C4850"
-                                                                    fill="none"
-                                                                >
-                                                                    <path
-                                                                        d="M13.7863 3.625C11.2504 3.625 10.0004 6.125 10.0004 6.125C10.0004 6.125 8.7504 3.625 6.21446 3.625C4.15352 3.625 2.52149 5.34922 2.5004 7.40664C2.45743 11.6773 5.88829 14.7145 9.64884 17.2668C9.75251 17.3373 9.87501 17.3751 10.0004 17.3751C10.1258 17.3751 10.2483 17.3373 10.352 17.2668C14.1121 14.7145 17.543 11.6773 17.5004 7.40664C17.4793 5.34922 15.8473 3.625 13.7863 3.625V3.625Z"
-                                                                        strokeWidth="1.5"
-                                                                        strokeLinecap="round"
-                                                                        strokeLinejoin="round"
-                                                                    />
-                                                                </svg>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <button
-                                                        className="button button--bold"
-                                                        type="button"
-                                                        style={{ width: 536 }}
-                                                    >
-                                                        View Details
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                                 <div className="listing-content__right-button">
@@ -862,7 +222,7 @@ const FlightListing = () => {
                 </div>
             </main>
             <Footer />
-        </>
+        </AppContext.Provider>
     );
 }
 

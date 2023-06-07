@@ -90,6 +90,7 @@ export default function RunScripts() {
                 const valueTwo = input.querySelector('[data-name="value-2"]');
                 const minGap = 0;
                 const track = input.querySelector('[data-name="track"]');
+                const minValue = rangeOne.min;
                 const maxValue = rangeOne.max;
 
                 slideOne();
@@ -115,8 +116,8 @@ export default function RunScripts() {
                 };
 
                 function fillColor() {
-                    const percent1 = rangeOne.value / maxValue * 100;
-                    const percent2 = rangeTwo.value / maxValue * 100;
+                    const percent1 = (rangeOne.value - minValue) / (maxValue - minValue) * 100;
+                    const percent2 = (rangeTwo.value - minValue) / (maxValue - minValue) * 100;
                     track.style.background = `linear-gradient(to right, #E1E1E1 ${percent1}%,  #112211 ${percent1}%,
                             #112211 ${percent2}%,  #E1E1E1 ${percent2}%)`;
                 };

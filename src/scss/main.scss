@@ -16,7 +16,6 @@
 @import './blocks/booking-payment-cards';
 @import './blocks/booking-payment-methods';
 @import './blocks/droplist-user';
-@import './blocks/listing-filters';
 @import './blocks/listing-sort';
 @import './blocks/login-form';
 @import './blocks/login-slider';
@@ -31,7 +30,6 @@
 @import './mixins/details-header';
 @import './mixins/dual-range'; 
 @import './mixins/filter-item'; 
-@import './mixins/flight-card'; 
 @import './mixins/flight-ticket';
 @import './mixins/footer-nav';
 @import './mixins/hotel-card'; 
@@ -49,8 +47,6 @@
 @import './mixins/tabs';
 
 // Sections
-@import './sections/account-cover';
-@import './sections/account-tabs';
 @import './sections/flight-features';
 @import './sections/flight-policies';
 @import './sections/hotel-amenities';
