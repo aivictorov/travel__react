@@ -8,9 +8,9 @@ export default function RunScripts() {
         modalWindows();
         alignModalWindows();
         dropdowns()
-        dualRangeInputs();
         selects();
         tabs();
+        dualRangeInputs();
         accordeons();
         // reviewsCarousel();
         swap();
@@ -78,54 +78,6 @@ export default function RunScripts() {
                     };
                 });
             };
-        };
-
-        function dualRangeInputs() {
-            const dualRangeInputs = document.querySelectorAll('.dual-range-input');
-
-            dualRangeInputs.forEach((input) => {
-                const rangeOne = input.querySelector('[data-name="range-1"]');
-                const rangeTwo = input.querySelector('[data-name="range-2"]');
-                const valueOne = input.querySelector('[data-name="value-1"]');
-                const valueTwo = input.querySelector('[data-name="value-2"]');
-                const minGap = 0;
-                const track = input.querySelector('[data-name="track"]');
-                const minValue = rangeOne.min;
-                const maxValue = rangeOne.max;
-
-                slideOne();
-                slideTwo();
-
-                rangeOne.addEventListener('input', slideOne);
-                rangeTwo.addEventListener('input', slideTwo);
-
-                function slideOne() {
-                    if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
-                        rangeOne.value = parseInt(rangeTwo.value) - minGap;
-                    }
-                    valueOne.textContent = formatValue(rangeOne.value);
-                    fillColor();
-                };
-
-                function slideTwo() {
-                    if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
-                        rangeTwo.value = parseInt(rangeOne.value) - minGap;
-                    }
-                    valueTwo.textContent = formatValue(rangeTwo.value);
-                    fillColor();
-                };
-
-                function fillColor() {
-                    const percent1 = (rangeOne.value - minValue) / (maxValue - minValue) * 100;
-                    const percent2 = (rangeTwo.value - minValue) / (maxValue - minValue) * 100;
-                    track.style.background = `linear-gradient(to right, #E1E1E1 ${percent1}%,  #112211 ${percent1}%,
-                            #112211 ${percent2}%,  #E1E1E1 ${percent2}%)`;
-                };
-
-                function formatValue(value) {
-                    return value + '$';
-                };
-            })
         };
 
         function selects() {
@@ -211,6 +163,56 @@ export default function RunScripts() {
                     content.classList.toggle('none');
                 });
             });
+        };
+
+        function dualRangeInputs() {
+            console.log('dualRangeInputs RUN');
+
+            const dualRangeInputs = document.querySelectorAll('.dual-range-input');
+
+            dualRangeInputs.forEach((input) => {
+                const rangeOne = input.querySelector('[data-name="range-1"]');
+                const rangeTwo = input.querySelector('[data-name="range-2"]');
+                const valueOne = input.querySelector('[data-name="value-1"]');
+                const valueTwo = input.querySelector('[data-name="value-2"]');
+                const minGap = 0;
+                const track = input.querySelector('[data-name="track"]');
+                const minValue = rangeOne.min;
+                const maxValue = rangeOne.max;
+
+                slideOne();
+                slideTwo();
+
+                rangeOne.addEventListener('input', slideOne);
+                rangeTwo.addEventListener('input', slideTwo);
+
+                function slideOne() {
+                    if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
+                        rangeOne.value = parseInt(rangeTwo.value) - minGap;
+                    }
+                    valueOne.textContent = formatValue(rangeOne.value);
+                    fillColor();
+                };
+
+                function slideTwo() {
+                    if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
+                        rangeTwo.value = parseInt(rangeOne.value) - minGap;
+                    }
+                    valueTwo.textContent = formatValue(rangeTwo.value);
+                    fillColor();
+                };
+
+                function fillColor() {
+                    const percent1 = (rangeOne.value - minValue) / (maxValue - minValue) * 100;
+                    const percent2 = (rangeTwo.value - minValue) / (maxValue - minValue) * 100;
+                    track.style.background = `linear-gradient(to right, #E1E1E1 ${percent1}%,  #112211 ${percent1}%,
+                                #112211 ${percent2}%,  #E1E1E1 ${percent2}%)`;
+                };
+
+                function formatValue(value) {
+                    return value + '$';
+                };
+            })
         };
 
         // function reviewsCarousel() {

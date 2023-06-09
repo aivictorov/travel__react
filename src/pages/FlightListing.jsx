@@ -1,155 +1,101 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import FlightFilters from "../components/blocks/FlightFilters/FlightFilters";
+import SearchForm from "../components/blocks/SearchForm/SearchForm";
+import ListingFilters from "../components/blocks/ListingFilters/ListingFilters";
 import FlightListingCard from "../components/blocks/FlightListingCard/FlightListingCard";
 import Footer from "../components/sections/Footer/Footer";
-
-export const AppContext = createContext(null);
+import data from './../helpers/data';
+import { AppContext } from "../App";
+import ButtonShowMore from "../components/elements/ButtonShowMore/ButtonShowMore";
 
 const FlightListing = () => {
+    const { searchParams } = useContext(AppContext);
 
-    const flightsData = [
-        { id: 0, start: '12:00 pm', end: '01:28 pm', price: 104 },
-        { id: 1, start: '15:00 pm', end: '18:28 pm', price: 208 },
-        { id: 2, start: '18:00 pm', end: '18:28 pm', price: 312 },
-    ];
+    const [searchResults, setSearchResults] = useState([]);
+    const [numberOfResults, setNumberOfResults] = useState(1);
+    const [visibleFlights, setVisibleFlights] = useState([]);
 
-    let minPrice = flightsData.reduce((prev, curr) => curr.price < prev ? curr.price : prev, flightsData[0].price);
-    let maxPrice = flightsData.reduce((prev, curr) => curr.price > prev ? curr.price : prev, flightsData[0].price);
+    // const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
+    // const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
 
-    const [flights, setFlights] = useState(flightsData);
+    useEffect(() => {
+        const newSearchResults = data.filter((item) => {
+            return searchParams.from === item.from
+        });
+        setSearchResults(newSearchResults);
+    }, [searchParams]);
+
+    useEffect(() => {
+        setNumberOfResults(1);
+    }, [searchResults])
+
+    useEffect(() => {
+        const visibleResults = searchResults.filter((item, index) => {
+            return index < numberOfResults
+        });
+        setVisibleFlights(visibleResults);
+    }, [searchResults, numberOfResults])
+
+    // Filters
+
     const [filters, setFilter] = useState({});
-    // const [fetchData, setFetchData] = useState(true);
 
     const changeFilter = (filter) => {
         setFilter({ ...filters, ...filter });
-        console.log(filters);
-        // setFetchData(value => !value);
     };
 
-    const applyFilters = (filters) => {
-        let filtered = flightsData;
-
-        if (filters.minPrice) {
-            filtered = filtered.filter((flight) => {
-                return flight.price >= filters.minPrice;
-            })
-        };
-
-        if (filters.maxPrice) {
-            filtered = filtered.filter((flight) => {
-                return flight.price <= filters.maxPrice;
-            })
-        };
-
-        setFlights(filtered);
-    }
-
     useEffect(() => {
-        console.log('useEffect applied');
         applyFilters(filters)
     }, [filters]);
 
+    const applyFilters = (filters) => {
+        // let filteredFlights = searchResults;
+
+        // if (filters.minPrice) {
+        //     filteredFlights = filteredFlights.filter((flight) => {
+        //         return flight.price >= filters.minPrice;
+        //     })
+        // };
+
+        // if (filters.maxPrice) {
+        //     filteredFlights = filteredFlights.filter((flight) => {
+        //         return flight.price <= filters.maxPrice;
+        //     })
+        // };
+        // setVisibleFlights(filteredFlights);
+    }
+
     return (
-        <AppContext.Provider value={{ changeFilter }}>
+        <>
+            <p>SEARCH PARAMS </p>
+            {JSON.stringify(searchParams)}
+            <br />
+            <br />
+            <p>FILTERS </p>
             {JSON.stringify(filters)}
+            <br />
+            <br />
+            <p>VISIBLE </p>
+            {JSON.stringify(visibleFlights)}
+            <br />
+            <br />
+
             <HeaderInner />
             <main className="listing">
                 <div className="listing-form">
                     <div className="container">
-                        <div className="search-form" tabs="search">
-                            <div
-                                className="search-form__content"
-                                tab-content="flight-search"
-                                tab-group="search"
-                            >
-                                <div className="search-form__fields">
-                                    <div
-                                        className="input"
-                                        style={{ width: "calc((100% - 140px - 56px - 4 * 24px) / 3)" }}
-                                    >
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="Lahore - Karachi"
-                                        />
-                                        <div className="input__label">From - To</div>
-                                        <button
-                                            className="input__icon"
-                                            type="button"
-                                            data-button="swap-button"
-                                        >
-                                            <svg width={24} height={24}>
-                                                <use href="#swap-icon"> </use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div className="select" style={{ width: 140 }}>
-                                        <button className="select__button" type="button">
-                                            {" "}
-                                            Return
-                                        </button>
-                                        <div className="select__label">Trip</div>
-                                        <div className="select__icon">
-                                            <svg width={24} height={24}>
-                                                <use href="#arrow-down" />
-                                            </svg>
-                                        </div>
-                                        <ul className="select__list">
-                                            <li data-value="Return">Return</li>
-                                            <li data-value="Single">Single</li>
-                                        </ul>
-                                        <input
-                                            className="select__input-hidden"
-                                            type="text"
-                                            name="select-category"
-                                            defaultValue=""
-                                        />
-                                    </div>
-                                    <div
-                                        className="input"
-                                        style={{ width: "calc((100% - 140px - 3 * 24px) / 3)" }}
-                                    >
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="07 Nov 22 - 13 Nov 22"
-                                        />
-                                        <div className="input__label">Depart - Return</div>
-                                    </div>
-                                    <div
-                                        className="input"
-                                        style={{ width: "calc((100% - 140px - 3 * 24px) / 3)" }}
-                                    >
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="1 Passenger, Economy"
-                                        />
-                                        <div className="input__label">Passenger - Class</div>
-                                    </div>
-                                    <button
-                                        className="square-button"
-                                        type="button"
-                                        style={{ width: 56, height: 56 }}
-                                    >
-                                        <svg width={24} height={24}>
-                                            <use href="#search-icon" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <SearchForm page="flight-listing" />
                     </div>
                 </div>
                 <div className="listing-content">
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-                                <FlightFilters
-                                    minPrice={minPrice}
-                                    maxPrice={maxPrice}
+
+                                <ListingFilters
+                                    changeFilter={changeFilter}
                                 />
+
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
@@ -187,34 +133,33 @@ const FlightListing = () => {
                                     </ul>
                                     <div className="listing-sort">
                                         <div className="listing-sort__left">
-                                            Showing 4 of <a href="#!">257 places</a>
+                                            Showing {visibleFlights.length} of <a href="#!">{searchResults.length} flights</a>
                                         </div>
                                         <div className="listing-sort__right">
                                             <span>Sort by </span>Recommended
                                         </div>
                                     </div>
                                     <div className="listing-content__cards">
-                                        {flights.length === 0 ? "Flights not found" : null}
-                                        {flights.map((flight) => {
+                                        {visibleFlights.length === 0 ? "Flights not found" : null}
+                                        {visibleFlights.map((flight) => {
                                             return (
                                                 <FlightListingCard
                                                     key={flight.id}
+                                                    id={flight.id}
                                                     start={flight.start}
                                                     end={flight.end}
                                                     price={flight.price}
+                                                    rating={flight.rating}
                                                 />
                                             )
                                         })}
                                     </div>
                                 </div>
                                 <div className="listing-content__right-button">
-                                    <button
-                                        className="button button--dark button--bold"
-                                        type="button"
-                                        style={{ width: "100%" }}
-                                    >
-                                        Show more
-                                    </button>
+                                    <ButtonShowMore
+                                        numberOfResults={numberOfResults}
+                                        setNumberOfResults={setNumberOfResults}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -222,7 +167,7 @@ const FlightListing = () => {
                 </div>
             </main>
             <Footer />
-        </AppContext.Provider>
+        </>
     );
 }
 

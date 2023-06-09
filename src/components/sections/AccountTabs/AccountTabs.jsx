@@ -1,6 +1,7 @@
 import './AccountTabs.scss';
-import AccountTabsBookings from './AccountTabsBookings';
 import AccountTabsMain from './AccountTabsMain';
+import AccountTabsBookings from './AccountTabsBookings';
+import AccountTabsFavourites from './AccountTabsFavourites';
 import AccountTabsPayments from './AccountTabsPayments';
 
 const AccountTabs = () => {
@@ -36,6 +37,17 @@ const AccountTabs = () => {
                             type="button"
                             style={{ width: "calc(100% / 3)" }}
                             tab-group="account"
+                            tab-button="favourites"
+                        >
+                            <div className="tabs__item-content">
+                                <div className="tabs__item-title">Favourites</div>
+                            </div>
+                        </button>
+                        <button
+                            className="tabs__item"
+                            type="button"
+                            style={{ width: "calc(100% / 3)" }}
+                            tab-group="account"
                             tab-button="payment"
                         >
                             <div className="tabs__item-content">
@@ -47,6 +59,7 @@ const AccountTabs = () => {
 
                 <AccountTabsMain/>
                 <AccountTabsBookings/>
+                <AccountTabsFavourites/>
                 <AccountTabsPayments/>
             </div>
         </section>

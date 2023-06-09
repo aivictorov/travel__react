@@ -1,6 +1,6 @@
 import './HeaderMain.scss';
 import HeaderNav from '../../blocks/HeaderNav/HeaderNav';
-import HeaderMainSearchForm from './HeaderMainSearchForm';
+import SearchForm from './../../blocks/SearchForm/SearchForm';
 
 const Header = () => {
     return (
@@ -20,11 +20,11 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <form className="header__form-wrapper">
+            <div className="header__form-wrapper">
                 <div className="container">
-                    <HeaderMainSearchForm />
+                    <SearchForm page="home" />
                 </div>
-            </form>
+            </div>
         </header>
     );
 }

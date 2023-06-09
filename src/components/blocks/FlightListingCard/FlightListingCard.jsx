@@ -1,6 +1,10 @@
+import { useContext, useEffect, useState } from 'react';
 import './FlightListingCard.scss';
+import { AppContext } from '../../../App';
 
-const FlightListingCard = ({ start, end, price }) => {
+const FlightListingCard = ({ id, start, end, price, rating }) => {
+    const { userData, setUserData } = useContext(AppContext);
+
     return (
         <div className="flight-card">
             <div className="flight-card__image">
@@ -13,7 +17,7 @@ const FlightListingCard = ({ start, end, price }) => {
                 <div className="flight-card__header">
                     <div className="flight-card__rating">
                         <div className="rating">
-                            <div className="rating__value">4.2</div>
+                            <div className="rating__value">{rating}</div>
                             <span className="rating__text">
                                 <strong>Very good</strong>
                             </span>
@@ -101,6 +105,16 @@ const FlightListingCard = ({ start, end, price }) => {
                             <input
                                 className="fav-checkbox__hidden visually-hidden"
                                 type="checkbox"
+                                checked={userData.includes(id)}
+                                onChange={(event) => {
+                                    if (event.target.checked) {
+                                        setUserData([...userData, id])
+                                    } else {
+                                        setUserData(userData.filter((item) => {
+                                            return item !== id
+                                        }))
+                                    }
+                                }}
                             />
                             <div
                                 className="fav-checkbox__custom"

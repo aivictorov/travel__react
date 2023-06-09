@@ -3,15 +3,14 @@ import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import LastMinuteTours from "../components/sections/LastMinuteTours/LastMinuteTours";
 import PlacesOnMap from "../components/sections/PlacesOnMap/PlacesOnMap";
-import SliderInner from './../components/sections/SliderInner/SliderInner';
-import bgImg from './../img/flights/header.jpg';
+import SliderInnerFlights from "../components/sections/SliderInner/SliderInnerFlights";
 
 const FlightSearch = () => {
     return (
         <>
             <HeaderInner />
             <main>
-                <SliderInner bgImg={bgImg} />
+                <SliderInnerFlights />
                 <PlacesOnMap />
                 <FallIntoTravel />
                 <LastMinuteTours />

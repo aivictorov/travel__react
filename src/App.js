@@ -1,4 +1,3 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './scss/main.scss';
 import Home from "./pages/Home";
 import FlightBooking from './pages/FlightBooking';
@@ -18,34 +17,42 @@ import Account from './pages/Account';
 import ScrollToTop from './utils/scrollToTop';
 import RunScripts from './utils/runScripts';
 import Svg from './helpers/Svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { createContext, useState } from 'react';
+
+export const AppContext = createContext(null);
 
 function App() {
+    const [searchParams, setSearchParams] = useState([]);
+    const [userData, setUserData] = useState([]);
 
     return (
-        <div className="App">
-            <Router>
-                <ScrollToTop />
-                <Svg />
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/flight-booking" element={<FlightBooking />}></Route>
-                    <Route path="/flight-details" element={<FlightDetails />}></Route>
-                    <Route path="/flight-listing" element={<FlightListing />}></Route>
-                    <Route path="/flight-search" element={<FlightSearch />}></Route>
-                    <Route path="/hotel-booking" element={<HotelBooking />}></Route>
-                    <Route path="/hotel-details" element={<HotelDetails />}></Route>
-                    <Route path="/hotel-listing" element={<HotelListing />}></Route>
-                    <Route path="/hotel-search" element={<HotelSearch />}></Route>
-                    <Route path="/login" element={<Login />}></Route>
-                    <Route path="/sign-up" element={<SignUp />}></Route>
-                    <Route path="/set-password" element={<SetPassword />}></Route>
-                    <Route path="/reset-password" element={<ResetPassword />}></Route>
-                    <Route path="/verify-code" element={<VerifyCode />}></Route>
-                    <Route path="/account" element={<Account />}></Route>
-                </Routes>
-                <RunScripts />
-            </Router>
-        </div>
+        <AppContext.Provider value={{ searchParams, setSearchParams, userData, setUserData }}>
+            <div className="App">
+                <Router>
+                    <ScrollToTop />
+                    <Svg />
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/flight-booking" element={<FlightBooking />}></Route>
+                        <Route path="/flight-details" element={<FlightDetails />}></Route>
+                        <Route path="/flight-listing" element={<FlightListing />}></Route>
+                        <Route path="/flight-search" element={<FlightSearch />}></Route>
+                        <Route path="/hotel-booking" element={<HotelBooking />}></Route>
+                        <Route path="/hotel-details" element={<HotelDetails />}></Route>
+                        <Route path="/hotel-listing" element={<HotelListing />}></Route>
+                        <Route path="/hotel-search" element={<HotelSearch />}></Route>
+                        <Route path="/login" element={<Login />}></Route>
+                        <Route path="/sign-up" element={<SignUp />}></Route>
+                        <Route path="/set-password" element={<SetPassword />}></Route>
+                        <Route path="/reset-password" element={<ResetPassword />}></Route>
+                        <Route path="/verify-code" element={<VerifyCode />}></Route>
+                        <Route path="/account" element={<Account />}></Route>
+                    </Routes>
+                    <RunScripts />
+                </Router>
+            </div>
+        </AppContext.Provider>
     );
 }
 

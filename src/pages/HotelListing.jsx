@@ -1,5 +1,6 @@
-import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from './../components/sections/HeaderInner/HeaderInner';
+import SearchForm from "../components/blocks/SearchForm/SearchForm";
+import Footer from "../components/sections/Footer/Footer";
 
 const HotelListing = () => {
     return (
@@ -8,70 +9,7 @@ const HotelListing = () => {
             <main className="listing">
                 <div className="listing-form">
                     <div className="container">
-                        <div className="search-form" tabs="search">
-                            <div
-                                className="search-form__content"
-                                tab-content="hotel-search"
-                                tab-group="search"
-                            >
-                                <div className="search-form__fields">
-                                    <div
-                                        className="input"
-                                        style={{ width: "calc(100% - 3 * 240px - 3 * 16px - 56px)" }}
-                                    >
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="Istanbul, Turkey"
-                                        />
-                                        <div className="input__label">Enter Destination</div>
-                                    </div>
-                                    <div className="input" style={{ width: 240 }}>
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="Fri 12/2"
-                                        />
-                                        <div className="input__label">Check In</div>
-                                        <button className="input__icon" type="button">
-                                            <svg width={24} height={24}>
-                                                <use href="#calendar-icon"> </use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div className="input" style={{ width: 240 }}>
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="Sun 12/4"
-                                        />
-                                        <div className="input__label">Check Out</div>
-                                        <button className="input__icon" type="button">
-                                            <svg width={24} height={24}>
-                                                <use href="#calendar-icon"> </use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div className="input" style={{ width: 240 }}>
-                                        <input
-                                            className="input__field"
-                                            type="text"
-                                            defaultValue="1 room, 2 guests"
-                                        />
-                                        <div className="input__label">Rooms &amp; Guests</div>
-                                    </div>
-                                    <button
-                                        className="square-button"
-                                        type="button"
-                                        style={{ width: 56, height: 56 }}
-                                    >
-                                        <svg width={24} height={24}>
-                                            <use href="#search-icon" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <SearchForm page="hotel-listing" />
                     </div>
                 </div>
                 <div className="listing-content">
