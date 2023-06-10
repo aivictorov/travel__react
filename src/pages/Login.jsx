@@ -1,9 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from './../components/blocks/Logo/Logo';
 import loginImg from './../img/login/slider/01.jpg';
+import { useContext } from 'react';
+import { AppContext } from '../App';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { setUserAuth } = useContext(AppContext)
 
     return (
         <>
@@ -68,7 +71,10 @@ const Login = () => {
                                             className="button button--bold"
                                             type="button"
                                             style={{ width: "100%" }}
-                                            onClick={() => { navigate("/account") }}
+                                            onClick={() => {
+                                                setUserAuth(true);
+                                                navigate("/account");
+                                            }}
                                         >
                                             Login
                                         </button>

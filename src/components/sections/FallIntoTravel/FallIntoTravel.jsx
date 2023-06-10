@@ -3,8 +3,14 @@ import travelImg01 from './../../../img/sections/fall-into-travel/01.jpg';
 import travelImg02 from './../../../img/sections/fall-into-travel/02.jpg';
 import travelImg03 from './../../../img/sections/fall-into-travel/03.jpg';
 import travelImg04 from './../../../img/sections/fall-into-travel/04.jpg';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../../../App';
 
 const FallIntoTravel = () => {
+    const { setSearchParams } = useContext(AppContext);
+    const navigate = useNavigate();
+
     return (
         <section className="fall-into-travel">
             <div className="container">
@@ -38,7 +44,14 @@ const FallIntoTravel = () => {
                                     <div className="fall-into-travel-card__price">$700</div>
                                 </div>
                             </div>
-                            <button className="button" type="button">
+                            <button
+                                className="button"
+                                type="button"
+                                onClick={() => {
+                                    setSearchParams({ from: 'Melbourne' });
+                                    navigate("/flight-listing");
+                                }}
+                            >
                                 Book flight
                             </button>
                         </div>

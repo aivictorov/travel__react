@@ -17,13 +17,17 @@ const FlightListing = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(1);
     const [visibleFlights, setVisibleFlights] = useState([]);
+
     const [airlineFilterItems, setAirlineFilterItems] = useState([]);
+    const [ratingFilterItems, setRatingFilterItems] = useState([]);
 
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
 
     const [minDepartureTime, setMinDepartureTime] = useState(0);
     const [maxDepartureTime, setMaxDepartureTime] = useState(1440);
+
+    const [renderFiltersFlag, setRenderFiltersFlag] = useState(false);
 
     useEffect(() => {
         const newSearchResults = data.filter((item) => {
@@ -35,18 +39,27 @@ const FlightListing = () => {
     useEffect(() => {
         setNumberOfResults(1);
 
-        if (searchResults.length > 0) {
+        if (searchResults.length > 1) {
+            setRenderFiltersFlag(true);
+
             const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
             const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
             setMinPrice(newMinPrice);
             setMaxPrice(newMaxPrice);
-        };
 
-        let arr = [];
-        searchResults.forEach((item) => {
-            arr.push(item.airline);
-        });
-        setAirlineFilterItems(arr);
+            let arrAirlines = [];
+            searchResults.forEach((item) => {
+                arrAirlines.push(item.airline);
+            });
+            setAirlineFilterItems(arrAirlines);
+
+            let arrRatings = [];
+            searchResults.forEach((item) => {
+                console.log(item.rating);
+                arrRatings.push(item.rating);
+            });
+            setRatingFilterItems(arrRatings);
+        };
     }, [searchResults])
 
     useEffect(() => {
@@ -91,7 +104,7 @@ const FlightListing = () => {
             {JSON.stringify(searchParams)}
             <br />
             <br />
-            <p>FILTERS </p> 
+            <p>FILTERS </p>
             {JSON.stringify(filters)}
             <br />
             <br />
@@ -113,8 +126,10 @@ const FlightListing = () => {
                             <div className="listing-content__left">
 
                                 <ListingFilters
+                                    renderFiltersFlag={renderFiltersFlag}
                                     changeFilter={changeFilter}
                                     airlineFilterItems={airlineFilterItems}
+                                    ratingFilterItems={ratingFilterItems}
                                 />
 
                             </div>
@@ -169,6 +184,8 @@ const FlightListing = () => {
                                                     id={flight.id}
                                                     start={flight.start}
                                                     end={flight.end}
+                                                    airline={flight.airline}
+                                                    logo={flight.logo}
                                                     price={flight.price}
                                                     rating={flight.rating}
                                                 />

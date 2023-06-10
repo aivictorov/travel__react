@@ -1,14 +1,12 @@
 import './Input.scss';
 
-const Input = ({ label, placeholder, defaultValue, value, onChangeFunction }) => {
-
-
+const Input = ({ type, label, placeholder, defaultValue, value, onChangeFunction }) => {
 
     return (
         <div className="input">
             <input
                 className="input__field"
-                type="text"
+                type={type || 'text'}
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 value={value}

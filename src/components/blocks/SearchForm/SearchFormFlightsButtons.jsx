@@ -1,4 +1,4 @@
-const SearchFormFlightsButtons = ({ getData }) => {
+const SearchFormFlightsButtons = ({ onClickFunction }) => {
 
     return (
         <div className="search-form__buttons">
@@ -10,8 +10,8 @@ const SearchFormFlightsButtons = ({ getData }) => {
             </button>
             <button
                 className="button"
-                type="submit"
-                onClick={getData}
+                type="button"
+                onClick={onClickFunction}
             >
                 <div className="button__icon">
                     <svg width={16} height={16}>

@@ -1,16 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
 import './FlightListingCard.scss';
-import { AppContext } from '../../../App';
+import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
 
-const FlightListingCard = ({ id, start, end, price, rating }) => {
-    const { userData, setUserData } = useContext(AppContext);
+const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => {
 
+    console.log(logo);
+
+    
     return (
         <div className="flight-card">
             <div className="flight-card__image">
                 <img
-                    src="./img/flights/airline-example-1/logo.png"
-                    alt="airline logo"
+                    src={logo}
+                    alt={airline}
                 />
             </div>
             <div className="flight-card__content">
@@ -100,43 +101,7 @@ const FlightListingCard = ({ id, start, end, price, rating }) => {
                     </li>
                 </ul>
                 <div className="flight-card__buttons">
-                    <div className="fav-checkbox">
-                        <label className="fav-checkbox__label">
-                            <input
-                                className="fav-checkbox__hidden visually-hidden"
-                                type="checkbox"
-                                checked={userData.includes(id)}
-                                onChange={(event) => {
-                                    if (event.target.checked) {
-                                        setUserData([...userData, id])
-                                    } else {
-                                        setUserData(userData.filter((item) => {
-                                            return item !== id
-                                        }))
-                                    }
-                                }}
-                            />
-                            <div
-                                className="fav-checkbox__custom"
-                                style={{ width: 48 }}
-                            >
-                                <svg
-                                    width={20}
-                                    height={20}
-                                    viewBox="0 0 20 20"
-                                    stroke="#4C4850"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M13.7863 3.625C11.2504 3.625 10.0004 6.125 10.0004 6.125C10.0004 6.125 8.7504 3.625 6.21446 3.625C4.15352 3.625 2.52149 5.34922 2.5004 7.40664C2.45743 11.6773 5.88829 14.7145 9.64884 17.2668C9.75251 17.3373 9.87501 17.3751 10.0004 17.3751C10.1258 17.3751 10.2483 17.3373 10.352 17.2668C14.1121 14.7145 17.543 11.6773 17.5004 7.40664C17.4793 5.34922 15.8473 3.625 13.7863 3.625V3.625Z"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </div>
-                        </label>
-                    </div>
+                    <FavCheckboxButton id={id} />
                     <button
                         className="button button--bold"
                         type="button"

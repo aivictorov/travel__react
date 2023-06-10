@@ -1,16 +1,18 @@
-import Logo from '../Logo/Logo';
 import './HeaderNav.scss';
+import Logo from '../Logo/Logo';
 import { NavLink } from 'react-router-dom';
+import HeaderNavLogin from './HeaderNavLogin';
+
 
 const HeaderNav = ({ style, btnStyle }) => {
     let mainColor, accentColor;
 
-    if (style ==='inner-page') {
+    if (style === 'inner-page') {
         mainColor = "#000";
         accentColor = "#8DD3BB";
     } else {
         mainColor = "#FFF";
-        accentColor = "#8DD3BB";    
+        accentColor = "#8DD3BB";
     };
 
     return (
@@ -29,18 +31,9 @@ const HeaderNav = ({ style, btnStyle }) => {
                     Find stays
                 </NavLink>
             </div>
-            <div className="header-nav__right">
-                <NavLink className="header-nav__item" to="/login">
-                    Login
-                </NavLink>
-                <NavLink
-                    className={`button button--bold button--${btnStyle}`}
-                    style={{ width: 104 }}
-                    to="/sign-up"
-                >
-                    Sign Up
-                </NavLink>
-            </div>
+
+            <HeaderNavLogin btnStyle={btnStyle} />
+
             <div className="header-nav__logo">
                 <Logo
                     mainColor={mainColor}

@@ -3,7 +3,7 @@ import SearchFormFlightsButtons from "./SearchFormFlightsButtons";
 import Input from './../../elements/Input/Input';
 import Select from './../../elements/Select/Select';
 import { AppContext } from './../../../App';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SearchFormFlights = ({ layout }) => {
@@ -11,14 +11,30 @@ const SearchFormFlights = ({ layout }) => {
 
     const { searchParams, setSearchParams } = useContext(AppContext);
 
-    const [from, setFrom] = useState((searchParams && searchParams.from) || []);
+    const [from, setFrom] = useState((searchParams && searchParams.from) || '');
+    const [to, setTo] = useState((searchParams && searchParams.to) || '');
+    const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
+    const [returnDate, setReturnDate] = useState((searchParams && searchParams.returnDate) || '');
 
-    const getData = (event) => {
+    const getSearchParams = (event) => {
         event.preventDefault();
-        const data = { 'from': from };
-        // alert(JSON.stringify(data));
-        setSearchParams(data);
-        localStorage.setItem('searchParams', JSON.stringify(data));
+
+        const arrayDepartDate = departDate.split(['-']);
+        const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
+
+        const arrayReturnDate = returnDate.split(['-']);
+        const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
+
+        const newSearchParams = {
+            'from': from,
+            'to': to,
+            'departDate': newDepartDate,
+            'returnDate': newReturnDate,
+            'passengers': 1,
+            'travelClass': 'economy',
+        };
+
+        setSearchParams(newSearchParams);
         navigate("/flight-listing");
     }
 
@@ -30,34 +46,49 @@ const SearchFormFlights = ({ layout }) => {
         >
             <div className={`search-form__fields search-form__fields--flights-${layout}`}>
                 <Input
-                    label="From - To"
-                    placeholder="Lahore - Karachi"
+                    type="text"
+                    label="From"
+                    placeholder="Lahore"
                     value={from}
                     onChangeFunction={setFrom}
                 />
-                <Select />
                 <Input
-                    label="Depart - Return"
-                    placeholder="07 Nov 22 - 13 Nov 22"
-                    defaultValue="07 Nov 22 - 13 Nov 22"
+                    type="text"
+                    label="To"
+                    placeholder="Karachi"
+                    value={to}
+                    onChangeFunction={setTo}
                 />
                 <Input
-                    label="Passenger - Class"
+                    type="date"
+                    label="Depart"
+                    placeholder="07 Nov 22"
+                    value={departDate}
+                    onChangeFunction={setDepartDate}
+                />
+                <Input
+                    type="date"
+                    label="Return"
+                    placeholder="13 Nov 22"
+                    value={returnDate}
+                    onChangeFunction={setReturnDate}
+                />
+                <Input
+                    label="Passenger & Class"
                     placeholder="1 Passenger, Economy"
-                    defaultValue="1 Passenger, Economy"
                 />
                 <button
                     className="square-button"
                     style={{ width: 56, height: 56 }}
                     type="submit"
-                    onClick={getData}
+                    onClick={getSearchParams}
                 >
                     <svg width={24} height={24}>
                         <use href="#search-icon" />
                     </svg>
                 </button>
             </div>
-            {layout !== 'short' && <SearchFormFlightsButtons getData={getData} />}
+            {layout !== 'short' && <SearchFormFlightsButtons onClickFunction={getSearchParams} />}
         </form>
     );
 };

@@ -26,9 +26,10 @@ export const AppContext = createContext(null);
 function App() {
     const [searchParams, setSearchParams] = useState([]);
     const [userData, setUserData] = useState([]);
+    const [userAuth, setUserAuth] = useState([false]);
 
     return (
-        <AppContext.Provider value={{ searchParams, setSearchParams, userData, setUserData }}>
+        <AppContext.Provider value={{ searchParams, setSearchParams, userData, setUserData, userAuth, setUserAuth }}>
             <div className="App">
                 <Router>
                     <ScrollToTop />
