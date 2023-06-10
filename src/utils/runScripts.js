@@ -10,7 +10,7 @@ export default function RunScripts() {
         dropdowns()
         selects();
         tabs();
-        dualRangeInputs();
+        // dualRangeInputs();
         accordeons();
         // reviewsCarousel();
         swap();

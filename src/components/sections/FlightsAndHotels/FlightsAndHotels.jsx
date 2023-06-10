@@ -7,14 +7,14 @@ const FlightsAndHotels = () => {
         {
             id: 0,
             title: 'Flights',
-            description: 'Search Flights &amp; Places Hire to our most popular destinations',
+            description: 'Search Flights & Places Hire to our most popular destinations',
             btnText: 'Show Filghts',
             style: 'flights',
         },
         {
             id: 1,
             title: 'Hotels',
-            description: 'Search Hotels &amp; Places Hire to our most popular destinations',
+            description: 'Search Hotels & Places Hire to our most popular destinations',
             btnText: 'Show Hotels',
             style: 'hotels',
         },

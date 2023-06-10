@@ -1,22 +1,24 @@
 import './FlightFilters.scss';
-import ListingFilterPrice from './ListingFilterPrice';
-import ListingFilterTime from './ListingFilterTime';
+import ListingFilterDualRange from './ListingFilterDualRange';
 import ListingFilterRating from './ListingFilterRating';
 import ListingFilterCheckboxes from './ListingFilterCheckboxes';
 
-const FlightFilters = ({ changeFilter }) => {
+const FlightFilters = ({ changeFilter, airlineFilterItems }) => {
+
     return (
         <div className="listing-filters">
             <h3 className="listing-filters__title">Filters</h3>
-            <ListingFilterPrice
+            <ListingFilterDualRange
                 name='price'
                 title='Price'
                 changeFilter={changeFilter}
+                format='price'
             />
-            <ListingFilterTime
+            <ListingFilterDualRange
                 name='time'
                 title='Departure time'
                 changeFilter={changeFilter}
+                format='time'
             />
             <ListingFilterRating
                 name='rating'
@@ -27,13 +29,14 @@ const FlightFilters = ({ changeFilter }) => {
             <ListingFilterCheckboxes
                 name='airline'
                 title='Airlines'
-                items={['Emirates', 'Qatar', 'Fly Dubai', 'Etihad']}
+                // items={['Emirates', 'Qatar', 'Fly Dubai', 'Etihad']}
+                items={airlineFilterItems}
                 changeFilter={changeFilter}
             />
             <ListingFilterCheckboxes
                 name='trip'
                 title='Trips'
-                items={['Round trip', ' On Way', 'Multi-City', 'My Dates Are Flexible']}
+                items={['Round trip', 'On Way', 'Multi-City', 'My Dates Are Flexible']}
                 changeFilter={changeFilter}
             />
         </div>

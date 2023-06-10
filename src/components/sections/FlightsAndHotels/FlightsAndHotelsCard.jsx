@@ -1,6 +1,12 @@
+import { NavLink } from 'react-router-dom';
 import './FlightsAndHotelsCard.scss';
 
 const FlightsAndHotelsCard = ({ title, description, btnText, style }) => {
+
+    let link = '/';
+    if (style === 'flights') link += 'flight-search'
+    if (style === 'hotels') link += 'hotel-search'
+
     return (
         <div className={`flights-and-hotels-card flights-and-hotels-card--${style}`}>
             <div className="flights-and-hotels-card__title">{title}</div>
@@ -8,9 +14,9 @@ const FlightsAndHotelsCard = ({ title, description, btnText, style }) => {
                 {description}
             </div>
             <div className="flights-and-hotels-card__button">
-                <button className="button" type="button">
+                <NavLink to={link} className="button">
                     {btnText}
-                </button>
+                </NavLink>
             </div>
         </div>
     );

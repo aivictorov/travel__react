@@ -1,7 +1,5 @@
 import './PlanYourTrip.scss';
-
 import PlanYourTripCard from './PlanYourTripCard';
-
 import planYourTripCardImg01 from './../../../img/sections/plan-your-trip/01.jpg';
 import planYourTripCardImg02 from './../../../img/sections/plan-your-trip/02.jpg';
 import planYourTripCardImg03 from './../../../img/sections/plan-your-trip/03.jpg';
@@ -19,48 +17,57 @@ const PlanYourTrip = () => {
             id: 0,
             title: 'Istanbul, Turkey',
             img: planYourTripCardImg01,
+            from: 'Lahore',
         },
         {
             id: 1,
             title: 'Sydney, Australia',
             img: planYourTripCardImg02,
+            from: 'Karachi',
         },
         {
             id: 2,
             title: 'Baku, Azerbaijan',
             img: planYourTripCardImg03,
+            from: 'Baku',
         },
         {
             id: 3,
             title: 'Malé, Maldives',
             img: planYourTripCardImg04,
+            from: 'Malé',
         },
         {
             id: 4,
             title: 'Paris, France',
             img: planYourTripCardImg05,
+            from: 'Paris',
         },
         {
             id: 5,
             title: 'New York, US',
             img: planYourTripCardImg06,
+            from: 'New York',
         },
         {
             id: 6,
             title: 'London, UK',
             img: planYourTripCardImg07,
+            from: 'London',
         },
         {
             id: 7,
             title: 'Tokyo, Japan',
             img: planYourTripCardImg08,
+            from: 'Tokyo',
         },
         {
             id: 8,
             title: 'Dubai, UAE',
             img: planYourTripCardImg09,
+            from: 'Dubai',
         },
-    ]
+    ];
 
     return (
         <section className="plan-your-trip">
@@ -79,19 +86,16 @@ const PlanYourTrip = () => {
                     </div>
                 </div>
                 <div className="plan-your-trip__cards">
-
                     {planYourTripCards.map((planYourTripCard) => {
                         return (
                             <PlanYourTripCard
                                 key={planYourTripCard.id}
                                 title={planYourTripCard.title}
                                 img={planYourTripCard.img}
+                                from={planYourTripCard.from}
                             />
                         )
                     })}
-
-
-
                 </div>
             </div>
         </section>

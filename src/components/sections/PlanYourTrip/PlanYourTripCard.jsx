@@ -1,6 +1,12 @@
+import { useContext } from 'react';
 import './PlanYourTripCard.scss';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../../App';
 
-const PlanYourTripCard = ({ title, img }) => {
+const PlanYourTripCard = ({ title, img, from }) => {
+    const navigate = useNavigate();
+    const { setSearchParams } = useContext(AppContext)
+
     return (
         <div className="plan-your-trip-card">
             <div className="plan-your-trip-card__image">
@@ -14,9 +20,16 @@ const PlanYourTripCard = ({ title, img }) => {
                     {title}
                 </div>
                 <div className="plan-your-trip-card__links">
-                    <a className="plan-your-trip-card__link" href="#!">
+                    <button
+                        className="plan-your-trip-card__link"
+                        type="button"
+                        onClick={() => {
+                            setSearchParams({ from: from });
+                            navigate("/flight-listing");
+                        }}
+                    >
                         Flights
-                    </a>
+                    </button>
                     •
                     <a className="plan-your-trip-card__link" href="#!">
                         Hotels

@@ -17,6 +17,7 @@ import Account from './pages/Account';
 import ScrollToTop from './utils/scrollToTop';
 import RunScripts from './utils/runScripts';
 import Svg from './helpers/Svg';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react';
 

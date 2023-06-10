@@ -3,23 +3,23 @@ import SearchFormFlightsButtons from "./SearchFormFlightsButtons";
 import Input from './../../elements/Input/Input';
 import Select from './../../elements/Select/Select';
 import { AppContext } from './../../../App';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();
 
-    const {searchParams, setSearchParams} = useContext(AppContext);
+    const { searchParams, setSearchParams } = useContext(AppContext);
 
     const [from, setFrom] = useState((searchParams && searchParams.from) || []);
 
     const getData = (event) => {
         event.preventDefault();
-        const data = { from };
-        alert(JSON.stringify(data));
+        const data = { 'from': from };
+        // alert(JSON.stringify(data));
         setSearchParams(data);
         localStorage.setItem('searchParams', JSON.stringify(data));
-        navigate("/flight-listing")
+        navigate("/flight-listing");
     }
 
     return (

@@ -1,12 +1,15 @@
-import { useState, useEffect, createContext, useContext } from "react";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import SearchForm from "../components/blocks/SearchForm/SearchForm";
 import ListingFilters from "../components/blocks/ListingFilters/ListingFilters";
 import FlightListingCard from "../components/blocks/FlightListingCard/FlightListingCard";
-import Footer from "../components/sections/Footer/Footer";
-import data from './../helpers/data';
-import { AppContext } from "../App";
 import ButtonShowMore from "../components/elements/ButtonShowMore/ButtonShowMore";
+import Footer from "../components/sections/Footer/Footer";
+
+import { useState, useEffect, createContext, useContext } from "react";
+import { AppContext } from "../App";
+import data from './../helpers/data';
+
+export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
     const { searchParams } = useContext(AppContext);
@@ -14,9 +17,13 @@ const FlightListing = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(1);
     const [visibleFlights, setVisibleFlights] = useState([]);
+    const [airlineFilterItems, setAirlineFilterItems] = useState([]);
 
-    // const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
-    // const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(0);
+
+    const [minDepartureTime, setMinDepartureTime] = useState(0);
+    const [maxDepartureTime, setMaxDepartureTime] = useState(1440);
 
     useEffect(() => {
         const newSearchResults = data.filter((item) => {
@@ -27,6 +34,19 @@ const FlightListing = () => {
 
     useEffect(() => {
         setNumberOfResults(1);
+
+        if (searchResults.length > 0) {
+            const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
+            const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
+            setMinPrice(newMinPrice);
+            setMaxPrice(newMaxPrice);
+        };
+
+        let arr = [];
+        searchResults.forEach((item) => {
+            arr.push(item.airline);
+        });
+        setAirlineFilterItems(arr);
     }, [searchResults])
 
     useEffect(() => {
@@ -66,12 +86,12 @@ const FlightListing = () => {
     }
 
     return (
-        <>
+        <FlightListingContext.Provider value={{ minPrice, maxPrice, minDepartureTime, maxDepartureTime }}>
             <p>SEARCH PARAMS </p>
             {JSON.stringify(searchParams)}
             <br />
             <br />
-            <p>FILTERS </p>
+            <p>FILTERS </p> 
             {JSON.stringify(filters)}
             <br />
             <br />
@@ -94,6 +114,7 @@ const FlightListing = () => {
 
                                 <ListingFilters
                                     changeFilter={changeFilter}
+                                    airlineFilterItems={airlineFilterItems}
                                 />
 
                             </div>
@@ -167,7 +188,7 @@ const FlightListing = () => {
                 </div>
             </main>
             <Footer />
-        </>
+        </FlightListingContext.Provider>
     );
 }
 
