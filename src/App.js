@@ -26,7 +26,7 @@ export const AppContext = createContext(null);
 function App() {
     const [searchParams, setSearchParams] = useState([]);
     const [userData, setUserData] = useState([]);
-    const [userAuth, setUserAuth] = useState([false]);
+    const [userAuth, setUserAuth] = useState(false);
 
     return (
         <AppContext.Provider value={{ searchParams, setSearchParams, userData, setUserData, userAuth, setUserAuth }}>

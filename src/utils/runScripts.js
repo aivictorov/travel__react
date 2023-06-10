@@ -5,8 +5,8 @@ export default function RunScripts() {
     const { pathname } = useLocation();
 
     useEffect(() => {
-        modalWindows();
-        alignModalWindows();
+        // modalWindows();
+        // alignModalWindows();
         dropdowns()
         selects();
         tabs();
