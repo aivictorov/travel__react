@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddCardPopup from "../../blocks/AddCardPopup/AddCardPopup";
+import AddCard from "../../blocks/AddCard/AddCard";
 
 const AccountTabsPayments = () => {
     // const cardsData = [
@@ -18,8 +18,7 @@ const AccountTabsPayments = () => {
         localStorage.setItem('cards', JSON.stringify(cardsNew));
     }
 
-    function addCard() {
-        alert('ADD');
+    function addCard(number) {
         let id = 0;
 
         cards.forEach((card) => {
@@ -27,7 +26,7 @@ const AccountTabsPayments = () => {
                 id = card.id;
             }
         });
-        const cardsNew = [...cards, { id: id + 1, number: 2991, valid: '12/28' }]
+        const cardsNew = [...cards, { id: id + 1, number: number, valid: '12/28' }]
         setCards(cardsNew);
         localStorage.setItem('cards', JSON.stringify(cardsNew));
     }
@@ -74,21 +73,8 @@ const AccountTabsPayments = () => {
                     );
                 })}
                 <div className="account-payment__add-card">
-                    <div className="add-card">
-                        <div className="add-card__content">
-                            <button
-                                className="add-card__button"
-                                modal-button="add-card"
-                                type="button"
-                                onClick={() => { alert('ADD') }}
-                            />
-                            <div className="add-card__text">
-                                Add a new card
-                            </div>
-                        </div>
-                    </div>
+                    <AddCard addCard={addCard} />
                 </div>
-                <AddCardPopup />
             </div>
         </div>
     );

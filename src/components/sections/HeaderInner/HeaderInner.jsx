@@ -7,7 +7,6 @@ const HeaderInner = () => {
             <div className="container">
                 <HeaderNav
                     style="inner-page"
-                    btnStyle="dark"
                 />
             </div>
         </header>

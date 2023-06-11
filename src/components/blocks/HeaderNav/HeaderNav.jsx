@@ -1,10 +1,16 @@
 import './HeaderNav.scss';
 import Logo from '../Logo/Logo';
-import { NavLink } from 'react-router-dom';
 import HeaderNavLogin from './HeaderNavLogin';
+import HeaderNavUser from './HeaderNavUser';
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { AppContext } from '../../../App';
 
+const HeaderNav = ({ style }) => {
+    const { userAuth } = useContext(AppContext)
 
-const HeaderNav = ({ style, btnStyle }) => {
+    const btnStyle = style === "inner-page" ? 'dark' : 'light'
+
     let mainColor, accentColor;
 
     if (style === 'inner-page') {
@@ -32,7 +38,8 @@ const HeaderNav = ({ style, btnStyle }) => {
                 </NavLink>
             </div>
 
-            <HeaderNavLogin btnStyle={btnStyle} />
+            {!userAuth && <HeaderNavLogin btnStyle={btnStyle} />}
+            {userAuth && <HeaderNavUser btnStyle={btnStyle} />}
 
             <div className="header-nav__logo">
                 <Logo

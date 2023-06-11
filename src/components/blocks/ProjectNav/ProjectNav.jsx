@@ -1,77 +1,25 @@
-import { useContext, useRef } from 'react';
 import './ProjectNav.scss'
+import { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const ProjectNav = () => {
     const modalRef = useRef(null);
-    const modalContentRef = useRef(null);
-
-    // function modalWindows() {
-    //     document.querySelectorAll('button[modal-button]').forEach((button) => {
-    //         const modal = document.querySelector(`div[modal-window="${button.getAttribute('modal-button')}"]`);
-
-    //         if (modal) {
-    //             const content = modal.querySelector('[modal-content]');
-
-    //             button.addEventListener('click', () => {
-    //                 modal.classList.add('active');
-    //                 document.body.classList.add('no-scroll');
-    //             });
-
-    //             content.addEventListener('click', (event) => {
-    //                 event.stopPropagation();
-    //             });
-
-    //             modal.addEventListener('click', () => {
-    //                 modal.classList.remove('active');
-    //                 document.body.classList.remove('no-scroll');
-    //             });
-    //         };
-    //     });
-    // };
-
-    // function alignModalWindows() {
-    //     align();
-    //     window.addEventListener('resize', align);
-
-    //     function align() {
-    //         document.querySelectorAll('[modal-window]').forEach((modal) => {
-    //             const content = modal.querySelector('[modal-content]');
-    //             if (content.clientHeight <= window.innerHeight - 80) {
-    //                 content.classList.add('center');
-    //             } else {
-    //                 content.classList.remove('center');
-    //             };
-    //         });
-    //     };
-    // };
 
     const openModal = () => {
         modalRef.current.classList.add('active');
-    }
+    };
 
     const closeModal = () => {
         modalRef.current.classList.remove('active');
-    }
-
-    const alignModal = () => {
-        if (modalContentRef.current.clientHeight <= window.innerHeight - 80) {
-            modalContentRef.current.classList.add('center');
-        } else {
-            modalContentRef.current.classList.remove('center');
-        };
     };
-
-    window.addEventListener('resize', alignModal);
 
     return (
         <div className="project-nav">
             <button
                 className="project-nav-button"
                 modal-button="project-nav"
-                onClick={()=>{
-                    openModal(); 
-                    alignModal();
+                onClick={() => {
+                    openModal();
                 }}
             >
                 <span>Навигация по проекту</span>
@@ -83,7 +31,6 @@ const ProjectNav = () => {
                 onClick={closeModal}
             >
                 <div
-                    ref={modalContentRef}
                     className="project-nav-modal__content"
                     modal-content="project-nav"
                     onClick={(event) => {
@@ -121,15 +68,6 @@ const ProjectNav = () => {
                             <NavLink to="./set-password">Set Password</NavLink>
                             <NavLink to="./reset-password">Reset Password</NavLink>
                             <NavLink to="./verify-code">Verify Code</NavLink>
-                            <button
-                                className="button"
-                                type='button'
-                                onClick={() => {
-                                    alert('HI')
-                                }}
-                            >
-                                TEST
-                            </button>
                         </li>
                     </ul>
                     <div className="project-nav-modal__notice">

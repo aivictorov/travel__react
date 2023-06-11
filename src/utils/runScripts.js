@@ -7,7 +7,7 @@ export default function RunScripts() {
     useEffect(() => {
         // modalWindows();
         // alignModalWindows();
-        dropdowns()
+        // dropdowns();
         selects();
         tabs();
         // dualRangeInputs();

@@ -9,7 +9,6 @@ const Header = () => {
                 <div className="header__bg">
                     <HeaderNav
                         style=""
-                        btnStyle="light"
                     />
                     <div className="header__content">
                         <div className="container">
