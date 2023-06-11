@@ -15,7 +15,7 @@ const FlightFilters = ({ renderFiltersFlag, changeFilter, airlineFilterItems, ra
                     changeFilter={changeFilter}
                     format='price'
                 />
-                <ListingFilterDualRange
+                {/* <ListingFilterDualRange
                     name='time'
                     title='Departure time'
                     changeFilter={changeFilter}
@@ -33,7 +33,7 @@ const FlightFilters = ({ renderFiltersFlag, changeFilter, airlineFilterItems, ra
                     title='Airlines'
                     items={airlineFilterItems}
                     changeFilter={changeFilter}
-                />
+                /> */}
             </div>
         );
     } else {

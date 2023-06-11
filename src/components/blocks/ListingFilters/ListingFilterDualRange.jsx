@@ -24,7 +24,7 @@ const ListingFilterDualRange = ({ name, title, changeFilter, format }) => {
     const [valueTwo, setValueTwo] = useState(0);
     const [valueOneFormatted, setValueOneFormatted] = useState(0);
     const [valueTwoFormatted, setValueTwoFormatted] = useState(0);
-    const [searchParams, setSearchParams] = useState({});
+    const [searchParams, setSearchParams] = useState({ min: 0, max: 0 });
 
     useEffect(() => {
         setValueOne(min);

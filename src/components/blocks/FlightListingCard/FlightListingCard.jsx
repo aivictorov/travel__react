@@ -2,10 +2,6 @@ import './FlightListingCard.scss';
 import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
 
 const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => {
-
-    console.log(logo);
-
-    
     return (
         <div className="flight-card">
             <div className="flight-card__image">

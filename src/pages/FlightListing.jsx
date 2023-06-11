@@ -7,109 +7,162 @@ import Footer from "../components/sections/Footer/Footer";
 
 import { useState, useEffect, createContext, useContext } from "react";
 import { AppContext } from "../App";
-import data from './../helpers/data';
+// import data from './../helpers/data';
 
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
-    const { searchParams } = useContext(AppContext);
+    const { flights, searchParams } = useContext(AppContext);
 
     const [searchResults, setSearchResults] = useState([]);
-    const [numberOfResults, setNumberOfResults] = useState(1);
-    const [visibleFlights, setVisibleFlights] = useState([]);
-
-    const [airlineFilterItems, setAirlineFilterItems] = useState([]);
-    const [ratingFilterItems, setRatingFilterItems] = useState([]);
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [visibleResults, setVisibleResults] = useState([]);
 
     const [minPrice, setMinPrice] = useState(0);
     const [maxPrice, setMaxPrice] = useState(0);
 
-    const [minDepartureTime, setMinDepartureTime] = useState(0);
-    const [maxDepartureTime, setMaxDepartureTime] = useState(1440);
+    const [filters, setFilter] = useState(
+        {
+            price: { min: 0, max: 0 }
+        }
+    );
 
-    const [renderFiltersFlag, setRenderFiltersFlag] = useState(false);
+    const [filterParams, setFilterParams] = useState(
+        {
+            price: { min: 0, max: 0 },
+        }
+    );
 
+    const [numberOfResults, setNumberOfResults] = useState(3);
+
+
+    // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
-        const newSearchResults = data.filter((item) => {
+        const newSearchResults = flights.filter((item) => {
             return searchParams.from === item.from
         });
         setSearchResults(newSearchResults);
     }, [searchParams]);
 
+    // FILTERED SEARCH RESULTS
     useEffect(() => {
-        setNumberOfResults(1);
+        defineFilterParams()
+        applyFilters()
+    }, [searchResults, filters])
 
+    function defineFilterParams() {
         if (searchResults.length > 1) {
-            setRenderFiltersFlag(true);
-
+            // setRenderFiltersFlag(true);
             const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
             const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
             setMinPrice(newMinPrice);
             setMaxPrice(newMaxPrice);
 
-            let arrAirlines = [];
-            searchResults.forEach((item) => {
-                arrAirlines.push(item.airline);
-            });
-            setAirlineFilterItems(arrAirlines);
-
-            let arrRatings = [];
-            searchResults.forEach((item) => {
-                console.log(item.rating);
-                arrRatings.push(item.rating);
-            });
-            setRatingFilterItems(arrRatings);
+            setFilterParams({...filterParams, price: { min: newMinPrice, max: newMaxPrice },})
         };
-    }, [searchResults])
+    };
 
+    function applyFilters() {
+        let newFilteredResults = searchResults.slice(0);
+
+        if (filters.price.min) {
+            newFilteredResults = newFilteredResults.filter((flight) => {
+                return flight.price >= filters.price.min;
+            })
+        };
+
+        if (filters.price.max) {
+            newFilteredResults = newFilteredResults.filter((flight) => {
+                return flight.price <= filters.price.max;
+            })
+        };
+        
+        setFilteredResults(newFilteredResults);
+    };
+
+    // VISIBLE
     useEffect(() => {
-        const visibleResults = searchResults.filter((item, index) => {
+        const visibleResults = filteredResults.filter((item, index) => {
             return index < numberOfResults
         });
-        setVisibleFlights(visibleResults);
-    }, [searchResults, numberOfResults])
+        setVisibleResults(visibleResults);
+    }, [filteredResults, numberOfResults])
 
-    // Filters
 
-    const [filters, setFilter] = useState({});
+
+    const [renderFiltersFlag, setRenderFiltersFlag] = useState(true);
 
     const changeFilter = (filter) => {
         setFilter({ ...filters, ...filter });
     };
 
-    useEffect(() => {
-        applyFilters(filters)
-    }, [filters]);
+    // OTHER
+    // const [airlineFilterItems, setAirlineFilterItems] = useState([]);
+    // const [ratingFilterItems, setRatingFilterItems] = useState([]);
 
-    const applyFilters = (filters) => {
-        // let filteredFlights = searchResults;
+    // const [minDepartureTime, setMinDepartureTime] = useState(0);
+    // const [maxDepartureTime, setMaxDepartureTime] = useState(1440);
 
-        // if (filters.minPrice) {
-        //     filteredFlights = filteredFlights.filter((flight) => {
-        //         return flight.price >= filters.minPrice;
-        //     })
-        // };
 
-        // if (filters.maxPrice) {
-        //     filteredFlights = filteredFlights.filter((flight) => {
-        //         return flight.price <= filters.maxPrice;
-        //     })
-        // };
-        // setVisibleFlights(filteredFlights);
-    }
+
+    // useEffect(() => {
+    //     setNumberOfResults(1);
+
+    //     if (searchResults.length > 1) {
+    //         setRenderFiltersFlag(true);
+
+    //         const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
+    //         const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
+    //         setMinPrice(newMinPrice);
+    //         setMaxPrice(newMaxPrice);
+
+    //         let arrAirlines = [];
+    //         searchResults.forEach((item) => {
+    //             arrAirlines.push(item.airline);
+    //         });
+    //         setAirlineFilterItems(arrAirlines);
+
+    //         let arrRatings = [];
+    //         searchResults.forEach((item) => {
+    //             console.log(item.rating);
+    //             arrRatings.push(item.rating);
+    //         });
+    //         setRatingFilterItems(arrRatings);
+    //     };
+    // }, [searchResults])
+
+    // Filters
+
 
     return (
-        <FlightListingContext.Provider value={{ minPrice, maxPrice, minDepartureTime, maxDepartureTime }}>
+        <FlightListingContext.Provider value={{ minPrice, maxPrice }}>
             <p>SEARCH PARAMS </p>
             {JSON.stringify(searchParams)}
             <br />
             <br />
+
+            <p>SEARCH RESULTS </p>
+            {JSON.stringify(searchResults.length)}
+            <br />
+            <br />
+
+            <p>FILTER PARAMS </p>
+            {JSON.stringify(filterParams)}
+            <br />
+            <br />
+
             <p>FILTERS </p>
             {JSON.stringify(filters)}
             <br />
             <br />
+
+            <p>FILTERED </p>
+            {JSON.stringify(filteredResults.length)}
+            <br />
+            <br />
+
             <p>VISIBLE </p>
-            {JSON.stringify(visibleFlights)}
+            {JSON.stringify(visibleResults.length)}
             <br />
             <br />
 
@@ -128,8 +181,8 @@ const FlightListing = () => {
                                 <ListingFilters
                                     renderFiltersFlag={renderFiltersFlag}
                                     changeFilter={changeFilter}
-                                    airlineFilterItems={airlineFilterItems}
-                                    ratingFilterItems={ratingFilterItems}
+                                // airlineFilterItems={airlineFilterItems}
+                                // ratingFilterItems={ratingFilterItems}
                                 />
 
                             </div>
@@ -169,15 +222,15 @@ const FlightListing = () => {
                                     </ul>
                                     <div className="listing-sort">
                                         <div className="listing-sort__left">
-                                            Showing {visibleFlights.length} of <a href="#!">{searchResults.length} flights</a>
+                                            Showing {visibleResults.length} of <a href="#!">{filteredResults.length} flights</a>
                                         </div>
                                         <div className="listing-sort__right">
                                             <span>Sort by </span>Recommended
                                         </div>
                                     </div>
                                     <div className="listing-content__cards">
-                                        {visibleFlights.length === 0 ? "Flights not found" : null}
-                                        {visibleFlights.map((flight) => {
+                                        {visibleResults.length === 0 ? "Flights not found" : null}
+                                        {visibleResults.map((flight) => {
                                             return (
                                                 <FlightListingCard
                                                     key={flight.id}

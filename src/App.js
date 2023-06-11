@@ -23,13 +23,13 @@ import { createContext, useState } from 'react';
 
 export const AppContext = createContext(null);
 
-function App() {
+function App({ flights, hotels }) {
     const [searchParams, setSearchParams] = useState([]);
     const [userData, setUserData] = useState([]);
     const [userAuth, setUserAuth] = useState(false);
 
     return (
-        <AppContext.Provider value={{ searchParams, setSearchParams, userData, setUserData, userAuth, setUserAuth }}>
+        <AppContext.Provider value={{ flights, hotels, searchParams, setSearchParams, userData, setUserData, userAuth, setUserAuth }}>
             <div className="App">
                 <Router>
                     <ScrollToTop />

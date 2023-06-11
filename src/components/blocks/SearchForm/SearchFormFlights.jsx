@@ -19,19 +19,19 @@ const SearchFormFlights = ({ layout }) => {
     const getSearchParams = (event) => {
         event.preventDefault();
 
-        const arrayDepartDate = departDate.split(['-']);
-        const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
+        // const arrayDepartDate = departDate.split(['-']);
+        // const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
 
-        const arrayReturnDate = returnDate.split(['-']);
-        const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
+        // const arrayReturnDate = returnDate.split(['-']);
+        // const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
 
         const newSearchParams = {
             'from': from,
             'to': to,
-            'departDate': newDepartDate,
-            'returnDate': newReturnDate,
-            'passengers': 1,
-            'travelClass': 'economy',
+            // 'departDate': newDepartDate,
+            // 'returnDate': newReturnDate,
+            // 'passengers': 1,
+            // 'travelClass': 'economy',
         };
 
         setSearchParams(newSearchParams);
