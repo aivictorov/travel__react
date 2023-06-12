@@ -6,19 +6,54 @@ import UserDroplistMenu from './UserDroplistMenu';
 import { useNavigate } from 'react-router-dom';
 
 const UserDroplist = forwardRef(({ }, ref) => {
-    const { setUserAuth } = useContext(AppContext);
+    const { setUserAuth, activeTabs, setActiveTabs } = useContext(AppContext);
 
     const navigate = useNavigate();
 
     const data1 = [
-        { title: 'My account', icon: 'img/icons/user-dropdown/user.svg', action: () => { navigate('/account') } },
-        { title: 'Payments', icon: 'img/icons/user-dropdown/card.svg', action: () => { navigate('/account') } },
-        { title: 'Settings', icon: 'img/icons/user-dropdown/settings.svg', action: () => { navigate('/account') } },
+        {
+            title: 'My account',
+            icon: 'img/icons/user-dropdown/user.svg',
+            action: () => {
+                setActiveTabs({ ...activeTabs, accountTabs: 'main' });
+                navigate('/account');
+            }
+        },
+
+        {
+            title: 'Bookings',
+            icon: 'img/icons/user-dropdown/card.svg',
+            action: () => { 
+                setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'flights' });
+                navigate('/account');
+        }
+        },
+        {
+            title: 'Payments',
+            icon: 'img/icons/user-dropdown/settings.svg',
+            action: () => { 
+                setActiveTabs({ ...activeTabs, accountTabs: 'payment' });
+                navigate('/account');
+        }
+        },
     ]
 
     const data2 = [
-        { title: 'Support', icon: 'img/icons/user-dropdown/support.svg', action: () => { navigate('/account') } },
-        { title: 'Logout', icon: 'img/icons/user-dropdown/logout.svg', action: () => { setUserAuth(false) } },
+        {
+            title: 'Support',
+            icon: 'img/icons/user-dropdown/support.svg',
+            action: () => { 
+                setActiveTabs({ ...activeTabs, accountTabs: 'main' });
+                navigate('/account');
+        }
+        },
+        {
+            title: 'Logout',
+            icon: 'img/icons/user-dropdown/logout.svg',
+            action: () => { 
+                setUserAuth(false) ;
+            }
+        },
     ]
 
     return (

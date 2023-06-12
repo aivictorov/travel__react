@@ -1,3 +1,6 @@
+import Button from "../../elements/Button/Button";
+import btnIcon from './../../../img/hotels/header.jpg';
+
 const SearchFormFlightsButtons = ({ onClickFunction }) => {
 
     return (
@@ -20,6 +23,10 @@ const SearchFormFlightsButtons = ({ onClickFunction }) => {
                 </div>
                 Show Filghts
             </button>
+
+            <Button text='Show Filghts' type='button' style="dark bold" icon={btnIcon} />
+            <Button text='Show Filghts' type='button' svgID='send-icon' />
+
         </div>
     );
 };

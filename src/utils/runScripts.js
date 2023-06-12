@@ -9,7 +9,7 @@ export default function RunScripts() {
         // alignModalWindows();
         // dropdowns();
         selects();
-        tabs();
+        // tabs();
         // dualRangeInputs();
         accordeons();
         // reviewsCarousel();

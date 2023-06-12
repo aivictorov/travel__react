@@ -1,9 +1,13 @@
-import { useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../../App";
 import UserDroplist from "../UserDroplist/UserDroplist";
 import userAvatar from './../../../img/users/avatars/01.jpg'
 
 const HeaderNavUser = () => {
+    const navigate = useNavigate(AppContext);
+    const { activeTabs, setActiveTabs } = useContext(AppContext);
+
     const userDroplistRef = useRef(null);
 
     const toggleDropdown = () => {
@@ -29,12 +33,18 @@ const HeaderNavUser = () => {
     return (
         <div className="header-nav__right">
             <div className="header-nav__item-wrapper">
-                <NavLink className="header-nav__item" to="/account">
+                <button
+                    className="header-nav__item"
+                    onClick={() => {
+                        setActiveTabs({ ...activeTabs, accountTabs: 'favourites', accountTabsFav: 'flights' });
+                        navigate('/account');
+                    }}
+                >
                     <svg width={24} height={24}>
                         <use href="#heart-icon" />
                     </svg>
                     Favourites
-                </NavLink>
+                </button>
                 <span>|</span>
             </div>
             <div className="header-nav__item-wrapper">

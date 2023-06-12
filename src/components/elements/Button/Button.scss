@@ -1,0 +1,79 @@
+@import './../../../scss/base/_vars.scss';
+
+.buttonNew {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    flex-shrink: 0;
+    padding: 16px;
+    background-color: $main;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: calc(16 / 14);
+
+    &:hover {
+        background-color: darken($main, 10%);
+    }
+
+    // style
+    &--light {
+        background-color: #FFF;
+
+        &:hover {
+            color: #FFF;
+            background-color: $black;
+        }
+    }
+
+    &--dark {
+        background-color: $black;
+        color: #FFF;
+
+        &:hover {
+            background-color: transparentize($black, 0.1);
+        }
+    }
+
+    &--border {
+        padding: 15px;
+        background-color: transparent;
+        border: 1px solid #8DD3BB;
+
+        &:hover {
+            background-color: $main;
+        }
+    }
+
+    // fit
+    &--h100 {
+        width: 100%;
+        padding-left: unset;
+        padding-right: unset;
+    }
+
+    &--w100 {
+        height: 100%;
+        padding-top: unset;
+        padding-bottom: unset;
+    }
+
+    // text
+    &--bold {
+        font-weight: 600;
+    }
+}
+
+.buttonNew__icon{
+    width: 16px;
+    height: 16px;
+
+    img, svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+
+}

@@ -34,11 +34,26 @@ function App({ flights, hotels }) {
             'travelClass': 'economy',
         }
     );
+    
     const [userData, setUserData] = useState([]);
     const [userAuth, setUserAuth] = useState(false);
 
+    const [activeTabs, setActiveTabs] = useState({
+        searchForm: 'flights',
+        accountTabs: 'main',
+        accountTabsBookings: 'flights',
+        accountTabsFav: 'flights',
+    });
+
     return (
-        <AppContext.Provider value={{ flights, hotels, searchParams, setSearchParams, userData, setUserData, userAuth, setUserAuth }}>
+        <AppContext.Provider value={{
+            flights,
+            hotels,
+            searchParams, setSearchParams,
+            userData, setUserData,
+            userAuth, setUserAuth,
+            activeTabs, setActiveTabs
+        }}>
             <div className="App">
                 <Router>
                     <ScrollToTop />

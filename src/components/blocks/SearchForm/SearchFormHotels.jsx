@@ -5,7 +5,7 @@ import { useContext, useState } from 'react';
 import { AppContext } from '../../../App';
 import Input from '../../elements/Input/Input';
 
-const SearchFormHotels = ({ layout, none }) => {
+const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();
 
     const { searchParams, setSearchParams } = useContext(AppContext);
@@ -37,7 +37,7 @@ const SearchFormHotels = ({ layout, none }) => {
 
     return (
         <form
-            className={`search-form__content ${none && 'none'}`}
+            className="search-form__content"
             tab-content="hotel-search"
             tab-group="search"
         >

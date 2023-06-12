@@ -33,7 +33,7 @@ const AccountTabsPayments = () => {
 
     return (
         <div
-            className="account-tabs__content none"
+            className="account-tabs__content"
             tab-content="payment"
             tab-group="account"
         >

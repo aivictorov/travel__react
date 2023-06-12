@@ -1,43 +1,53 @@
-const AccountTabsFavouriteHotel = () => {
+import { useContext } from "react";
+import { AppContext } from "../../../App";
+import FavCheckboxButton from "../../elements/FavCheckboxButton/FavCheckboxButton";
+
+const AccountTabsFavFlightsCard = ({ id }) => {
+    const { flights } = useContext(AppContext);
+
+    const flight = flights.find((flight) => {
+        return flight.id === id;
+    });
+
     return (
         <div className="account-booking-card">
             <div className="account-booking-card__icon">
                 <img
-                    src="./img/hotels/hotel-example-1/logo.jpg"
-                    alt="hotel-logo"
+                    src={flight.logo}
+                    alt={flight.airline}
                 />
             </div>
             <div className="account-booking-card__info">
                 <div className="account-booking-card__time">
                     <div className="account-booking-card__time-column">
                         <div className="account-booking-time-column-title">
-                            Check-in
+                            {`${flight.from} (EWR)`}
                         </div>
                         <div className="account-booking-time-column-value">
-                            Thur, Dec 8
+                            {flight.start}
                         </div>
                     </div>
                     <div className="account-booking-card__time-spacer">—</div>
                     <div className="account-booking-card__time-column">
                         <div className="account-booking-time-column-title">
-                            Check-out
+                            {`${flight.to} (EWR)`}
                         </div>
                         <div className="account-booking-time-column-value">
-                            Fri, Dec 9
+                            {flight.end}
                         </div>
                     </div>
                 </div>
                 <ul className="account-booking-card__features">
                     <li className="account-booking-card__feature">
                         <div className="account-booking-card__feature-icon">
-                            <img src="./img/icons/ticket/time.svg" alt="icon" />
+                            <img src="./img/icons/ticket/calendar.svg" alt="icon" />
                         </div>
                         <div className="account-booking-card__feature-content">
                             <div className="account-booking-card__feature-title">
-                                Check-In
+                                Date
                             </div>
                             <div className="account-booking-card__feature-value">
-                                12:00pm
+                                A12
                             </div>
                         </div>
                     </li>
@@ -47,10 +57,23 @@ const AccountTabsFavouriteHotel = () => {
                         </div>
                         <div className="account-booking-card__feature-content">
                             <div className="account-booking-card__feature-title">
-                                Check-Out
+                                Flight time
                             </div>
                             <div className="account-booking-card__feature-value">
-                                11:30am
+                                Newark(EWR)
+                            </div>
+                        </div>
+                    </li>
+                    <li className="account-booking-card__feature">
+                        <div className="account-booking-card__feature-icon">
+                            <img src="./img/icons/ticket/gate.svg" alt="icon" />
+                        </div>
+                        <div className="account-booking-card__feature-content">
+                            <div className="account-booking-card__feature-title">
+                                Gate
+                            </div>
+                            <div className="account-booking-card__feature-value">
+                                A12
                             </div>
                         </div>
                     </li>
@@ -60,10 +83,10 @@ const AccountTabsFavouriteHotel = () => {
                         </div>
                         <div className="account-booking-card__feature-content">
                             <div className="account-booking-card__feature-title">
-                                Room №
+                                Seat no.
                             </div>
                             <div className="account-booking-card__feature-value">
-                                On arrival
+                                128
                             </div>
                         </div>
                     </li>
@@ -71,20 +94,13 @@ const AccountTabsFavouriteHotel = () => {
             </div>
             <div className="account-booking-card__buttons">
                 <button className="button" type="button">
-                    Download Ticket
+                    Flight Delails
                 </button>
-                <button
-                    className="square-button square-button--border"
-                    type="button"
-                    style={{ width: 48, height: 48 }}
-                >
-                    <svg width={16} height={16}>
-                        <use href="#arrow-right" />
-                    </svg>
-                </button>
+                <FavCheckboxButton id={id} />
             </div>
         </div>
+
     );
 }
 
-export default AccountTabsFavouriteHotel;
+export default AccountTabsFavFlightsCard;
