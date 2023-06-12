@@ -17,13 +17,13 @@ const PlanYourTrip = () => {
             id: 0,
             title: 'Istanbul, Turkey',
             img: planYourTripCardImg01,
-            from: 'Lahore',
+            from: 'Istanbul',
         },
         {
             id: 1,
             title: 'Sydney, Australia',
             img: planYourTripCardImg02,
-            from: 'Karachi',
+            from: 'Sydney',
         },
         {
             id: 2,
@@ -33,9 +33,9 @@ const PlanYourTrip = () => {
         },
         {
             id: 3,
-            title: 'Malé, Maldives',
+            title: 'Male, Maldives',
             img: planYourTripCardImg04,
-            from: 'Malé',
+            from: 'Male',
         },
         {
             id: 4,

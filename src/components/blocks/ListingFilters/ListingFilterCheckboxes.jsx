@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FlightListingContext } from "../../../pages/FlightListing";
 
-const ListingFilterCheckboxes = ({ name, title, items = [], changeFilter }) => {
+const ListingFilterCheckboxes = ({ name, title, items }) => {
+
+    const { changeFilter, resetFilters } = useContext(FlightListingContext)
 
     const [params, setParams] = useState([]);
 

@@ -24,7 +24,16 @@ import { createContext, useState } from 'react';
 export const AppContext = createContext(null);
 
 function App({ flights, hotels }) {
-    const [searchParams, setSearchParams] = useState([]);
+    const [searchParams, setSearchParams] = useState(
+        {
+            'from': 'All',
+            'to': 'All',
+            'departDate': new Date(),
+            'returnDate': new Date(),
+            'passengers': 1,
+            'travelClass': 'economy',
+        }
+    );
     const [userData, setUserData] = useState([]);
     const [userAuth, setUserAuth] = useState(false);
 

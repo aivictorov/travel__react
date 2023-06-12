@@ -1,6 +1,8 @@
 import emiratesLogo from './../img/flights/airlines/emirates.png';
+import airIndiaLogo from './../img/flights/airlines/air_india.png';
+import finnairLogo from './../img/flights/airlines/finnair.png';
 
-const cities = ['Lahore', 'Karachi', 'Paris', 'London', 'Baku']
+const cities = ['Istanbul', 'Sydney', 'Baku', 'Male', 'Paris', 'New York', 'London', 'Tokyo', 'Dubai']
 const airlines = ['Emirates', 'Finnair', 'Aeroflot', 'Air India']
 
 export default function generateFlights(count) {
@@ -28,6 +30,6 @@ export default function generateFlights(count) {
 
         flights.push(flight)
     };
-    
+
     return flights;
 };

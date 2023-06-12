@@ -1,20 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { FlightListingContext } from "../../../pages/FlightListing";
 
-const ListingFilterDualRange = ({ name, title, changeFilter, format }) => {
+const ListingFilterDualRange = ({ name, title, min, max, format }) => {
 
-    const { minPrice, maxPrice } = useContext(FlightListingContext);
-    const { minDepartureTime, maxDepartureTime } = useContext(FlightListingContext);
+    const { changeFilter, resetFilters } = useContext(FlightListingContext)
 
-    let min, max, formatValue, flag = true;
+    let formatValue, flag = true;
 
     if (format === 'price') {
-        min = minPrice;
-        max = maxPrice;
         formatValue = formatPrice;
     } else if (format === 'time') {
-        min = minDepartureTime;
-        max = maxDepartureTime;
         formatValue = formatTime;
     } else {
         flag = false;
@@ -28,11 +23,11 @@ const ListingFilterDualRange = ({ name, title, changeFilter, format }) => {
 
     useEffect(() => {
         setValueOne(min);
-    }, [min])
+    }, [min, resetFilters])
 
     useEffect(() => {
         setValueTwo(max);
-    }, [max])
+    }, [max, resetFilters])
 
     useEffect(() => {
         setValueOneFormatted(formatValue(valueOne));
@@ -59,53 +54,53 @@ const ListingFilterDualRange = ({ name, title, changeFilter, format }) => {
         changeFilter({ [name]: searchParams });
     }, [searchParams]);
 
-    function dualRangeInputs() {
-        const dualRangeInputs = document.querySelectorAll('.dual-range-input');
+    // function dualRangeInputs() {
+    //     const dualRangeInputs = document.querySelectorAll('.dual-range-input');
 
-        dualRangeInputs.forEach((input) => {
-            const rangeOne = input.querySelector('[data-name="range-1"]');
-            const rangeTwo = input.querySelector('[data-name="range-2"]');
-            const valueOne = input.querySelector('[data-name="value-1"]');
-            const valueTwo = input.querySelector('[data-name="value-2"]');
-            const minGap = 0;
-            const track = input.querySelector('[data-name="track"]');
-            const minValue = rangeOne.min;
-            const maxValue = rangeOne.max;
+    //     dualRangeInputs.forEach((input) => {
+    //         const rangeOne = input.querySelector('[data-name="range-1"]');
+    //         const rangeTwo = input.querySelector('[data-name="range-2"]');
+    //         const valueOne = input.querySelector('[data-name="value-1"]');
+    //         const valueTwo = input.querySelector('[data-name="value-2"]');
+    //         const minGap = 0;
+    //         const track = input.querySelector('[data-name="track"]');
+    //         const minValue = rangeOne.min;
+    //         const maxValue = rangeOne.max;
 
-            slideOne();
-            slideTwo();
+    //         slideOne();
+    //         slideTwo();
 
-            rangeOne.addEventListener('input', slideOne);
-            rangeTwo.addEventListener('input', slideTwo);
+    //         rangeOne.addEventListener('input', slideOne);
+    //         rangeTwo.addEventListener('input', slideTwo);
 
-            function slideOne() {
-                if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
-                    rangeOne.value = parseInt(rangeTwo.value) - minGap;
-                }
-                valueOne.textContent = formatValue(rangeOne.value);
-                fillColor();
-            };
+    //         function slideOne() {
+    //             if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
+    //                 rangeOne.value = parseInt(rangeTwo.value) - minGap;
+    //             }
+    //             valueOne.textContent = formatValue(rangeOne.value);
+    //             fillColor();
+    //         };
 
-            function slideTwo() {
-                if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
-                    rangeTwo.value = parseInt(rangeOne.value) - minGap;
-                }
-                valueTwo.textContent = formatValue(rangeTwo.value);
-                fillColor();
-            };
+    //         function slideTwo() {
+    //             if (parseInt(rangeTwo.value) - parseInt(rangeOne.value) <= minGap) {
+    //                 rangeTwo.value = parseInt(rangeOne.value) - minGap;
+    //             }
+    //             valueTwo.textContent = formatValue(rangeTwo.value);
+    //             fillColor();
+    //         };
 
-            function fillColor() {
-                const percent1 = (rangeOne.value - minValue) / (maxValue - minValue) * 100;
-                const percent2 = (rangeTwo.value - minValue) / (maxValue - minValue) * 100;
-                track.style.background = `linear-gradient(to right, #E1E1E1 ${percent1}%,  #112211 ${percent1}%,
-                            #112211 ${percent2}%,  #E1E1E1 ${percent2}%)`;
-            };
+    //         function fillColor() {
+    //             const percent1 = (rangeOne.value - minValue) / (maxValue - minValue) * 100;
+    //             const percent2 = (rangeTwo.value - minValue) / (maxValue - minValue) * 100;
+    //             track.style.background = `linear-gradient(to right, #E1E1E1 ${percent1}%,  #112211 ${percent1}%,
+    //                         #112211 ${percent2}%,  #E1E1E1 ${percent2}%)`;
+    //         };
 
-            function formatValue(value) {
-                return value + '$';
-            };
-        })
-    };
+    //         function formatValue(value) {
+    //             return value + '$';
+    //         };
+    //     })
+    // };
 
     if (flag && (max - min > 0)) {
         return (

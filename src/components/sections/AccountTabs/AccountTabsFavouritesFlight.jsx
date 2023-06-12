@@ -1,7 +1,10 @@
 import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
-import flights from './../../../helpers/data';
+import { useContext } from 'react';
+import { AppContext } from '../../../App';
 
 const AccountTabsFavouritesFlight = ({ id }) => {
+
+    const {flights} = useContext(AppContext)
 
     const flight = flights.find((flight) => {
         return flight.id === id;

@@ -24,7 +24,7 @@ const PlanYourTripCard = ({ title, img, from }) => {
                         className="plan-your-trip-card__link"
                         type="button"
                         onClick={() => {
-                            setSearchParams({ from: from });
+                            setSearchParams({ from: from, to: 'All' });
                             navigate("/flight-listing");
                         }}
                     >

@@ -7,7 +7,6 @@ import Footer from "../components/sections/Footer/Footer";
 
 import { useState, useEffect, createContext, useContext } from "react";
 import { AppContext } from "../App";
-// import data from './../helpers/data';
 
 export const FlightListingContext = createContext(null);
 
@@ -18,53 +17,105 @@ const FlightListing = () => {
     const [filteredResults, setFilteredResults] = useState([]);
     const [visibleResults, setVisibleResults] = useState([]);
 
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(0);
-
-    const [filters, setFilter] = useState(
-        {
-            price: { min: 0, max: 0 }
-        }
-    );
-
     const [filterParams, setFilterParams] = useState(
         {
             price: { min: 0, max: 0 },
+            depature: { min: 0, max: 0 },
+            arrival: { min: 0, max: 0 },
+            airlines: [],
+            rating: { min: 0, max: 0 }
         }
     );
+    const [filters, setFilters] = useState(
+        {
+            ...filterParams,
+            airlines: [],
+            rating: filterParams.rating.min
+        }
+    );
+    const [resetFilters, setResetFilters] = useState(true);
 
     const [numberOfResults, setNumberOfResults] = useState(3);
 
-
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
-        const newSearchResults = flights.filter((item) => {
-            return searchParams.from === item.from
-        });
+        let newSearchResults = flights.slice(0);
+
+        if (searchParams.from !== 'All') {
+            newSearchResults = newSearchResults.filter((item) => {
+                return searchParams.from === item.from
+            });
+        };
+
+        if (searchParams.to !== 'All') {
+            newSearchResults = newSearchResults.filter((item) => {
+                return searchParams.to === item.to
+            });
+        };
+
         setSearchResults(newSearchResults);
     }, [searchParams]);
 
     // FILTERED SEARCH RESULTS
     useEffect(() => {
         defineFilterParams()
-        applyFilters()
-    }, [searchResults, filters])
+    }, [searchResults])
 
     function defineFilterParams() {
-        if (searchResults.length > 1) {
-            // setRenderFiltersFlag(true);
-            const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
-            const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
-            setMinPrice(newMinPrice);
-            setMaxPrice(newMaxPrice);
+        // Default params
+        let minPrice = 0, maxPrice = 0;
+        let airlinesList = [];
+        let minRating = 0, maxRating = 0;
 
-            setFilterParams({...filterParams, price: { min: newMinPrice, max: newMaxPrice },})
+        // Defining new params
+        if (searchResults.length > 1) {
+
+            // New price filter params 
+            minPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
+            maxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
+
+            // Airlines filter
+            searchResults.forEach((item) => {
+                if (!airlinesList.includes(item.airline)) airlinesList.push(item.airline);
+            });
+            airlinesList.sort();
+
+            // Rating filter
+            minRating = searchResults.reduce((prev, curr) => curr.rating < prev ? curr.rating : prev, searchResults[0].rating);
+            maxRating = searchResults.reduce((prev, curr) => curr.rating > prev ? curr.rating : prev, searchResults[0].rating)
         };
+
+        // Set filter params
+        setFilterParams(
+            {
+                price: { min: minPrice, max: maxPrice },
+                depature: { min: 0, max: 0 },
+                arrival: { min: 0, max: 0 },
+                airlines: airlinesList,
+                rating: { min: minRating, max: maxRating }
+            }
+        );
     };
+
+    useEffect(() => {
+        setFilters(
+            {
+                ...filterParams,
+                airlines: [],
+                rating: filterParams.rating.min
+            }
+        );
+        setResetFilters(!resetFilters);
+    }, [filterParams])
+
+    useEffect(() => {
+        applyFilters()
+    }, [filters])
 
     function applyFilters() {
         let newFilteredResults = searchResults.slice(0);
 
+        // Price filter
         if (filters.price.min) {
             newFilteredResults = newFilteredResults.filter((flight) => {
                 return flight.price >= filters.price.min;
@@ -76,7 +127,19 @@ const FlightListing = () => {
                 return flight.price <= filters.price.max;
             })
         };
-        
+
+        // Rating filter
+        newFilteredResults = newFilteredResults.filter((item) => {
+            return item.rating >= filters.rating;
+        });
+
+        // Airlines filter
+        if (filters.airlines.length !== 0) {
+            newFilteredResults = newFilteredResults.filter((item) => {
+                return filters.airlines.includes(item.airline);
+            });
+        };
+
         setFilteredResults(newFilteredResults);
     };
 
@@ -88,54 +151,35 @@ const FlightListing = () => {
         setVisibleResults(visibleResults);
     }, [filteredResults, numberOfResults])
 
-
-
-    const [renderFiltersFlag, setRenderFiltersFlag] = useState(true);
-
     const changeFilter = (filter) => {
-        setFilter({ ...filters, ...filter });
+        setFilters({ ...filters, ...filter });
     };
 
-    // OTHER
-    // const [airlineFilterItems, setAirlineFilterItems] = useState([]);
-    // const [ratingFilterItems, setRatingFilterItems] = useState([]);
+    
+    // --------------------------DEV--------------------------
+    // SORTING
+    function sortByPrice() {
+        alert('sortByPrice')
 
-    // const [minDepartureTime, setMinDepartureTime] = useState(0);
-    // const [maxDepartureTime, setMaxDepartureTime] = useState(1440);
+        let newSearchResults = searchResults.slice(0);
 
+        newSearchResults.sort(function (a, b) {
+            if (a.price > b.price) {
+                return 1;
+            }
+            if (a.price < b.price) {
+                return -1;
+            }
+            return 0;
+        });
 
-
-    // useEffect(() => {
-    //     setNumberOfResults(1);
-
-    //     if (searchResults.length > 1) {
-    //         setRenderFiltersFlag(true);
-
-    //         const newMinPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
-    //         const newMaxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
-    //         setMinPrice(newMinPrice);
-    //         setMaxPrice(newMaxPrice);
-
-    //         let arrAirlines = [];
-    //         searchResults.forEach((item) => {
-    //             arrAirlines.push(item.airline);
-    //         });
-    //         setAirlineFilterItems(arrAirlines);
-
-    //         let arrRatings = [];
-    //         searchResults.forEach((item) => {
-    //             console.log(item.rating);
-    //             arrRatings.push(item.rating);
-    //         });
-    //         setRatingFilterItems(arrRatings);
-    //     };
-    // }, [searchResults])
-
-    // Filters
+        setSearchResults(newSearchResults);
+    };
+    // --------------------------DEV--------------------------
 
 
     return (
-        <FlightListingContext.Provider value={{ minPrice, maxPrice }}>
+        <FlightListingContext.Provider value={{ changeFilter, resetFilters }}>
             <p>SEARCH PARAMS </p>
             {JSON.stringify(searchParams)}
             <br />
@@ -177,55 +221,78 @@ const FlightListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
+                                <div className="listing-filters">
+                                    <h3 className="listing-filters__title">
+                                        Filters
+                                    </h3>
+                                    {searchResults.length > 1 &&
+                                        <ListingFilters
+                                            changeFilter={changeFilter}
+                                            filterParams={filterParams}
+                                        />
+                                    }
 
-                                <ListingFilters
-                                    renderFiltersFlag={renderFiltersFlag}
-                                    changeFilter={changeFilter}
-                                // airlineFilterItems={airlineFilterItems}
-                                // ratingFilterItems={ratingFilterItems}
-                                />
+                                    {searchResults.length <= 1 &&
+                                        <p>No available filters</p>
+                                    }
 
+                                </div>
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
-                                    <ul className="tabs">
-                                        <button
-                                            className="tabs__item"
-                                            type="button"
-                                            style={{ width: "calc(100% / 3)" }}
-                                        >
-                                            <div className="tabs__item-content">
-                                                <div className="tabs__item-title">Cheapest</div>
-                                                <div className="tabs__item-subtitle">$99, 2h 00m</div>
-                                            </div>
-                                        </button>
-                                        <button
-                                            className="tabs__item"
-                                            type="button"
-                                            style={{ width: "calc(100% / 3)" }}
-                                        >
-                                            <div className="tabs__item-content">
-                                                <div className="tabs__item-title">Best</div>
-                                                <div className="tabs__item-subtitle">$199, 3h 30m</div>
-                                            </div>
-                                        </button>
-                                        <button
-                                            className="tabs__item"
-                                            type="button"
-                                            style={{ width: "calc(100% / 3)" }}
-                                        >
-                                            <div className="tabs__item-content">
-                                                <div className="tabs__item-title">Quickest</div>
-                                                <div className="tabs__item-subtitle">$299, 5h 00m</div>
-                                            </div>
-                                        </button>
-                                    </ul>
+
+                                    {searchResults.length > 1 &&
+                                        <ul className="tabs">
+                                            <button
+                                                className="tabs__item"
+                                                type="button"
+                                                style={{ width: "calc(100% / 3)" }}
+                                                onClick={sortByPrice}
+                                            >
+                                                <div className="tabs__item-content">
+                                                    <div className="tabs__item-title">Cheapest</div>
+                                                    <div className="tabs__item-subtitle">$99, 2h 00m</div>
+                                                </div>
+                                            </button>
+                                            <button
+                                                className="tabs__item"
+                                                type="button"
+                                                style={{ width: "calc(100% / 3)" }}
+                                            >
+                                                <div className="tabs__item-content">
+                                                    <div className="tabs__item-title">Best</div>
+                                                    <div className="tabs__item-subtitle">$199, 3h 30m</div>
+                                                </div>
+                                            </button>
+                                            <button
+                                                className="tabs__item"
+                                                type="button"
+                                                style={{ width: "calc(100% / 3)" }}
+                                            >
+                                                <div className="tabs__item-content">
+                                                    <div className="tabs__item-title">Quickest</div>
+                                                    <div className="tabs__item-subtitle">$299, 5h 00m</div>
+                                                </div>
+                                            </button>
+                                        </ul>
+                                    }
+
                                     <div className="listing-sort">
                                         <div className="listing-sort__left">
                                             Showing {visibleResults.length} of <a href="#!">{filteredResults.length} flights</a>
                                         </div>
                                         <div className="listing-sort__right">
                                             <span>Sort by </span>Recommended
+                                            <span> & Display by: </span>
+                                            <select
+                                                value={numberOfResults}
+                                                onChange={(event) => setNumberOfResults(parseInt(event.target.value))}
+                                            >
+                                                <option value="1">1</option>
+                                                <option value="3">3</option>
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="listing-content__cards">
@@ -247,10 +314,12 @@ const FlightListing = () => {
                                     </div>
                                 </div>
                                 <div className="listing-content__right-button">
-                                    <ButtonShowMore
-                                        numberOfResults={numberOfResults}
-                                        setNumberOfResults={setNumberOfResults}
-                                    />
+                                    {visibleResults < filteredResults &&
+                                        <ButtonShowMore
+                                            numberOfResults={numberOfResults}
+                                            setNumberOfResults={setNumberOfResults}
+                                        />
+                                    }
                                 </div>
                             </div>
                         </div>

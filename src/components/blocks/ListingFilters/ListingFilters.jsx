@@ -3,47 +3,35 @@ import ListingFilterDualRange from './ListingFilterDualRange';
 import ListingFilterRadioButtons from './ListingFilterRadioButtons';
 import ListingFilterCheckboxes from './ListingFilterCheckboxes';
 
-const FlightFilters = ({ renderFiltersFlag, changeFilter, airlineFilterItems, ratingFilterItems }) => {
+const FlightFilters = ({ filterParams }) => {
 
-    if (renderFiltersFlag) {
-        return (
-            <div className="listing-filters">
-                <h3 className="listing-filters__title">Filters</h3>
-                <ListingFilterDualRange
-                    name='price'
-                    title='Price'
-                    changeFilter={changeFilter}
-                    format='price'
-                />
-                {/* <ListingFilterDualRange
+    return (
+        <>
+            <ListingFilterDualRange
+                name='price'
+                title='Price'
+                min={filterParams.price.min}
+                max={filterParams.price.max}
+                format='price'
+            />
+            {/* <ListingFilterDualRange
                     name='time'
                     title='Departure time'
-                    changeFilter={changeFilter}
                     format='time'
-                />
-                <ListingFilterRadioButtons
-                    name='rating'
-                    title='Rating'
-                    names={['0+', '1+', '2+', '3+', '4+']}
-                    items={ratingFilterItems}
-                    changeFilter={changeFilter}
-                />
-                <ListingFilterCheckboxes
-                    name='airline'
-                    title='Airlines'
-                    items={airlineFilterItems}
-                    changeFilter={changeFilter}
                 /> */}
-            </div>
-        );
-    } else {
-        return (
-            <div className="listing-filters">
-                <h3 className="listing-filters__title">Filters</h3>
-                <p>No available filters</p>
-            </div>
-        )
-    };
+            <ListingFilterRadioButtons
+                name='rating'
+                title='Rating'
+                min={filterParams.rating.min}
+                max={filterParams.rating.max}
+            />
+            <ListingFilterCheckboxes
+                name='airlines'
+                title='Airlines'
+                items={filterParams.airlines}
+            />
+        </>
+    );
 };
 
 export default FlightFilters;

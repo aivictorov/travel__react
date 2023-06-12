@@ -26,8 +26,9 @@ const SearchFormFlights = ({ layout }) => {
         // const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
 
         const newSearchParams = {
-            'from': from,
-            'to': to,
+            ...searchParams,
+            'from': from || 'All',
+            'to': to || 'All',
             // 'departDate': newDepartDate,
             // 'returnDate': newReturnDate,
             // 'passengers': 1,

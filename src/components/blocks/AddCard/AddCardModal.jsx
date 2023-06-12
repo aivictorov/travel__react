@@ -4,8 +4,8 @@ import Input from './../../elements/Input/Input';
 
 const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
 
-
     const [cardNumber, setCardNumber] = useState('');
+    const [cardValidThru, setCardValidThru] = useState('');
 
     return (
         <div
@@ -21,7 +21,10 @@ const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
                     event.stopPropagation();
                 }}
             >
-                <div className="project-nav-modal__title">MODAL WINDOW TITLE</div>
+                <div className="project-nav-modal__title">
+                    Add new payment card
+                </div>
+
                 <Input
                     type="text"
                     label="Card Number"
@@ -29,10 +32,13 @@ const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
                     value={cardNumber}
                     onChangeFunction={setCardNumber}
                 />
-
-                <br />
-                <br />
-
+                <Input
+                    type="text"
+                    label="Valid thru"
+                    placeholder="10/27"
+                    value={cardValidThru}
+                    onChangeFunction={setCardValidThru}
+                />
                 <button
                     type="button"
                     className="button"
@@ -42,7 +48,7 @@ const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
                         setCardNumber('');
                     }}
                 >
-                    TEST
+                    Add card
                 </button>
 
             </div>
