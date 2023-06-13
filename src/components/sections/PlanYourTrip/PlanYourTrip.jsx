@@ -9,6 +9,7 @@ import planYourTripCardImg06 from './../../../img/sections/plan-your-trip/06.jpg
 import planYourTripCardImg07 from './../../../img/sections/plan-your-trip/07.jpg';
 import planYourTripCardImg08 from './../../../img/sections/plan-your-trip/08.jpg';
 import planYourTripCardImg09 from './../../../img/sections/plan-your-trip/09.jpg';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 
 const PlanYourTrip = () => {
 
@@ -72,19 +73,11 @@ const PlanYourTrip = () => {
     return (
         <section className="plan-your-trip">
             <div className="container">
-                <div className="section-header">
-                    <div className="section-header__left">
-                        <h2 className="section-header__title">Plan your perfect trip</h2>
-                        <div className="section-header__subtitle">
-                            Search Flights &amp; Places Hire to our most popular destinations
-                        </div>
-                    </div>
-                    <div className="section-header__right">
-                        <button className="button button--border button--h40" type="button">
-                            See more places
-                        </button>
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Plan your perfect trip"
+                    text="Search Flights & Places Hire to our most popular destinations"
+                    button="See more places"
+                />
                 <div className="plan-your-trip__cards">
                     {planYourTripCards.map((planYourTripCard) => {
                         return (

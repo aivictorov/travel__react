@@ -1,5 +1,6 @@
 import './FooterSubscribeForm.scss'
 import mailboxImg from './../../../img/footer/mailbox.svg'
+import Button from './../../elements/Button/Button';
 
 const FooterSubscribeForm = () => {
     return (
@@ -17,9 +18,9 @@ const FooterSubscribeForm = () => {
                         type="text"
                         defaultValue="Your email address"
                     />
-                    <button className="subscribe-button" type="button">
-                        Subscribe
-                    </button>
+                    <div className="subscribe-form__button-wrapper">
+                        <Button text="Subscribe" style="dark bold h100" />
+                    </div>
                 </div>
             </div>
             <div className="subscribe-form__image">

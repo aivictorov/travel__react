@@ -1,10 +1,11 @@
 import './SearchFormFlights.scss';
-import SearchFormFlightsButtons from "./SearchFormFlightsButtons";
+import SearchFormButtons from "./SearchFormButtons";
 import Input from './../../elements/Input/Input';
 import Select from './../../elements/Select/Select';
 import { AppContext } from './../../../App';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
 
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();
@@ -78,18 +79,15 @@ const SearchFormFlights = ({ layout }) => {
                     label="Passenger & Class"
                     placeholder="1 Passenger, Economy"
                 />
-                <button
-                    className="square-button"
-                    style={{ width: 56, height: 56 }}
-                    type="submit"
-                    onClick={getSearchParams}
-                >
-                    <svg width={24} height={24}>
-                        <use href="#search-icon" />
-                    </svg>
-                </button>
+                <ButtonSquare
+                    style=""
+                    svgID="search-icon"
+                    action={getSearchParams}
+                />
             </div>
-            {layout !== 'short' && <SearchFormFlightsButtons onClickFunction={getSearchParams} />}
+            {layout !== 'short' &&
+                <SearchFormButtons layout="flights" action={getSearchParams} />
+            }
         </form>
     );
 };

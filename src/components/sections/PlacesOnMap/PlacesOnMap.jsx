@@ -6,25 +6,17 @@ import labelImg03 from './../../../img/sections/places-on-map/labels/03.jpg';
 import labelImg04 from './../../../img/sections/places-on-map/labels/04.jpg';
 import labelImg05 from './../../../img/sections/places-on-map/labels/05.jpg';
 import labelArrowImg from './../../../img/sections/places-on-map/arrow-small.svg';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 
 const PlacesOnMap = () => {
     return (
         <section className="places-on-map">
             <div className="container">
-                <div className="section-header">
-                    <div className="section-header__left">
-                        <h2 className="section-header__title">Let's go places together</h2>
-                        <div className="section-header__subtitle">
-                            Discover the latest offers and news and start planning your next
-                            trip with us.
-                        </div>
-                    </div>
-                    <div className="section-header__right">
-                        <button className="button button--border button--h40" type="button">
-                            See All
-                        </button>
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Let's go places together"
+                    text="Discover the latest offers and news and start planning your next trip with us."
+                    button="See All"
+                />
             </div>
             <div className="places-on-map__content">
                 <div className="container">

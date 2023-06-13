@@ -1,7 +1,7 @@
 import './Button.scss';
 
 const Button = ({ text, type, style, icon, svgID, action }) => {
-
+   
     let addClass = '';
 
     if (style) {
@@ -15,19 +15,21 @@ const Button = ({ text, type, style, icon, svgID, action }) => {
     return (
         <button
             className={'buttonNew' + addClass}
-            type={type}
+            type={type || 'button'}
             onClick={action}
         >
-            <div className="buttonNew__icon">
-                {icon &&
-                    <img src={icon} alt="button-icon" />
-                }
-                {svgID &&
-                    <svg width="16" height="16">
-                        <use href={`#${svgID}`} />
-                    </svg>
-                }
-            </div>
+            {(icon || svgID) &&
+                <div className="buttonNew__icon">
+                    {icon &&
+                        <img src={icon} alt="button-icon" />
+                    }
+                    {svgID &&
+                        <svg width="16" height="16">
+                            <use href={`#${svgID}`} />
+                        </svg>
+                    }
+                </div>
+            }
             {text}
         </button>
     );

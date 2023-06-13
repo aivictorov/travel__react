@@ -1,6 +1,6 @@
 import './Reviews.scss';
+import SectionHeader from './../../blocks/SectionHeader/SectionHeader';
 import ReviewCard from "./ReviewCard";
-
 import reviewCardImg01 from './../../../img/sections/reviews-section/01.jpg';
 import reviewCardImg02 from './../../../img/sections/reviews-section/02.jpg';
 import reviewCardImg03 from './../../../img/sections/reviews-section/02.jpg';
@@ -37,20 +37,13 @@ const Reviews = () => {
     return (
         <section className="reviews-section">
             <div className="container">
-                <div className="section-header">
-                    <div className="section-header__left">
-                        <h2 className="section-header__title">Reviews</h2>
-                        <div className="section-header__subtitle">
-                            What people says about Golobe facilities
-                        </div>
-                    </div>
-                    <div className="section-header__right">
-                        <button className="button button--border button--h40" type="button">
-                            See All
-                        </button>
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Reviews"
+                    text="What people says about Golobe facilities"
+                    button="See All"
+                />
             </div>
+
             <div className="container-right">
                 <div className="reviews-section__cards owl-carousel owl-theme">
                     {reviewCards.map((reviewCard) => {

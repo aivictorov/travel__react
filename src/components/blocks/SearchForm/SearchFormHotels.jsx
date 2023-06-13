@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import './SearchFormHotels.scss';
-import SearchFormHotelsButtons from "./SearchFormHotelsButtons";
+import SearchFormButtons from "./SearchFormButtons";
 import { useContext, useState } from 'react';
 import { AppContext } from '../../../App';
 import Input from '../../elements/Input/Input';
+import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
 
 const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();
@@ -15,23 +16,23 @@ const SearchFormHotels = ({ layout }) => {
     const [checkOut, setCheckOut] = useState((searchParams && searchParams.checkOut) || '1970-01-01');
 
     const getSearchParams = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
 
-        const arrayCheckIn = checkIn.split(['-']);
-        const newCheckIn = new Date(arrayCheckIn[0], arrayCheckIn[1], arrayCheckIn[2]);
+        // const arrayCheckIn = checkIn.split(['-']);
+        // const newCheckIn = new Date(arrayCheckIn[0], arrayCheckIn[1], arrayCheckIn[2]);
 
-        const arrayCheckOut = checkOut.split(['-']);
-        const newCheckOut = new Date(arrayCheckOut[0], arrayCheckOut[1], arrayCheckOut[2]);
+        // const arrayCheckOut = checkOut.split(['-']);
+        // const newCheckOut = new Date(arrayCheckOut[0], arrayCheckOut[1], arrayCheckOut[2]);
 
-        const newSearchParams = {
-            'destination': destination,
-            'checkIn': newCheckIn,
-            'checkOut': newCheckOut,
-            'rooms': 1,
-            'guests': 2,
-        };
+        // const newSearchParams = {
+        //     'destination': destination,
+        //     'checkIn': newCheckIn,
+        //     'checkOut': newCheckOut,
+        //     'rooms': 1,
+        //     'guests': 2,
+        // };
 
-        setSearchParams(newSearchParams);
+        // setSearchParams(newSearchParams);
         navigate("/hotel-listing");
     }
 
@@ -50,14 +51,14 @@ const SearchFormHotels = ({ layout }) => {
                     onChangeFunction={setDestination}
                 />
                 <Input
-                    type="text"
+                    type="date"
                     label="Check In"
                     placeholder="Fri 12/2"
                     value={checkIn}
                     onChangeFunction={setCheckIn}
                 />
                 <Input
-                    type="text"
+                    type="date"
                     label="Check Out"
                     placeholder="Sun 12/4"
                     value={checkOut}
@@ -68,18 +69,15 @@ const SearchFormHotels = ({ layout }) => {
                     label="Rooms & Guests"
                     placeholder="1 room, 2 guests"
                 />
-                <button
-                    className="square-button"
-                    type="button"
-                    style={{ width: 56, height: 56 }}
-                    onClick={getSearchParams}
-                >
-                    <svg width={24} height={24}>
-                        <use href="#search-icon" />
-                    </svg>
-                </button>
+                <ButtonSquare
+                    style=""
+                    svgID="search-icon"
+                    action={getSearchParams}
+                />
             </div>
-            {layout !== 'short' && <SearchFormHotelsButtons onClickFunction={getSearchParams} />}
+            {layout !== 'short' &&
+                <SearchFormButtons layout="hotels" action={getSearchParams} />
+            }
         </form>
     );
 };

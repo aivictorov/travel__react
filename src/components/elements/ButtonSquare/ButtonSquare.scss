@@ -1,0 +1,46 @@
+@import './../../../scss/base/_vars.scss';
+
+.square-buttonNew {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background-color: $main;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: darken($main, 10%);
+    }
+
+    &--border {
+        background-color: transparent;
+        border: 1px solid #8DD3BB;
+
+        &:hover {
+            background-color: $main;
+        }
+    }
+
+    &--small {
+        width: 48px;
+        height: 48px;
+
+        .buttonNew__icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.square-button__iconNew {
+    width: 24px;
+    height: 24px;
+
+    svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}

@@ -16,7 +16,7 @@ import VerifyCode from './pages/VerifyCode';
 import Account from './pages/Account';
 import ScrollToTop from './utils/scrollToTop';
 import RunScripts from './utils/runScripts';
-import Svg from './helpers/Svg';
+import SVG from './helpers/SVG';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react';
@@ -57,7 +57,7 @@ function App({ flights, hotels }) {
             <div className="App">
                 <Router>
                     <ScrollToTop />
-                    <Svg />
+                    <SVG />
                     <Routes>
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/flight-booking" element={<FlightBooking />}></Route>

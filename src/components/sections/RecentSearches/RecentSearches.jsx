@@ -1,4 +1,5 @@
 import './RecentSearches.scss'
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 import recentSearchImg01 from './../../../img/sections/recent-searches/01.jpg';
 import recentSearchImg02 from './../../../img/sections/recent-searches/02.jpg';
 import recentSearchImg03 from './../../../img/sections/recent-searches/03.jpg';
@@ -8,12 +9,9 @@ const RecentSearches = () => {
     return (
         <section className="recent-searches">
             <div className="container">
-                <div className="section-header">
-                    <div className="section-header__left">
-                        <h2 className="section-header__title">Your recent searches</h2>
-                    </div>
-                    <div className="section-header__right"></div>
-                </div>
+                <SectionHeader
+                    title="Your recent searches"
+                />
                 <div className="recent-searches__cards">
                     <div className="recent-search-card">
                         <div className="recent-search-card__image">

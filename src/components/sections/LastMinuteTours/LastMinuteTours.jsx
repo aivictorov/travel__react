@@ -3,26 +3,21 @@ import tourImg01 from './../../../img/sections/last-minute-tours/01.jpg';
 import tourImg02 from './../../../img/sections/last-minute-tours/02.jpg';
 import tourImg03 from './../../../img/sections/last-minute-tours/03.jpg';
 import tourImg04 from './../../../img/sections/last-minute-tours/04.jpg';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
+import Button from '../../elements/Button/Button';
 
 const LastMinuteTours = () => {
+
+    const gallery = [tourImg01, tourImg02, tourImg03, tourImg04];
+
     return (
         <section className="last-minute-tours">
             <div className="container">
-                <div className="section-header">
-                    <div className="section-header__left">
-                        <h2 className="section-header__title">Last minute tours</h2>
-                        <div className="section-header__subtitle">
-                            Going somewhere to celebrate this season? Whether you’re going
-                            home or somewhere to roam, we’ve got the travel tools to get you
-                            to your destination.
-                        </div>
-                    </div>
-                    <div className="section-header__right">
-                        <button className="button button--border button--h40" type="button">
-                            See All
-                        </button>
-                    </div>
-                </div>
+                <SectionHeader
+                    title="Last minute tours"
+                    text="Going somewhere to celebrate this season? Whether you’re going home or somewhere to roam, we’ve got the travel tools to get you to your destination."
+                    button="See All"
+                />
                 <div className="last-minute-tours__content">
                     <div className="last-minute-tours__card">
                         <div className="last-minute-tours__card-header">
@@ -43,40 +38,21 @@ const LastMinuteTours = () => {
                             </p>
                         </div>
                         <div className="last-minute-tours__card-button">
-                            <button
-                                className="button button--light"
-                                type="button"
-                                style={{ width: "100%" }}
-                            >
-                                Book flight
-                            </button>
+                            <Button text="Book flight" style="light w100" />
                         </div>
                     </div>
+
                     <div className="last-minute-tours__gallery">
-                        <div className="last-minute-tours__image">
-                            <img
-                                src={tourImg01}
-                                alt="Backpacking Sri Lanka"
-                            />
-                        </div>
-                        <div className="last-minute-tours__image">
-                            <img
-                                src={tourImg02}
-                                alt="Backpacking Sri Lanka"
-                            />
-                        </div>
-                        <div className="last-minute-tours__image">
-                            <img
-                                src={tourImg03}
-                                alt="Backpacking Sri Lanka"
-                            />
-                        </div>
-                        <div className="last-minute-tours__image">
-                            <img
-                                src={tourImg04}
-                                alt="Backpacking Sri Lanka"
-                            />
-                        </div>
+                        {gallery.map((image) => {
+                            return (
+                                <div className="last-minute-tours__image">
+                                    <img
+                                        src={image}
+                                        alt="Backpacking Sri Lanka"
+                                    />
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

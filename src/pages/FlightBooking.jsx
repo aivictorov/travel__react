@@ -1,4 +1,4 @@
-import Svg from "../helpers/Svg";
+import Svg from "../helpers/SVG";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import Footer from './../components/sections/Footer/Footer';
 

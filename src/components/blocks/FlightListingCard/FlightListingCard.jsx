@@ -1,5 +1,7 @@
 import './FlightListingCard.scss';
 import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
+import Button from '../../elements/Button/Button';
+import Rating from '../../elements/Rating/Rating';
 
 const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => {
     return (
@@ -12,17 +14,13 @@ const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => 
             </div>
             <div className="flight-card__content">
                 <div className="flight-card__header">
-                    <div className="flight-card__rating">
-                        <div className="rating">
-                            <div className="rating__value">{rating}</div>
-                            <span className="rating__text">
-                                <strong>Very good</strong>
-                            </span>
-                            <a className="rating__link" href="#!">
-                                54 reviews
-                            </a>
-                        </div>
-                    </div>
+                    
+
+                    <Rating value={rating} />
+
+
+
+
                     <div className="flight-card__price">
                         starting from
                         <div className="price">
@@ -98,13 +96,9 @@ const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => 
                 </ul>
                 <div className="flight-card__buttons">
                     <FavCheckboxButton id={id} />
-                    <button
-                        className="button button--bold"
-                        type="button"
-                        style={{ width: 536 }}
-                    >
-                        View Details
-                    </button>
+                    <div className="flight-card__button-wrapper">
+                        <Button text="View Details" style="bold w100" />
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,18 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Button from './../../elements/Button/Button';
 
 const HeaderNavLogin = ({ btnStyle }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="header-nav__right">
             <NavLink className="header-nav__item" to="/login">
                 Login
             </NavLink>
-            <NavLink
-                className={`button button--bold button--${btnStyle}`}
-                style={{ width: 104 }}
-                to="/sign-up"
-            >
-                Sign Up
-            </NavLink>
+
+            <div className="header-nav__button-wrapper">
+                <Button text="Sign Up" style={`${btnStyle} bold w100`} action={() => { navigate('/sign-up') }} />
+            </div>
         </div>
     );
 };

@@ -23,16 +23,8 @@
     color: rgba(17, 34, 17, 0.75);
 }
 
-.section-header__right {}
+// .section-header__right {}
 
-.section-header__button {
-    flex-shrink: 0;
-    padding-left: 16px;
-    padding-right: 16px;
+.section-header__button-wrapper {
     height: 40px;
-    border: 1px solid #8DD3BB;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 38px;
 }
