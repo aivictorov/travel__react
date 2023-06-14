@@ -1,4 +1,4 @@
-import './FlightFilters.scss';
+import './ListingFilters.scss';
 import ListingFilterDualRange from './ListingFilterDualRange';
 import ListingFilterRadioButtons from './ListingFilterRadioButtons';
 import ListingFilterCheckboxes from './ListingFilterCheckboxes';

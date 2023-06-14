@@ -2,8 +2,11 @@ import './FlightListingCard.scss';
 import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
 import Button from '../../elements/Button/Button';
 import Rating from '../../elements/Rating/Rating';
+import { useNavigate } from 'react-router-dom';
 
 const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="flight-card">
             <div className="flight-card__image">
@@ -14,7 +17,7 @@ const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => 
             </div>
             <div className="flight-card__content">
                 <div className="flight-card__header">
-                    
+
 
                     <Rating value={rating} />
 
@@ -97,7 +100,7 @@ const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => 
                 <div className="flight-card__buttons">
                     <FavCheckboxButton id={id} />
                     <div className="flight-card__button-wrapper">
-                        <Button text="View Details" style="bold w100" />
+                        <Button text="View Details" style="bold w100" action={() => { navigate('/flight-details') }} />
                     </div>
                 </div>
             </div>

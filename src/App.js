@@ -35,7 +35,7 @@ function App({ flights, hotels }) {
         }
     );
     
-    const [userData, setUserData] = useState([]);
+    const [userData, setUserData] = useState([1, 3, 17]);
     const [userAuth, setUserAuth] = useState(false);
 
     const [activeTabs, setActiveTabs] = useState({

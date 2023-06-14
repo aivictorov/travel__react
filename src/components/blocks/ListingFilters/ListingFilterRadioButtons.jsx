@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FlightListingContext } from "../../../pages/FlightListing";
+import ListingFilterHeader from './ListingFilterHeader';
 
 const ListingFilterRadioButtons = ({ name, title, min, max }) => {
     const { changeFilter } = useContext(FlightListingContext);
+    const [displayFilter, setDisplayFilter] = useState(true);
 
     if (max - min >= 1) {
         const buttons = [];
@@ -15,53 +17,49 @@ const ListingFilterRadioButtons = ({ name, title, min, max }) => {
             } else {
                 item = { value: index, text: index };
             };
-            
+
             buttons.push(item);
         }
 
         return (
             <div className="filter-item">
-                <div className="filter-item__header">
-                    <h4 className="filter-item__title">{title}</h4>
-                    <button
-                        className="filter-item__button"
-                        type="button"
-                        accordeon-button="Rating"
+
+                <ListingFilterHeader
+                    title={title}
+                    action={() => { setDisplayFilter(!displayFilter) }}
+                />
+
+                {displayFilter &&
+                    <div
+                        className="filter-item__content filter-item__content--row"
+                        accordeon-content="Rating"
                     >
-                        <svg width={24} height={24}>
-                            <use href="#arrow-down" />
-                        </svg>
-                    </button>
-                </div>
-                <div
-                    className="filter-item__content filter-item__content--row"
-                    accordeon-content="Rating"
-                >
-                    {buttons.map((button) => {
-                        return (
-                            <div
-                                className="rating-filter-checkbox"
-                                key={button.value}
-                            >
-                                <label className="rating-filter-checkbox__label">
-                                    <input
-                                        className="rating-filter-checkbox__hidden visually-hidden"
-                                        name={name}
-                                        type="radio"
-                                        value={button.value}
-                                        onChange={(event) => { changeFilter({ [name]: event.target.value }) }}
-                                    />
-                                    <div
-                                        className="rating-filter-checkbox__custom"
-                                        style={{ width: 40 }}
-                                    >
-                                        {button.text}
-                                    </div>
-                                </label>
-                            </div>
-                        )
-                    })}
-                </div>
+                        {buttons.map((button) => {
+                            return (
+                                <div
+                                    className="rating-filter-checkbox"
+                                    key={button.value}
+                                >
+                                    <label className="rating-filter-checkbox__label">
+                                        <input
+                                            className="rating-filter-checkbox__hidden visually-hidden"
+                                            name={name}
+                                            type="radio"
+                                            value={button.value}
+                                            onChange={(event) => { changeFilter({ [name]: event.target.value }) }}
+                                        />
+                                        <div
+                                            className="rating-filter-checkbox__custom"
+                                            style={{ width: 40 }}
+                                        >
+                                            {button.text}
+                                        </div>
+                                    </label>
+                                </div>
+                            )
+                        })}
+                    </div>
+                }
             </div>
         );
     };

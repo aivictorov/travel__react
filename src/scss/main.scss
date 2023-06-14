@@ -11,41 +11,13 @@
 @import './layouts/login';
 @import './layouts/sign-up';
 
-// Blocks
-@import './blocks/booking-login';
-@import './blocks/booking-payment-cards';
-@import './blocks/booking-payment-methods';
-@import './blocks/listing-sort';
-@import './blocks/login-form';
-@import './blocks/login-slider';
-@import './blocks/track-nav';
-
 // Mixins
-@import './mixins/account-booking-card';
-@import './mixins/booking-summary';
 @import './mixins/buttons';
 @import './mixins/checkboxes';
 @import './mixins/details-header';
 @import './mixins/dual-range'; 
-@import './mixins/filter-item'; 
-@import './mixins/flight-ticket';
-@import './mixins/footer-nav';
-@import './mixins/hotel-card'; 
-@import './mixins/hotel-reservation';
 @import './mixins/location';
 @import './mixins/login-header'; 
 @import './mixins/login-with'; 
-@import './mixins/payment-radio';
 @import './mixins/price';
-@import './mixins/stars';
 @import './mixins/tabs';
-
-// Sections
-@import './sections/flight-features';
-@import './sections/flight-policies';
-@import './sections/hotel-amenities';
-@import './sections/hotel-gallery';
-@import './sections/hotel-location';
-@import './sections/hotel-overview';
-@import './sections/hotel-reviews';
-@import './sections/hotel-rooms';

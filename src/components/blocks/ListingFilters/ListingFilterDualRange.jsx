@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FlightListingContext } from "../../../pages/FlightListing";
+import ListingFilterHeader from './ListingFilterHeader';
 
 const ListingFilterDualRange = ({ name, title, min, max, format }) => {
 
@@ -102,66 +103,60 @@ const ListingFilterDualRange = ({ name, title, min, max, format }) => {
     //     })
     // };
 
+    const [displayFilter, setDisplayFilter] = useState(true);
+
     if (flag && (max - min > 0)) {
         return (
             <div className="filter-item">
-                <div className="filter-item__header">
-                    <h4 className="filter-item__title">
-                        {title}
-                    </h4>
-                    <button
-                        className="filter-item__button"
-                        type="button"
-                        accordeon-button={name}
+                <ListingFilterHeader
+                    title={title}
+                    action={() => { setDisplayFilter(!displayFilter) }}
+                />
+
+                {displayFilter &&
+                    <div
+                        className="filter-item__content filter-item__content--column"
+                        accordeon-content={name}
                     >
-                        <svg width={24} height={24}>
-                            <use href="#arrow-down" />
-                        </svg>
-                    </button>
-                </div>
-                <div
-                    className="filter-item__content filter-item__content--column"
-                    accordeon-content={name}
-                >
-                    <div className="dual-range-input">
-                        <div className="dual-range-input__track-wrapper">
-                            <div
-                                className="dual-range-input__track"
-                                data-name="track"
-                            />
-                            <input
-                                data-name="range-1"
-                                type="range"
-                                min={min}
-                                max={max}
-                                value={valueOne}
-                                // defaultValue={min}
-                                step={1}
-                                onChange={(event) => {
-                                    setValueOne(event.target.value);
-                                    setSearchParams({ ...searchParams, 'min': event.target.value });
-                                }}
-                            />
-                            <input
-                                data-name="range-2"
-                                type="range"
-                                min={min}
-                                max={max}
-                                value={valueTwo}
-                                // defaultValue={max}
-                                step={1}
-                                onChange={(event) => {
-                                    setValueTwo(event.target.value);
-                                    setSearchParams({ ...searchParams, 'max': event.target.value });
-                                }}
-                            />
+                        <div className="dual-range-input">
+                            <div className="dual-range-input__track-wrapper">
+                                <div
+                                    className="dual-range-input__track"
+                                    data-name="track"
+                                />
+                                <input
+                                    data-name="range-1"
+                                    type="range"
+                                    min={min}
+                                    max={max}
+                                    value={valueOne}
+                                    // defaultValue={min}
+                                    step={1}
+                                    onChange={(event) => {
+                                        setValueOne(event.target.value);
+                                        setSearchParams({ ...searchParams, 'min': event.target.value });
+                                    }}
+                                />
+                                <input
+                                    data-name="range-2"
+                                    type="range"
+                                    min={min}
+                                    max={max}
+                                    value={valueTwo}
+                                    // defaultValue={max}
+                                    step={1}
+                                    onChange={(event) => {
+                                        setValueTwo(event.target.value);
+                                        setSearchParams({ ...searchParams, 'max': event.target.value });
+                                    }}
+                                />
+                            </div>
+                            <div className="dual-range-input__values">
+                                <span data-name="value-1">{valueOneFormatted}</span>
+                                <span data-name="value-2">{valueTwoFormatted}</span>
+                            </div>
                         </div>
-                        <div className="dual-range-input__values">
-                            <span data-name="value-1">{valueOneFormatted}</span>
-                            <span data-name="value-2">{valueTwoFormatted}</span>
-                        </div>
-                    </div>
-                </div>
+                    </div>}
             </div>
         );
     };

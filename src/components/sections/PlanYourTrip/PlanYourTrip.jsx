@@ -10,10 +10,13 @@ import planYourTripCardImg07 from './../../../img/sections/plan-your-trip/07.jpg
 import planYourTripCardImg08 from './../../../img/sections/plan-your-trip/08.jpg';
 import planYourTripCardImg09 from './../../../img/sections/plan-your-trip/09.jpg';
 import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
+import { useState } from 'react';
 
 const PlanYourTrip = () => {
 
-    const planYourTripCards = [
+    const [numberOfCards, setNumberOfCards] = useState(9)
+
+    const cards = [
         {
             id: 0,
             title: 'Istanbul, Turkey',
@@ -68,6 +71,42 @@ const PlanYourTrip = () => {
             img: planYourTripCardImg09,
             from: 'Dubai',
         },
+        {
+            id: 9,
+            title: 'London, UK',
+            img: planYourTripCardImg07,
+            from: 'London',
+        },
+        {
+            id: 10,
+            title: 'Tokyo, Japan',
+            img: planYourTripCardImg08,
+            from: 'Tokyo',
+        },
+        {
+            id: 11,
+            title: 'Dubai, UAE',
+            img: planYourTripCardImg09,
+            from: 'Dubai',
+        },
+        {
+            id: 12,
+            title: 'London, UK',
+            img: planYourTripCardImg07,
+            from: 'London',
+        },
+        {
+            id: 13,
+            title: 'Tokyo, Japan',
+            img: planYourTripCardImg08,
+            from: 'Tokyo',
+        },
+        {
+            id: 14,
+            title: 'Dubai, UAE',
+            img: planYourTripCardImg09,
+            from: 'Dubai',
+        },
     ];
 
     return (
@@ -77,17 +116,20 @@ const PlanYourTrip = () => {
                     title="Plan your perfect trip"
                     text="Search Flights & Places Hire to our most popular destinations"
                     button="See more places"
+                    action={() => { (cards.length > numberOfCards) && setNumberOfCards(numberOfCards + 3) }}
                 />
                 <div className="plan-your-trip__cards">
-                    {planYourTripCards.map((planYourTripCard) => {
-                        return (
-                            <PlanYourTripCard
-                                key={planYourTripCard.id}
-                                title={planYourTripCard.title}
-                                img={planYourTripCard.img}
-                                from={planYourTripCard.from}
-                            />
-                        )
+                    {cards.map((card, index) => {
+                        if (index < numberOfCards) {
+                            return (
+                                <PlanYourTripCard
+                                    key={card.id}
+                                    title={card.title}
+                                    img={card.img}
+                                    from={card.from}
+                                />
+                            )
+                        }
                     })}
                 </div>
             </div>

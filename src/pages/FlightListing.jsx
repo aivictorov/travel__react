@@ -7,6 +7,8 @@ import Footer from "../components/sections/Footer/Footer";
 
 import { useState, useEffect, createContext, useContext } from "react";
 import { AppContext } from "../App";
+import ListingSort from "../components/blocks/ListingSort/ListingSort";
+import Tabs from "../components/elements/Tabs/Tabs";
 
 export const FlightListingContext = createContext(null);
 
@@ -155,7 +157,7 @@ const FlightListing = () => {
         setFilters({ ...filters, ...filter });
     };
 
-    
+
     // --------------------------DEV--------------------------
     // SORTING
     function sortByPrice() {
@@ -177,6 +179,27 @@ const FlightListing = () => {
     };
     // --------------------------DEV--------------------------
 
+
+    const tabs = [
+        {
+            title: 'Cheapest',
+            subtitle: '$99, 2h 00m',
+            active: false,
+            action: sortByPrice,
+        },
+        {
+            title: 'Best',
+            subtitle: '$199, 3h 30m',
+            active: false,
+            action: sortByPrice,
+        },
+        {
+            title: 'Quickest',
+            subtitle: '$299, 5h 00m',
+            active: false,
+            action: sortByPrice,
+        },
+    ];
 
     return (
         <FlightListingContext.Provider value={{ changeFilter, resetFilters }}>
@@ -235,66 +258,23 @@ const FlightListing = () => {
                                     {searchResults.length <= 1 &&
                                         <p>No available filters</p>
                                     }
-
                                 </div>
                             </div>
+
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
-
+                                    
                                     {searchResults.length > 1 &&
-                                        <ul className="tabs">
-                                            <button
-                                                className="tabs__item"
-                                                type="button"
-                                                style={{ width: "calc(100% / 3)" }}
-                                                onClick={sortByPrice}
-                                            >
-                                                <div className="tabs__item-content">
-                                                    <div className="tabs__item-title">Cheapest</div>
-                                                    <div className="tabs__item-subtitle">$99, 2h 00m</div>
-                                                </div>
-                                            </button>
-                                            <button
-                                                className="tabs__item"
-                                                type="button"
-                                                style={{ width: "calc(100% / 3)" }}
-                                            >
-                                                <div className="tabs__item-content">
-                                                    <div className="tabs__item-title">Best</div>
-                                                    <div className="tabs__item-subtitle">$199, 3h 30m</div>
-                                                </div>
-                                            </button>
-                                            <button
-                                                className="tabs__item"
-                                                type="button"
-                                                style={{ width: "calc(100% / 3)" }}
-                                            >
-                                                <div className="tabs__item-content">
-                                                    <div className="tabs__item-title">Quickest</div>
-                                                    <div className="tabs__item-subtitle">$299, 5h 00m</div>
-                                                </div>
-                                            </button>
-                                        </ul>
+                                        <Tabs tabs={tabs} />
                                     }
 
-                                    <div className="listing-sort">
-                                        <div className="listing-sort__left">
-                                            Showing {visibleResults.length} of <a href="#!">{filteredResults.length} flights</a>
-                                        </div>
-                                        <div className="listing-sort__right">
-                                            <span>Sort by </span>Recommended
-                                            <span> & Display by: </span>
-                                            <select
-                                                value={numberOfResults}
-                                                onChange={(event) => setNumberOfResults(parseInt(event.target.value))}
-                                            >
-                                                <option value="1">1</option>
-                                                <option value="3">3</option>
-                                                <option value="5">5</option>
-                                                <option value="10">10</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <ListingSort
+                                        visibleResults={visibleResults}
+                                        filteredResults={filteredResults}
+                                        numberOfResults={numberOfResults}
+                                        setNumberOfResults={setNumberOfResults}
+                                    />
+
                                     <div className="listing-content__cards">
                                         {visibleResults.length === 0 ? "Flights not found" : null}
                                         {visibleResults.map((flight) => {
@@ -312,7 +292,9 @@ const FlightListing = () => {
                                             )
                                         })}
                                     </div>
+
                                 </div>
+                                
                                 <div className="listing-content__right-button">
                                     {visibleResults < filteredResults &&
                                         <ButtonShowMore
@@ -321,6 +303,7 @@ const FlightListing = () => {
                                         />
                                     }
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

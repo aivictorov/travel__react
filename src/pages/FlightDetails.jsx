@@ -1,7 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
+import FlightFeatures from "../components/sections/FlightFeatures/FlightFeatures";
+import FlightPolicies from './../components/sections/FlightPolicies/FlightPolicies';
 
 const FlightDetails = () => {
+    const navigate = useNavigate();
+
     return (
         <>
             <HeaderInner />
@@ -117,13 +122,18 @@ const FlightDetails = () => {
                                                 <use href="#share" />
                                             </svg>
                                         </button>
+
+
                                         <button
                                             className="button button--bold"
                                             type="button"
                                             style={{ width: 150 }}
+                                            onClick={() => { navigate('/flight-booking') }}
                                         >
                                             Book now
                                         </button>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -136,138 +146,13 @@ const FlightDetails = () => {
                         </div>
                     </div>
                     <div className="details__flight-content">
-                        <section className="flight-features">
-                            <div className="flight-features__header">
-                                <h2 className="flight-features__title">Basic Economy Features</h2>
-                                <div className="flight-features__checkboxes">
-                                    <div className="checkbox">
-                                        <label className="checkbox__label">
-                                            <input
-                                                className="checkbox__hidden visually-hidden"
-                                                type="checkbox"
-                                            />
-                                            <div className="checkbox__custom" />
-                                            <div className="checkbox__value">Economy</div>
-                                        </label>
-                                    </div>
-                                    <div className="checkbox">
-                                        <label className="checkbox__label">
-                                            <input
-                                                className="checkbox__hidden visually-hidden"
-                                                type="checkbox"
-                                            />
-                                            <div className="checkbox__custom" />
-                                            <div className="checkbox__value">First Class</div>
-                                        </label>
-                                    </div>
-                                    <div className="checkbox">
-                                        <label className="checkbox__label">
-                                            <input
-                                                className="checkbox__hidden visually-hidden"
-                                                type="checkbox"
-                                            />
-                                            <div className="checkbox__custom" />
-                                            <div className="checkbox__value">Busines Class</div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flight-features__gallery">
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/01.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/02.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/03.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/04.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/05.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/06.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/07.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/08.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                                <div className="flight-features__image">
-                                    <img
-                                        src="./img/flights/airline-example-1/gallery/09.jpg"
-                                        alt="flight feature"
-                                    />
-                                </div>
-                            </div>
-                        </section>
-                        <section className="flight-policies">
-                            <div className="flight-policies__background">
-                                <h2 className="flight-policies__title">
-                                    Emirates Airlines Policies
-                                </h2>
-                                <ul className="flight-policies__list" style={{ maxHeight: 80 }}>
-                                    <li className="flight-policies__item">
-                                        <div className="flight-policies__item-icon">
-                                            <svg width={24} height={24}>
-                                                <use href="#stopwatch" />
-                                            </svg>
-                                        </div>
-                                        <div className="flight-policies__item-title">
-                                            Pre-flight cleaning, installation of cabin HEPA filters.
-                                        </div>
-                                    </li>
-                                    <li className="flight-policies__item">
-                                        <div className="flight-policies__item-icon">
-                                            <svg width={24} height={24}>
-                                                <use href="#stopwatch" />
-                                            </svg>
-                                        </div>
-                                        <div className="flight-policies__item-title">
-                                            Pre-flight health screening questions.
-                                        </div>
-                                    </li>
-                                    <li className="flight-policies__item">
-                                        <div className="flight-policies__item-icon">
-                                            <svg width={24} height={24}>
-                                                <use href="#stopwatch" />
-                                            </svg>
-                                        </div>
-                                        <div className="flight-policies__item-title">
-                                            Pre-flight health screening questions.
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </section>
+
+
+                        <FlightFeatures />
+
+                        <FlightPolicies />
+
+
                         <div className="flight-ticket">
                             <div className="flight-ticket__content">
                                 <div className="flight-ticket__content-top">
@@ -333,6 +218,8 @@ const FlightDetails = () => {
                                 </div>
                             </div>
                         </div>
+
+
                         <div className="flight-ticket">
                             <div className="flight-ticket__content">
                                 <div className="flight-ticket__content-top">
