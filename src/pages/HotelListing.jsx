@@ -1,5 +1,5 @@
 import HeaderInner from './../components/sections/HeaderInner/HeaderInner';
-import SearchForm from "../components/blocks/SearchForm/SearchForm";
+import SearchForm from "../components/forms/SearchForm/SearchForm";
 import HotelListingCard from '../components/blocks/HotelListingCard/HotelListingCard';
 import Footer from "../components/sections/Footer/Footer";
 

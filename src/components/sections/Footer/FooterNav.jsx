@@ -52,14 +52,20 @@ const FooterNav = () => {
 
     return (
         <nav className="footer-nav">
-            {footerNav.map((column) => {
+            {footerNav.map((column,  index) => {
                 return (
-                    <div className="footer-nav__column">
+                    <div
+                        className="footer-nav__column"
+                        key={index}
+                    >
                         <div className="footer-nav__title">{column.title}</div>
                         <ul className="footer-nav__list">
-                            {column.items.map((item) => {
+                            {column.items.map((item, index) => {
                                 return (
-                                    <li className="footer-nav__item">
+                                    <li
+                                        className="footer-nav__item"
+                                        key={index}
+                                    >
                                         <a className="footer-nav__link" href={item.link}>
                                             {item.title}
                                         </a>

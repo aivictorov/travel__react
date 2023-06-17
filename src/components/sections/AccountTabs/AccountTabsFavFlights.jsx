@@ -1,6 +1,7 @@
 import AccountTabsFavFlightsCard from './AccountTabsFavFlightsCard';
 import { useContext } from 'react';
 import { AppContext } from '../../../App';
+import AccountFlightCard from './../../blocks/AccountFlightCard/AccountFlightCard';
 
 const AccountTabsFavFlights = () => {
     const { userData } = useContext(AppContext);
@@ -13,9 +14,10 @@ const AccountTabsFavFlights = () => {
         >
             {userData.map((item) => {
                 return (
-                    <AccountTabsFavFlightsCard
+                    <AccountFlightCard
                         key={item}
                         id={item}
+                        layout="favourites"
                     />
                 )
             })}

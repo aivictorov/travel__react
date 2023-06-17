@@ -1,6 +1,6 @@
 import './SliderInner.scss';
 import bgImg from './../../../img/hotels/header.jpg';
-import SearchForm from './../../blocks/SearchForm/SearchForm';
+import SearchForm from './../../forms/SearchForm/SearchForm';
 
 const SliderInnerHotels = () => {
     return (

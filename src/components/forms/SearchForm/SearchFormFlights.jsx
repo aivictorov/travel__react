@@ -1,7 +1,6 @@
 import './SearchFormFlights.scss';
 import SearchFormButtons from "./SearchFormButtons";
 import Input from './../../elements/Input/Input';
-import Select from './../../elements/Select/Select';
 import { AppContext } from './../../../App';
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,8 +19,8 @@ const SearchFormFlights = ({ layout }) => {
     const getSearchParams = (event) => {
         event.preventDefault();
 
-        // const arrayDepartDate = departDate.split(['-']);
-        // const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
+        const arrayDepartDate = departDate.split(['-']);
+        const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
 
         // const arrayReturnDate = returnDate.split(['-']);
         // const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
@@ -30,6 +29,7 @@ const SearchFormFlights = ({ layout }) => {
             ...searchParams,
             'from': from || 'All',
             'to': to || 'All',
+            'departDate': newDepartDate,
             // 'departDate': newDepartDate,
             // 'returnDate': newReturnDate,
             // 'passengers': 1,
@@ -64,14 +64,12 @@ const SearchFormFlights = ({ layout }) => {
                 <Input
                     type="date"
                     label="Depart"
-                    placeholder="07 Nov 22"
                     value={departDate}
                     onChangeFunction={setDepartDate}
                 />
                 <Input
                     type="date"
                     label="Return"
-                    placeholder="13 Nov 22"
                     value={returnDate}
                     onChangeFunction={setReturnDate}
                 />

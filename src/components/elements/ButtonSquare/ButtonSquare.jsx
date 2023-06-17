@@ -8,7 +8,7 @@ const ButtonSquare = ({ type, style, svgID, action }) => {
         addClassArray = style.split([' ']);
 
         if (addClassArray.length > 0) {
-            addClass = ' ' + addClassArray.map((item) => item = `buttonNew--${item}`).join(' ');
+            addClass = ' ' + addClassArray.map((item) => item = `square-buttonNew--${item}`).join(' ');
         };
     };
     

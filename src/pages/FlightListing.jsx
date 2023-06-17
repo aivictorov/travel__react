@@ -1,5 +1,5 @@
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import SearchForm from "../components/blocks/SearchForm/SearchForm";
+import SearchForm from "../components/forms/SearchForm/SearchForm";
 import ListingFilters from "../components/blocks/ListingFilters/ListingFilters";
 import FlightListingCard from "../components/blocks/FlightListingCard/FlightListingCard";
 import ButtonShowMore from "../components/elements/ButtonShowMore/ButtonShowMore";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddCard from "../../blocks/AddCard/AddCard";
+import AddCard from "../../modals/AddCard/AddCard";
 
 const AccountTabsPayments = () => {
     // const cardsData = [
@@ -41,7 +41,8 @@ const AccountTabsPayments = () => {
             <div className="account-payment">
                 {cards.map((card) => {
                     return (
-                        <div className="account-payment__card"
+                        <div
+                            className="account-payment__card"
                             key={card.id}
                         >
                             <div className="account-payment__card-top">

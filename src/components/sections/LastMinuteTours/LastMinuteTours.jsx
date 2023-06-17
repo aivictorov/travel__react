@@ -43,9 +43,12 @@ const LastMinuteTours = () => {
                     </div>
 
                     <div className="last-minute-tours__gallery">
-                        {gallery.map((image) => {
+                        {gallery.map((image, index) => {
                             return (
-                                <div className="last-minute-tours__image">
+                                <div
+                                    className="last-minute-tours__image"
+                                    key={index}
+                                >
                                     <img
                                         src={image}
                                         alt="Backpacking Sri Lanka"

@@ -1,0 +1,26 @@
+.fav-checkbox__custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 14px;
+    padding-right: 14px;
+    height: 48px;
+    line-height: 48px;
+    border: 1px solid #8DD3BB;
+    border-radius: 4px;
+
+    svg {
+        stroke: #4C4850;
+        fill: transparent;
+    }
+}
+
+.fav-checkbox__hidden {
+    &:checked {
+        &+.fav-checkbox__custom svg {
+            stroke: #000;
+            fill: #000;
+        }
+    }
+}
+

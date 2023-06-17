@@ -21,7 +21,10 @@ const AccountTabsMain = () => {
             <ul className="account-info">
                 {items.map((item) => {
                     return (
-                        <li className="account-info__item">
+                        <li
+                            className="account-info__item"
+                            key={item.name}
+                        >
                             <div className="account-info__item-left">
                                 <div className="account-info__item-name">{item.name}</div>
                                 <div className="account-info__item-value">{item.value}</div>

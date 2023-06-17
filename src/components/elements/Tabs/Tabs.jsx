@@ -3,9 +3,10 @@ import './Tabs.scss';
 const Tabs = ({ tabs }) => {
     return (tabs.length > 0 &&
         <div className="tabs">
-            {tabs.map((tab) => {
+            {tabs.map((tab, index) => {
                 return (
                     <button
+                        key={index}
                         className={`tabs__item ${tab.active ? 'active' : null}`}
                         type="button"
                         style={{ width: `calc(100% / ${tabs.length})` }}

@@ -1,4 +1,4 @@
-// checkbox
+@import './../../../scss/base/_vars.scss';
 
 .checkbox__label {
     position: relative;
@@ -58,58 +58,6 @@
                 border-width: 0 2px 2px 0;
                 transform: translate(-50%, calc(-50% - 1px)) rotate(45deg);
             }
-        }
-    }
-}
-
-// rating-filter-checkbox
-
-.rating-filter-checkbox__custom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 12px;
-    padding-right: 12px;
-    height: 32px;
-    line-height: 32px;
-    border: 1px solid $main;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 12px;
-}
-
-.rating-filter-checkbox__hidden {
-    &:checked {
-        &+.rating-filter-checkbox__custom {
-            background-color: $main;
-        }
-    }
-}
-
-// fav-button
-
-.fav-checkbox__custom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 14px;
-    padding-right: 14px;
-    height: 48px;
-    line-height: 48px;
-    border: 1px solid #8DD3BB;
-    border-radius: 4px;
-
-    svg {
-        stroke: #4C4850;
-        fill: transparent;
-    }
-}
-
-.fav-checkbox__hidden {
-    &:checked {
-        &+.fav-checkbox__custom svg {
-            stroke: #000;
-            fill: #000;
         }
     }
 }

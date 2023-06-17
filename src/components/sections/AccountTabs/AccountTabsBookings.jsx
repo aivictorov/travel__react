@@ -31,7 +31,7 @@ const AccountTabsBookings = () => {
             <div className="account-bookings">
                 <Tabs tabs={tabs} />
                 {activeTabs.accountTabsBookings === 'flights' && <AccountTabsBookingsFlights />}
-                {activeTabs.accountTabsBookings === 'hotels' && <AccountTabsBookingsHotels />}
+                {activeTabs.accountTabsBookings === 'hotels' && <AccountTabsBookingsHotels />} 
             </div>
         </div>
     );

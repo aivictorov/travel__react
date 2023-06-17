@@ -28,7 +28,7 @@ function App({ flights, hotels }) {
         {
             'from': 'All',
             'to': 'All',
-            'departDate': new Date(),
+            'departDate': '',
             'returnDate': new Date(),
             'passengers': 1,
             'travelClass': 'economy',

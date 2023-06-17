@@ -1,3 +1,4 @@
+import './FavCheckboxButton.scss';
 import { useContext } from "react";
 import { AppContext } from "../../../App";
 

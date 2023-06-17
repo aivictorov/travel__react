@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FlightListingContext } from "../../../pages/FlightListing";
 import ListingFilterHeader from './ListingFilterHeader';
+import Checkbox from "../../elements/Checkbox/Checkbox";
 
 const ListingFilterCheckboxes = ({ name, title, items }) => {
 
@@ -28,33 +29,19 @@ const ListingFilterCheckboxes = ({ name, title, items }) => {
                         className="filter-item__content filter-item__content--column"
                         accordeon-content={name}
                     >
-                        {items.map((item) => {
+                        {items.map((item, index) => {
                             return (
-                                <div
-                                    className="checkbox"
-                                    key={item}
-                                >
-                                    <label className="checkbox__label">
-                                        <input
-                                            className="checkbox__hidden visually-hidden"
-                                            type="checkbox"
-                                            name={item}
-                                            onChange={(event) => {
-                                                if (event.target.checked) {
-                                                    setParams([...params, event.target.name])
-                                                } else {
-                                                    setParams(
-                                                        params.filter((param) => {
-                                                            return param !== event.target.name
-                                                        })
-                                                    )
-                                                };
-                                            }}
-                                        />
-                                        <div className="checkbox__custom" />
-                                        <div className="checkbox__value">{item}</div>
-                                    </label>
-                                </div>
+                                <Checkbox
+                                    key={index}
+                                    name={item}
+                                    action={(event) => {
+                                        if (event.target.checked) {
+                                            setParams([...params, event.target.name])
+                                        } else {
+                                            setParams(params.filter((param) => param !== event.target.name))
+                                        };
+                                    }}
+                                />
                             )
                         })}
                     </div>

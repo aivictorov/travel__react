@@ -1,6 +1,6 @@
 import './HeaderMain.scss';
 import HeaderNav from '../../blocks/HeaderNav/HeaderNav';
-import SearchForm from './../../blocks/SearchForm/SearchForm';
+import SearchForm from './../../forms/SearchForm/SearchForm';
 
 const Header = () => {
     return (

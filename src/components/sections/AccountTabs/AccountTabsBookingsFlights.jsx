@@ -1,4 +1,5 @@
 import AccountTabsBookingsFlightsCard from "./AccountTabsBookingsFlightsCard";
+import AccountFlightCard from './../../blocks/AccountFlightCard/AccountFlightCard';
 
 const AccountTabsBookingsFlights = () => {
     return (
@@ -7,8 +8,8 @@ const AccountTabsBookingsFlights = () => {
             tab-content="flights"
             tab-group="bookings"
         >
-            <AccountTabsBookingsFlightsCard />
-            <AccountTabsBookingsFlightsCard />
+            <AccountFlightCard layout="bookings" />
+            <AccountFlightCard layout="bookings" />
         </div>
     );
 }

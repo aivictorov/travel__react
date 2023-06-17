@@ -1,6 +1,7 @@
 import { forwardRef, useState } from 'react';
 import './AddCardModal.scss'
 import Input from './../../elements/Input/Input';
+import Button from './../../elements/Button/Button';
 
 const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
 
@@ -39,18 +40,14 @@ const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
                     value={cardValidThru}
                     onChangeFunction={setCardValidThru}
                 />
-                <button
-                    type="button"
-                    className="button"
-                    onClick={() => {
+                <Button
+                    text="Add card"
+                    action={() => {
                         addCard(cardNumber);
                         closeModal();
                         setCardNumber('');
                     }}
-                >
-                    Add card
-                </button>
-
+                />
             </div>
             <div className="project-nav-modal__close-button">
                 <svg
