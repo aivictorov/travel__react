@@ -13,14 +13,16 @@ const SearchFormFlights = ({ layout }) => {
 
     const [from, setFrom] = useState((searchParams && searchParams.from) || '');
     const [to, setTo] = useState((searchParams && searchParams.to) || '');
-    const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
-    const [returnDate, setReturnDate] = useState((searchParams && searchParams.returnDate) || '');
+    const [departDate, setDepartDate] = useState('2023-12-01');
+    // const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
+    const [returnDate, setReturnDate] = useState('2023-12-01');
+    // const [returnDate, setReturnDate] = useState((searchParams && searchParams.returnDate) || '');
 
     const getSearchParams = (event) => {
         event.preventDefault();
 
-        const arrayDepartDate = departDate.split(['-']);
-        const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
+        // const arrayDepartDate = departDate.split(['-']);
+        // const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
 
         // const arrayReturnDate = returnDate.split(['-']);
         // const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
@@ -29,7 +31,7 @@ const SearchFormFlights = ({ layout }) => {
             ...searchParams,
             'from': from || 'All',
             'to': to || 'All',
-            'departDate': newDepartDate,
+            'departDate': departDate,
             // 'departDate': newDepartDate,
             // 'returnDate': newReturnDate,
             // 'passengers': 1,
@@ -46,6 +48,7 @@ const SearchFormFlights = ({ layout }) => {
             tab-content="flight-search"
             tab-group="search"
         >
+            {departDate}
             <div className={`search-form__fields search-form__fields--flights-${layout}`}>
                 <Input
                     type="text"

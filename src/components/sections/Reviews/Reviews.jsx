@@ -32,6 +32,14 @@ const Reviews = () => {
             object: 'Weave Studios – Olympic',
             img: reviewCardImg03,
         },
+        {
+            id: 3,
+            title: '“The facilities are superb. Clean, slick, bright.”',
+            description: 'Really appreciate the help and support from the staff during these tough times. Shoutout to Katie for...',
+            author: 'Olga',
+            object: 'Weave Studios – Kai Tak',
+            img: reviewCardImg02,
+        },
     ]
 
     return (

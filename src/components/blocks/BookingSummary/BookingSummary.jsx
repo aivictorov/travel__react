@@ -1,7 +1,7 @@
 import './BookingSummary.scss'
 
-const BookingSummary = () => {
-    
+const BookingSummary = ({ title = "Emirates A380 Airbus" }) => {
+
     return (
         <div className="booking-summary">
             <div className="booking-summary__object">
@@ -14,9 +14,11 @@ const BookingSummary = () => {
                 </div>
                 <div className="booking-summary__object-info">
                     <div className="booking-summary__object-header">
-                        <div className="booking-summary__object-title">Economy</div>
+                        <div className="booking-summary__object-title">
+                            Economy
+                        </div>
                         <div className="booking-summary__object-subtitle">
-                            Emirates A380 Airbus
+                            {title}
                         </div>
                     </div>
                     <div className="rating">

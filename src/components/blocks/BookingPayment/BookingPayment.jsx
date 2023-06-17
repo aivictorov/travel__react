@@ -11,6 +11,7 @@ const BookingPayment = () => {
                     name="pay-methods"
                     id="full"
                     defaultChecked=""
+                    checked
                 />
                 <label className="payment-radio__label" htmlFor="full">
                     <div className="payment-radio__label-title">Pay in full</div>

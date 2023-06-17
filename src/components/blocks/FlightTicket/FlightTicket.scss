@@ -9,6 +9,17 @@
     border-radius: 12px;
     background-color: #FFF;
     box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);
+
+    &--booking {
+        .flight-ticket__date {
+            font-size: 16px;
+        }
+
+        .flight-ticket__content-bottom {
+            justify-content: space-between;
+            column-gap: 30px;
+        }
+    }
 }
 
 .flight-ticket__header {
@@ -37,13 +48,8 @@
 }
 
 .flight-ticket__date {
-    // font-family: 'Trade Gothic LT Std';
     font-weight: 700;
     font-size: 20px;
-
-    &--booking-page {
-        font-size: 16px;
-    }
 }
 
 .flight-ticket__duration {
@@ -116,11 +122,6 @@
     justify-content: center;
     align-items: center;
     column-gap: 80px;
-
-    &--booking-page {
-        justify-content: space-between;
-        column-gap: 30px;
-    }
 }
 
 .flight-ticket__time {

@@ -1,3 +1,4 @@
+import AddCard from '../../modals/AddCard/AddCard';
 import './BookingPaymentCards.scss';
 
 const BookingPaymentCards = () => {
@@ -10,6 +11,7 @@ const BookingPaymentCards = () => {
                     name="pay-cards"
                     id="card-1"
                     defaultChecked=""
+                    checked
                 />
                 <label className="payment-radio__label" htmlFor="card-1">
                     <div className="booking-payment-cards__custom-label">
@@ -47,12 +49,7 @@ const BookingPaymentCards = () => {
                 </label>
             </div>
             <div className="booking-payment-cards__add">
-                <div className="add-card">
-                    <div className="add-card__content">
-                        <button className="add-card__button" modal-button="links" />
-                        <div className="add-card__text">Add a new card</div>
-                    </div>
-                </div>
+                <AddCard />
             </div>
         </div>
     );
