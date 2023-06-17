@@ -7,27 +7,27 @@ import FavCheckboxButton from './../../elements/FavCheckboxButton/FavCheckboxBut
 import Button from './../../elements/Button/Button';
 import { useNavigate } from 'react-router-dom';
 
-const HotelListingCard = () => {
+const HotelListingCard = ({ object }) => {
     const navigate = useNavigate();
 
     return (
         <div className="hotel-card">
             <div className="hotel-card__image">
-                <img src="./img/hotels/hotel-example-1/cover.jpg" alt="hotel" />
+                <img src={object.cover} alt="hotel" />
             </div>
             <div className="hotel-card__content">
                 <div className="hotel-card__info">
                     <div className="hotel-card__info-left">
                         <div className="hotel-card__title">
-                            CVK Park Bosphorus Hotel Istanbul
+                            {object.name}
                         </div>
                         <div className="hotel-card__details">
                             <Location
-                                text="Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437"
+                                text={object.address}
                                 style="small"
                             />
-                            <Stars number={5} />
-                            <Rating value={4.5} />
+                            <Stars number={object.stars} />
+                            <Rating value={object.rating} />
                         </div>
                     </div>
                     <div className="hotel-card__info-right">
@@ -47,7 +47,7 @@ const HotelListingCard = () => {
                         <Button
                             text="View Place"
                             style="bold w100"
-                            action={() => { navigate('/hotel-details') }}
+                            action={() => { navigate(`/hotel-details/${object.id}`) }}
                         />
                     </div>
                 </div>
@@ -55,5 +55,8 @@ const HotelListingCard = () => {
         </div>
     );
 }
+
+
+
 
 export default HotelListingCard;

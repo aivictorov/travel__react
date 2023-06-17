@@ -8,10 +8,8 @@ import Button from '../../elements/Button/Button';
 import Stars from './../../elements/Stars/Stars';
 import Price from './../../elements/Price/Price';
 
-const DetailsHeader = ({title = 'Emirates A380 Airbus', action}) => {
+const DetailsHeader = ({title = 'Emirates A380 Airbus', cover, action}) => {
     const navigate = useNavigate();
-
-    if (!action) action = () => { navigate('/flight-booking') }
 
     return (
         <div className="details-header">
@@ -45,12 +43,6 @@ const DetailsHeader = ({title = 'Emirates A380 Airbus', action}) => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="details-header__image">
-                <img
-                    src="./img/flights/details-header.jpg"
-                    alt="Emirates A380 Airbus"
-                />
             </div>
         </div>
     );

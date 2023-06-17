@@ -8,18 +8,18 @@ const Button = ({ text, type, style, icon, svgID, action }) => {
         const addClassArray = style.split([' ']);
 
         if (addClassArray.length > 0) {
-            addClass = ' ' + addClassArray.map((item) => item = `buttonNew--${item}`).join(' ');
+            addClass = ' ' + addClassArray.map((item) => item = `button--${item}`).join(' ');
         };
     };
 
     return (
         <button
-            className={'buttonNew' + addClass}
+            className={'button' + addClass}
             type={type || 'button'}
             onClick={action}
         >
             {(icon || svgID) &&
-                <div className="buttonNew__icon">
+                <div className="button__icon">
                     {icon &&
                         <img src={icon} alt="button-icon" />
                     }

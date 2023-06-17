@@ -1,6 +1,6 @@
 import './HotelLocation.scss';
 
-const HotelLocation = () => {
+const HotelLocation = ({address}) => {
     return (
 
         <section className="hotel-location">
@@ -20,7 +20,7 @@ const HotelLocation = () => {
                     </svg>
                 </div>
                 <a className="location__link" href="#!">
-                    Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437
+                    {address}
                 </a>
             </div>
         </section>

@@ -5,7 +5,7 @@ import finnairLogo from './../img/flights/airlines/finnair.png';
 const cities = ['Istanbul', 'Sydney', 'Baku', 'Male', 'Paris', 'New York', 'London', 'Tokyo', 'Dubai']
 const airlines = ['Emirates', 'Finnair', 'Aeroflot', 'Air India']
 
-export default function generateFlights(count) {
+function generateFlights(count) {
     let flights = [];
 
     // This function generates a date in the range from the current. 
@@ -50,3 +50,7 @@ export default function generateFlights(count) {
 
     return flights;
 };
+
+const flights = generateFlights(150);
+
+export default flights;

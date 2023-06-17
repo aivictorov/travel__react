@@ -29,13 +29,15 @@ const SearchFormFlights = ({ layout }) => {
 
         const newSearchParams = {
             ...searchParams,
-            'from': from || 'All',
-            'to': to || 'All',
-            'departDate': departDate,
-            // 'departDate': newDepartDate,
-            // 'returnDate': newReturnDate,
-            // 'passengers': 1,
-            // 'travelClass': 'economy',
+            flights: {
+                'from': from || 'All',
+                'to': to || 'All',
+                'departDate': departDate,
+                // 'departDate': newDepartDate,
+                // 'returnDate': newReturnDate,
+                // 'passengers': 1,
+                // 'travelClass': 'economy',
+            }
         };
 
         setSearchParams(newSearchParams);

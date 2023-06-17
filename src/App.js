@@ -21,9 +21,13 @@ import SVG from './helpers/SVG';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react';
 
+import flights from './helpers/flights';
+import hotels from './helpers/hotels';
+
 export const AppContext = createContext(null);
 
-function App({ flights, hotels }) {
+function App() {
+
     const [searchParams, setSearchParams] = useState(
         {
             'from': 'All',
@@ -34,9 +38,34 @@ function App({ flights, hotels }) {
             'travelClass': 'economy',
         }
     );
-    
+
+    const [hotelSearchParams, setHotelSearchParams] = useState(
+        {
+            'destination': 'All',
+        }
+    );
+
+    const [user, setUser] = useState(
+        {
+            id: 0,
+            name: 'John Doe',
+            email: 'John.doe@gmail.com',
+            password: '************',
+            phoneNumber: '+1 000-000-0000',
+            address: 'St 32 main downtown, Los Angeles, California, USA',
+            dateOfBirth: '01-01-1992',
+
+            favourites: {
+                flights: [1, 3, 17],
+                hotels: [1, 3],
+            }
+        }
+    )
+
+
     const [userData, setUserData] = useState([1, 3, 17]);
     const [userAuth, setUserAuth] = useState(false);
+
 
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
@@ -50,6 +79,7 @@ function App({ flights, hotels }) {
             flights,
             hotels,
             searchParams, setSearchParams,
+            hotelSearchParams, setHotelSearchParams,
             userData, setUserData,
             userAuth, setUserAuth,
             activeTabs, setActiveTabs
@@ -60,14 +90,14 @@ function App({ flights, hotels }) {
                     <SVG />
                     <Routes>
                         <Route path="/" element={<Home />}></Route>
-                        <Route path="/flight-booking" element={<FlightBooking />}></Route>
-                        <Route path="/flight-details" element={<FlightDetails />}></Route>
-                        <Route path="/flight-listing" element={<FlightListing />}></Route>
                         <Route path="/flight-search" element={<FlightSearch />}></Route>
-                        <Route path="/hotel-booking" element={<HotelBooking />}></Route>
-                        <Route path="/hotel-details" element={<HotelDetails />}></Route>
-                        <Route path="/hotel-listing" element={<HotelListing />}></Route>
+                        <Route path="/flight-listing" element={<FlightListing />}></Route>
+                        <Route path="/flight-booking/:id" element={<FlightBooking />}></Route>
+                        <Route path="/flight-details/:id" element={<FlightDetails />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
+                        <Route path="/hotel-listing" element={<HotelListing />}></Route>
+                        <Route path="/hotel-details/:id" element={<HotelDetails />}></Route>
+                        <Route path="/hotel-booking/:id" element={<HotelBooking />}></Route>
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/sign-up" element={<SignUp />}></Route>
                         <Route path="/set-password" element={<SetPassword />}></Route>

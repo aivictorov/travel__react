@@ -6,8 +6,29 @@ import Button from './../components/elements/Button/Button';
 import Tabs from './../components/elements/Tabs/Tabs';
 import ListingSort from '../components/blocks/ListingSort/ListingSort';
 import ListingFiltersHotels from '../components/blocks/ListingFilters/ListingFiltersHotels';
+import { useContext, useState } from 'react';
+import { AppContext } from './../App';
+import { useEffect } from 'react';
 
 const HotelListing = () => {
+    const { hotels, hotelSearchParams } = useContext(AppContext);
+    const [searchResults, setSearchResults] = useState([]);
+
+
+    // FULL SEARCH RESULTS FOR CURRENT PARAMS
+    useEffect(() => {
+        let newSearchResults = hotels.slice(0);
+
+        if (hotelSearchParams.destination !== 'All') {
+            newSearchResults = newSearchResults.filter((item) => {
+                return hotelSearchParams.destination === item.city
+            });
+        };
+
+        setSearchResults(newSearchResults);
+    }, [hotelSearchParams]);
+
+
 
     const tabs = [
         {
@@ -27,10 +48,39 @@ const HotelListing = () => {
         },
     ];
 
-
-
     return (
         <>
+            <p>SEARCH PARAMS </p>
+            {JSON.stringify(hotelSearchParams)}
+            <br />
+            <br />
+
+            <p>SEARCH RESULTS </p>
+            {JSON.stringify(searchResults)}
+            <br />
+            <br />
+
+            {/* <p>FILTER PARAMS </p>
+            {JSON.stringify(filterParams)}
+            <br />
+            <br />
+
+            <p>FILTERS </p>
+            {JSON.stringify(filters)}
+            <br />
+            <br />
+
+            <p>FILTERED </p>
+            {JSON.stringify(filteredResults.length)}
+            <br />
+            <br />
+
+            <p>VISIBLE </p>
+            {JSON.stringify(visibleResults.length)}
+            <br />
+            <br /> */}
+
+
             <HeaderInner />
 
             <main className="listing">
@@ -59,9 +109,23 @@ const HotelListing = () => {
                                     </div>
 
                                     <div className="listing-content__cards">
-                                        <HotelListingCard />
-                                        <HotelListingCard />
+                                        {searchResults.length === 0 ? "Hotels not found" : null}
+                                        {searchResults.map((hotel) => {
+                                            return (
+                                                <HotelListingCard
+                                                    key={hotel.id}
+                                                    object={hotel}
+                                                />
+                                            )
+                                        })}
                                     </div>
+
+
+
+
+
+
+
                                 </div>
                                 <div className="listing-content__right-button">
                                     <Button
@@ -74,7 +138,7 @@ const HotelListing = () => {
                     </div>
                 </div>
             </main>
-            
+
             <Footer />
         </>
     );

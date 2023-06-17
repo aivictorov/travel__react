@@ -8,10 +8,16 @@ import HotelReviews from "../components/sections/HotelReviews/HotelReviews";
 import HotelGallery from "../components/sections/HotelGallery/HotelGallery";
 import HotelAmenities from './../components/sections/HotelAmenities/HotelAmenities';
 import Footer from "../components/sections/Footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
 const HotelDetails = () => {
     const navigate = useNavigate();
+    const { id } = useParams();
+
+    const { hotels } = useContext(AppContext);
+    const hotel = hotels.find((hotel) => hotel.id == id);
 
     return (
         <>
@@ -23,17 +29,28 @@ const HotelDetails = () => {
                     </div>
                     <div className="details__header">
                         <DetailsHeader
-                            title="CVK Park Bosphorus Hotel Istanbul"
-                            action={() => { navigate('/hotel-booking') }}
+                            title={hotel.name}
+                            cover={hotel.cover}
+                            action={() => { navigate(`/hotel-booking/${id}`) }}
                         />
                     </div>
                     <div className="details__flight-content"></div>
                     <div className="details__hotel-content">
-                        <HotelGallery />
-                        <HotelOverview />
-                        <HotelRooms />
-                        <HotelLocation />
-                        <HotelAmenities />
+                        <HotelGallery
+                            gallery={hotel.gallery}
+                        />
+                        <HotelOverview
+                            description={hotel.description}
+                        />
+                        <HotelRooms
+                            rooms={hotel.rooms}
+                        />
+                        <HotelLocation
+                            address={hotel.address}
+                        />
+                        <HotelAmenities
+                            amenities={hotel.amenities}
+                        />
                         <HotelReviews />
                     </div>
                 </div>

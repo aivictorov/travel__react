@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import './LoginForm.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AppContext } from './../../../App';
+import Button from '../../elements/Button/Button';
+import Checkbox from './../../elements/Checkbox/Checkbox';
 
 const LoginForm = () => {
     const { setUserAuth } = useContext(AppContext);
@@ -32,33 +34,20 @@ const LoginForm = () => {
                     </button>
                 </div>
                 <div className="login-form__input-group-row">
-                    <div className="checkbox">
-                        <label className="checkbox__label">
-                            <input
-                                className="checkbox__hidden visually-hidden"
-                                type="checkbox"
-                            />
-                            <div className="checkbox__custom" />
-                            <div className="checkbox__value">Remember me</div>
-                        </label>
-                    </div>
+                    <Checkbox name="Remember me" />
                     <NavLink className="login-form__link" to="/reset-password">
                         Forgot Password
                     </NavLink>
                 </div>
             </div>
             <div className="login-form__button-group">
-                <button
-                    className="button button--bold"
-                    type="button"
-                    style={{ width: "100%" }}
-                    onClick={() => {
+                <Button
+                    text="Login"
+                    action={() => {
                         setUserAuth(true);
                         navigate("/account");
                     }}
-                >
-                    Login
-                </button>
+                />
                 <div className="login-form__sign-up-link-row">
                     <span className="login-form__text">
                         Don’t have an account?{" "}

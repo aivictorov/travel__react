@@ -1,18 +1,25 @@
 import './HotelGallery.scss';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
+import Button from './../../elements/Button/Button';
 
-const HotelGallery = () => {
+const HotelGallery = ({ id = 0 }) => {
+    const { hotels } = useContext(AppContext);
+    const hotel = hotels.find((hotel) => hotel.id === id);
+
     return (
-
         <section className="hotel-gallery">
-            <img src="./img/hotels/hotel-example-1/gallery/01.jpg" alt="hotel" />
-            <img src="./img/hotels/hotel-example-1/gallery/02.jpg" alt="hotel" />
-            <img src="./img/hotels/hotel-example-1/gallery/03.jpg" alt="hotel" />
-            <img src="./img/hotels/hotel-example-1/gallery/04.jpg" alt="hotel" />
-            <img src="./img/hotels/hotel-example-1/gallery/05.jpg" alt="hotel" />
+            {hotel.gallery.map((image, index) => {
+                return (
+                    <img
+                        key={index}
+                        src={image}
+                        alt={hotel.name}
+                    />
+                )
+            })}
             <div className="hotel-gallery__button">
-                <button className="button button--bold" type="button">
-                    View all photos
-                </button>
+                <Button text="View all photos" style="bold" />
             </div>
         </section>
     );

@@ -1,4 +1,5 @@
 import './HotelReservation.scss';
+import Price from './../../elements/Price/Price';
 
 const HotelReservation = () => {
     return (
@@ -7,10 +8,7 @@ const HotelReservation = () => {
                 <div className="hotel-reservation__title">
                     Superior room - 1 double bed or 2 twin beds
                 </div>
-                <div className="price">
-                    <span className="price-value price-value--big">$240</span>
-                    <span className="price-period">/night</span>
-                </div>
+                <Price value={240} period="night" style="big"/>
             </div>
             <div className="hotel-reservation__middle">
                 <div className="hotel-reservation__image">
@@ -39,7 +37,6 @@ const HotelReservation = () => {
                     </svg>
                 </div>
                 <div className="hotel-reservation__end">
-                    {" "}
                     <span>Friday, Dec 9</span>
                     <span>Check-Out</span>
                 </div>

@@ -9,30 +9,23 @@ import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
 const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();
 
-    const { searchParams, setSearchParams } = useContext(AppContext);
+    const { hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
 
-    const [destination, setDestination] = useState((searchParams && searchParams.destination) || '');
-    const [checkIn, setCheckIn] = useState((searchParams && searchParams.checkIn) || '1970-01-01');
-    const [checkOut, setCheckOut] = useState((searchParams && searchParams.checkOut) || '1970-01-01');
+    const [destination, setDestination] = useState();
+
+    const [checkIn, setCheckIn] = useState();
+    const [checkOut, setCheckOut] = useState();
 
     const getSearchParams = (event) => {
-        // event.preventDefault();
+        event.preventDefault();
 
-        // const arrayCheckIn = checkIn.split(['-']);
-        // const newCheckIn = new Date(arrayCheckIn[0], arrayCheckIn[1], arrayCheckIn[2]);
+        const newSearchParams = {
+            ...hotelSearchParams, 
+            destination: destination
+        };
 
-        // const arrayCheckOut = checkOut.split(['-']);
-        // const newCheckOut = new Date(arrayCheckOut[0], arrayCheckOut[1], arrayCheckOut[2]);
-
-        // const newSearchParams = {
-        //     'destination': destination,
-        //     'checkIn': newCheckIn,
-        //     'checkOut': newCheckOut,
-        //     'rooms': 1,
-        //     'guests': 2,
-        // };
-
-        // setSearchParams(newSearchParams);
+        setHotelSearchParams(newSearchParams);
+        alert(JSON.stringify(newSearchParams));
         navigate("/hotel-listing");
     }
 

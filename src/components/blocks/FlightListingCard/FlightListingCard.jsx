@@ -100,7 +100,11 @@ const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => 
                 <div className="flight-card__buttons">
                     <FavCheckboxButton id={id} />
                     <div className="flight-card__button-wrapper">
-                        <Button text="View Details" style="bold w100" action={() => { navigate('/flight-details') }} />
+                        <Button
+                            text="View Details"
+                            style="bold w100"
+                            action={() => { navigate(`/flight-details/${id}`) }}
+                        />
                     </div>
                 </div>
             </div>
