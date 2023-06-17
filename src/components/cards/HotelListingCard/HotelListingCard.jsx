@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 const HotelListingCard = ({ object }) => {
     const navigate = useNavigate();
 
+    const minPrice = object.rooms.reduce((prev, curr) => curr.price < prev ? curr.price : prev, object.rooms[0].price);
+
     return (
         <div className="hotel-card">
             <div className="hotel-card__image">
@@ -33,7 +35,7 @@ const HotelListingCard = ({ object }) => {
                     <div className="hotel-card__info-right">
                         <div className="hotel-card__info-right">
                             <Price
-                                value="240"
+                                value={minPrice}
                                 period="night"
                                 before="starting from"
                                 after="excl. tax"

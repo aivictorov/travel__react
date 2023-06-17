@@ -3,9 +3,9 @@ import { FlightListingContext } from "../../../pages/FlightListing";
 import ListingFilterHeader from './ListingFilterHeader';
 import DualRange from './../../elements/DualRange/DualRange';
 
-const ListingFilterDualRange = ({ name, title, min, max, format }) => {
+const ListingFilterDualRange = ({ name, title, min, max, format, changeFilter, reset}) => {
 
-    const { changeFilter, resetFilters } = useContext(FlightListingContext)
+    // const { reset } = useContext(FlightListingContext)
 
     let formatValue, flag = true;
 
@@ -25,11 +25,11 @@ const ListingFilterDualRange = ({ name, title, min, max, format }) => {
 
     useEffect(() => {
         setValueOne(min);
-    }, [min, resetFilters])
+    }, [min, reset])
 
     useEffect(() => {
         setValueTwo(max);
-    }, [max, resetFilters])
+    }, [max, reset])
 
     useEffect(() => {
         setValueOneFormatted(formatValue(valueOne));

@@ -3,7 +3,7 @@ import Footer from './../components/sections/Footer/Footer';
 import BookingPayment from "../components/blocks/BookingPayment/BookingPayment";
 import BookingLogin from "../components/blocks/BookingLogin/BookingLogin";
 import BookingSummary from "../components/blocks/BookingSummary/BookingSummary";
-import FlightTicket from './../components/blocks/FlightTicket/FlightTicket';
+import FlightTicket from './../components/cards/FlightTicket/FlightTicket';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
 import TrackNav from "../components/blocks/TrackNav/TrackNav";
 import { useContext } from "react";

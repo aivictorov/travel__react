@@ -1,6 +1,6 @@
 import HeaderInner from './../components/sections/HeaderInner/HeaderInner';
 import SearchForm from "../components/forms/SearchForm/SearchForm";
-import HotelListingCard from '../components/blocks/HotelListingCard/HotelListingCard';
+import HotelListingCard from '../components/cards/HotelListingCard/HotelListingCard';
 import Footer from "../components/sections/Footer/Footer";
 import Button from './../components/elements/Button/Button';
 import Tabs from './../components/elements/Tabs/Tabs';
@@ -9,10 +9,33 @@ import ListingFiltersHotels from '../components/blocks/ListingFilters/ListingFil
 import { useContext, useState } from 'react';
 import { AppContext } from './../App';
 import { useEffect } from 'react';
+import ListingFilters from './../components/blocks/ListingFilters/ListingFilters';
 
 const HotelListing = () => {
     const { hotels, hotelSearchParams } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
+
+    const [filterParams, setFilterParams] = useState(
+        {
+            price: { min: 0, max: 1000 },
+            rating: { min: 0, max: 5 }
+        }
+    );
+
+    const [filters, setFilters] = useState(
+        {
+            ...filterParams,
+            airlines: [],
+            rating: filterParams.rating.min
+        }
+    );
+    
+    const changeHotelFilter = (filter) => {
+        setFilters({ ...filters, ...filter });
+    };
+
+    const [resetFilters, setResetFilters] = useState(true);
+
 
 
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
@@ -27,8 +50,6 @@ const HotelListing = () => {
 
         setSearchResults(newSearchResults);
     }, [hotelSearchParams]);
-
-
 
     const tabs = [
         {
@@ -93,7 +114,13 @@ const HotelListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-                                <ListingFiltersHotels />
+                                <ListingFilters
+                                    layout="hotels"
+                                    filterParams={filterParams}
+                                    changeFilter={changeHotelFilter}
+                                    reset={resetFilters}
+                                />
+                                {/* <ListingFiltersHotels /> */}
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">

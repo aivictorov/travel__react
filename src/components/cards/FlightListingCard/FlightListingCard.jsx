@@ -3,6 +3,7 @@ import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButto
 import Button from '../../elements/Button/Button';
 import Rating from '../../elements/Rating/Rating';
 import { useNavigate } from 'react-router-dom';
+import Price from '../../elements/Price/Price';
 
 const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => {
     const navigate = useNavigate();
@@ -17,19 +18,8 @@ const FlightListingCard = ({ id, start, end, airline, logo, price, rating }) => 
             </div>
             <div className="flight-card__content">
                 <div className="flight-card__header">
-
-
                     <Rating value={rating} />
-
-
-
-
-                    <div className="flight-card__price">
-                        starting from
-                        <div className="price">
-                            <span className="price-value">{'$' + price}</span>
-                        </div>
-                    </div>
+                    <Price value={price} before="starting from"/>
                 </div>
                 <ul className="flight-card__flights">
                     <li className="flight__row">

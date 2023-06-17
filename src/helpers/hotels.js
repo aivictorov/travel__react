@@ -38,7 +38,38 @@ const hotels = [
             {name: 'Room service', svgID: 'seat'},
             {name: 'Restaurant', svgID: 'food'},
         ]
-    }
+    },
+
+    {
+        id: 1,
+        name: 'Bosphorus Hotel Istanbul',
+        description: 'Located in Taksim Gmsuyu, the heart of Istanbul, the CVK Park Bosphorus Hotel Istanbul has risen from the ashes of the historic Park Hotel, which also served as Foreign Affairs Palace 120 years ago and is hosting its guests by assuming this hospitality mission. With its 452 luxurious rooms and suites, 8500 m2 SPA and fitness area, 18 meeting rooms including 4 dividable ones and 3 terraces with Bosphorus view, Istanbuls largest terrace with Bosphorus view (4500 m2) and latest technology infrastructure, CVK Park Bosphorus Hotel Istanbul is destined to be the popular attraction point of the city. Room and suite categories at various sizes with city and Bosphorus view, as well as 68 separate luxury suites, are offered to its special guests as a wide variety of selection.',
+        city: 'Paris',
+        address: 'Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437',
+        stars: 4,
+        rating: 3.1,
+        rooms: [
+            { name: 'Standard Single Room with Shower and WC', price: 600 },
+            { name: 'Double Room with Shared Bathroom and Shared WC', price: 700 },
+            { name: 'Standard Double Room with private Shower and WC', price: 800 },
+        ],
+        logo: logo,
+        cover: cover,
+        coverSmall: coverSmall,
+        gallery: [image01, image02, image03, image04, image05],
+        amenities: [
+            {name: 'Outdoor pool', svgID: 'food'},
+            {name: 'Fitness center', svgID: 'wifi'},
+            {name: 'Indoor pool', svgID: 'seat'},
+            {name: 'Bar/Lounge', svgID: 'food'},
+            {name: 'Spa and wellness center', svgID: 'wifi'},
+            {name: 'Restaurant', svgID: 'seat'},
+            {name: 'Free Wi-Fi', svgID: 'food'},
+            {name: 'Tea/coffee machine', svgID: 'wifi'},
+            {name: 'Room service', svgID: 'seat'},
+            {name: 'Restaurant', svgID: 'food'},
+        ]
+    },
 ];
 
 export default hotels;

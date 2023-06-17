@@ -1,5 +1,5 @@
 import AccountTabsBookingsFlightsCard from "./AccountTabsBookingsFlightsCard";
-import AccountFlightCard from './../../blocks/AccountFlightCard/AccountFlightCard';
+import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';
 
 const AccountTabsBookingsFlights = () => {
     return (

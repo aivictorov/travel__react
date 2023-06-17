@@ -4,7 +4,7 @@ import FlightFeatures from "../components/sections/FlightFeatures/FlightFeatures
 import FlightPolicies from './../components/sections/FlightPolicies/FlightPolicies';
 import DetailsHeader from "../components/blocks/DetailsHeader/DetailsHeader";
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
-import FlightTicket from './../components/blocks/FlightTicket/FlightTicket';
+import FlightTicket from './../components/cards/FlightTicket/FlightTicket';
 import FlightCover from './../components/sections/FlightCover/FlightCover';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from './../App';

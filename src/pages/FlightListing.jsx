@@ -1,7 +1,7 @@
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import SearchForm from "../components/forms/SearchForm/SearchForm";
 import ListingFilters from "../components/blocks/ListingFilters/ListingFilters";
-import FlightListingCard from "../components/blocks/FlightListingCard/FlightListingCard";
+import FlightListingCard from "../components/cards/FlightListingCard/FlightListingCard";
 import ButtonShowMore from "../components/elements/ButtonShowMore/ButtonShowMore";
 import Footer from "../components/sections/Footer/Footer";
 
@@ -13,7 +13,7 @@ import Tabs from "../components/elements/Tabs/Tabs";
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
-    const { flights, searchParams } = useContext(AppContext);
+    const { flights, flightSearchParams } = useContext(AppContext);
 
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
@@ -28,6 +28,7 @@ const FlightListing = () => {
             rating: { min: 0, max: 0 }
         }
     );
+
     const [filters, setFilters] = useState(
         {
             ...filterParams,
@@ -35,6 +36,7 @@ const FlightListing = () => {
             rating: filterParams.rating.min
         }
     );
+
     const [resetFilters, setResetFilters] = useState(true);
 
     const [numberOfResults, setNumberOfResults] = useState(3);
@@ -43,20 +45,20 @@ const FlightListing = () => {
     useEffect(() => {
         let newSearchResults = flights.slice(0);
 
-        if (searchParams.from !== 'All') {
+        if (flightSearchParams.from !== 'All') {
             newSearchResults = newSearchResults.filter((item) => {
-                return searchParams.from === item.from
+                return flightSearchParams.from === item.from
             });
         };
 
-        if (searchParams.to !== 'All') {
+        if (flightSearchParams.to !== 'All') {
             newSearchResults = newSearchResults.filter((item) => {
-                return searchParams.to === item.to
+                return flightSearchParams.to === item.to
             });
         };
 
         setSearchResults(newSearchResults);
-    }, [searchParams]);
+    }, [flightSearchParams]);
 
     // FILTERED SEARCH RESULTS
     useEffect(() => {
@@ -153,7 +155,7 @@ const FlightListing = () => {
         setVisibleResults(visibleResults);
     }, [filteredResults, numberOfResults])
 
-    const changeFilter = (filter) => {
+    const changeFlightFilter = (filter) => {
         setFilters({ ...filters, ...filter });
     };
 
@@ -179,7 +181,6 @@ const FlightListing = () => {
     };
     // --------------------------DEV--------------------------
 
-
     const tabs = [
         {
             title: 'Cheapest',
@@ -202,9 +203,9 @@ const FlightListing = () => {
     ];
 
     return (
-        <FlightListingContext.Provider value={{ changeFilter, resetFilters }}>
+        <FlightListingContext.Provider value={{  }}>
             <p>SEARCH PARAMS </p>
-            {JSON.stringify(searchParams)}
+            {JSON.stringify(flightSearchParams)}
             <br />
             <br />
 
@@ -250,8 +251,10 @@ const FlightListing = () => {
                                     </h3>
                                     {searchResults.length > 1 &&
                                         <ListingFilters
-                                            changeFilter={changeFilter}
+                                            layout="flights"
                                             filterParams={filterParams}
+                                            changeFilter={changeFlightFilter}
+                                            reset={resetFilters}
                                         />
                                     }
 
@@ -263,7 +266,7 @@ const FlightListing = () => {
 
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
-                                    
+
                                     {searchResults.length > 1 &&
                                         <Tabs tabs={tabs} />
                                     }
@@ -294,7 +297,7 @@ const FlightListing = () => {
                                     </div>
 
                                 </div>
-                                
+
                                 <div className="listing-content__right-button">
                                     {visibleResults < filteredResults &&
                                         <ButtonShowMore
@@ -303,7 +306,7 @@ const FlightListing = () => {
                                         />
                                     }
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

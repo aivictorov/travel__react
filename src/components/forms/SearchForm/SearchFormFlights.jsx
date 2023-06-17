@@ -9,10 +9,10 @@ import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();
 
-    const { searchParams, setSearchParams } = useContext(AppContext);
+    const { flightSearchParams, setFlightSearchParams } = useContext(AppContext);
 
-    const [from, setFrom] = useState((searchParams && searchParams.from) || '');
-    const [to, setTo] = useState((searchParams && searchParams.to) || '');
+    const [from, setFrom] = useState((flightSearchParams && flightSearchParams.from) || '');
+    const [to, setTo] = useState((flightSearchParams && flightSearchParams.to) || '');
     const [departDate, setDepartDate] = useState('2023-12-01');
     // const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
     const [returnDate, setReturnDate] = useState('2023-12-01');
@@ -28,19 +28,12 @@ const SearchFormFlights = ({ layout }) => {
         // const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
 
         const newSearchParams = {
-            ...searchParams,
-            flights: {
-                'from': from || 'All',
-                'to': to || 'All',
-                'departDate': departDate,
-                // 'departDate': newDepartDate,
-                // 'returnDate': newReturnDate,
-                // 'passengers': 1,
-                // 'travelClass': 'economy',
-            }
+            ...flightSearchParams,
+            'from': from || 'All',
+            'to': to || 'All',
         };
 
-        setSearchParams(newSearchParams);
+        setFlightSearchParams(newSearchParams);
         navigate("/flight-listing");
     }
 

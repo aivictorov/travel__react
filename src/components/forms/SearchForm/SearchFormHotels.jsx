@@ -11,7 +11,7 @@ const SearchFormHotels = ({ layout }) => {
 
     const { hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
 
-    const [destination, setDestination] = useState();
+    const [destination, setDestination] = useState(hotelSearchParams.destination || '');
 
     const [checkIn, setCheckIn] = useState();
     const [checkOut, setCheckOut] = useState();
@@ -25,7 +25,6 @@ const SearchFormHotels = ({ layout }) => {
         };
 
         setHotelSearchParams(newSearchParams);
-        alert(JSON.stringify(newSearchParams));
         navigate("/hotel-listing");
     }
 

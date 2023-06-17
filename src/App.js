@@ -28,14 +28,14 @@ export const AppContext = createContext(null);
 
 function App() {
 
-    const [searchParams, setSearchParams] = useState(
+    const [flightSearchParams, setFlightSearchParams] = useState(
         {
             'from': 'All',
             'to': 'All',
             'departDate': '',
-            'returnDate': new Date(),
-            'passengers': 1,
-            'travelClass': 'economy',
+            'returnDate': '',
+            'passengers': '',
+            'travelClass': '',
         }
     );
 
@@ -60,12 +60,10 @@ function App() {
                 hotels: [1, 3],
             }
         }
-    )
-
+    );
 
     const [userData, setUserData] = useState([1, 3, 17]);
     const [userAuth, setUserAuth] = useState(false);
-
 
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
@@ -78,7 +76,7 @@ function App() {
         <AppContext.Provider value={{
             flights,
             hotels,
-            searchParams, setSearchParams,
+            flightSearchParams, setFlightSearchParams,
             hotelSearchParams, setHotelSearchParams,
             userData, setUserData,
             userAuth, setUserAuth,

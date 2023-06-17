@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import HotelReservation from './../components/blocks/HotelReservation/HotelReservation';
+import HotelReservation from './../components/cards/HotelReservation/HotelReservation';
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
 import { AppContext } from './../App';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
