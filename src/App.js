@@ -32,10 +32,10 @@ function App() {
         {
             'from': 'All',
             'to': 'All',
-            'departDate': '',
-            'returnDate': '',
+            'depart': '',
+            'return': '',
             'passengers': '',
-            'travelClass': '',
+            'class': '',
         }
     );
 

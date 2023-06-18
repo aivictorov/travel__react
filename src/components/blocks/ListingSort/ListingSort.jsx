@@ -1,6 +1,6 @@
 import './ListingSort.scss';
 
-const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumberOfResults, sortType, setSortType }) => {
+const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumberOfResults, sortType, setSortType, resetTrigger, setResetTrigger }) => {
     return (
         <div className="listing-sort">
             <div className="listing-sort__left">
@@ -12,7 +12,13 @@ const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumbe
                 {filteredResults.length < searchResults.length &&
                     <div className='listing-sort__item'>
                         <span>Showing {filteredResults.length} of</span>
-                        <a className="listing-sort__link" href="#!">{searchResults.length} results</a>
+                        <button
+                            className="listing-sort__link"
+                            type="button"
+                            onClick={() => { setResetTrigger(!resetTrigger) }}
+                        >
+                            {searchResults.length} results
+                        </button>
                     </div>
                 }
             </div>
@@ -22,11 +28,12 @@ const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumbe
                     <select
                         className="listing-sort__select"
                         value={sortType}
-                        onChange={(event)=>{setSortType(event.target.value)}}
+                        onChange={(event) => { setSortType(event.target.value) }}
                     >
                         <option value="recommended">Recommended</option>
                         <option value="lowest price">Lowest price</option>
                         <option value="highest price">Highest price</option>
+                        <option value="fastest">Fastest</option>
                     </select>
                 </div>
                 <div className="listing-sort__item">

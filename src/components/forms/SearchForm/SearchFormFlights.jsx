@@ -13,7 +13,21 @@ const SearchFormFlights = ({ layout }) => {
 
     const [from, setFrom] = useState((flightSearchParams && flightSearchParams.from) || '');
     const [to, setTo] = useState((flightSearchParams && flightSearchParams.to) || '');
-    const [departDate, setDepartDate] = useState('2023-12-01');
+
+    function defaultDepartDate() {
+        const date = new Date();
+        let day = date.getDate();
+        if (day.toString().length === 1) day = '0' + day.toString();
+        let month = date.getMonth() + 1;
+        if (month.toString().length === 1) month = '0' + month.toString();
+        const year = date.getFullYear();
+        const dateString = `${day}.${month}.${year}`;
+        return dateString;
+    }
+
+    const today = defaultDepartDate();
+
+    const [departDate, setDepartDate] = useState(today);
     // const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
     const [returnDate, setReturnDate] = useState('2023-12-01');
     // const [returnDate, setReturnDate] = useState((searchParams && searchParams.returnDate) || '');
@@ -31,6 +45,8 @@ const SearchFormFlights = ({ layout }) => {
             ...flightSearchParams,
             'from': from || 'All',
             'to': to || 'All',
+            'depart': departDate || today,
+            'return': returnDate || today,
         };
 
         setFlightSearchParams(newSearchParams);
@@ -43,7 +59,6 @@ const SearchFormFlights = ({ layout }) => {
             tab-content="flight-search"
             tab-group="search"
         >
-            {departDate}
             <div className={`search-form__fields search-form__fields--flights-${layout}`}>
                 <Input
                     type="text"

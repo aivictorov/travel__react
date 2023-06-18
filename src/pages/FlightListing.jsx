@@ -117,52 +117,46 @@ const FlightListing = () => {
     }, [filterParams])
 
     useEffect(() => {
-        applyFilters();
-        applySort();
+        let items = [...searchResults];
+        let filtered = applyFilters(items);
+        let sorted = applySort(filtered)
+        setFilteredResults(sorted);
     }, [filters])
 
-    function applyFilters() {
-        let newFilteredResults = searchResults.slice(0);
+    function applyFilters(items) {
 
         // Price filter
         if (filters.price.min) {
-            newFilteredResults = newFilteredResults.filter((flight) => {
+            items = items.filter((flight) => {
                 return flight.price >= filters.price.min;
             })
         };
 
         if (filters.price.max) {
-            newFilteredResults = newFilteredResults.filter((flight) => {
+            items = items.filter((flight) => {
                 return flight.price <= filters.price.max;
             })
         };
 
         // Rating filter
-        newFilteredResults = newFilteredResults.filter((item) => {
+        items = items.filter((item) => {
             return item.rating >= filters.rating;
         });
 
         // Airlines filter
         if (filters.airlines.length !== 0) {
-            newFilteredResults = newFilteredResults.filter((item) => {
+            items = items.filter((item) => {
                 return filters.airlines.includes(item.airline);
             });
         };
 
-        setFilteredResults(newFilteredResults);
+        return items;
     };
 
-    useEffect(() => {
-        applySort();
-    }, [sortType])
-
-    function applySort() {
-        let sortedResults = [...filteredResults];
-
-        // Sorting by lowest price
+    function applySort(items) {
 
         if (sortType === 'lowest price') {
-            sortedResults.sort(function (a, b) {
+            items.sort(function (a, b) {
                 if (a.price > b.price) {
                     return 1;
                 }
@@ -176,7 +170,7 @@ const FlightListing = () => {
         // Sorting by highest price
 
         if (sortType === 'highest price') {
-            sortedResults.sort(function (a, b) {
+            items.sort(function (a, b) {
                 if (a.price < b.price) {
                     return 1;
                 }
@@ -187,9 +181,26 @@ const FlightListing = () => {
             });
         };
 
-       setFilteredResults(sortedResults);
+        if (sortType === 'fastest') {
+            items.sort(function (a, b) {
+                if (a.duration > b.duration) {
+                    return 1;
+                }
+                if (a.duration < b.duration) {
+                    return -1;
+                }
+                return 0;
+            });
+        }
+
+        return items;
     };
 
+    useEffect(() => {
+        let items = [...filteredResults];
+        let sorted = applySort(items)
+        setFilteredResults(sorted);
+    }, [sortType])
 
     const tabs = [
         {
@@ -273,6 +284,8 @@ const FlightListing = () => {
                                         setNumberOfResults={setNumberOfResults}
                                         sortType={sortType}
                                         setSortType={setSortType}
+                                        resetTrigger={resetTrigger}
+                                        setResetTrigger={setResetTrigger}
                                     />
 
                                     <div className="listing-content__cards">
@@ -283,13 +296,7 @@ const FlightListing = () => {
                                                 index < numberOfResults &&
                                                 <FlightListingCard
                                                     key={flight.id}
-                                                    id={flight.id}
-                                                    start={flight.start}
-                                                    end={flight.end}
-                                                    airline={flight.airline}
-                                                    logo={flight.logo}
-                                                    price={flight.price}
-                                                    rating={flight.rating}
+                                                    flightObj={flight}
                                                 />
                                             )
                                         })}

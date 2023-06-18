@@ -8,37 +8,46 @@ const airlines = ['Emirates', 'Finnair', 'Aeroflot', 'Air India']
 function generateFlights(count) {
     let flights = [];
 
-    // This function generates a date in the range from the current. 
-    // Param is specified in days.
     function generateDate(days) {
-        const date = new Date();
-        date.setDate(date.getDate() + Math.floor(Math.random() * days));
-        date.setHours(Math.floor(Math.random() * 24));
-        date.setMinutes(Math.floor(Math.random() * 60 / 5) * 5);
-        date.setSeconds(0);
-        date.setMilliseconds(0);
-        return date.toISOString().substring(0, 1000)
+        const start = new Date();
+        start.setDate(start.getDate() + Math.floor(Math.random() * days));
+        start.setHours(Math.floor(Math.random() * 24));
+        start.setMinutes(Math.floor(Math.random() * 60 / 5) * 5);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+        let end = new Date(start);
+        end.setMinutes(end.getMinutes() + Math.floor(Math.random() * 60 * 24));
+
+        return [
+            // start.toISOString().substring(0, 1000),
+            // end.toISOString().substring(0, 1000) ,           
+            start,
+            end,
+        ]
     };
 
-    console.log(generateDate(10));
+
+
+
 
     for (let index = 0; index < count; index++) {
         const id = index;
         const from = cities[Math.floor(Math.random() * cities.length)];
         const to = cities[Math.floor(Math.random() * cities.length)];
+        const [start, end] = generateDate(30);
+        const duration = ((end - start) / 1000 / 60 / 60);
         const airline = airlines[Math.floor(Math.random() * airlines.length)];
         const price = Math.floor(Math.random() * 1000);
         const rating = (Math.random() * 5).toFixed(1);
-
-        // const arrayDepartDate = departDate.split(['-']);
-        // const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
 
         let flight = {
             id: id,
             from: from,
             to: to,
-            // start: date2,
-            // end: newEnd,
+            start: start,
+            end: end,
+            duration: duration,
             airline: airline,
             logo: emiratesLogo,
             price: price,
@@ -52,5 +61,23 @@ function generateFlights(count) {
 };
 
 const flights = generateFlights(150);
+
+// date2.setDate(date2.getDate() + 1);
+// date2.setHours(date2.getHours() + Math.floor(Math.random() * 24));
+// console.log((date2 - date) / 1000 / 60 / 60);
+// let day = date.getDate();
+// if (day.toString().length === 1) day = '0' + day.toString();
+// let month = date.getMonth() + 1;
+// if (month.toString().length === 1) month = '0' + month.toString();
+// const year = date.getFullYear();
+// const dateString = `${day}.${month}.${year}`;
+// let hours = date.getHours();
+// if (hours.toString().length === 1) hours = '0' + hours.toString();
+// let minutes = date.getMinutes();
+// if (minutes.toString().length === 1) minutes = '0' + minutes.toString();
+// const timeString = `${hours}:${minutes}`;
+// console.log(dateString, timeString );
+// const arrayDepartDate = departDate.split(['-']);
+// const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
 
 export default flights;
