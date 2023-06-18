@@ -60,13 +60,13 @@ const SearchFormFlights = ({ layout }) => {
                     onChangeFunction={setTo}
                 />
                 <Input
-                    type="date"
+                    type="text"
                     label="Depart"
                     value={departDate}
                     onChangeFunction={setDepartDate}
                 />
                 <Input
-                    type="date"
+                    type="text"
                     label="Return"
                     value={returnDate}
                     onChangeFunction={setReturnDate}

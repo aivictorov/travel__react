@@ -3,7 +3,7 @@ import Logo from './../components/blocks/Logo/Logo';
 import { useContext } from 'react';
 import { AppContext } from '../App';
 import LoginSlider from '../components/blocks/LoginSlider/LoginSlider';
-import LoginForm from '../components/blocks/LoginForm/LoginForm';
+import LoginForm from '../components/forms/LoginForm/LoginForm';
 import LoginWith from '../components/blocks/LoginWith/LoginWith';
 import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
 

@@ -1,71 +1,36 @@
 import './ListingFilters.scss';
-import ListingFilterDualRange from './ListingFilterDualRange';
-import ListingFilterRadioButtons from './ListingFilterRadioButtons';
-import ListingFilterCheckboxes from './ListingFilterCheckboxes';
+import ListingFiltersFlights from './ListingFiltersFlights';
+import ListingFiltersHotels from './ListingFiltersHotels';
 
-const ListingFilters = ({ layout, filterParams, changeFilter, reset }) => {
+const ListingFilters = ({ layout, filterParams, changeFilter, resetTrigger }) => {
 
-    console.log(changeFilter);
+    return (
+        <div className="listing-filters">
+            <h3 className="listing-filters__title">
+                Filters
+            </h3>
 
-    if (layout === 'flights') {
-        return (
-            <>
-                <ListingFilterDualRange
-                    name='price'
-                    title='Price'
-                    min={filterParams.price.min}
-                    max={filterParams.price.max}
-                    format='price'
+            {layout === "flights" &&
+                <ListingFiltersFlights
+                    filterParams={filterParams}
                     changeFilter={changeFilter}
-                    reset={reset}
+                    resetTrigger={resetTrigger}
                 />
-                {/* <ListingFilterDualRange
-                    name='time'
-                    title='Departure time'
-                    format='time'
-                /> */}
-                <ListingFilterRadioButtons
-                    name='rating'
-                    title='Rating'
-                    min={filterParams.rating.min}
-                    max={filterParams.rating.max}
-                    changeFilter={changeFilter}
-                    reset={reset}
-                />
-                <ListingFilterCheckboxes
-                    name='airlines'
-                    title='Airlines'
-                    items={filterParams.airlines}
-                    changeFilter={changeFilter}
-                    reset={reset}
-                />
-            </>
-        );
-    };
+            }
 
-    if (layout === 'hotels') {
-        return (
-            <>
-                <ListingFilterDualRange
-                    name='price2'
-                    title='Price2'
-                    min={filterParams.price.min}
-                    max={filterParams.price.max}
-                    format='price'
+            {layout === "hotels" &&
+                <ListingFiltersHotels
+                    filterParams={filterParams}
                     changeFilter={changeFilter}
-                    reset={reset}
+                    resetTrigger={resetTrigger}
                 />
-                <ListingFilterRadioButtons
-                    name='rating2'
-                    title='Rating2'
-                    min={filterParams.rating.min}
-                    max={filterParams.rating.max}
-                    changeFilter={changeFilter}
-                    reset={reset}
-                />
-            </>
-        )
-    };
+            }
+
+            {false &&
+                <p>No available filters</p>
+            }
+        </div>
+    )
 };
 
 export default ListingFilters;

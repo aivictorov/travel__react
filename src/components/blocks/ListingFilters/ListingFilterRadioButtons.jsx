@@ -3,8 +3,7 @@ import { useContext, useState } from "react";
 import { FlightListingContext } from "../../../pages/FlightListing";
 import ListingFilterHeader from './ListingFilterHeader';
 
-const ListingFilterRadioButtons = ({ name, title, min, max, changeFilter, reset }) => {
-    // const { changeFilter } = useContext(FlightListingContext);
+const ListingFilterRadioButtons = ({ name, title, min, max, changeFilter, resetTrigger }) => {
     const [displayFilter, setDisplayFilter] = useState(true);
 
     if (max - min >= 1) {

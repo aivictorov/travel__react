@@ -13,7 +13,11 @@ import ListingFilters from './../components/blocks/ListingFilters/ListingFilters
 
 const HotelListing = () => {
     const { hotels, hotelSearchParams } = useContext(AppContext);
+
     const [searchResults, setSearchResults] = useState([]);
+    // const [filteredResults, setFilteredResults] = useState([]);
+    // const [visibleResults, setVisibleResults] = useState([]);
+    // const [numberOfResults, setNumberOfResults] = useState(3);
 
     const [filterParams, setFilterParams] = useState(
         {
@@ -29,14 +33,12 @@ const HotelListing = () => {
             rating: filterParams.rating.min
         }
     );
-    
-    const changeHotelFilter = (filter) => {
+
+    const [resetTrigger, setResetTrigger] = useState(true);
+
+    const changeFilter = (filter) => {
         setFilters({ ...filters, ...filter });
     };
-
-    const [resetFilters, setResetFilters] = useState(true);
-
-
 
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
@@ -114,13 +116,14 @@ const HotelListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
+
                                 <ListingFilters
                                     layout="hotels"
                                     filterParams={filterParams}
-                                    changeFilter={changeHotelFilter}
-                                    reset={resetFilters}
+                                    changeFilter={changeFilter}
+                                    resetTrigger={resetTrigger}
                                 />
-                                {/* <ListingFiltersHotels /> */}
+
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">

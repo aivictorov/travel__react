@@ -14,10 +14,9 @@ export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
     const { flights, flightSearchParams } = useContext(AppContext);
-
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
-    const [visibleResults, setVisibleResults] = useState([]);
+    const [numberOfResults, setNumberOfResults] = useState(3);
 
     const [filterParams, setFilterParams] = useState(
         {
@@ -31,15 +30,20 @@ const FlightListing = () => {
 
     const [filters, setFilters] = useState(
         {
+            sort: 'price',
             ...filterParams,
             airlines: [],
             rating: filterParams.rating.min
         }
     );
 
-    const [resetFilters, setResetFilters] = useState(true);
+    const [resetTrigger, setResetTrigger] = useState(true);
 
-    const [numberOfResults, setNumberOfResults] = useState(3);
+    const [sortType, setSortType] = useState('lowest price');
+
+    const changeFilter = (filter) => {
+        setFilters({ ...filters, ...filter });
+    };
 
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
@@ -109,11 +113,12 @@ const FlightListing = () => {
                 rating: filterParams.rating.min
             }
         );
-        setResetFilters(!resetFilters);
+        setResetTrigger(!resetTrigger);
     }, [filterParams])
 
     useEffect(() => {
-        applyFilters()
+        applyFilters();
+        applySort();
     }, [filters])
 
     function applyFilters() {
@@ -147,63 +152,68 @@ const FlightListing = () => {
         setFilteredResults(newFilteredResults);
     };
 
-    // VISIBLE
     useEffect(() => {
-        const visibleResults = filteredResults.filter((item, index) => {
-            return index < numberOfResults
-        });
-        setVisibleResults(visibleResults);
-    }, [filteredResults, numberOfResults])
+        applySort();
+    }, [sortType])
 
-    const changeFlightFilter = (filter) => {
-        setFilters({ ...filters, ...filter });
+    function applySort() {
+        let sortedResults = [...filteredResults];
+
+        // Sorting by lowest price
+
+        if (sortType === 'lowest price') {
+            sortedResults.sort(function (a, b) {
+                if (a.price > b.price) {
+                    return 1;
+                }
+                if (a.price < b.price) {
+                    return -1;
+                }
+                return 0;
+            });
+        }
+
+        // Sorting by highest price
+
+        if (sortType === 'highest price') {
+            sortedResults.sort(function (a, b) {
+                if (a.price < b.price) {
+                    return 1;
+                }
+                if (a.price > b.price) {
+                    return -1;
+                }
+                return 0;
+            });
+        };
+
+       setFilteredResults(sortedResults);
     };
 
-
-    // --------------------------DEV--------------------------
-    // SORTING
-    function sortByPrice() {
-        alert('sortByPrice')
-
-        let newSearchResults = searchResults.slice(0);
-
-        newSearchResults.sort(function (a, b) {
-            if (a.price > b.price) {
-                return 1;
-            }
-            if (a.price < b.price) {
-                return -1;
-            }
-            return 0;
-        });
-
-        setSearchResults(newSearchResults);
-    };
-    // --------------------------DEV--------------------------
 
     const tabs = [
         {
             title: 'Cheapest',
             subtitle: '$99, 2h 00m',
             active: false,
-            action: sortByPrice,
+            action: () => { setSortType('lowest price') },
         },
         {
             title: 'Best',
             subtitle: '$199, 3h 30m',
             active: false,
-            action: sortByPrice,
+            action: () => { setSortType('highest price') },
         },
         {
             title: 'Quickest',
             subtitle: '$299, 5h 00m',
             active: false,
-            action: sortByPrice,
+            action: () => { setSortType('lowest price') },
         },
     ];
 
     return (
-        <FlightListingContext.Provider value={{  }}>
+        <FlightListingContext.Provider value={{}}>
             <p>SEARCH PARAMS </p>
             {JSON.stringify(flightSearchParams)}
             <br />
@@ -229,11 +239,6 @@ const FlightListing = () => {
             <br />
             <br />
 
-            <p>VISIBLE </p>
-            {JSON.stringify(visibleResults.length)}
-            <br />
-            <br />
-
             <HeaderInner />
             <main className="listing">
                 <div className="listing-form">
@@ -245,43 +250,37 @@ const FlightListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-                                <div className="listing-filters">
-                                    <h3 className="listing-filters__title">
-                                        Filters
-                                    </h3>
-                                    {searchResults.length > 1 &&
-                                        <ListingFilters
-                                            layout="flights"
-                                            filterParams={filterParams}
-                                            changeFilter={changeFlightFilter}
-                                            reset={resetFilters}
-                                        />
-                                    }
 
-                                    {searchResults.length <= 1 &&
-                                        <p>No available filters</p>
-                                    }
-                                </div>
+                                <ListingFilters
+                                    layout="flights"
+                                    filterParams={filterParams}
+                                    changeFilter={changeFilter}
+                                    resetTrigger={resetTrigger}
+                                />
+
                             </div>
-
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
-
                                     {searchResults.length > 1 &&
                                         <Tabs tabs={tabs} />
                                     }
 
+
                                     <ListingSort
-                                        visibleResults={visibleResults}
                                         filteredResults={filteredResults}
+                                        searchResults={searchResults}
                                         numberOfResults={numberOfResults}
                                         setNumberOfResults={setNumberOfResults}
+                                        sortType={sortType}
+                                        setSortType={setSortType}
                                     />
 
                                     <div className="listing-content__cards">
-                                        {visibleResults.length === 0 ? "Flights not found" : null}
-                                        {visibleResults.map((flight) => {
+                                        {filteredResults.length === 0 ? "Flights not found" : null}
+
+                                        {filteredResults.map((flight, index) => {
                                             return (
+                                                index < numberOfResults &&
                                                 <FlightListingCard
                                                     key={flight.id}
                                                     id={flight.id}
@@ -294,19 +293,17 @@ const FlightListing = () => {
                                                 />
                                             )
                                         })}
+
                                     </div>
-
                                 </div>
-
                                 <div className="listing-content__right-button">
-                                    {visibleResults < filteredResults &&
+                                    {numberOfResults < filteredResults.length &&
                                         <ButtonShowMore
                                             numberOfResults={numberOfResults}
                                             setNumberOfResults={setNumberOfResults}
                                         />
                                     }
                                 </div>
-
                             </div>
                         </div>
                     </div>

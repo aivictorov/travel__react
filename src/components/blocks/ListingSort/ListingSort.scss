@@ -4,14 +4,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-weight: 600;
-    font-size: 14px;
 }
 
-.listing-sort__left a {
+.listing-sort__left {
+    font-weight: 600;
+}
+
+.listing-sort__right {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.listing-sort__item {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.listing-sort__link,
+a.listing-sort__link {
     color: $accent;
 }
 
-.listing-sort__right span {
-    font-weight: 400;
+.listing-sort__select {
+    border: 1px solid #999;
+    font-weight: 600;
+    border-radius: 3px;
 }

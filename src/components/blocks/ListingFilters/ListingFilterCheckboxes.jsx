@@ -3,11 +3,7 @@ import { FlightListingContext } from "../../../pages/FlightListing";
 import ListingFilterHeader from './ListingFilterHeader';
 import Checkbox from "../../elements/Checkbox/Checkbox";
 
-const ListingFilterCheckboxes = ({ name, title, items, changeFilter, reset }) => {
-
-    // const { resetFilters } = useContext(FlightListingContext)
-
-    
+const ListingFilterCheckboxes = ({ name, title, items, changeFilter, resetTrigger }) => {
 
     const [params, setParams] = useState([]);
 
