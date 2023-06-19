@@ -27,10 +27,6 @@ function generateFlights(count) {
         ]
     };
 
-
-
-
-
     for (let index = 0; index < count; index++) {
         const id = index;
         const from = cities[Math.floor(Math.random() * cities.length)];
@@ -60,24 +56,6 @@ function generateFlights(count) {
     return flights;
 };
 
-const flights = generateFlights(150);
-
-// date2.setDate(date2.getDate() + 1);
-// date2.setHours(date2.getHours() + Math.floor(Math.random() * 24));
-// console.log((date2 - date) / 1000 / 60 / 60);
-// let day = date.getDate();
-// if (day.toString().length === 1) day = '0' + day.toString();
-// let month = date.getMonth() + 1;
-// if (month.toString().length === 1) month = '0' + month.toString();
-// const year = date.getFullYear();
-// const dateString = `${day}.${month}.${year}`;
-// let hours = date.getHours();
-// if (hours.toString().length === 1) hours = '0' + hours.toString();
-// let minutes = date.getMinutes();
-// if (minutes.toString().length === 1) minutes = '0' + minutes.toString();
-// const timeString = `${hours}:${minutes}`;
-// console.log(dateString, timeString );
-// const arrayDepartDate = departDate.split(['-']);
-// const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
+const flights = generateFlights(2500);
 
 export default flights;

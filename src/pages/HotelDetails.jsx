@@ -8,16 +8,21 @@ import HotelReviews from "../components/sections/HotelReviews/HotelReviews";
 import HotelGallery from "../components/sections/HotelGallery/HotelGallery";
 import HotelAmenities from './../components/sections/HotelAmenities/HotelAmenities';
 import Footer from "../components/sections/Footer/Footer";
-import { useNavigate, useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { useContext, useRef } from "react";
 import { AppContext } from "../App";
 
 const HotelDetails = () => {
-    const navigate = useNavigate();
     const { id } = useParams();
 
     const { hotels } = useContext(AppContext);
     const hotel = hotels.find((hotel) => hotel.id == id);
+
+    const roomsRef = useRef(null);
+
+    function scrollToRef() {
+        roomsRef.current.scrollIntoView({ block: 'center' });
+    };
 
     return (
         <>
@@ -31,7 +36,7 @@ const HotelDetails = () => {
                         <DetailsHeader
                             title={hotel.name}
                             cover={hotel.cover}
-                            action={() => { navigate(`/hotel-booking/${id}`) }}
+                            action={scrollToRef}
                         />
                     </div>
                     <div className="details__flight-content"></div>
@@ -43,6 +48,7 @@ const HotelDetails = () => {
                             description={hotel.description}
                         />
                         <HotelRooms
+                            ref={roomsRef}
                             rooms={hotel.rooms}
                         />
                         <HotelLocation

@@ -1,13 +1,26 @@
 import './HotelRooms.scss';
+import { useContext, forwardRef } from 'react';
+import { AppContext } from './../../../App';
+import Button from '../../elements/Button/Button';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const HotelRooms = ({ rooms }) => {
+const HotelRooms = forwardRef(({ rooms }, ref) => {
+    const { hotelSearchParams } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const { id } = useParams();
+
     return (
 
-        <section className="hotel-rooms">
+        <section
+            className="hotel-rooms"
+            ref={ref}
+        >
             <h2 className="hotel-rooms__title">Available rooms</h2>
             <ul className="hotel-rooms__list">
                 {rooms.map((room, index) => {
-                    return (
+                    return (room.dates.includes(hotelSearchParams.checkIn) &&
                         <li
                             key={index}
                             className="hotel-rooms__item"
@@ -25,103 +38,22 @@ const HotelRooms = ({ rooms }) => {
                             </div>
                             <div className="hotel-rooms__item-right">
                                 <div className="hotel-rooms__item-price">
-                                    {" "}
                                     <span>{`$${room.price}`}</span>/night
                                 </div>
-                                <button
-                                    className="button button--bold"
-                                    type="button"
-                                    style={{ width: 150 }}
-                                >
-                                    Book now
-                                </button>
+                                <div className="hotel-rooms__item-button-wrapper">
+                                    <Button
+                                        text="Book now"
+                                        style="bold w100"
+                                        action={() => { navigate(`/hotel-booking/${id}`) }}
+                                    />
+                                </div>
                             </div>
                         </li>
                     )
                 })}
-
-
-                {/* <li className="hotel-rooms__item">
-                    <div className="hotel-rooms__item-left">
-                        <div className="hotel-rooms__item-image">
-                            <img
-                                src="./img/hotels/hotel-example-1/rooms/01.jpg"
-                                alt="available room"
-                            />
-                        </div>
-                        <div className="hotel-rooms__item-title">
-                            Superior room - 1 double bed or 2 twin beds
-                        </div>
-                    </div>
-                    <div className="hotel-rooms__item-right">
-                        <div className="hotel-rooms__item-price">
-                            {" "}
-                            <span>$240</span>/night
-                        </div>
-                        <button
-                            className="button button--bold"
-                            type="button"
-                            style={{ width: 150 }}
-                        >
-                            Book now
-                        </button>
-                    </div>
-                </li>
-                <li className="hotel-rooms__item">
-                    <div className="hotel-rooms__item-left">
-                        <div className="hotel-rooms__item-image">
-                            <img
-                                src="./img/hotels/hotel-example-1/rooms/02.jpg"
-                                alt="available room"
-                            />
-                        </div>
-                        <div className="hotel-rooms__item-title">
-                            Superior room - 1 double bed or 2 twin beds
-                        </div>
-                    </div>
-                    <div className="hotel-rooms__item-right">
-                        <div className="hotel-rooms__item-price">
-                            {" "}
-                            <span>$240</span>/night
-                        </div>
-                        <button
-                            className="button button--bold"
-                            type="button"
-                            style={{ width: 150 }}
-                        >
-                            Book now
-                        </button>
-                    </div>
-                </li>
-                <li className="hotel-rooms__item">
-                    <div className="hotel-rooms__item-left">
-                        <div className="hotel-rooms__item-image">
-                            <img
-                                src="./img/hotels/hotel-example-1/rooms/03.jpg"
-                                alt="available room"
-                            />
-                        </div>
-                        <div className="hotel-rooms__item-title">
-                            Superior room - 1 double bed or 2 twin beds
-                        </div>
-                    </div>
-                    <div className="hotel-rooms__item-right">
-                        <div className="hotel-rooms__item-price">
-                            {" "}
-                            <span>$240</span>/night
-                        </div>
-                        <button
-                            className="button button--bold"
-                            type="button"
-                            style={{ width: 150 }}
-                        >
-                            Book now
-                        </button>
-                    </div>
-                </li> */}
             </ul>
         </section>
     );
-}
+});
 
 export default HotelRooms;

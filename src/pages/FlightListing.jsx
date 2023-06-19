@@ -61,6 +61,14 @@ const FlightListing = () => {
             });
         };
 
+        newSearchResults = newSearchResults.filter((item) => {
+            const arrayDepartDate = flightSearchParams.depart.split(['.']);
+            if (item.start.getFullYear() !== parseInt(arrayDepartDate[2])) return false;
+            if ((item.start.getMonth() + 1) !== parseInt(arrayDepartDate[1])) return false;
+            if ((item.start.getDate()) !== parseInt(arrayDepartDate[0])) return false;
+            return true;
+        });
+
         setSearchResults(newSearchResults);
     }, [flightSearchParams]);
 
@@ -224,31 +232,29 @@ const FlightListing = () => {
     ];
 
     return (
-        <FlightListingContext.Provider value={{}}>
-            <p>SEARCH PARAMS </p>
-            {JSON.stringify(flightSearchParams)}
-            <br />
-            <br />
-
-            <p>SEARCH RESULTS </p>
-            {JSON.stringify(searchResults.length)}
-            <br />
-            <br />
-
-            <p>FILTER PARAMS </p>
-            {JSON.stringify(filterParams)}
-            <br />
-            <br />
-
-            <p>FILTERS </p>
-            {JSON.stringify(filters)}
-            <br />
-            <br />
-
-            <p>FILTERED </p>
-            {JSON.stringify(filteredResults.length)}
-            <br />
-            <br />
+        <>
+            <>
+                <p>SEARCH PARAMS </p>
+                {JSON.stringify(flightSearchParams)}
+                <br />
+                <br />
+                <p>SEARCH RESULTS </p>
+                {JSON.stringify(searchResults.length)}
+                <br />
+                <br />
+                <p>FILTER PARAMS </p>
+                {JSON.stringify(filterParams)}
+                <br />
+                <br />
+                <p>FILTERS </p>
+                {JSON.stringify(filters)}
+                <br />
+                <br />
+                <p>FILTERED </p>
+                {JSON.stringify(filteredResults.length)}
+                <br />
+                <br />
+            </>
 
             <HeaderInner />
             <main className="listing">
@@ -261,22 +267,18 @@ const FlightListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-
                                 <ListingFilters
                                     layout="flights"
                                     filterParams={filterParams}
                                     changeFilter={changeFilter}
                                     resetTrigger={resetTrigger}
                                 />
-
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
                                     {searchResults.length > 1 &&
                                         <Tabs tabs={tabs} />
                                     }
-
-
                                     <ListingSort
                                         filteredResults={filteredResults}
                                         searchResults={searchResults}
@@ -287,10 +289,8 @@ const FlightListing = () => {
                                         resetTrigger={resetTrigger}
                                         setResetTrigger={setResetTrigger}
                                     />
-
                                     <div className="listing-content__cards">
                                         {filteredResults.length === 0 ? "Flights not found" : null}
-
                                         {filteredResults.map((flight, index) => {
                                             return (
                                                 index < numberOfResults &&
@@ -300,7 +300,6 @@ const FlightListing = () => {
                                                 />
                                             )
                                         })}
-
                                     </div>
                                 </div>
                                 <div className="listing-content__right-button">
@@ -317,7 +316,7 @@ const FlightListing = () => {
                 </div>
             </main>
             <Footer />
-        </FlightListingContext.Provider>
+        </>
     );
 }
 

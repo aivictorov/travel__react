@@ -6,8 +6,8 @@ const ListingFiltersHotels = ({ filterParams, changeFilter, resetTrigger }) => {
     return (
         <>
             <ListingFilterDualRange
-                name='price2'
-                title='Price2'
+                name='price'
+                title='Price'
                 min={filterParams.price.min}
                 max={filterParams.price.max}
                 format='price'
@@ -15,8 +15,8 @@ const ListingFiltersHotels = ({ filterParams, changeFilter, resetTrigger }) => {
                 resetTrigger={resetTrigger}
             />
             <ListingFilterRadioButtons
-                name='rating2'
-                title='Rating2'
+                name='rating'
+                title='Rating'
                 min={filterParams.rating.min}
                 max={filterParams.rating.max}
                 changeFilter={changeFilter}

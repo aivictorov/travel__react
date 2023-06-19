@@ -13,7 +13,24 @@ const SearchFormHotels = ({ layout }) => {
 
     const [destination, setDestination] = useState(hotelSearchParams.destination || '');
 
-    const [checkIn, setCheckIn] = useState();
+    function defaultCheckIn() {
+        const date = new Date();
+        return formatDate(date);
+    };
+
+    function formatDate(dateObj) {
+        let day = dateObj.getDate();
+        if (day.toString().length === 1) day = '0' + day.toString();
+        let month = dateObj.getMonth() + 1;
+        if (month.toString().length === 1) month = '0' + month.toString();
+        const year = dateObj.getFullYear();
+        const dateString = `${day}.${month}.${year}`;
+        return dateString;
+    };
+    
+    const today = defaultCheckIn();
+
+    const [checkIn, setCheckIn] = useState(today);
     const [checkOut, setCheckOut] = useState();
 
     const getSearchParams = (event) => {
@@ -21,7 +38,8 @@ const SearchFormHotels = ({ layout }) => {
 
         const newSearchParams = {
             ...hotelSearchParams, 
-            destination: destination
+            destination: destination,
+            checkIn: checkIn || today,
         };
 
         setHotelSearchParams(newSearchParams);
@@ -43,14 +61,14 @@ const SearchFormHotels = ({ layout }) => {
                     onChangeFunction={setDestination}
                 />
                 <Input
-                    type="date"
+                    type="text"
                     label="Check In"
                     placeholder="Fri 12/2"
                     value={checkIn}
                     onChangeFunction={setCheckIn}
                 />
                 <Input
-                    type="date"
+                    type="text"
                     label="Check Out"
                     placeholder="Sun 12/4"
                     value={checkOut}

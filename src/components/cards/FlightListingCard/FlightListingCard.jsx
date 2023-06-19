@@ -49,6 +49,7 @@ const FlightListingCard = ({ flightObj }) => {
 
     return (
         <div className="flight-card">
+            {start.toString()}
             <div className="flight-card__image">
                 <img
                     src={logo}

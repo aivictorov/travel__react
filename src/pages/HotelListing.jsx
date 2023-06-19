@@ -4,20 +4,18 @@ import HotelListingCard from '../components/cards/HotelListingCard/HotelListingC
 import Footer from "../components/sections/Footer/Footer";
 import Button from './../components/elements/Button/Button';
 import Tabs from './../components/elements/Tabs/Tabs';
-import ListingSort from '../components/blocks/ListingSort/ListingSort';
-import ListingFiltersHotels from '../components/blocks/ListingFilters/ListingFiltersHotels';
 import { useContext, useState } from 'react';
 import { AppContext } from './../App';
 import { useEffect } from 'react';
 import ListingFilters from './../components/blocks/ListingFilters/ListingFilters';
+import ListingSort from './../components/blocks/ListingSort/ListingSort';
+import ButtonShowMore from './../components/elements/ButtonShowMore/ButtonShowMore';
 
 const HotelListing = () => {
     const { hotels, hotelSearchParams } = useContext(AppContext);
-
     const [searchResults, setSearchResults] = useState([]);
-    // const [filteredResults, setFilteredResults] = useState([]);
-    // const [visibleResults, setVisibleResults] = useState([]);
-    // const [numberOfResults, setNumberOfResults] = useState(3);
+    const [filteredResults, setFilteredResults] = useState([]);
+    const [numberOfResults, setNumberOfResults] = useState(3);
 
     const [filterParams, setFilterParams] = useState(
         {
@@ -29,12 +27,13 @@ const HotelListing = () => {
     const [filters, setFilters] = useState(
         {
             ...filterParams,
-            airlines: [],
             rating: filterParams.rating.min
         }
     );
 
     const [resetTrigger, setResetTrigger] = useState(true);
+
+    const [sortType, setSortType] = useState('lowest price');
 
     const changeFilter = (filter) => {
         setFilters({ ...filters, ...filter });
@@ -42,7 +41,7 @@ const HotelListing = () => {
 
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
-        let newSearchResults = hotels.slice(0);
+        let newSearchResults = [...hotels];
 
         if (hotelSearchParams.destination !== 'All') {
             newSearchResults = newSearchResults.filter((item) => {
@@ -50,8 +49,136 @@ const HotelListing = () => {
             });
         };
 
+        newSearchResults = newSearchResults.map((item) => {
+            const price = item.rooms.reduce((prev, curr) => curr.price < prev ? curr.price : prev, item.rooms[0].price);
+            return item = { ...item, price: price }
+        })
+
+        newSearchResults = newSearchResults.filter((item) => {
+            let result = false;
+
+            item.rooms.forEach((room) => {
+                if (room.dates.includes(hotelSearchParams.checkIn)) {
+                    result = true;
+                    return
+                }
+            });
+
+            return result;
+        });
+
         setSearchResults(newSearchResults);
     }, [hotelSearchParams]);
+
+    // FILTERED SEARCH RESULTS
+    useEffect(() => {
+        defineFilterParams();
+    }, [searchResults]);
+
+    function defineFilterParams() {
+        // Default params
+        let minPrice = 0, maxPrice = 0;
+        let minRating = 0, maxRating = 0;
+
+        // Defining new params
+        if (searchResults.length > 1) {
+
+            // New price filter params 
+            minPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
+            maxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
+
+            // Rating filter
+            minRating = searchResults.reduce((prev, curr) => curr.rating < prev ? curr.rating : prev, searchResults[0].rating);
+            maxRating = searchResults.reduce((prev, curr) => curr.rating > prev ? curr.rating : prev, searchResults[0].rating)
+        };
+
+        // Set filter params
+        setFilterParams(
+            {
+                price: { min: minPrice, max: maxPrice },
+                rating: { min: minRating, max: maxRating }
+            }
+        );
+    };
+
+    useEffect(() => {
+        setFilters(
+            {
+                ...filterParams,
+                rating: filterParams.rating.min
+            }
+        );
+        setResetTrigger(!resetTrigger);
+    }, [filterParams])
+
+    useEffect(() => {
+        let items = [...searchResults];
+        let filtered = applyFilters(items);
+        let sorted = applySort(filtered)
+        setFilteredResults(sorted);
+    }, [filters])
+
+    function applyFilters(items) {
+
+        // Price filter
+        if (filters.price.min) {
+            items = items.filter((item) => {
+                return item.price >= filters.price.min;
+            })
+        };
+
+        if (filters.price.max) {
+            items = items.filter((item) => {
+                return item.price <= filters.price.max;
+            })
+        };
+
+        // Rating filter
+
+        items = items.filter((item) => {
+            return item.rating >= filters.rating;
+        });
+
+        return items;
+    };
+
+    function applySort(items) {
+
+        if (sortType === 'lowest price') {
+            items.sort(function (a, b) {
+
+                if (a.price > b.price) {
+                    return 1;
+                }
+                if (a.price < b.price) {
+                    return -1;
+                }
+                return 0;
+            });
+        }
+
+        // Sorting by highest price
+
+        if (sortType === 'highest price') {
+            items.sort(function (a, b) {
+                if (a.price < b.price) {
+                    return 1;
+                }
+                if (a.price > b.price) {
+                    return -1;
+                }
+                return 0;
+            });
+        };
+
+        return items;
+    };
+
+    useEffect(() => {
+        let items = [...filteredResults];
+        let sorted = applySort(items)
+        setFilteredResults(sorted);
+    }, [sortType])
 
     const tabs = [
         {
@@ -73,39 +200,30 @@ const HotelListing = () => {
 
     return (
         <>
-            <p>SEARCH PARAMS </p>
-            {JSON.stringify(hotelSearchParams)}
-            <br />
-            <br />
-
-            <p>SEARCH RESULTS </p>
-            {JSON.stringify(searchResults)}
-            <br />
-            <br />
-
-            {/* <p>FILTER PARAMS </p>
-            {JSON.stringify(filterParams)}
-            <br />
-            <br />
-
-            <p>FILTERS </p>
-            {JSON.stringify(filters)}
-            <br />
-            <br />
-
-            <p>FILTERED </p>
-            {JSON.stringify(filteredResults.length)}
-            <br />
-            <br />
-
-            <p>VISIBLE </p>
-            {JSON.stringify(visibleResults.length)}
-            <br />
-            <br /> */}
-
+            <>
+                <p>SEARCH PARAMS </p>
+                {JSON.stringify(hotelSearchParams)}
+                <br />
+                <br />
+                <p>SEARCH RESULTS </p>
+                {JSON.stringify(searchResults.length)}
+                <br />
+                <br />
+                <p>FILTER PARAMS </p>
+                {JSON.stringify(filterParams)}
+                <br />
+                <br />
+                <p>FILTERS </p>
+                {JSON.stringify(filters)}
+                <br />
+                <br />
+                <p>FILTERED </p>
+                {JSON.stringify(filteredResults.length)}
+                <br />
+                <br />
+            </>
 
             <HeaderInner />
-
             <main className="listing">
                 <div className="listing-form">
                     <div className="container">
@@ -116,32 +234,31 @@ const HotelListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-
                                 <ListingFilters
                                     layout="hotels"
                                     filterParams={filterParams}
                                     changeFilter={changeFilter}
                                     resetTrigger={resetTrigger}
                                 />
-
                             </div>
                             <div className="listing-content__right">
                                 <div className="listing-content__right-wrapper">
                                     <Tabs tabs={tabs} />
-
-                                    <div className="listing-sort">
-                                        <div className="listing-sort__left">
-                                            Showing 4 of <a href="#!">257 places</a>
-                                        </div>
-                                        <div className="listing-sort__right">
-                                            <span>Sort by </span>Recommended
-                                        </div>
-                                    </div>
-
+                                    <ListingSort
+                                        filteredResults={filteredResults}
+                                        searchResults={searchResults}
+                                        numberOfResults={numberOfResults}
+                                        setNumberOfResults={setNumberOfResults}
+                                        sortType={sortType}
+                                        setSortType={setSortType}
+                                        resetTrigger={resetTrigger}
+                                        setResetTrigger={setResetTrigger}
+                                    />
                                     <div className="listing-content__cards">
-                                        {searchResults.length === 0 ? "Hotels not found" : null}
-                                        {searchResults.map((hotel) => {
+                                        {filteredResults.length === 0 ? "Hotels not found" : null}
+                                        {filteredResults.map((hotel, index) => {
                                             return (
+                                                index < numberOfResults &&
                                                 <HotelListingCard
                                                     key={hotel.id}
                                                     object={hotel}
@@ -149,26 +266,20 @@ const HotelListing = () => {
                                             )
                                         })}
                                     </div>
-
-
-
-
-
-
-
                                 </div>
                                 <div className="listing-content__right-button">
-                                    <Button
-                                        text="Show more"
-                                        style="dark bold w100"
-                                    />
+                                    {numberOfResults < filteredResults.length &&
+                                        <ButtonShowMore
+                                            numberOfResults={numberOfResults}
+                                            setNumberOfResults={setNumberOfResults}
+                                        />
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-
             <Footer />
         </>
     );

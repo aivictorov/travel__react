@@ -16,37 +16,41 @@ const SearchFormFlights = ({ layout }) => {
 
     function defaultDepartDate() {
         const date = new Date();
-        let day = date.getDate();
+        return formatDate(date);
+    };
+
+    function defaultReturnDate() {
+        const date = new Date();
+        date.setDate(date.getDate() + 1);
+        return formatDate(date);
+    };
+
+    function formatDate(dateObj) {
+        let day = dateObj.getDate();
         if (day.toString().length === 1) day = '0' + day.toString();
-        let month = date.getMonth() + 1;
+        let month = dateObj.getMonth() + 1;
         if (month.toString().length === 1) month = '0' + month.toString();
-        const year = date.getFullYear();
+        const year = dateObj.getFullYear();
         const dateString = `${day}.${month}.${year}`;
         return dateString;
-    }
+    };
 
     const today = defaultDepartDate();
+    const tomorrow = defaultReturnDate();
 
     const [departDate, setDepartDate] = useState(today);
+    const [returnDate, setReturnDate] = useState(tomorrow);
     // const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
-    const [returnDate, setReturnDate] = useState('2023-12-01');
-    // const [returnDate, setReturnDate] = useState((searchParams && searchParams.returnDate) || '');
 
     const getSearchParams = (event) => {
         event.preventDefault();
 
-        // const arrayDepartDate = departDate.split(['-']);
-        // const newDepartDate = new Date(arrayDepartDate[0], arrayDepartDate[1], arrayDepartDate[2], 0, 0);
-
-        // const arrayReturnDate = returnDate.split(['-']);
-        // const newReturnDate = new Date(arrayReturnDate[0], arrayReturnDate[1], arrayReturnDate[2], 23, 59);
-
         const newSearchParams = {
             ...flightSearchParams,
-            'from': from || 'All',
-            'to': to || 'All',
-            'depart': departDate || today,
-            'return': returnDate || today,
+            from: from || 'All',
+            to: to || 'All',
+            depart: departDate || today,
+            return: returnDate || today,
         };
 
         setFlightSearchParams(newSearchParams);
@@ -89,6 +93,8 @@ const SearchFormFlights = ({ layout }) => {
                 <Input
                     label="Passenger & Class"
                     placeholder="1 Passenger, Economy"
+                    value="1 Passenger, Economy"
+                    onChangeFunction={() => {console.log('x');}}
                 />
                 <ButtonSquare
                     style=""

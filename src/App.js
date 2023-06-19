@@ -41,7 +41,7 @@ function App() {
 
     const [hotelSearchParams, setHotelSearchParams] = useState(
         {
-            'destination': 'All',
+            destination: 'All',
         }
     );
 
