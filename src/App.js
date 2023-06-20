@@ -23,6 +23,8 @@ import { createContext, useState } from 'react';
 
 import flights from './helpers/flights';
 import hotels from './helpers/hotels';
+import reviews from './helpers/reviews';
+import users from './helpers/users';
 
 export const AppContext = createContext(null);
 
@@ -79,6 +81,8 @@ function App() {
         <AppContext.Provider value={{
             flights,
             hotels,
+            reviews,
+            users,
             flightSearchParams, setFlightSearchParams,
             hotelSearchParams, setHotelSearchParams,
             userData, setUserData,

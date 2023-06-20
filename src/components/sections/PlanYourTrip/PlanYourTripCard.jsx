@@ -5,7 +5,7 @@ import { AppContext } from '../../../App';
 
 const PlanYourTripCard = ({ title, img, from }) => {
     const navigate = useNavigate();
-    const { setFlightSearchParams, setHotelSearchParams } = useContext(AppContext);
+    const { flightSearchParams, setFlightSearchParams, hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
 
     return (
         <div className="plan-your-trip-card">
@@ -24,7 +24,7 @@ const PlanYourTripCard = ({ title, img, from }) => {
                         className="plan-your-trip-card__link"
                         type="button"
                         onClick={() => {
-                            setFlightSearchParams({ from: from, to: 'All' });
+                            setFlightSearchParams({ ...flightSearchParams, from: from, to: 'All' });
                             navigate("/flight-listing");
                         }}
                     >
@@ -35,7 +35,7 @@ const PlanYourTripCard = ({ title, img, from }) => {
                         className="plan-your-trip-card__link"
                         type="button"
                         onClick={() => {
-                            setHotelSearchParams({ destination: from, });
+                            setHotelSearchParams({ ...hotelSearchParams, destination: from });
                             navigate("/hotel-listing");
                         }}
                     >

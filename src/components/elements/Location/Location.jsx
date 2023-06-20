@@ -1,6 +1,7 @@
 import './Location.scss';
+import { NavLink } from 'react-router-dom';
 
-const Location = ({ text, style }) => {
+const Location = ({ text, style, link }) => {
     let addClass = '';
     if (style === 'small') addClass = ' location--small'
 
@@ -11,9 +12,13 @@ const Location = ({ text, style }) => {
                     <use href="#location" />
                 </svg>
             </div>
-            <a className="location__link" href="#!">
+            <NavLink
+                className="location__link"
+                to={link}
+                target="_blank"
+            >
                 {text}
-            </a>
+            </NavLink>
         </div>
     );
 }

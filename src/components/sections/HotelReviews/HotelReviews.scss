@@ -71,7 +71,7 @@
     border-radius: 50%;
     overflow: hidden;
 
-    img{
+    img {
         @include image-fit(cover);
     }
 }
@@ -110,4 +110,9 @@
         width: 24px;
         height: 24px;
     }
+}
+
+.hotel-reviews__pagination-button-wrapper {
+    width: 24px;
+    height: 24px;
 }

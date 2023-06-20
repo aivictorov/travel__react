@@ -13,7 +13,6 @@
     }
 }
 
-
 .login-with__header {
     position: relative;
     display: flex;
@@ -48,4 +47,22 @@
     align-items: center;
     column-gap: 16px;
     row-gap: 16px;
+}
+
+.login-with-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
+    flex-shrink: none;
+    padding: 16px 24px;
+    height: 56px;
+    border: 1px solid $main;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+
+    &:hover{
+        background-color: $main;
+    }
 }
