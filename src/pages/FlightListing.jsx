@@ -47,21 +47,23 @@ const FlightListing = () => {
 
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
-        let newSearchResults = [...flights];
+
+        // Searching for direct flights
+        let directFlights = [...flights];
 
         if (flightSearchParams.from !== 'All') {
-            newSearchResults = newSearchResults.filter((item) => {
+            directFlights = directFlights.filter((item) => {
                 return flightSearchParams.from === item.from
             });
         };
 
         if (flightSearchParams.to !== 'All') {
-            newSearchResults = newSearchResults.filter((item) => {
+            directFlights = directFlights.filter((item) => {
                 return flightSearchParams.to === item.to
             });
         };
 
-        newSearchResults = newSearchResults.filter((item) => {
+        directFlights = directFlights.filter((item) => {
             const arrayDepartDate = flightSearchParams.depart.split(['.']);
             if (item.start.getFullYear() !== parseInt(arrayDepartDate[2])) return false;
             if ((item.start.getMonth() + 1) !== parseInt(arrayDepartDate[1])) return false;
@@ -69,7 +71,92 @@ const FlightListing = () => {
             return true;
         });
 
-        setSearchResults(newSearchResults);
+        // Searching for return flights
+        let returnFlights = [];
+
+        if (flightSearchParams.return !== '') {
+
+            returnFlights = [...flights];
+
+            if (flightSearchParams.from !== 'All') {
+                returnFlights = returnFlights.filter((item) => {
+                    return flightSearchParams.from === item.to
+                });
+            };
+
+            if (flightSearchParams.to !== 'All') {
+                returnFlights = returnFlights.filter((item) => {
+                    return flightSearchParams.to === item.from
+                });
+            };
+
+            returnFlights = returnFlights.filter((item) => {
+                const arrayReturnDate = flightSearchParams.return.split(['.']);
+                if (item.start.getFullYear() !== parseInt(arrayReturnDate[2])) return false;
+                if ((item.start.getMonth() + 1) !== parseInt(arrayReturnDate[1])) return false;
+                if ((item.start.getDate()) !== parseInt(arrayReturnDate[0])) return false;
+                return true;
+            });
+        };
+
+        // Creating tickets
+
+        let flightTickets = [];
+
+        if (flightSearchParams.return === '') {
+            flightTickets = createOneWayTickets(directFlights);
+        } else {
+            flightTickets = createReturnTickets(directFlights, returnFlights);
+        };
+
+        function createReturnTickets(directFlights, returnFlights) {
+            let results = [];
+
+            directFlights.forEach((directFlight) => {
+                const suitableReturnFlights = returnFlights.filter((returnFlight) => {
+                    return returnFlight.airline === directFlight.airline;
+                });
+
+                suitableReturnFlights.forEach((suitableReturnFlight) => {
+                    const item = {
+                        direct: directFlight,
+                        return: suitableReturnFlight,
+                    }
+
+                    item.price = item.direct.price + item.return.price;
+                    item.airline = item.direct.airline;
+                    item.rating = item.direct.rating;
+                    item.duration = item.direct.duration + item.return.duration;
+
+                    results.push(item);
+                });
+            });
+
+            return results;
+        };
+
+        function createOneWayTickets(directFlights) {
+            let results = [];
+
+            directFlights.forEach((directFlight) => {
+
+                const item = {
+                    direct: directFlight,
+                    return: [],
+                }
+
+                item.price = item.direct.price;
+                item.airline = item.direct.airline;
+                item.rating = item.direct.rating;
+                item.duration = item.direct.duration;
+
+                results.push(item);
+            });
+
+            return results;
+        };
+
+        setSearchResults(flightTickets);
     }, [flightSearchParams]);
 
     // FILTERED SEARCH RESULTS
@@ -135,14 +222,14 @@ const FlightListing = () => {
 
         // Price filter
         if (filters.price.min) {
-            items = items.filter((flight) => {
-                return flight.price >= filters.price.min;
+            items = items.filter((item) => {
+                return item.price >= filters.price.min;
             })
         };
 
         if (filters.price.max) {
-            items = items.filter((flight) => {
-                return flight.price <= filters.price.max;
+            items = items.filter((item) => {
+                return item.price <= filters.price.max;
             })
         };
 
@@ -291,12 +378,12 @@ const FlightListing = () => {
                                     />
                                     <div className="listing-content__cards">
                                         {filteredResults.length === 0 ? "Flights not found" : null}
-                                        {filteredResults.map((flight, index) => {
+                                        {filteredResults.map((ticket, index) => {
                                             return (
                                                 index < numberOfResults &&
                                                 <FlightListingCard
-                                                    key={flight.id}
-                                                    flightObj={flight}
+                                                    key={index}
+                                                    ticket={ticket}
                                                 />
                                             )
                                         })}

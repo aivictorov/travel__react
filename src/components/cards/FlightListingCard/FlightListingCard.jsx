@@ -5,12 +5,11 @@ import Rating from '../../elements/Rating/Rating';
 import { useNavigate } from 'react-router-dom';
 import Price from '../../elements/Price/Price';
 
-const FlightListingCard = ({ flightObj }) => {
+const FlightListingCard = ({ ticket }) => {
     const navigate = useNavigate();
-    const { id, start, end, duration, airline, logo, price, rating } = flightObj;
 
-    const startFormatted = formatDate(start)
-    const endFormatted = formatTime(end)
+    // const startFormatted = formatDate(start)
+    // const endFormatted = formatTime(end)
 
     function formatDate(date) {
         let day = date.getDate();
@@ -49,19 +48,20 @@ const FlightListingCard = ({ flightObj }) => {
 
     return (
         <div className="flight-card">
-            {start.toString()}
+            {/* {start.toString()} */}
             <div className="flight-card__image">
                 <img
-                    src={logo}
-                    alt={airline}
+                    src={ticket.direct.logo}
+                    alt={ticket.airline}
                 />
             </div>
             <div className="flight-card__content">
                 <div className="flight-card__header">
-                    <Rating value={rating} />
-                    <Price value={price} before="starting from" />
+                    <Rating value={ticket.rating} />
+                    <Price value={ticket.price} before="starting from" />
                 </div>
                 <ul className="flight-card__flights">
+
                     <li className="flight__row">
                         <div className="checkbox">
                             <label className="checkbox__label checkbox__label--flight-card">
@@ -74,8 +74,7 @@ const FlightListingCard = ({ flightObj }) => {
                                     <div className="flight__row">
                                         <div className="flight__column">
                                             <div className="flight__shedule">
-                                                {formatString(start, end)}
-                                                {/* {`${startFormatted} - ${endFormatted}`} */}
+                                                {formatString(ticket.direct.start, ticket.direct.end)}
                                             </div>
                                             <div className="flight__airline">
                                                 Emirates
@@ -87,7 +86,7 @@ const FlightListingCard = ({ flightObj }) => {
                                             </div>
                                         </div>
                                         <div className="flight__column">
-                                            <div className="flight__duration">{countDuration(start, end)}</div>
+                                            <div className="flight__duration">{countDuration(ticket.direct.start, ticket.direct.end)}</div>
                                             <div className="flight__codes">EWR-BNA</div>
                                         </div>
                                     </div>
@@ -95,46 +94,52 @@ const FlightListingCard = ({ flightObj }) => {
                             </label>
                         </div>
                     </li>
-                    <li className="flight__row">
-                        <div className="checkbox">
-                            <label className="checkbox__label checkbox__label--flight-card">
-                                <input
-                                    className="checkbox__hidden visually-hidden"
-                                    type="checkbox"
-                                />
-                                <div className="checkbox__custom" />
-                                <div className="checkbox__value">
-                                    <div className="flight__row">
-                                        <div className="flight__column">
-                                            <div className="flight__shedule">
-                                                12:00 pm - 01:28 pm
+
+                    {ticket.return.length !== 0 &&
+                        <li className="flight__row">
+                            <div className="checkbox">
+                                <label className="checkbox__label checkbox__label--flight-card">
+                                    <input
+                                        className="checkbox__hidden visually-hidden"
+                                        type="checkbox"
+                                    />
+                                    <div className="checkbox__custom" />
+                                    <div className="checkbox__value">
+                                        <div className="flight__row">
+                                            <div className="flight__column">
+                                                <div className="flight__shedule">
+                                                    {formatString(ticket.return.start, ticket.return.end)}
+                                                    {/* 12:00 pm - 01:28 pm */}
+                                                </div>
+                                                <div className="flight__airline">
+                                                    Emirates
+                                                </div>
                                             </div>
-                                            <div className="flight__airline">
-                                                Emirates
+                                            <div className="flight__column">
+                                                <div className="flight__transfers">
+                                                    non stop
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="flight__column">
-                                            <div className="flight__transfers">
-                                                non stop
+                                            <div className="flight__column">
+                                                <div className="flight__duration">2h 28m</div>
+                                                <div className="flight__codes">EWR-BNA</div>
                                             </div>
-                                        </div>
-                                        <div className="flight__column">
-                                            <div className="flight__duration">2h 28m</div>
-                                            <div className="flight__codes">EWR-BNA</div>
                                         </div>
                                     </div>
-                                </div>
-                            </label>
-                        </div>
-                    </li>
+                                </label>
+                            </div>
+                        </li>
+                    }
+
+
                 </ul>
                 <div className="flight-card__buttons">
-                    <FavCheckboxButton id={id} />
+                    <FavCheckboxButton id={ticket.direct.id} />
                     <div className="flight-card__button-wrapper">
                         <Button
                             text="View Details"
                             style="bold w100"
-                            action={() => { navigate(`/flight-details/${id}`) }}
+                            action={() => { navigate(`/flight-details/${ticket.direct.id}`) }}
                         />
                     </div>
                 </div>

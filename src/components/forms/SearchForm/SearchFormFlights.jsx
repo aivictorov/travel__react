@@ -40,7 +40,6 @@ const SearchFormFlights = ({ layout }) => {
 
     const [departDate, setDepartDate] = useState(today);
     const [returnDate, setReturnDate] = useState(tomorrow);
-    // const [departDate, setDepartDate] = useState((searchParams && searchParams.departDate) || '');
 
     const getSearchParams = (event) => {
         event.preventDefault();
@@ -50,7 +49,7 @@ const SearchFormFlights = ({ layout }) => {
             from: from || 'All',
             to: to || 'All',
             depart: departDate || today,
-            return: returnDate || tomorrow,
+            return: returnDate,
         };
 
         setFlightSearchParams(newSearchParams);
