@@ -47,7 +47,7 @@ const FlightListing = () => {
 
     // FULL SEARCH RESULTS FOR CURRENT PARAMS
     useEffect(() => {
-        let newSearchResults = flights.slice(0);
+        let newSearchResults = [...flights];
 
         if (flightSearchParams.from !== 'All') {
             newSearchResults = newSearchResults.filter((item) => {

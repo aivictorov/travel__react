@@ -11,11 +11,10 @@
 .hotel-amenities__list {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     align-content: flex-start;
     row-gap: 24px;
-    column-gap: 300px;
-    // column-count: 2; 
+    column-gap: 20px;
 }
 
 .hotel-amenities__item {
@@ -23,6 +22,7 @@
     justify-content: flex-start;
     align-items: center;
     column-gap: 8px;
+    width: calc((100% - 2 * 20px) / 3);
 }
 
 .hotel-amenities__item-icon {
@@ -36,7 +36,7 @@
     font-size: 16px;
 }
 
-.hotel-amenities__link {
+.hotel-amenities__show-more {
     font-weight: 600;
     font-size: 16px;
     color: $accent;
