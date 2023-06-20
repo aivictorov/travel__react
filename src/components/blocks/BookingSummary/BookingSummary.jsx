@@ -1,6 +1,12 @@
+import Rating from '../../elements/Rating/Rating';
 import './BookingSummary.scss'
 
-const BookingSummary = ({ title = "Emirates A380 Airbus" }) => {
+const BookingSummary = ({ title = "Emirates A380 Airbus", price = 240, rating }) => {
+
+    const discount = Math.round(0.1 * price);
+    const taxes = Math.round(0.18 * price);
+    const serviceFee = Math.round(0.01 * price);
+    const total = price - discount + taxes + serviceFee;
 
     return (
         <div className="booking-summary">
@@ -21,15 +27,9 @@ const BookingSummary = ({ title = "Emirates A380 Airbus" }) => {
                             {title}
                         </div>
                     </div>
-                    <div className="rating">
-                        <div className="rating__value">4.2</div>
-                        <span className="rating__text">
-                            <strong>Very good</strong>
-                        </span>
-                        <a className="rating__link" href="#!">
-                            54 reviews
-                        </a>
-                    </div>
+                    <Rating
+                        value={rating}
+                    />
                 </div>
             </div>
             <div className="booking-summary__protected">
@@ -39,24 +39,24 @@ const BookingSummary = ({ title = "Emirates A380 Airbus" }) => {
                 <div className="booking-summary__title">Price Details</div>
                 <div className="booking-summary__item">
                     <span>Base Fare</span>
-                    <span>$240</span>
+                    <span>{`$${price}`}</span>
                 </div>
                 <div className="booking-summary__item">
                     <span>Discount</span>
-                    <span>$0</span>
+                    <span>{`-$${discount}`}</span>
                 </div>
                 <div className="booking-summary__item">
                     <span>Taxes</span>
-                    <span>$20</span>
+                    <span>{`$${taxes}`}</span>
                 </div>
                 <div className="booking-summary__item">
                     <span>Service Fee</span>
-                    <span>$5</span>
+                    <span>{`$${serviceFee}`}</span>
                 </div>
             </div>
             <div className="booking-summary__total">
                 <span>Total </span>
-                <span>$265</span>
+                <span>{`$${total}`}</span>
             </div>
         </div>
     );

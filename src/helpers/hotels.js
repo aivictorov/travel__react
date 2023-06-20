@@ -29,22 +29,25 @@ function generateHotels(count) {
             rating: rating,
             rooms: [
                 {
+                    id: 0,
                     name: 'Single Room with Shared Bathroom and Shared WC',
                     price: Math.floor(Math.random() * 150 + 50),
                     dates: generateDatesArray(30),
                 },
                 {
-                    name:
-                        'Standard Single Room with Shower and WC',
+                    id: 1,
+                    name: 'Standard Single Room with Shower and WC',
                     price: Math.floor(Math.random() * 225 + 75),
                     dates: generateDatesArray(30),
                 },
                 {
+                    id: 2,
                     name: 'Double Room with Shared Bathroom and Shared WC',
                     price: Math.floor(Math.random() * 300 + 100),
                     dates: generateDatesArray(30),
                 },
                 {
+                    id: 3,
                     name: 'Standard Double Room with private Shower and WC',
                     price: Math.floor(Math.random() * 350 + 150),
                     dates: generateDatesArray(30),

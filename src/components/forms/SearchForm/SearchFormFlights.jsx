@@ -50,7 +50,7 @@ const SearchFormFlights = ({ layout }) => {
             from: from || 'All',
             to: to || 'All',
             depart: departDate || today,
-            return: returnDate || today,
+            return: returnDate || tomorrow,
         };
 
         setFlightSearchParams(newSearchParams);

@@ -1,14 +1,14 @@
 import './HotelReservation.scss';
 import Price from './../../elements/Price/Price';
 
-const HotelReservation = () => {
+const HotelReservation = ({ hotel, room, price }) => {
     return (
         <div className="hotel-reservation">
             <div className="hotel-reservation__top">
                 <div className="hotel-reservation__title">
-                    Superior room - 1 double bed or 2 twin beds
+                    {room}
                 </div>
-                <Price value={240} period="night" style="big"/>
+                <Price value={price} period="night" style="big" />
             </div>
             <div className="hotel-reservation__middle">
                 <div className="hotel-reservation__image">
@@ -19,7 +19,7 @@ const HotelReservation = () => {
                 </div>
                 <div className="hotel-reservation__about">
                     <div className="hotel-reservation__about-title">
-                        CVK Park Bosphorus Hotel Istanbul
+                        {hotel}
                     </div>
                     <div className="hotel-reservation__about-adress">
                         Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437

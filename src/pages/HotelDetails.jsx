@@ -13,10 +13,10 @@ import { useContext, useRef } from "react";
 import { AppContext } from "../App";
 
 const HotelDetails = () => {
-    const { id } = useParams();
+    const { hotelID } = useParams();
 
     const { hotels } = useContext(AppContext);
-    const hotel = hotels.find((hotel) => hotel.id == id);
+    const hotel = hotels.find((hotel) => hotel.id == hotelID);
 
     const roomsRef = useRef(null);
 

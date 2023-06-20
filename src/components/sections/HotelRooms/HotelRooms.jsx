@@ -9,7 +9,8 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
     const { hotelSearchParams } = useContext(AppContext);
     const navigate = useNavigate();
 
-    const { id } = useParams();
+    const { hotelID } = useParams();
+    console.log(hotelID);
 
     return (
 
@@ -44,7 +45,9 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
                                     <Button
                                         text="Book now"
                                         style="bold w100"
-                                        action={() => { navigate(`/hotel-booking/${id}`) }}
+                                        action={() => { 
+                                            navigate(`/hotel-booking/${hotelID}/${room.id}`) 
+                                        }}
                                     />
                                 </div>
                             </div>

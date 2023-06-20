@@ -42,6 +42,9 @@ function App() {
     const [hotelSearchParams, setHotelSearchParams] = useState(
         {
             destination: 'All',
+            checkIn: '',
+            checkOut: '',
+            dates: [],
         }
     );
 
@@ -94,8 +97,8 @@ function App() {
                         <Route path="/flight-details/:id" element={<FlightDetails />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
                         <Route path="/hotel-listing" element={<HotelListing />}></Route>
-                        <Route path="/hotel-details/:id" element={<HotelDetails />}></Route>
-                        <Route path="/hotel-booking/:id" element={<HotelBooking />}></Route>
+                        <Route path="/hotel-details/:hotelID" element={<HotelDetails />}></Route>
+                        <Route path="/hotel-booking/:hotelID/:roomID" element={<HotelBooking />}></Route>
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/sign-up" element={<SignUp />}></Route>
                         <Route path="/set-password" element={<SetPassword />}></Route>
