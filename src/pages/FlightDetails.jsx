@@ -11,11 +11,13 @@ import { AppContext } from './../App';
 import { useContext } from 'react';
 
 const FlightDetails = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
 
-    const { flights } = useContext(AppContext);
-    const flight = flights.find((flight) => flight.id == id);
+    const { directID, returnID } = useParams();
+    const { flights, airlines } = useContext(AppContext);
+    const flight = flights.find((flight) => flight.id == directID);
+
+    const airline = airlines.find((airline) => airline.name == flight.airline);
 
     return (
         <>
@@ -27,15 +29,17 @@ const FlightDetails = () => {
                     </div>
                     <div className="details__header">
                         <DetailsHeader
-                            action={() => { navigate(`/flight-booking/${id}`) }}
+                            action={() => { navigate(`/flight-booking/${directID}`) }}
                         />
                     </div>
                     <div className="details__flight-content">
-                        <FlightCover />
-                        <FlightFeatures />
+                        <FlightCover cover={airline.cover} />
+                        <FlightFeatures gallery={airline.gallery} />
                         <FlightPolicies />
-                        <FlightTicket />
-                        <FlightTicket />
+                        <FlightTicket flight={flight} />
+                        {returnID &&
+                            <FlightTicket flight={flight} />
+                        }
                     </div>
                     <div className="details__hotel-content"></div>
                 </div>

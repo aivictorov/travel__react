@@ -1,7 +1,8 @@
 import './FlightTicket.scss';
 import Price from './../../elements/Price/Price';
+import { formatTime, countDuration } from './../../../utils/dateFunctions';
 
-const FlightTicket = ({ layout }) => {
+const FlightTicket = ({ layout, flight }) => {
     let addClass = '';
     if (layout === 'booking') addClass = " flight-ticket--booking";
 
@@ -29,19 +30,19 @@ const FlightTicket = ({ layout }) => {
                         Return Wed, Dec 8
                     </div>
                     <div className="flight-ticket__duration">
-                        2h 28m
+                        {countDuration(flight.start, flight.end)}
                     </div>
                 </div>
                 <div className="flight-ticket__content-middle">
                     <div className="flight-ticket__airline">
                         <div className="flight-ticket__airline-logo">
                             <img
-                                src="./img/flights/airline-example-1/logo.png"
+                                src={flight.logo}
                                 alt="airline-logo"
                             />
                         </div>
                         <div className="flight-ticket__airline-text">
-                            <span>Emirates </span>
+                            <span>{flight.airline}</span>
                             <span>Airbus A320</span>
                         </div>
                     </div>
@@ -62,8 +63,8 @@ const FlightTicket = ({ layout }) => {
                 </div>
                 <div className="flight-ticket__content-bottom">
                     <div className="flight-ticket__time">
-                        <span>12:00 pm</span>
-                        <span>Newark (EWR)</span>
+                        <span>{formatTime(flight.start)} pm</span>
+                        <span>{flight.from} (EWR)</span>
                     </div>
                     <div className="flight-ticket__spacer">
                         <svg width={48} height={48}>
@@ -71,8 +72,8 @@ const FlightTicket = ({ layout }) => {
                         </svg>
                     </div>
                     <div className="flight-ticket__time">
-                        <span>12:00 pm</span>
-                        <span>Newark (EWR)</span>
+                        <span>{formatTime(flight.end)} pm</span>
+                        <span>{flight.to} (EWR)</span>
                     </div>
                 </div>
             </div>

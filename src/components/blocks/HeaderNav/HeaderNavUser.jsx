@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../../App";
-import UserDroplist from "../UserDroplist/UserDroplist";
 import userAvatar from './../../../img/users/avatars/01.jpg'
+import UserDroplist from './../../modals/UserDroplist/UserDroplist';
 
 const HeaderNavUser = () => {
     const navigate = useNavigate(AppContext);

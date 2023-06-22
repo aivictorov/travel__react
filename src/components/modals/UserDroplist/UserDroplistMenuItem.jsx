@@ -7,7 +7,7 @@ const UserDroplistMenuItem = ({ item }) => {
                 onClick={item.action}
             >
                 <div className="user-droplist__menu-item-icon">
-                    <img src="./img/icons/user-dropdown/user.svg" alt="icon" />
+                    <img src={item.icon} alt="icon" />
                 </div>
                 <div className="user-droplist__menu-item-text">{item.title}</div>
                 <div className="user-droplist__menu-item-arrow">

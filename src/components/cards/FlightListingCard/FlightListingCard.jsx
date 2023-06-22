@@ -8,8 +8,9 @@ import Price from '../../elements/Price/Price';
 const FlightListingCard = ({ ticket }) => {
     const navigate = useNavigate();
 
-    // const startFormatted = formatDate(start)
-    // const endFormatted = formatTime(end)
+    // const { directID, returnID } = useParams();
+    // const { flights, airlines } = useContext(AppContext);
+    // const flight = flights.find((flight) => flight.id == directID);
 
     function formatDate(date) {
         let day = date.getDate();
@@ -130,7 +131,6 @@ const FlightListingCard = ({ ticket }) => {
                             </div>
                         </li>
                     }
-
 
                 </ul>
                 <div className="flight-card__buttons">

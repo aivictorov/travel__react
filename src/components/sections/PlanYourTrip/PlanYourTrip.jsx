@@ -10,7 +10,7 @@ import planYourTripCardImg07 from './../../../img/sections/plan-your-trip/07.jpg
 import planYourTripCardImg08 from './../../../img/sections/plan-your-trip/08.jpg';
 import planYourTripCardImg09 from './../../../img/sections/plan-your-trip/09.jpg';
 import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const PlanYourTrip = () => {
 
@@ -116,7 +116,10 @@ const PlanYourTrip = () => {
                     title="Plan your perfect trip"
                     text="Search Flights & Places Hire to our most popular destinations"
                     button="See more places"
-                    action={() => { (cards.length > numberOfCards) && setNumberOfCards(numberOfCards + 3) }}
+                    action={() => {
+                        (cards.length > numberOfCards) && setNumberOfCards(numberOfCards + 3);
+                        window.scrollBy(0, 1000)
+                    }}
                 />
                 <div className="plan-your-trip__cards">
                     {cards.map((card, index) => {

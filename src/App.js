@@ -16,15 +16,16 @@ import VerifyCode from './pages/VerifyCode';
 import Account from './pages/Account';
 import ScrollToTop from './utils/scrollToTop';
 import RunScripts from './utils/runScripts';
-import SVG from './helpers/SVG';
+import SVG from './SVG';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react';
 
-import flights from './helpers/flights';
-import hotels from './helpers/hotels';
-import reviews from './helpers/reviews';
-import users from './helpers/users';
+import flights from './data/flights';
+import hotels from './data/hotels';
+import airlines from './data/airlines';
+import reviews from './data/reviews';
+import users from './data/users';
 
 export const AppContext = createContext(null);
 
@@ -81,6 +82,7 @@ function App() {
         <AppContext.Provider value={{
             flights,
             hotels,
+            airlines,
             reviews,
             users,
             flightSearchParams, setFlightSearchParams,
@@ -97,8 +99,8 @@ function App() {
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/flight-search" element={<FlightSearch />}></Route>
                         <Route path="/flight-listing" element={<FlightListing />}></Route>
+                        <Route path="/flight-details/:directID/:returnID?" element={<FlightDetails />}></Route>
                         <Route path="/flight-booking/:id" element={<FlightBooking />}></Route>
-                        <Route path="/flight-details/:id" element={<FlightDetails />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
                         <Route path="/hotel-listing" element={<HotelListing />}></Route>
                         <Route path="/hotel-details/:hotelID" element={<HotelDetails />}></Route>

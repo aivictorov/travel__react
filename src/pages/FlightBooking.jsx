@@ -8,9 +8,12 @@ import BookingPaymentCards from './../components/blocks/BookingPaymentCards/Book
 import TrackNav from "../components/blocks/TrackNav/TrackNav";
 import { useContext } from "react";
 import { AppContext } from "../App";
+import { useParams } from 'react-router-dom';
 
 const FlightBooking = () => {
-    const { userAuth } = useContext(AppContext);
+    const { userAuth, flights } = useContext(AppContext);
+    const { id } = useParams();
+    const flight = flights.find((flight) => flight.id == id);
 
     return (
         <>
@@ -22,7 +25,7 @@ const FlightBooking = () => {
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">
-                            <FlightTicket layout="booking" />
+                            <FlightTicket layout="booking" flight={flight}/>
                             <BookingPayment />
                             {!userAuth ? <BookingLogin /> : <BookingPaymentCards />}
                         </div>

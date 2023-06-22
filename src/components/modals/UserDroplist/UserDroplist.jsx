@@ -1,9 +1,14 @@
 import './UserDroplist.scss'
 import { forwardRef, useContext } from "react";
-import { AppContext } from "../../../App";
-import userAvatar from './../../../img/users/avatars/01.jpg'
-import UserDroplistMenu from './UserDroplistMenu';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from "../../../App";
+import UserDroplistMenu from './UserDroplistMenu';
+import userAvatar from './../../../img/users/avatars/01.jpg'
+import userIcon from './../../../img/icons/user-dropdown/user.svg';
+import cardIcon from './../../../img/icons/user-dropdown/card.svg';
+import settingsIcon from './../../../img/icons/user-dropdown/settings.svg';
+import supportIcon from './../../../img/icons/user-dropdown/support.svg';
+import logoutIcon from './../../../img/icons/user-dropdown/logout.svg';
 
 const UserDroplist = forwardRef(({ }, ref) => {
     const { setUserAuth, activeTabs, setActiveTabs } = useContext(AppContext);
@@ -13,7 +18,7 @@ const UserDroplist = forwardRef(({ }, ref) => {
     const data1 = [
         {
             title: 'My account',
-            icon: 'img/icons/user-dropdown/user.svg',
+            icon: userIcon,
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
                 navigate('/account');
@@ -22,36 +27,36 @@ const UserDroplist = forwardRef(({ }, ref) => {
 
         {
             title: 'Bookings',
-            icon: 'img/icons/user-dropdown/card.svg',
-            action: () => { 
+            icon: cardIcon,
+            action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'flights' });
                 navigate('/account');
-        }
+            }
         },
         {
             title: 'Payments',
-            icon: 'img/icons/user-dropdown/settings.svg',
-            action: () => { 
+            icon: settingsIcon,
+            action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'payment' });
                 navigate('/account');
-        }
+            }
         },
     ]
 
     const data2 = [
         {
             title: 'Support',
-            icon: 'img/icons/user-dropdown/support.svg',
-            action: () => { 
+            icon: supportIcon,
+            action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
                 navigate('/account');
-        }
+            }
         },
         {
             title: 'Logout',
-            icon: 'img/icons/user-dropdown/logout.svg',
-            action: () => { 
-                setUserAuth(false) ;
+            icon: logoutIcon,
+            action: () => {
+                setUserAuth(false);
             }
         },
     ]

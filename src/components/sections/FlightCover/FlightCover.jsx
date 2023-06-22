@@ -1,7 +1,6 @@
 import './FlightCover.scss';
-import cover from './../../../img/flights/details-header.jpg'
 
-const FlightCover = () => {
+const FlightCover = ({cover}) => {
     return (
         <div className="flight-cover">
             <img
