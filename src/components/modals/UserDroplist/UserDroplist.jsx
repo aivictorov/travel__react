@@ -22,6 +22,7 @@ const UserDroplist = forwardRef(({ }, ref) => {
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
                 navigate('/account');
+                
             }
         },
 
@@ -79,7 +80,6 @@ const UserDroplist = forwardRef(({ }, ref) => {
                     <div className="user-droplist__user-status">Online</div>
                 </div>
             </div>
-
             <UserDroplistMenu data={data1} />
             <UserDroplistMenu data={data2} />
         </div>

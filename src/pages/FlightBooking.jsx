@@ -11,9 +11,11 @@ import { AppContext } from "../App";
 import { useParams } from 'react-router-dom';
 
 const FlightBooking = () => {
-    const { userAuth, flights } = useContext(AppContext);
-    const { id } = useParams();
-    const flight = flights.find((flight) => flight.id == id);
+    const { directID, returnID } = useParams();
+    const { flights, airlines, userAuth } = useContext(AppContext);
+    const directFlight = flights.find((flight) => flight.id == directID);
+    const returnFlight = flights.find((flight) => flight.id == returnID);
+    const airline = airlines.find((airline) => airline.name == directFlight.airline);
 
     return (
         <>
@@ -25,12 +27,15 @@ const FlightBooking = () => {
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">
-                            <FlightTicket layout="booking" flight={flight}/>
+                            <FlightTicket layout="booking" flight={directFlight} direction="Direct" />
+                            {returnID &&
+                                <FlightTicket layout="booking" flight={returnFlight} direction="Return" />
+                            }
                             <BookingPayment />
                             {!userAuth ? <BookingLogin /> : <BookingPaymentCards />}
                         </div>
                         <div className="booking__right">
-                            <BookingSummary />
+                            <BookingSummary logo={directFlight.logo} rating={directFlight.rating} />
                         </div>
                     </div>
                 </div>

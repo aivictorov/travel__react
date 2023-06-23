@@ -10,9 +10,12 @@ const FlightFeatures = ({ gallery }) => {
             <div className="flight-features__header">
                 <h2 className="flight-features__title">Basic Economy Features</h2>
                 <div className="flight-features__checkboxes">
-                    {checkboxes.map((item) => {
+                    {checkboxes.map((item, index) => {
                         return (
-                            <Checkbox name={item} />
+                            <Checkbox
+                                key={index}
+                                name={item}
+                            />
                         )
                     })}
                 </div>
@@ -20,9 +23,11 @@ const FlightFeatures = ({ gallery }) => {
             <div className="flight-features__gallery">
                 {gallery.map((item, index) => {
                     return (
-                        <div className="flight-features__image">
+                        <div
+                            key={index}
+                            className="flight-features__image"
+                        >
                             <img
-                                key={index}
                                 src={item}
                                 alt="flight feature"
                             />

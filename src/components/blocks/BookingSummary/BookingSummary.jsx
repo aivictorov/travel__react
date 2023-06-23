@@ -1,7 +1,7 @@
 import Rating from '../../elements/Rating/Rating';
 import './BookingSummary.scss'
 
-const BookingSummary = ({ title = "Emirates A380 Airbus", price = 240, rating }) => {
+const BookingSummary = ({ title = "Emirates A380 Airbus", logo, price = 240, rating }) => {
 
     const discount = Math.round(0.1 * price);
     const taxes = Math.round(0.18 * price);
@@ -14,7 +14,7 @@ const BookingSummary = ({ title = "Emirates A380 Airbus", price = 240, rating })
                 <div className="booking-summary__object-image">
 
                     <img
-                        src="./img/flights/airline-example-1/logo-image.jpg"
+                        src={logo}
                         alt="hotel"
                     />
                 </div>

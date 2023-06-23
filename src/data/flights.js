@@ -1,4 +1,5 @@
 import airlines from './airlines';
+import destinations from './destinations';
 
 const cities = ['Istanbul', 'Sydney', 'Baku', 'Male', 'Paris', 'New York', 'London', 'Tokyo', 'Dubai']
 
@@ -19,8 +20,8 @@ function generateFlights(count) {
 
     for (let index = 0; index < count; index++) {
         const id = index;
-        const from = cities[Math.floor(Math.random() * cities.length)];
-        const to = cities[Math.floor(Math.random() * cities.length)];
+        const from = destinations[Math.floor(Math.random() * destinations.length)].airport;
+        const to = destinations[Math.floor(Math.random() * destinations.length)].airport;
         const [start, end] = generateDate(30);
         const duration = ((end - start) / 1000 / 60 / 60);
         const airline = airlines[Math.floor(Math.random() * airlines.length)];

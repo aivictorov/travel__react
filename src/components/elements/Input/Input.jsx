@@ -1,6 +1,6 @@
 import './Input.scss';
 
-const Input = ({ type, label, placeholder, defaultValue, value, onChangeFunction }) => {
+const Input = ({ type, label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onBlurFunction }) => {
 
     return (
         <div className="input">
@@ -13,6 +13,8 @@ const Input = ({ type, label, placeholder, defaultValue, value, onChangeFunction
                 onChange={(event) => { 
                     onChangeFunction(event.target.value);
                 }}
+                onFocus={onFocusFunction}
+                onBlur={onBlurFunction}
             />
             <div className="input__label">
                 {label}

@@ -1,10 +1,12 @@
 import './FlightTicket.scss';
 import Price from './../../elements/Price/Price';
-import { formatTime, countDuration } from './../../../utils/dateFunctions';
+import { formatTime, countDuration, formatWeekDay } from './../../../utils/dateFunctions';
 
-const FlightTicket = ({ layout, flight }) => {
+const FlightTicket = ({ layout, direction, flight }) => {
     let addClass = '';
     if (layout === 'booking') addClass = " flight-ticket--booking";
+
+    const weekDay = formatWeekDay(flight.start);
 
     const services = [
         { name: '', svgID: 'flight-icon' },
@@ -27,7 +29,7 @@ const FlightTicket = ({ layout, flight }) => {
             <div className="flight-ticket__content">
                 <div className="flight-ticket__content-top">
                     <div className="flight-ticket__date">
-                        Return Wed, Dec 8
+                        {direction}: {weekDay}
                     </div>
                     <div className="flight-ticket__duration">
                         {countDuration(flight.start, flight.end)}

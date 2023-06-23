@@ -4,32 +4,13 @@ import Button from '../../elements/Button/Button';
 import Rating from '../../elements/Rating/Rating';
 import { useNavigate } from 'react-router-dom';
 import Price from '../../elements/Price/Price';
+import { countDuration, formatDate, formatTime } from './../../../utils/dateFunctions'
 
 const FlightListingCard = ({ ticket }) => {
     const navigate = useNavigate();
 
-    // const { directID, returnID } = useParams();
-    // const { flights, airlines } = useContext(AppContext);
-    // const flight = flights.find((flight) => flight.id == directID);
-
-    function formatDate(date) {
-        let day = date.getDate();
-        if (day.toString().length === 1) day = '0' + day.toString();
-        let month = date.getMonth() + 1;
-        if (month.toString().length === 1) month = '0' + month.toString();
-        const year = date.getFullYear();
-        const dateString = `${day}.${month}.${year}`;
-        return dateString;
-    }
-
-    function formatTime(date) {
-        let hours = date.getHours();
-        if (hours.toString().length === 1) hours = '0' + hours.toString();
-        let minutes = date.getMinutes();
-        if (minutes.toString().length === 1) minutes = '0' + minutes.toString();
-        const timeString = `${hours}:${minutes}`;
-        return timeString;
-    }
+    let flightsArray = [ticket.direct.id];
+    ticket.return.length !== 0 && flightsArray.push(ticket.return.id);
 
     function formatString(start, end) {
         let startFormatted = formatTime(start);
@@ -40,16 +21,8 @@ const FlightListingCard = ({ ticket }) => {
         return resultString;
     };
 
-    function countDuration(start, end) {
-        let hours = parseInt((end - start) / 1000 / 60 / 60);
-        let minutes = parseInt((end - start) / 1000 / 60 % 60);
-        const duration = `${hours}h ${minutes}m`
-        return duration;
-    };
-
     return (
         <div className="flight-card">
-            {/* {start.toString()} */}
             <div className="flight-card__image">
                 <img
                     src={ticket.direct.logo}
@@ -110,7 +83,6 @@ const FlightListingCard = ({ ticket }) => {
                                             <div className="flight__column">
                                                 <div className="flight__shedule">
                                                     {formatString(ticket.return.start, ticket.return.end)}
-                                                    {/* 12:00 pm - 01:28 pm */}
                                                 </div>
                                                 <div className="flight__airline">
                                                     Emirates
@@ -139,7 +111,13 @@ const FlightListingCard = ({ ticket }) => {
                         <Button
                             text="View Details"
                             style="bold w100"
-                            action={() => { navigate(`/flight-details/${ticket.direct.id}`) }}
+                            action={() => {
+                                if (flightsArray.length === 1) {
+                                    navigate(`/flight-details/${flightsArray[0]}`)
+                                } else if (flightsArray.length === 2) {
+                                    navigate(`/flight-details/${flightsArray[0]}/${flightsArray[1]}`)
+                                }
+                            }}
                         />
                     </div>
                 </div>

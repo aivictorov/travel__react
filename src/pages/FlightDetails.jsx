@@ -15,9 +15,9 @@ const FlightDetails = () => {
 
     const { directID, returnID } = useParams();
     const { flights, airlines } = useContext(AppContext);
-    const flight = flights.find((flight) => flight.id == directID);
-
-    const airline = airlines.find((airline) => airline.name == flight.airline);
+    const directFlight = flights.find((flight) => flight.id == directID);
+    const returnFlight = flights.find((flight) => flight.id == returnID);
+    const airline = airlines.find((airline) => airline.name == directFlight.airline);
 
     return (
         <>
@@ -29,16 +29,22 @@ const FlightDetails = () => {
                     </div>
                     <div className="details__header">
                         <DetailsHeader
-                            action={() => { navigate(`/flight-booking/${directID}`) }}
+                            action={() => {
+                                if (returnID) {
+                                    navigate(`/flight-booking/${directID}/${returnID}`)
+                                } else {
+                                    navigate(`/flight-booking/${directID}`)
+                                }
+                            }}
                         />
                     </div>
                     <div className="details__flight-content">
                         <FlightCover cover={airline.cover} />
                         <FlightFeatures gallery={airline.gallery} />
                         <FlightPolicies />
-                        <FlightTicket flight={flight} />
+                        <FlightTicket flight={directFlight} direction="Direct"/>
                         {returnID &&
-                            <FlightTicket flight={flight} />
+                            <FlightTicket flight={returnFlight} direction="Return"/>
                         }
                     </div>
                     <div className="details__hotel-content"></div>

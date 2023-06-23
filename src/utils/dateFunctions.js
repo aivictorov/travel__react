@@ -1,3 +1,22 @@
+// Get Date Object, return Date String like "01.01.2022"
+function formatDate(date) {
+    let day = date.getDate();
+    if (day.toString().length === 1) day = '0' + day.toString();
+    let month = date.getMonth() + 1;
+    if (month.toString().length === 1) month = '0' + month.toString();
+    const year = date.getFullYear();
+    const dateString = `${day}.${month}.${year}`;
+    return dateString;
+};
+
+// Get Date Object, return Date String like "01.01.2022"
+function formatWeekDay(date) {
+    let dateArray = date.toString().split(' ');
+    const dateString = `${dateArray[0]}, ${dateArray[1]} ${dateArray[2]}`;
+    return dateString;
+};
+
+
 // Get Date Object, return Time String like "15:30"
 function formatTime(date) {
     let hours = date.getHours();
@@ -17,15 +36,8 @@ function countDuration(start, end) {
 };
 
 
-// function formatDate(dateObj) {
-//     let day = dateObj.getDate();
-//     if (day.toString().length === 1) day = '0' + day.toString();
-//     let month = dateObj.getMonth() + 1;
-//     if (month.toString().length === 1) month = '0' + month.toString();
-//     const year = dateObj.getFullYear();
-//     const dateString = `${day}.${month}.${year}`;
-//     return dateString;
-// };
+
+
 
 // function buildDatesArray() {
 //     const checkInArray = checkIn.split(['.']);
@@ -72,17 +84,6 @@ function countDuration(start, end) {
 // const defaultCheckOut = countDefaultCheckOut();
 
 
-// function formatDate(date) {
-//     let day = date.getDate();
-//     if (day.toString().length === 1) day = '0' + day.toString();
-//     let month = date.getMonth() + 1;
-//     if (month.toString().length === 1) month = '0' + month.toString();
-//     const year = date.getFullYear();
-//     const dateString = `${day}.${month}.${year}`;
-//     return dateString;
-// }
-
-
 // function formatString(start, end) {
 //     let startFormatted = formatTime(start);
 //     let endFormatted = formatTime(end);
@@ -92,15 +93,14 @@ function countDuration(start, end) {
 //     return resultString;
 // };
 
-
-
 // start.toISOString().substring(0, 1000),
 // end.toISOString().substring(0, 1000) ,   
 
 export {
+    formatDate,
     formatTime,
+    formatWeekDay,
     countDuration,
-    // formatDate,
     // buildDatesArray,
     // countDefaultCheckIn,
     // countDefaultCheckOut,

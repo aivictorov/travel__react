@@ -1,0 +1,27 @@
+
+.search-dropdown {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(calc(100% + 5px));
+    padding: 12px 18px;
+    width: 100%;
+    background-color: #FFF;
+    border: 1px solid #79747E;
+    border-radius: 6px;
+    font-size: 16px;
+    z-index: 99;
+
+    &.active {
+        display: block;
+    }
+
+    li {
+        cursor: pointer;
+
+        &+li {
+            margin-top: 12px;
+        }
+    }
+}

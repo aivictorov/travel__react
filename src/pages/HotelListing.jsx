@@ -55,33 +55,22 @@ const HotelListing = () => {
         })
 
         newSearchResults = newSearchResults.filter((item) => {
-
-            console.log('Фильтруем весь отель: ');
-            console.log('Будем проверять каждую комнату до первой подходящей: ');
-
-
+            // console.log('Фильтруем весь отель: ');
+            // console.log('Будем проверять каждую комнату до первой подходящей: ');
             const foundAvailableRoom = item.rooms.findIndex((room) => {
-                console.log('Проверяем комнату: ');
-
-                console.log('Доступные даты: ', room.dates);
-                console.log('Требуемые даты', hotelSearchParams.dates);
-
-                console.log('Будем проверять каждую требуемую дату до первой ошибки: ');
-
+                // console.log('Проверяем комнату: ');
+                // console.log('Доступные даты: ', room.dates);
+                // console.log('Требуемые даты', hotelSearchParams.dates);
+                // console.log('Будем проверять каждую требуемую дату до первой ошибки: ');
                 const dateNotFoundInRoom = hotelSearchParams.dates.findIndex((date) => {
                     return room.dates.includes(date) === false
                 })
-
-                console.log('Найдены ли отсутствующие даты среди доступных: ', dateNotFoundInRoom);
-
+                // console.log('Найдены ли отсутствующие даты среди доступных: ', dateNotFoundInRoom);
                 return dateNotFoundInRoom === -1 ?  true : false;
             });
-
-            console.log('Найдены доступные комнаты: ', foundAvailableRoom);
-
+            // console.log('Найдены доступные комнаты: ', foundAvailableRoom);
             return foundAvailableRoom !== -1 ?  true : false;
         });
-
 
         setSearchResults(newSearchResults);
     }, [hotelSearchParams]);

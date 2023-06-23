@@ -23,9 +23,20 @@ const LoginForm = () => {
                 <div className="input" style={{ width: "100%" }}>
                     <input
                         className="input__field"
-                        type="text"
-                        defaultValue="•••••••••••••••••••••••••"
+                        type="password"
+                        placeholder='Enter password'
                     />
+                    {/* <Input
+                        type="" 
+                        label="" 
+                        placeholder="" 
+                        defaultValue="" 
+                        value="" 
+                        onChangeFunction="" 
+                        onFocusFunction=""
+                    /> */}
+
+
                     <div className="input__label">Password</div>
                     <button className="input__icon" type="button">
                         <svg width={24} height={24}>

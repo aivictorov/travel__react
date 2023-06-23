@@ -18,6 +18,14 @@ a.booking-payment-methods__link {
 
 .payment-radio {
     position: relative;
+
+    &--h80 {
+        height: 80px;
+    }
+
+    &--h100 {
+        height: 100px;
+    }
 }
 
 .payment-radio__input {

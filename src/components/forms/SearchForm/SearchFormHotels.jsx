@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../App';
 import Input from '../../elements/Input/Input';
 import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
+import {formatDate} from './../../../utils/dateFunctions'
 
 const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();
@@ -22,16 +23,6 @@ const SearchFormHotels = ({ layout }) => {
         const date = new Date();
         date.setDate(date.getDate() + 3);
         return formatDate(date);
-    };
-
-    function formatDate(dateObj) {
-        let day = dateObj.getDate();
-        if (day.toString().length === 1) day = '0' + day.toString();
-        let month = dateObj.getMonth() + 1;
-        if (month.toString().length === 1) month = '0' + month.toString();
-        const year = dateObj.getFullYear();
-        const dateString = `${day}.${month}.${year}`;
-        return dateString;
     };
 
     const defaultCheckIn = countDefaultCheckIn();

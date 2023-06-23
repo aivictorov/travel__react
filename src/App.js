@@ -100,7 +100,7 @@ function App() {
                         <Route path="/flight-search" element={<FlightSearch />}></Route>
                         <Route path="/flight-listing" element={<FlightListing />}></Route>
                         <Route path="/flight-details/:directID/:returnID?" element={<FlightDetails />}></Route>
-                        <Route path="/flight-booking/:id" element={<FlightBooking />}></Route>
+                        <Route path="/flight-booking/:directID/:returnID?" element={<FlightBooking />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
                         <Route path="/hotel-listing" element={<HotelListing />}></Route>
                         <Route path="/hotel-details/:hotelID" element={<HotelDetails />}></Route>
