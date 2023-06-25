@@ -33,8 +33,8 @@ function App() {
 
     const [flightSearchParams, setFlightSearchParams] = useState(
         {
-            'from': 'Paris',
-            'to': 'London',
+            'from': '',
+            'to': '',
             'depart': '',
             'return': '',
             'passengers': '',

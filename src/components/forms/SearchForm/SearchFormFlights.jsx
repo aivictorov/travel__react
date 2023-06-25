@@ -8,7 +8,7 @@ import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
 import airlines from './../../../data/airlines'
 import destinations from './../../../data/destinations'
 import { formatDate } from './../../../utils/dateFunctions'
-import SearchDropdown from '../../modals/SearchDropdown/SearchDropdown';
+import SearchDropdown from './../../modals/SearchDropdown/SearchDropdown';
 
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();
@@ -50,25 +50,7 @@ const SearchFormFlights = ({ layout }) => {
         navigate("/flight-listing");
     }
 
-    // DEV
-    const searchDropdownRef = useRef();
-
-    useEffect(() => {
-        const closeDropdown = () => searchDropdownRef.current.classList.remove('active');
-
-        const closeDropdownByKey = (event) => {
-            if (event.key === 'Escape') closeDropdown();
-        };
-
-        document.addEventListener('click', closeDropdown);
-        document.addEventListener('keydown', closeDropdownByKey);
-
-        return () => {
-            document.removeEventListener('click', closeDropdown);
-            document.removeEventListener('keydown', closeDropdownByKey);
-        };
-    }, []);
-
+    const fromDropdownRef = useRef();
     const [fromList, setFromList] = useState([]);
 
     useEffect(() => {
@@ -79,16 +61,36 @@ const SearchFormFlights = ({ layout }) => {
                 newList.push(item.airport);
             }
         });
+
+        if (newList.length === 0) {
+            fromDropdownRef.current.classList.remove('active');
+        } else if (!from.includes(newList)) {
+            fromDropdownRef.current.classList.add('active');
+        };
+
         setFromList(newList);
     }, [from])
 
+    const toDropdownRef = useRef();
+    const [toList, setToList] = useState([]);
+
     useEffect(() => {
-        if (fromList.length === 0) {
-            searchDropdownRef.current.classList.remove('active');
-        } else {
-            // searchDropdownRef.current.classList.add('active');
+        let newList = [];
+
+        destinations.forEach((item) => {
+            if (to !== '' && item.airport.toLowerCase().includes(to.toLowerCase())) {
+                newList.push(item.airport);
+            }
+        });
+
+        if (newList.length === 0) {
+            toDropdownRef.current.classList.remove('active');
+        } else if (!to.includes(newList)) {
+            toDropdownRef.current.classList.add('active');
         };
-    }, [fromList])
+
+        setToList(newList);
+    }, [to])
 
     return (
         <form
@@ -108,62 +110,40 @@ const SearchFormFlights = ({ layout }) => {
                         value={from}
                         onChangeFunction={setFrom}
                         onFocusFunction={() => {
-                            searchDropdownRef.current.classList.add('active');
+                            if (fromList.length > 0) fromDropdownRef.current.classList.add('active');
                         }}
                     />
-                    <div
-                        className="search-dropdown"
-                        ref={searchDropdownRef}
-                    >
-                        <ul>
-                            {fromList.map((item, index) => {
-                                return (
-                                    <li
-                                        key={index}
-                                        data-value={item}
-                                        onClick={(event) => {
-                                            searchDropdownRef.current.classList.remove('active');
-                                            setFrom(event.target.dataset.value);
-                                        }}
-                                    >
-                                        {item}
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
-
-                    <SearchDropdown />
-
+                    <SearchDropdown
+                        ref={fromDropdownRef}
+                        list={fromList}
+                        onClickFunction={(event) => {
+                            setFrom(event.target.dataset.value);
+                            fromDropdownRef.current.classList.remove('active');
+                        }}
+                    />
                 </div>
-                <div className="search-form__field-wrapper">
+                <div
+                    className="search-form__field-wrapper"
+                    onClick={(event) => { event.stopPropagation() }}
+                >
                     <Input
                         type="text"
                         label="To"
                         placeholder="Karachi"
                         value={to}
                         onChangeFunction={setTo}
+                        onFocusFunction={() => {
+                            if (toList.length > 0) toDropdownRef.current.classList.add('active');
+                        }}
                     />
-
-
-
-
-                    {/* <div className="drop-test">
-                        <ul className="drop-test__airlines">
-                            {destinations.map((item, index) => {
-                                return (
-                                    (item.airport.toLowerCase().includes(to.toLowerCase())) &&
-                                    <li
-                                        key={index}
-                                        data-value={item.airport}
-                                        onClick={(event) => { setTo(event.target.dataset.value); }}
-                                    >
-                                        {item.airport} {`(${item.code})`}
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div> */}
+                    <SearchDropdown
+                        ref={toDropdownRef}
+                        list={toList}
+                        onClickFunction={(event) => {
+                            setTo(event.target.dataset.value);
+                            toDropdownRef.current.classList.remove('active');
+                        }}
+                    />
                 </div>
                 <Input
                     type="text"
