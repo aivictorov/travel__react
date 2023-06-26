@@ -5,20 +5,20 @@ import { useEffect, useRef } from 'react';
 const AddCard = ({ addCard }) => {
     const addCardModalRef = useRef(null);
 
-    const openModal = () => {
-        addCardModalRef.current.classList.add('active');
+    const openModal = (ref) => {
+        ref.current.classList.add('active');
     };
 
-    const closeModal = () => {
-        addCardModalRef.current.classList.remove('active');
+    const closeModal = (ref) => {
+        ref.current.classList.remove('active');
     };
 
     useEffect(() => {
-        const closeDropdownByKey = (event) => {
+        function closeModalByKey(event) {
             if (event.key === 'Escape') addCardModalRef.current.classList.remove('active');
         };
-        document.addEventListener('keydown', closeDropdownByKey);
-        return () => document.removeEventListener('keydown', closeDropdownByKey);
+        document.addEventListener('keydown', closeModalByKey);
+        return () => document.removeEventListener('keydown', closeModalByKey);
     }, []);
 
     return (
@@ -31,18 +31,18 @@ const AddCard = ({ addCard }) => {
                         type="button"
                         onClick={(event) => {
                             event.stopPropagation();
-                            openModal();
+                            openModal(addCardModalRef);
                         }}
                     />
                     <div className="add-card__text">
                         Add a new card
                     </div>
                 </div>
-
             </div>
+
             <AddCardModal
                 ref={addCardModalRef}
-                closeModal={closeModal}
+                closeModal={() => { closeModal(addCardModalRef) }}
                 addCard={addCard}
             />
         </>

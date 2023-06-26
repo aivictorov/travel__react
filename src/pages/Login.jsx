@@ -23,7 +23,10 @@ const Login = () => {
                             />
                         </div>
                         <div className="login__content">
-                            <LoginHeader />
+                            <LoginHeader
+                                title="Login"
+                                text="Login to access your Golobe account"
+                            />
                             <LoginForm />
                             <LoginWith />
                         </div>

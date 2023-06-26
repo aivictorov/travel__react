@@ -1,6 +1,7 @@
 import './Checkbox.scss';
+import { forwardRef } from 'react';
 
-const Checkbox = ({ name, action }) => {
+const Checkbox = forwardRef(({ name, action }, ref = null) => {
     return (
         <div
             className="checkbox"
@@ -12,12 +13,13 @@ const Checkbox = ({ name, action }) => {
                     type="checkbox"
                     name={name}
                     onChange={action}
+                    ref={ref}
                 />
                 <div className="checkbox__custom" />
                 <div className="checkbox__value">{name}</div>
             </label>
         </div>
     );
-}
+})
 
 export default Checkbox;

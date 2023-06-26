@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddCard from "../../modals/AddCard/AddCard";
+import LoginHeader from './../../blocks/LoginHeader/LoginHeader';
 
 const AccountTabsPayments = () => {
     // const cardsData = [

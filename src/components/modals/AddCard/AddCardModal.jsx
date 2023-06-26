@@ -71,7 +71,6 @@ const AddCardModal = forwardRef(({ closeModal, addCard }, ref) => {
                 </svg>
             </div>
         </div>
-
     );
 });
 

@@ -16,7 +16,8 @@ const FooterSubscribeForm = () => {
                     <input
                         className="subscribe-form__input"
                         type="text"
-                        defaultValue="Your email address"
+                        placeholder="Your email address"
+                        // defaultValue="Your email address"
                     />
                     <div className="subscribe-form__button-wrapper">
                         <Button text="Subscribe" style="dark bold h100" />

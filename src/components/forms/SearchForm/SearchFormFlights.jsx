@@ -9,6 +9,9 @@ import airlines from './../../../data/airlines'
 import destinations from './../../../data/destinations'
 import { formatDate } from './../../../utils/dateFunctions'
 import SearchDropdown from './../../modals/SearchDropdown/SearchDropdown';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calendar.scss';
 
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();
@@ -17,6 +20,7 @@ const SearchFormFlights = ({ layout }) => {
 
     const [from, setFrom] = useState((flightSearchParams && flightSearchParams.from) || '');
     const [to, setTo] = useState((flightSearchParams && flightSearchParams.to) || '');
+    const [passangersAndClass, setPassangersAndClass] = useState('1 Passenger, Economy');
 
     function defaultDepartDate() {
         const date = new Date();
@@ -92,6 +96,12 @@ const SearchFormFlights = ({ layout }) => {
         setToList(newList);
     }, [to])
 
+    const passangersInputRef = useRef();
+
+    const [testDates, setTestDates] = useState([new Date(), new Date()]);
+
+    const dropCalendarRef = useRef();
+
     return (
         <form
             className="search-form__content"
@@ -106,7 +116,7 @@ const SearchFormFlights = ({ layout }) => {
                     <Input
                         type="text"
                         label="From"
-                        placeholder="Lahore"
+                        placeholder="Sydney"
                         value={from}
                         onChangeFunction={setFrom}
                         onFocusFunction={() => {
@@ -129,7 +139,7 @@ const SearchFormFlights = ({ layout }) => {
                     <Input
                         type="text"
                         label="To"
-                        placeholder="Karachi"
+                        placeholder="Istanbul"
                         value={to}
                         onChangeFunction={setTo}
                         onFocusFunction={() => {
@@ -145,24 +155,108 @@ const SearchFormFlights = ({ layout }) => {
                         }}
                     />
                 </div>
-                <Input
-                    type="text"
-                    label="Depart"
-                    value={departDate}
-                    onChangeFunction={setDepartDate}
-                />
+                <div className="search-form__field-wrapper">
+
+                    <Input
+                        type="text"
+                        label="Depart"
+                        // value={departDate}
+                        value={formatDate(testDates[0])}
+                        onChangeFunction={setDepartDate}
+
+                        onFocusFunction={() => {
+                            dropCalendarRef.current.classList.add('active');
+                        }}
+                    />
+                    <div
+
+                        className="testDropCalendar"
+                        ref={dropCalendarRef}
+                    >
+                        <Calendar
+                            onChange={setTestDates}
+                            value={testDates}
+                            selectRange={true}
+                            minDate={new Date()}
+                        />
+                    </div>
+
+
+                </div>
+
                 <Input
                     type="text"
                     label="Return"
-                    value={returnDate}
+                    value={formatDate(testDates[1])}
+                    // value={returnDate}
                     onChangeFunction={setReturnDate}
                 />
-                <Input
-                    label="Passenger & Class"
-                    placeholder="1 Passenger, Economy"
-                    value="1 Passenger, Economy"
-                    onChangeFunction={() => { console.log('x'); }}
-                />
+
+
+                <div className="search-form__field-wrapper">
+                    <Input
+                        label="Passenger & Class"
+                        placeholder="1 Passenger, Economy"
+                        value={passangersAndClass}
+
+                        onFocusFunction={() => {
+                            passangersInputRef.current.classList.add('active');
+                        }}
+                    />
+                    <div
+                        ref={passangersInputRef}
+                        className="testDrop"
+                    >
+                        <button
+                            type="button"
+
+                            onClick={() => {
+                                let newValue = passangersAndClass.split(', ');
+                                newValue[0] = `${parseInt(newValue[0]) - 1} Passengers`
+                                newValue = newValue.join(', ')
+                                setPassangersAndClass(newValue)
+                            }}
+                        >
+                            -
+                        </button>
+                        <input
+                            type="number"
+                            defaultValue={1}
+                            onChange={(event) => {
+                                let newValue = passangersAndClass.split(', ');
+                                newValue[0] = `${event.target.value} Passengers`
+                                newValue = newValue.join(', ')
+                                console.log(newValue);
+                                setPassangersAndClass(newValue)
+                            }}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => {
+                                let newValue = passangersAndClass.split(', ');
+                                newValue[0] = `${parseInt(newValue[0]) + 1} Passengers`
+                                newValue = newValue.join(', ')
+                                setPassangersAndClass(newValue)
+                            }}
+                        >
+                            +
+                        </button>
+                        <select
+                            name=""
+                            id=""
+                            onChange={(event) => {
+                                let newValue = passangersAndClass.split(', ');
+                                newValue[1] = event.target.value
+                                newValue = newValue.join(', ')
+                                setPassangersAndClass(newValue)
+                            }}
+                        >
+                            <option value="Economy">Economy</option>
+                            <option value="Business">Business</option>
+                        </select>
+                    </div>
+                </div>
+
                 <ButtonSquare
                     style=""
                     svgID="search-icon"

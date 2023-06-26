@@ -109,6 +109,13 @@ const PlanYourTrip = () => {
         },
     ];
 
+
+    const tripCardsRef = useRef(null);
+
+    function scrollToRef() {
+        tripCardsRef.current.scrollIntoView({ block: 'end' });
+    };
+
     return (
         <section className="plan-your-trip">
             <div className="container">
@@ -118,10 +125,14 @@ const PlanYourTrip = () => {
                     button="See more places"
                     action={() => {
                         (cards.length > numberOfCards) && setNumberOfCards(numberOfCards + 3);
-                        window.scrollBy(0, 1000)
+                        setTimeout(scrollToRef, 50);
                     }}
                 />
-                <div className="plan-your-trip__cards">
+                <div
+                    className="plan-your-trip__cards"
+                    ref={tripCardsRef}
+
+                >
                     {cards.map((card, index) => {
                         if (index < numberOfCards) {
                             return (

@@ -2,7 +2,7 @@ import './LoginWith.scss';
 
 const LoginWith = ({ layout }) => {
     let addClass = '';
-    if (layout = "booking") addClass = ' login-with--booking'
+    if (layout === "booking") addClass = ' login-with--booking'
 
     const buttons = ['facebook-icon', 'google-icon', 'apple-icon']
 

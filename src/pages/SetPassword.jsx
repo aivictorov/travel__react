@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/blocks/Logo/Logo";
 import loginImg from './../img/login/slider/01.jpg';
+import SetPasswordForm from './../components/forms/SetPasswordForm/SetPasswordForm';
+import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
 
 const SetPassword = () => {
     const navigate = useNavigate();
@@ -18,57 +20,12 @@ const SetPassword = () => {
                                 />
                             </div>
                             <div className="login__content">
-                                <div className="login-header">
-                                    <h1 className="login-header__title">Set a password</h1>
-                                    <div className="login-header__text">
-                                        Your previous password has been reseted. Please set a new
-                                        password for your account.
-                                    </div>
-                                </div>
-                                <div className="login-form">
-                                    <div className="login-form__input-group">
-                                        <div className="login-form__input-group-row">
-                                            <div className="input" style={{ width: "100%" }}>
-                                                <input
-                                                    className="input__field"
-                                                    type="text"
-                                                    defaultValue="•••••••••••••••••••••••••"
-                                                />
-                                                <div className="input__label">Create Password</div>
-                                                <button className="input__icon" type="button">
-                                                    <svg width={24} height={24}>
-                                                        <use href="#eye-off"> </use>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className="login-form__input-group-row">
-                                            <div className="input" style={{ width: "100%" }}>
-                                                <input
-                                                    className="input__field"
-                                                    type="text"
-                                                    defaultValue="•••••••••••••••••••••••••"
-                                                />
-                                                <div className="input__label">Re-enter Password</div>
-                                                <button className="input__icon" type="button">
-                                                    <svg width={24} height={24}>
-                                                        <use href="#eye-off"> </use>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="login-form__button-group">
-                                        <button
-                                            className="button button--bold"
-                                            type="button"
-                                            style={{ width: "100%" }}
-                                            onClick={() => { navigate('/login') }}
-                                        >
-                                            Set password
-                                        </button>
-                                    </div>
-                                </div>
+                                <LoginHeader
+                                    title="Set a password"
+                                    text="Your previous password has been reseted. Please set a new
+                                    password for your account."
+                                />
+                                <SetPasswordForm />
                             </div>
                         </div>
                         <div className="login__right">
