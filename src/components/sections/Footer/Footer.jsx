@@ -1,8 +1,8 @@
 import './Footer.scss'
 import Logo from '../../blocks/Logo/Logo';
-import FooterSubscribeForm from './FooterSubscribeForm';
 import FooterSocialIcons from './FooterSocialIcons';
 import FooterNav from './FooterNav';
+import SubscribeForm from './../../forms/SubscribeForm/SubscribeForm';
 
 const Footer = () => {
     return (
@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
             <div className="footer__form-wrapper">
                 <div className="container">
-                    <FooterSubscribeForm />
+                    <SubscribeForm />
                 </div>
             </div>
         </footer>

@@ -1,7 +1,10 @@
-import './BookingPayment.scss'
+import Modal from '../../modals/Modal/Modal';
+import './BookingPaymentMethods.scss'
 import { useState } from 'react';
+import PaymentInfo from '../../modals/PaymentInfo/PaymentInfo';
+import ModalWindow from '../../modals/ModalWindow/ModalWindow';
 
-const BookingPayment = () => {
+const BookingPaymentMethods = () => {
 
     const [value, setValue] = useState('full');
 
@@ -21,6 +24,8 @@ const BookingPayment = () => {
             value: "partial",
         },
     ];
+
+    const [openModal, setOpenModal] = useState(false);
 
     return (
         <div className="booking-payment-methods">
@@ -58,14 +63,22 @@ const BookingPayment = () => {
                 )
             })}
 
-            <a
-                className="booking-payment-methods__link"
-                href="#!"
+            <button
+                type="button"
+                className="booking-payment-methods__button"
+                onClick={() => { setOpenModal(true) }}
             >
                 More info
-            </a>
+            </button>
+
+            <Modal
+                isOpen={openModal}
+                onClose={() => setOpenModal(false)}
+                window={<ModalWindow content={<PaymentInfo />} />}
+            />
+
         </div>
     );
 }
 
-export default BookingPayment;
+export default BookingPaymentMethods;

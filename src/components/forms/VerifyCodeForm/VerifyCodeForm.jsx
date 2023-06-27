@@ -1,5 +1,6 @@
 import './VerifyCodeForm.scss'
 import { useNavigate } from 'react-router-dom';
+import ButtonLink from './../../elements/ButtonLink/ButtonLink';
 
 const VerifyCodeForm = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const VerifyCodeForm = () => {
                             className="input__field"
                             type="text"
                             placeholder="Enter code"
-                            // defaultValue="•••••••••••••••••••••••••"
+                        // defaultValue="•••••••••••••••••••••••••"
                         />
                         <div className="input__label">Enter Code</div>
                         <button className="input__icon" type="button">
@@ -25,10 +26,11 @@ const VerifyCodeForm = () => {
                 </div>
                 <div className="login-form__input-group-row">
                     <span className="login-form__text">
-                        Didn’t receive a code?{" "}
-                        <a className="login-form__link" href="#!">
-                            Resend
-                        </a>
+                        Didn’t receive a code?
+                        {" "}
+                        <ButtonLink
+                            text="Resend"
+                        />
                     </span>
                 </div>
             </div>

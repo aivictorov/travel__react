@@ -3,12 +3,12 @@ import PlanYourTrip from "../components/sections/PlanYourTrip/PlanYourTrip";
 import FlightsAndHotels from "../components/sections/FlightsAndHotels/FlightsAndHotels";
 import Reviews from "../components/sections/Reviews/Reviews";
 import Footer from "../components/sections/Footer/Footer";
-import ProjectNav from './../components/modals/ProjectNav/ProjectNav';
+import ProjectNavButton from './../components/modals/ProjectNav/ProjectNavButton';
 
 const Home = () => {
     return (
         <>
-            <ProjectNav />
+            <ProjectNavButton />
             <HeaderMain />
             <main>
                 <PlanYourTrip />

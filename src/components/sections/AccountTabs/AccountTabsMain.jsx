@@ -11,6 +11,9 @@ const AccountTabsMain = () => {
         { name: 'Date of birth', value: '01-01-1992' },
     ];
 
+    let change = false;
+    // change = true;
+
     return (
         <div
             className="account-tabs__content"
@@ -27,7 +30,18 @@ const AccountTabsMain = () => {
                         >
                             <div className="account-info__item-left">
                                 <div className="account-info__item-name">{item.name}</div>
-                                <div className="account-info__item-value">{item.value}</div>
+                                <div className="account-info__item-value">
+                                    {!change &&
+                                        item.value
+                                    }
+                                    {change &&
+                                        <input
+                                            // className="account-info__item-value"
+                                            type="text"
+                                            defaultValue="John Doe"
+                                        />
+                                    }
+                                </div>
                             </div>
                             <div className="account-info__item-right">
                                 {item.name === 'Email' &&
@@ -38,11 +52,20 @@ const AccountTabsMain = () => {
                                     />
                                 }
                                 <div className="account-info__change-button-wrapper">
-                                    <Button
-                                        text="Change"
-                                        style="border w100"
-                                        svgID="edit-icon"
-                                    />
+                                    {!change &&
+                                        <Button
+                                            text="Change"
+                                            style="border w100"
+                                            svgID="edit-icon"
+                                        />
+                                    }
+                                    {change &&
+                                        <Button
+                                            text="Save"
+                                            style="border w100"
+                                            svgID="upload-icon"
+                                        />
+                                    }
                                 </div>
                             </div>
                         </li>

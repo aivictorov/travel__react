@@ -15,10 +15,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    .login-form__link {
-        font-weight: 500;
-    }
 }
 
 .login-form__button-group {
@@ -46,10 +42,4 @@
 .login-form__text {
     font-weight: 500;
     font-size: 14px;
-}
-
-a.login-form__link {
-    font-weight: 600;
-    font-size: 14px;
-    color: $accent;
 }

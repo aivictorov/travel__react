@@ -1,6 +1,5 @@
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import Footer from './../components/sections/Footer/Footer';
-import BookingPayment from "../components/blocks/BookingPayment/BookingPayment";
 import BookingLogin from "../components/blocks/BookingLogin/BookingLogin";
 import BookingSummary from "../components/blocks/BookingSummary/BookingSummary";
 import FlightTicket from './../components/cards/FlightTicket/FlightTicket';
@@ -9,6 +8,7 @@ import TrackNav from "../components/blocks/TrackNav/TrackNav";
 import { useContext } from "react";
 import { AppContext } from "../App";
 import { useParams } from 'react-router-dom';
+import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
 
 const FlightBooking = () => {
     const { directID, returnID } = useParams();
@@ -31,7 +31,7 @@ const FlightBooking = () => {
                             {returnID &&
                                 <FlightTicket layout="booking" flight={returnFlight} direction="Return" />
                             }
-                            <BookingPayment />
+                            <BookingPaymentMethods />
                             {!userAuth ? <BookingLogin /> : <BookingPaymentCards />}
                         </div>
                         <div className="booking__right">

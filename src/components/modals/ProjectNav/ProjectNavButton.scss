@@ -1,0 +1,62 @@
+.project-nav-button {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    column-gap: 8px;
+    font-size: 16px;
+    position: fixed;
+    left: 0;
+    top: 127px;
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #000;
+    color: #000;
+    opacity: 0.8;
+    z-index: 999;
+    transform: translateX(-87.5%);
+    transition: transform .3s ease-in, color 0s linear 0.3s;
+
+        max-width: 120px;
+
+
+    // span {
+    //     max-width: 100px;
+    // }
+
+    &:hover {
+        color: #FFF;
+        transform: translateX(0);
+    }
+
+    &--animated {
+        animation: mymove 5s 1;
+        animation-delay: 1s;
+
+        @keyframes mymove {
+            from {
+                color: #000;
+                background-color: #000;
+                transform: translateX(-87.5%);
+            }
+
+            25% {
+                color: #FFF;
+                background-color: red;
+                transform: translateX(0);
+            }
+
+            75% {
+                color: #FFF;
+                background-color: red;
+                transform: translateX(0);
+            }
+
+            to {
+                color: #000;
+                background-color: #000;
+                transform: translateX(-87.5%);
+            }
+        }
+    }
+}

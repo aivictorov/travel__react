@@ -2,8 +2,14 @@ import './AccountCover.scss';
 import coverImg from "./../../../img/users/cover.jpg";
 import avatarImg from "./../../../img/users/avatars/01.jpg";
 import Button from './../../elements/Button/Button';
+import UploadCover from './../../modals/UploadCover/UploadCover';
+import Modal from './../../modals/Modal/Modal';
+import ModalWindow from './../../modals/ModalWindow/ModalWindow';
+import { useState } from 'react';
 
 const AccountCover = () => {
+    const [openModal, setOpenModal] = useState(false);
+
     return (
         <section className="account-cover">
             <div className="container">
@@ -13,6 +19,12 @@ const AccountCover = () => {
                         <Button
                             text="Upload new cover"
                             svgID="upload-icon"
+                            action={() => setOpenModal(true)}
+                        />
+                        <Modal
+                            isOpen={openModal}
+                            onClose={() => setOpenModal(false)}
+                            window={<ModalWindow content={<UploadCover />} />}
                         />
                     </div>
                 </div>

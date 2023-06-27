@@ -1,6 +1,5 @@
 import { useState } from "react";
-import AddCard from "../../modals/AddCard/AddCard";
-import LoginHeader from './../../blocks/LoginHeader/LoginHeader';
+import AddCardButton from './../../modals/AddCard/AddCardButton';
 
 const AccountTabsPayments = () => {
     // const cardsData = [
@@ -75,7 +74,7 @@ const AccountTabsPayments = () => {
                     );
                 })}
                 <div className="account-payment__add-card">
-                    <AddCard addCard={addCard} />
+                    <AddCardButton addCard={addCard} />
                 </div>
             </div>
         </div>

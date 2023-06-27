@@ -1,0 +1,11 @@
+@import './../../../scss/base/_vars.scss';
+
+.button-link {
+    font-weight: 500;
+    font-size: 14px;
+    color: $accent;
+
+    &--bold {
+        font-weight: 600;
+    }
+}

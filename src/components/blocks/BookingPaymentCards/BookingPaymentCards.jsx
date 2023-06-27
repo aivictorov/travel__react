@@ -1,5 +1,5 @@
-import AddCard from '../../modals/AddCard/AddCard';
 import './BookingPaymentCards.scss';
+import AddCardButton from './../../modals/AddCard/AddCardButton';
 
 const BookingPaymentCards = () => {
     return (
@@ -49,7 +49,7 @@ const BookingPaymentCards = () => {
                 </label>
             </div>
             <div className="booking-payment-cards__add">
-                <AddCard />
+                <AddCardButton />
             </div>
         </div>
     );

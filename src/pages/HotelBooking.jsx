@@ -6,9 +6,9 @@ import TrackNav from './../components/blocks/TrackNav/TrackNav';
 import { AppContext } from './../App';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
 import BookingLogin from './../components/blocks/BookingLogin/BookingLogin';
-import BookingPayment from './../components/blocks/BookingPayment/BookingPayment';
 import BookingSummary from './../components/blocks/BookingSummary/BookingSummary';
 import { useParams } from 'react-router-dom';
+import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
 
 const HotelBooking = () => {
     const { userAuth, hotels } = useContext(AppContext);
@@ -39,7 +39,7 @@ const HotelBooking = () => {
                                 room={room.name}
                                 price={room.price}
                             />
-                            <BookingPayment />
+                            <BookingPaymentMethods />
                             {!userAuth ? <BookingLogin /> : <BookingPaymentCards />}
                         </div>
                         <div className="booking__right">

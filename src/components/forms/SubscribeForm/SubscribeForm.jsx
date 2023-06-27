@@ -1,8 +1,16 @@
-import './FooterSubscribeForm.scss'
+import './SubscribeForm.scss'
 import mailboxImg from './../../../img/footer/mailbox.svg'
-import Button from './../../elements/Button/Button';
+import Button from '../../elements/Button/Button';
+import { useState } from 'react';
+import Subscribe from './../../modals/Subscribe/Subscribe';
+import Modal from './../../modals/Modal/Modal';
+import ModalWindow from './../../modals/ModalWindow/ModalWindow';
 
-const FooterSubscribeForm = () => {
+const SubscribeForm = () => {
+
+    const [openModal, setOpenModal] = useState(false);
+
+
     return (
         <form className="subscribe-form">
             <div className="subscribe-form__content">
@@ -17,10 +25,18 @@ const FooterSubscribeForm = () => {
                         className="subscribe-form__input"
                         type="text"
                         placeholder="Your email address"
-                        // defaultValue="Your email address"
                     />
                     <div className="subscribe-form__button-wrapper">
-                        <Button text="Subscribe" style="dark bold h100" />
+                        <Button
+                            text="Subscribe"
+                            style="dark bold h100"
+                            action={() => { setOpenModal(true) }}
+                        />
+                        <Modal
+                            isOpen={openModal}
+                            onClose={() => setOpenModal(false)}
+                            window={<ModalWindow content={<Subscribe />} />}
+                        />
                     </div>
                 </div>
             </div>
@@ -31,4 +47,4 @@ const FooterSubscribeForm = () => {
     );
 }
 
-export default FooterSubscribeForm;
+export default SubscribeForm;

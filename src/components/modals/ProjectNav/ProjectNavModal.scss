@@ -1,0 +1,35 @@
+// .project-nav-modal__title {
+//     margin-bottom: 32px;
+//     font-weight: 700;
+//     font-size: 20px;
+// }
+
+.project-nav-modal__list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start;
+    row-gap: 24px;
+    column-gap: 80px;
+    max-height: 200px;
+    width: 750px;
+    font-weight: 500;
+    font-size: 16px;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;  
+    }
+}
+
+.project-nav-modal__list-title {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.project-nav-modal__notice {
+    margin-top: 16px;
+    font-weight: 500;
+    font-size: 14px;
+}

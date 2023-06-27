@@ -1,11 +1,25 @@
 import './SignUpForm.scss';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Checkbox from './../../elements/Checkbox/Checkbox';
+import Modal from './../../modals/Modal/Modal';
+import ModalWindow from './../../modals/ModalWindow/ModalWindow';
+import Terms from './../../modals/Terms/Terms';
+import ButtonLink from '../../elements/ButtonLink/ButtonLink';
+import PrivacyPolicy from './../../modals/PrivacyPolicy/PrivacyPolicy';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../elements/Button/Button';
 
 const SignUpForm = () => {
     const passwordRef = useRef();
     const confirmPasswordRef = useRef();
     const rememberCheckboxRef = useRef();
+
+
+    const [openTermsModal, setOpenTermsModal] = useState(false);
+    const [openPrivacyPolicyModal, setOpenPrivacyPolicyModal] = useState(false);
+
+    const navigate = useNavigate();
+
 
     return (
         <div className="login-form">
@@ -80,7 +94,6 @@ const SignUpForm = () => {
                             type="text"
                             ref={confirmPasswordRef}
                             placeholder='Confirm password'
-                        // defaultValue="•••••••••••••••••••••••••"
 
                         />
                         <div className="input__label">Confirm Password</div>
@@ -107,55 +120,49 @@ const SignUpForm = () => {
                         name={
                             <>
                                 {"I agree to all the "}
-                                <a className="login-form__link" href="#!">Terms</a>
+                                <ButtonLink
+                                    text="Terms"
+                                    action={() => { setOpenTermsModal(true) }}
+                                />
+                                <Modal
+                                    isOpen={openTermsModal}
+                                    onClose={() => setOpenTermsModal(false)}
+                                    window={<ModalWindow content={<Terms />} />}
+                                />
                                 {" and "}
-                                <a className="login-form__link" href="#!">Privacy Policies</a>
+                                <ButtonLink
+                                    text="Privacy Policies"
+                                    action={() => { setOpenPrivacyPolicyModal(true) }}
+                                />
+                                <Modal
+                                    isOpen={openPrivacyPolicyModal}
+                                    onClose={() => setOpenPrivacyPolicyModal(false)}
+                                    window={<ModalWindow content={<PrivacyPolicy />} />}
+                                />
                             </>
                         }
                         ref={rememberCheckboxRef}
                     />
-
-                    {/* <div
-                        className="checkbox"
-                    >
-                        <label className="checkbox__label">
-                            <input
-                                className="checkbox__hidden visually-hidden"
-                                type="checkbox"
-                            />
-                            <div className="checkbox__custom" />
-                            <div className="checkbox__value">
-                                I agree to all the{" "}
-                                <a className="login-form__link" href="#!">
-                                    Terms{" "}
-                                </a>{" "}
-                                and{" "}
-                                <a className="login-form__link" href="#!">
-                                    Privacy Policies
-                                </a>
-                            </div>
-                        </label>
-                    </div> */}
                 </div>
             </div>
             <div className="login-form__button-group">
-                <button
-                    className="button button--bold"
-                    type="button"
-                    style={{ width: "100%" }}
-                    onClick={() => {
-                        if (!rememberCheckboxRef.current.checked) alert('ALERT')
+                <Button
+                    text="Create account"
+                    style="bold w100"
+                    action={() => {
+                        if (!rememberCheckboxRef.current.checked) alert('ALERT');
                     }}
-                >
-                    Create account
-                </button>
+                />
                 <div className="login-form__sign-up-link-row">
                     <span className="login-form__text">
-                        Do you already have an account?{" "}
+                        Do you already have an account?
+                        {" "}
                     </span>
-                    <a className="login-form__link" href="#!">
-                        Login
-                    </a>
+                    <ButtonLink
+                        text="Login"
+                        style="bold"
+                        action={() => { navigate('/login') }}
+                    />
                 </div>
             </div>
         </div>
