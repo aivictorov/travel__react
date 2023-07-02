@@ -16,7 +16,6 @@ function formatWeekDay(date) {
     return dateString;
 };
 
-
 // Get Date Object, return Time String like "15:30"
 function formatTime(date) {
     let hours = date.getHours();
@@ -35,9 +34,11 @@ function countDuration(start, end) {
     return duration;
 };
 
-
-
-
+function dateStringToObject(dateString) {
+    const dateArray = dateString.split(['.']);
+    const date = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0], 0, 0, 0, 0);
+    return date;
+}
 
 // function buildDatesArray() {
 //     const checkInArray = checkIn.split(['.']);
@@ -96,11 +97,29 @@ function countDuration(start, end) {
 // start.toISOString().substring(0, 1000),
 // end.toISOString().substring(0, 1000) ,   
 
+
+
+
+    function daysFromToday(days) {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        return date;
+    };
+
+
+
+    // const [departDate, setDepartDate] = useState(today);
+    // const [returnDate, setReturnDate] = useState(tomorrow);
+
+
+
 export {
     formatDate,
     formatTime,
     formatWeekDay,
     countDuration,
+    dateStringToObject,
+    daysFromToday,
     // buildDatesArray,
     // countDefaultCheckIn,
     // countDefaultCheckOut,

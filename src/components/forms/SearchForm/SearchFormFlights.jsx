@@ -5,39 +5,35 @@ import { AppContext } from './../../../App';
 import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
-import airlines from './../../../data/airlines'
 import destinations from './../../../data/destinations'
-import { formatDate } from './../../../utils/dateFunctions'
-import SearchDropdown from './../../modals/SearchDropdown/SearchDropdown';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import './Calendar.scss';
+import { dateStringToObject, daysFromToday, formatDate } from './../../../utils/dateFunctions'
+import Drop from './../../drops/Drop/Drop';
+import DropList from '../../drops/DropList/DropList';
+import PassAndClass from './../../drops/PassAndClass/PassAndClass';
+import DropCalendar from './../../drops/DropCalendar/DropCalendar';
 
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();
-
     const { flightSearchParams, setFlightSearchParams } = useContext(AppContext);
 
-    const [from, setFrom] = useState((flightSearchParams && flightSearchParams.from) || '');
-    const [to, setTo] = useState((flightSearchParams && flightSearchParams.to) || '');
-    const [passangersAndClass, setPassangersAndClass] = useState('1 Passenger, Economy');
+    const [from, setFrom] = useState(flightSearchParams.from || '');
+    const [to, setTo] = useState(flightSearchParams.to || '');
+    const [dates, setDates] = useState([
+        flightSearchParams.depart ? dateStringToObject(flightSearchParams.depart) : daysFromToday(1),
+        flightSearchParams.return ? dateStringToObject(flightSearchParams.return) : daysFromToday(3),
+    ]);
+    const [passangers, setPassangers] = useState(flightSearchParams.passangers || 1);
+    const [serviceClass, setServiceClass] = useState(flightSearchParams.class || 'economy');
 
-    function defaultDepartDate() {
-        const date = new Date();
-        return formatDate(date);
-    };
+    function formatPassAndClass(passangers, serviceClass) {
+        return `${passangers} ${(passangers === 1) ? 'Passenger' : 'Passengers'}, ${serviceClass.charAt(0).toUpperCase() + serviceClass.slice(1)}`
+    }
 
-    function defaultReturnDate() {
-        const date = new Date();
-        date.setDate(date.getDate() + 1);
-        return formatDate(date);
-    };
-
-    const today = defaultDepartDate();
-    const tomorrow = defaultReturnDate();
-
-    const [departDate, setDepartDate] = useState(today);
-    const [returnDate, setReturnDate] = useState(tomorrow);
+    function changePassAndClass(value) {
+        let valueArray = value.split(', ');
+        setPassangers(parseInt(valueArray[0]));
+        setServiceClass(valueArray[1]);
+    }
 
     const getSearchParams = (event) => {
         event.preventDefault();
@@ -46,61 +42,55 @@ const SearchFormFlights = ({ layout }) => {
             ...flightSearchParams,
             from: from || 'All',
             to: to || 'All',
-            depart: departDate || today,
-            return: returnDate,
+            depart: formatDate(dates[0]),
+            return: formatDate(dates[1]),
+            passangers: passangers,
+            class: serviceClass,
         };
 
         setFlightSearchParams(newSearchParams);
         navigate("/flight-listing");
     }
 
-    const fromDropdownRef = useRef();
-    const [fromList, setFromList] = useState([]);
+    // DROPS
+
+    // 1. Drop "From"
+    const [openDropFrom, setOpenDropFrom] = useState(false);
+    const [dropFromList, setDropFromList] = useState([]);
 
     useEffect(() => {
-        let newList = [];
+        let list = [];
 
         destinations.forEach((item) => {
             if (from !== '' && item.airport.toLowerCase().includes(from.toLowerCase())) {
-                newList.push(item.airport);
+                list.push(item.airport);
             }
         });
 
-        if (newList.length === 0) {
-            fromDropdownRef.current.classList.remove('active');
-        } else if (!from.includes(newList)) {
-            fromDropdownRef.current.classList.add('active');
-        };
-
-        setFromList(newList);
+        setDropFromList(list);
     }, [from])
 
-    const toDropdownRef = useRef();
-    const [toList, setToList] = useState([]);
+    // 2. Drop "To"
+    const [openDropTo, setOpenDropTo] = useState(false);
+    const [dropToList, setDropToList] = useState([]);
 
     useEffect(() => {
-        let newList = [];
+        let list = [];
 
         destinations.forEach((item) => {
             if (to !== '' && item.airport.toLowerCase().includes(to.toLowerCase())) {
-                newList.push(item.airport);
+                list.push(item.airport);
             }
         });
 
-        if (newList.length === 0) {
-            toDropdownRef.current.classList.remove('active');
-        } else if (!to.includes(newList)) {
-            toDropdownRef.current.classList.add('active');
-        };
-
-        setToList(newList);
+        setDropToList(list);
     }, [to])
 
-    const passangersInputRef = useRef();
+    // 3. Drop "Calendar"
+    const [openDropCalendar, setOpenDropCalendar] = useState(false);
 
-    const [testDates, setTestDates] = useState([new Date(), new Date()]);
-
-    const dropCalendarRef = useRef();
+    // 4. Drop "PassAndClass"
+    const [openDropPassAndClass, setOpenDropPassAndClass] = useState(false);
 
     return (
         <form
@@ -109,152 +99,117 @@ const SearchFormFlights = ({ layout }) => {
             tab-group="search"
         >
             <div className={`search-form__fields search-form__fields--flights-${layout}`}>
-                <div
-                    className="search-form__field-wrapper"
-                    onClick={(event) => { event.stopPropagation() }}
-                >
+
+                {/* FROM */}
+                <div className="search-form__field-wrapper">
                     <Input
-                        type="text"
+                        name="from"
                         label="From"
                         placeholder="Sydney"
                         value={from}
                         onChangeFunction={setFrom}
-                        onFocusFunction={() => {
-                            if (fromList.length > 0) fromDropdownRef.current.classList.add('active');
-                        }}
+                        onFocusFunction={() => setOpenDropFrom(true)}
                     />
-                    <SearchDropdown
-                        ref={fromDropdownRef}
-                        list={fromList}
-                        onClickFunction={(event) => {
-                            setFrom(event.target.dataset.value);
-                            fromDropdownRef.current.classList.remove('active');
-                        }}
+                    <Drop
+                        name="from"
+                        style="search"
+                        isOpen={openDropFrom}
+                        onClose={() => setOpenDropFrom(false)}
+                        content={
+                            <DropList
+                                list={dropFromList}
+                                onClose={() => setOpenDropFrom(false)}
+                                setValue={setFrom}
+                            />
+                        }
                     />
                 </div>
-                <div
-                    className="search-form__field-wrapper"
-                    onClick={(event) => { event.stopPropagation() }}
-                >
+
+                {/* TO */}
+                <div className="search-form__field-wrapper">
                     <Input
-                        type="text"
+                        name="to"
                         label="To"
                         placeholder="Istanbul"
                         value={to}
                         onChangeFunction={setTo}
-                        onFocusFunction={() => {
-                            if (toList.length > 0) toDropdownRef.current.classList.add('active');
-                        }}
+                        onFocusFunction={() => setOpenDropTo(true)}
                     />
-                    <SearchDropdown
-                        ref={toDropdownRef}
-                        list={toList}
-                        onClickFunction={(event) => {
-                            setTo(event.target.dataset.value);
-                            toDropdownRef.current.classList.remove('active');
-                        }}
+                    <Drop
+                        name="to"
+                        style="search"
+                        isOpen={openDropTo}
+                        onClose={() => setOpenDropTo(false)}
+                        content={
+                            <DropList
+                                list={dropToList}
+                                onClose={() => setOpenDropTo(false)}
+                                setValue={setTo}
+                            />
+                        }
                     />
                 </div>
-                <div className="search-form__field-wrapper">
 
+                {/* DEPART */}
+                <div className="search-form__field-wrapper">
                     <Input
-                        type="text"
+                        name="depart"
                         label="Depart"
-                        // value={departDate}
-                        value={formatDate(testDates[0])}
-                        onChangeFunction={setDepartDate}
-
-                        onFocusFunction={() => {
-                            dropCalendarRef.current.classList.add('active');
-                        }}
+                        placeholder="Istanbul"
+                        value={formatDate(dates[0])}
+                        onChangeFunction={() => { }}
+                        onFocusFunction={() => setOpenDropCalendar(true)}
                     />
-                    <div
-
-                        className="testDropCalendar"
-                        ref={dropCalendarRef}
-                    >
-                        <Calendar
-                            onChange={setTestDates}
-                            value={testDates}
-                            selectRange={true}
-                            minDate={new Date()}
-                        />
-                    </div>
-
-
+                    <Drop
+                        name={["depart", "return"]}
+                        style="calendar"
+                        isOpen={openDropCalendar}
+                        onClose={() => setOpenDropCalendar(false)}
+                        content={
+                            <DropCalendar
+                                dates={dates}
+                                setDates={setDates}
+                            />
+                        }
+                    />
                 </div>
 
-                <Input
-                    type="text"
-                    label="Return"
-                    value={formatDate(testDates[1])}
-                    // value={returnDate}
-                    onChangeFunction={setReturnDate}
-                />
-
-
+                {/* RETURN */}
                 <div className="search-form__field-wrapper">
                     <Input
+                        name="return"
+                        label="Return"
+                        placeholder="Istanbul"
+                        value={formatDate(dates[1])}
+                        onChangeFunction={() => { }}
+                        onFocusFunction={() => setOpenDropCalendar(true)}
+                    />
+                </div>
+
+                {/* PASSANGERS AND CLASS */}
+                <div className="search-form__field-wrapper">
+                    <Input
+                        name="passAndClass"
                         label="Passenger & Class"
                         placeholder="1 Passenger, Economy"
-                        value={passangersAndClass}
-
-                        onFocusFunction={() => {
-                            passangersInputRef.current.classList.add('active');
-                        }}
+                        value={formatPassAndClass(passangers, serviceClass)}
+                        onChangeFunction={(event) => { changePassAndClass(event.target.value) }}
+                        onFocusFunction={() => setOpenDropPassAndClass(true)}
                     />
-                    <div
-                        ref={passangersInputRef}
-                        className="testDrop"
-                    >
-                        <button
-                            type="button"
-
-                            onClick={() => {
-                                let newValue = passangersAndClass.split(', ');
-                                newValue[0] = `${parseInt(newValue[0]) - 1} Passengers`
-                                newValue = newValue.join(', ')
-                                setPassangersAndClass(newValue)
-                            }}
-                        >
-                            -
-                        </button>
-                        <input
-                            type="number"
-                            defaultValue={1}
-                            onChange={(event) => {
-                                let newValue = passangersAndClass.split(', ');
-                                newValue[0] = `${event.target.value} Passengers`
-                                newValue = newValue.join(', ')
-                                console.log(newValue);
-                                setPassangersAndClass(newValue)
-                            }}
-                        />
-                        <button
-                            type="button"
-                            onClick={() => {
-                                let newValue = passangersAndClass.split(', ');
-                                newValue[0] = `${parseInt(newValue[0]) + 1} Passengers`
-                                newValue = newValue.join(', ')
-                                setPassangersAndClass(newValue)
-                            }}
-                        >
-                            +
-                        </button>
-                        <select
-                            name=""
-                            id=""
-                            onChange={(event) => {
-                                let newValue = passangersAndClass.split(', ');
-                                newValue[1] = event.target.value
-                                newValue = newValue.join(', ')
-                                setPassangersAndClass(newValue)
-                            }}
-                        >
-                            <option value="Economy">Economy</option>
-                            <option value="Business">Business</option>
-                        </select>
-                    </div>
+                    <Drop
+                        name="passAndClass"
+                        style="search"
+                        isOpen={openDropPassAndClass}
+                        onClose={() => setOpenDropPassAndClass(false)}
+                        content={
+                            <PassAndClass
+                                passangers={passangers}
+                                setPassangers={setPassangers}
+                                serviceClass={serviceClass}
+                                setServiceClass={setServiceClass}
+                            />
+                        }
+                    />
                 </div>
 
                 <ButtonSquare
@@ -263,9 +218,11 @@ const SearchFormFlights = ({ layout }) => {
                     action={getSearchParams}
                 />
             </div>
+
             {layout !== 'short' &&
                 <SearchFormButtons layout="flights" action={getSearchParams} />
             }
+
         </form>
     );
 };

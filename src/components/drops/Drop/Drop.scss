@@ -1,0 +1,20 @@
+.drop {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(calc(100% + 5px));
+    background-color: #FFF;
+    border-radius: 6px;
+    font-size: 16px;
+    z-index: 99;
+
+    &--search {
+        padding: 12px 18px;
+        width: 100%;
+        border: 1px solid #79747E;
+    }
+
+    &--calendar {
+        max-width: 300px;
+    }
+}

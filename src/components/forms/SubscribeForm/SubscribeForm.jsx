@@ -10,7 +10,6 @@ const SubscribeForm = () => {
 
     const [openModal, setOpenModal] = useState(false);
 
-
     return (
         <form className="subscribe-form">
             <div className="subscribe-form__content">

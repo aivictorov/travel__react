@@ -1,0 +1,9 @@
+.droplist {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.droplist-item {
+    cursor: pointer;
+}

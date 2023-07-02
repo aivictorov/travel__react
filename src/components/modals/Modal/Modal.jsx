@@ -2,8 +2,7 @@ import ReactDOM from "react-dom";
 import './Modal.scss';
 import { useEffect } from 'react';
 
-const
-    Modal = ({ isOpen, onClose, window }) => {
+const Modal = ({ isOpen, onClose, window }) => {
     
         useEffect(() => {
             function closeModalByKey(event) {

@@ -1,20 +1,19 @@
 import './Input.scss';
 
-const Input = ({ type, label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onBlurFunction }) => {
+const Input = ({ name, type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction }) => {
 
     return (
         <div className="input">
             <input
+                name={name}
                 className="input__field"
-                type={type || 'text'}
+                type={type}
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 value={value}
-                onChange={(event) => { 
-                    onChangeFunction(event.target.value);
-                }}
+                onChange={(event) => onChangeFunction(event.target.value)}
                 onFocus={onFocusFunction}
-                onBlur={onBlurFunction}
+                onClick={onClickFunction}
             />
             <div className="input__label">
                 {label}
