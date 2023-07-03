@@ -4,7 +4,7 @@ import Button from '../../elements/Button/Button';
 import Rating from '../../elements/Rating/Rating';
 import { useNavigate } from 'react-router-dom';
 import Price from '../../elements/Price/Price';
-import { countDuration, formatDate, formatTime } from './../../../utils/dateFunctions'
+import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFunctions'
 
 const FlightListingCard = ({ ticket }) => {
     const navigate = useNavigate();

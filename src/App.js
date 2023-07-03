@@ -47,6 +47,7 @@ function App() {
             destination: 'Paris',
             checkIn: '',
             checkOut: '',
+            allDates: [],
             rooms: '',
             guests: '',
         }

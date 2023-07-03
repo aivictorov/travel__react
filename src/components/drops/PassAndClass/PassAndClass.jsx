@@ -2,8 +2,6 @@ import './PassAndClass.scss';
 
 const PassAndClass = ({ passangers, setPassangers, serviceClass, setServiceClass }) => {
 
-    const serviceClassList = ["economy", "business"];
-
     return (
         <div
             className="passAndClassDrop"
@@ -27,18 +25,11 @@ const PassAndClass = ({ passangers, setPassangers, serviceClass, setServiceClass
             </button>
             <select
                 name="serviceClass"
+                value={serviceClass}
                 onChange={(event) => setServiceClass(event.target.value)}
             >
-                {serviceClassList.map((item, index) => {
-                    return (
-                        <option
-                            value={item}
-                            selected={item === serviceClass ? true : false}
-                        >
-                            {item.charAt(0).toUpperCase() + item.slice(1)}
-                        </option>
-                    )
-                })}
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
             </select>
         </div>
     );

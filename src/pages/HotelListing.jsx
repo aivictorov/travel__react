@@ -62,7 +62,7 @@ const HotelListing = () => {
                 // console.log('Доступные даты: ', room.dates);
                 // console.log('Требуемые даты', hotelSearchParams.dates);
                 // console.log('Будем проверять каждую требуемую дату до первой ошибки: ');
-                const dateNotFoundInRoom = hotelSearchParams.dates.findIndex((date) => {
+                const dateNotFoundInRoom = hotelSearchParams.allDates.findIndex((date) => {
                     return room.dates.includes(date) === false
                 })
                 // console.log('Найдены ли отсутствующие даты среди доступных: ', dateNotFoundInRoom);

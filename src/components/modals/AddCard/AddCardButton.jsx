@@ -21,7 +21,7 @@ const AddCardButton = ({ addCard }) => {
                     <Modal
                         isOpen={openModal}
                         onClose={() => setOpenModal(false)}
-                        window={<ModalWindow content={<AddCardModal addCard={addCard} />} />}
+                        window={<ModalWindow content={<AddCardModal addCard={addCard} onClose={() => setOpenModal(false)} />} />}
                     />
                     <div className="add-card__text">
                         Add a new card

@@ -28,6 +28,7 @@ const SearchFormButtons = ({ layout, action }) => {
 
             {layout === 'flights' &&
                 <Button
+                    type="submit"
                     text='Show Filghts'
                     svgID='send-icon'
                     action={action}
@@ -36,6 +37,7 @@ const SearchFormButtons = ({ layout, action }) => {
 
             {layout === 'hotels' &&
                 <Button
+                    type="submit"
                     text='Show Places'
                     svgID='building-icon'
                     action={action}

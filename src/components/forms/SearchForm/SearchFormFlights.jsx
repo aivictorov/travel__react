@@ -6,7 +6,7 @@ import { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
 import destinations from './../../../data/destinations'
-import { dateStringToObject, daysFromToday, formatDate } from './../../../utils/dateFunctions'
+import { dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
 import Drop from './../../drops/Drop/Drop';
 import DropList from '../../drops/DropList/DropList';
 import PassAndClass from './../../drops/PassAndClass/PassAndClass';
@@ -35,24 +35,7 @@ const SearchFormFlights = ({ layout }) => {
         setServiceClass(valueArray[1]);
     }
 
-    const getSearchParams = (event) => {
-        event.preventDefault();
-
-        const newSearchParams = {
-            ...flightSearchParams,
-            from: from || 'All',
-            to: to || 'All',
-            depart: formatDate(dates[0]),
-            return: formatDate(dates[1]),
-            passangers: passangers,
-            class: serviceClass,
-        };
-
-        setFlightSearchParams(newSearchParams);
-        navigate("/flight-listing");
-    }
-
-    // DROPS
+    // === DROPS ===
 
     // 1. Drop "From"
     const [openDropFrom, setOpenDropFrom] = useState(false);
@@ -92,12 +75,100 @@ const SearchFormFlights = ({ layout }) => {
     // 4. Drop "PassAndClass"
     const [openDropPassAndClass, setOpenDropPassAndClass] = useState(false);
 
+    // === VALIDATION ===
+
+    // 1. Check "FROM"
+    const [fromCheckOn, setFromCheckOn] = useState(false);
+    const [fromCheckMsg, setFromCheckMsg] = useState('');
+
+    function checkFrom() {
+        let result = false;
+
+        if (!from.trim()) {
+            setFromCheckMsg('Please, enter airport');
+        } else if (!dropFromList.includes(from.trim())) {
+            setFromCheckMsg('Airport not found');
+        } else {
+            setFromCheckMsg('');
+            result = true;
+        };
+
+        return result;
+    };
+
+    useEffect(() => {
+        if (fromCheckOn) checkFrom();
+    }, [from]);
+
+    // 2. Check "TO"
+    const [toCheckOn, setToCheckOn] = useState(false);
+    const [toCheckMsg, setToCheckMsg] = useState('');
+
+    function checkTo() {
+        let result = false;
+
+console.log(dropToList.includes(to.trim()));
+
+        if (!to.trim()) {
+            setToCheckMsg('Please, enter airport');
+        } else if (!dropToList.includes(to.trim())) {
+            setToCheckMsg('Airport not found');
+        } else {
+            setToCheckMsg('');
+            result = true;
+        };
+
+        return result;
+    };
+
+    useEffect(() => {
+        if (toCheckOn) checkTo();
+    }, [to]);
+
+    // 3. Form validation
+    function validateForm() {
+        let result = [];
+
+        if (!checkFrom()) {
+            setFromCheckOn(true);
+            result.push(false);
+        } else {
+            setFromCheckOn(false);
+        };
+
+        if (!checkTo()) {
+            setToCheckOn(true);
+            result.push(false);
+        } else {
+            setToCheckOn(false);
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
+    const getSearchParams = (event) => {
+        event.preventDefault();
+
+        if (validateForm()) {
+            const newSearchParams = {
+                ...flightSearchParams,
+                from: from.trim(),
+                to: to.trim(),
+                depart: formatDate(dates[0]),
+                return: formatDate(dates[1]),
+                passangers: passangers,
+                class: serviceClass,
+            };
+
+            setFlightSearchParams(newSearchParams);
+            navigate("/flight-listing");
+        };
+    };
+
     return (
-        <form
-            className="search-form__content"
-            tab-content="flight-search"
-            tab-group="search"
-        >
+        <form className="search-form__content">
             <div className={`search-form__fields search-form__fields--flights-${layout}`}>
 
                 {/* FROM */}
@@ -109,6 +180,9 @@ const SearchFormFlights = ({ layout }) => {
                         value={from}
                         onChangeFunction={setFrom}
                         onFocusFunction={() => setOpenDropFrom(true)}
+                        validation={fromCheckOn}
+                        message={fromCheckMsg}
+                        autocomplete="off"
                     />
                     <Drop
                         name="from"
@@ -134,6 +208,9 @@ const SearchFormFlights = ({ layout }) => {
                         value={to}
                         onChangeFunction={setTo}
                         onFocusFunction={() => setOpenDropTo(true)}
+                        validation={toCheckOn}
+                        message={toCheckMsg}
+                        autocomplete="off"
                     />
                     <Drop
                         name="to"
@@ -213,14 +290,17 @@ const SearchFormFlights = ({ layout }) => {
                 </div>
 
                 <ButtonSquare
-                    style=""
+                    type="submit"
                     svgID="search-icon"
                     action={getSearchParams}
                 />
             </div>
 
             {layout !== 'short' &&
-                <SearchFormButtons layout="flights" action={getSearchParams} />
+                <SearchFormButtons
+                    layout="flights"
+                    action={getSearchParams}
+                />
             }
 
         </form>

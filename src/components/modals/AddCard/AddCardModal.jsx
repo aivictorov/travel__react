@@ -1,10 +1,9 @@
-import { forwardRef, useState } from 'react';
 import './AddCardModal.scss'
+import { useState } from 'react';
 import Input from './../../elements/Input/Input';
 import Button from './../../elements/Button/Button';
 
-const AddCardModal = ({ addCard }) => {
-
+const AddCardModal = ({ addCard, onClose }) => {
     const [cardNumber, setCardNumber] = useState('');
     const [cardValidThru, setCardValidThru] = useState('');
 
@@ -30,6 +29,7 @@ const AddCardModal = ({ addCard }) => {
                 action={() => {
                     addCard(cardNumber);
                     setCardNumber('');
+                    onClose();
                 }}
             />
         </>

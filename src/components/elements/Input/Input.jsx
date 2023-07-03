@@ -1,9 +1,9 @@
 import './Input.scss';
 
-const Input = ({ name, type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction }) => {
+const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction, validation = true, message, autocomplete = "on" }) => {
 
     return (
-        <div className="input">
+        <div className={`input input--${style}`}>
             <input
                 name={name}
                 className="input__field"
@@ -14,10 +14,15 @@ const Input = ({ name, type = 'text', label, placeholder, defaultValue, value, o
                 onChange={(event) => onChangeFunction(event.target.value)}
                 onFocus={onFocusFunction}
                 onClick={onClickFunction}
+                autoComplete={autocomplete}
             />
-            <div className="input__label">
-                {label}
-            </div>
+
+            {label &&
+                <div className="input__label">
+                    {label}
+                </div>
+            }
+
             {/* <button
                 className="input__icon"
                 type="button"
@@ -27,6 +32,12 @@ const Input = ({ name, type = 'text', label, placeholder, defaultValue, value, o
                     <use href="#swap-icon"> </use>
                 </svg>
             </button> */}
+
+            {validation && message &&
+                <div className="input__message">
+                    {message}
+                </div>
+            }
         </div>
     );
 }

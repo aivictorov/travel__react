@@ -1,6 +1,6 @@
 import './FlightTicket.scss';
 import Price from './../../elements/Price/Price';
-import { formatTime, countDuration, formatWeekDay } from './../../../utils/dateFunctions';
+import { formatTime, countDuration, formatWeekDay } from '../../../utils/dateTimeFunctions';
 
 const FlightTicket = ({ layout, direction, flight }) => {
     let addClass = '';
