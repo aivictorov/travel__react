@@ -1,4 +1,3 @@
-import AccountTabsFavFlightsCard from './AccountTabsFavFlightsCard';
 import { useContext } from 'react';
 import { AppContext } from '../../../App';
 import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';

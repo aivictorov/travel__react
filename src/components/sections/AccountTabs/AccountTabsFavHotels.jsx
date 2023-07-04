@@ -7,8 +7,8 @@ const AccountTabsFavHotels = () => {
             tab-content="hotels"
             tab-group="favourites"
         >
-            <AccountTabsFavHotelsCard />
-            <AccountTabsFavHotelsCard />
+            <AccountHotelCard />
+            <AccountHotelCard />
         </div>
     );
 }

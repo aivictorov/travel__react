@@ -1,4 +1,3 @@
-import AccountTabsBookingsFlightsCard from "./AccountTabsBookingsFlightsCard";
 import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';
 
 const AccountTabsBookingsFlights = () => {

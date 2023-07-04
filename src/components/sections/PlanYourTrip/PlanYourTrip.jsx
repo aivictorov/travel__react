@@ -109,14 +109,14 @@ const PlanYourTrip = () => {
         },
     ];
 
-    const tripCardsRef = useRef(null);
+    const tripRef = useRef(null);
 
     function scrollToRef() {
-        tripCardsRef.current.scrollIntoView({ block: 'end' });
+        tripRef.current.scrollIntoView({ block: 'end' });
     };
 
     return (
-        <section className="plan-your-trip">
+        <section className="plan-your-trip" ref={tripRef}>
             <div className="container">
                 <SectionHeader
                     title="Plan your perfect trip"
@@ -127,10 +127,7 @@ const PlanYourTrip = () => {
                         setTimeout(scrollToRef, 50);
                     }}
                 />
-                <div
-                    className="plan-your-trip__cards"
-                    ref={tripCardsRef}
-                >
+                <div className="plan-your-trip__cards">
                     {cards.map((card, index) => {
                         if (index < numberOfCards) {
                             return (

@@ -3,7 +3,7 @@ import AccountTabsMain from './AccountTabsMain';
 import AccountTabsBookings from './AccountTabsBookings';
 import AccountTabsFav from './AccountTabsFav';
 import AccountTabsPayments from './AccountTabsPayments';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../../../App';
 import Tabs from './../../elements/Tabs/Tabs';
 

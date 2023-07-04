@@ -10,6 +10,7 @@ import PrivacyPolicy from './../../modals/PrivacyPolicy/PrivacyPolicy';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../elements/Button/Button';
 import Input from '../../elements/Input/Input';
+import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
 
 const SignUpForm = () => {
     const navigate = useNavigate();
@@ -43,23 +44,81 @@ const SignUpForm = () => {
 
     const [agreement, setAgreement] = useState(true);
 
+    // === VALIDATION ===
+
+    function validateForm() {
+        let result = [];
+
+        if (!checkEmpty(firstName, setFirstNameCheckMsg, 'first name')) {
+            setFirstNameCheckOn(true);
+            result.push(false);
+        } else {
+            setFirstNameCheckOn(false);
+        };
+
+        if (!checkEmpty(lastName, setLastNameCheckMsg, 'last name')) {
+            setLastNameCheckOn(true);
+            result.push(false);
+        } else {
+            setLastNameCheckOn(false);
+        };
+
+        if (!checkEmail(email, setEmailCheckMsg)) {
+            setEmailCheckOn(true);
+            result.push(false);
+        } else {
+            setEmailCheckOn(false);
+        };
+
+        if (!checkEmpty(phone, setPhoneCheckMsg, 'phone number')) {
+            setPhoneCheckOn(true);
+            result.push(false);
+        } else {
+            setPhoneCheckOn(false);
+        };
+
+        if (!checkEmpty(password, setPasswordCheckMsg, 'password')) {
+            setPasswordCheckOn(true);
+            result.push(false);
+        } else {
+            setPasswordCheckOn(false);
+        };
+
+        if (!checkEmpty(confirmPassword, setConfirmPasswordCheckMsg, 'password cofirmation')) {
+            setConfirmPasswordCheckOn(true);
+            result.push(false);
+        } else {
+            setConfirmPasswordCheckOn(false);
+        };
+
+
+        if (!agreement) {
+            result.push(false);
+        } else {
+
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
     const getSignUpParams = () => {
-        // if (validateForm()) {
-            const signUpParams = {
-                firstName:firstName.trim(),
-                lastName:lastName.trim(),
-                email:email.trim(),
-                phone:phone.trim(),
-                password:password,
-                confirmPassword:confirmPassword,
-                agreement:agreement,
-            };
-            alert(JSON.stringify(signUpParams));
-        // };
+        const signUpParams = {
+            firstName: firstName.trim(),
+            lastName: lastName.trim(),
+            email: email.trim(),
+            phone: phone.trim(),
+            password: password,
+            confirmPassword: confirmPassword,
+            agreement: agreement,
+        };
+
+        alert(JSON.stringify(signUpParams));
     };
 
     return (
-        <div className="login-form">
+        <form className="login-form">
             <div className="login-form__input-group">
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
@@ -120,7 +179,6 @@ const SignUpForm = () => {
                             message={passwordCheckMsg}
                         />
                     </div>
-
                     {/* <button
                         className="input__icon"
                         type="button"
@@ -137,7 +195,6 @@ const SignUpForm = () => {
                         </svg>
                     </button> */}
                 </div>
-
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper">
                         <Input
@@ -151,9 +208,6 @@ const SignUpForm = () => {
                         />
                     </div>
                 </div>
-
-
-
                 <div className="login-form__input-group-row">
                     <Checkbox
                         name="agreement"
@@ -189,10 +243,11 @@ const SignUpForm = () => {
             <div className="login-form__button-group">
                 <Button
                     text="Create account"
+                    type="submit"
                     style="bold w100"
-                    action={() => {
-                        getSignUpParams()
-                        // if (!rememberCheckboxRef.current.checked) alert('ALERT');
+                    action={(event) => {
+                        event.preventDefault();
+                        if (validateForm()) getSignUpParams();
                     }}
                 />
                 <div className="login-form__sign-up-link-row">
@@ -207,7 +262,7 @@ const SignUpForm = () => {
                     />
                 </div>
             </div>
-        </div>
+        </form>
 
     );
 }

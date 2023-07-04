@@ -14,7 +14,7 @@ function checkEmail(email, setEmailCheckMsg) {
     return result;
 }
 
-function checkNotEmpty(value, setValueCheckMsg, name) {
+function checkEmpty(value, setValueCheckMsg, name) {
     let result = false;
 
     if (!value.trim()) {
@@ -29,5 +29,5 @@ function checkNotEmpty(value, setValueCheckMsg, name) {
 
 export {
     checkEmail,
-    checkNotEmpty
+    checkEmpty
 };

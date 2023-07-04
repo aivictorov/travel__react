@@ -6,7 +6,7 @@ import Button from '../../elements/Button/Button';
 import Checkbox from './../../elements/Checkbox/Checkbox';
 import ButtonLink from './../../elements/ButtonLink/ButtonLink';
 import Input from '../../elements/Input/Input';
-import { checkEmail, checkNotEmpty, checkPasswordNotEmpty } from '../../../utils/validationFunctions';
+import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
 import users from './../../../data/users';
 
 const LoginForm = () => {
@@ -35,7 +35,7 @@ const LoginForm = () => {
             setEmailCheckOn(false);
         };
 
-        if (!checkNotEmpty(password, setPasswordCheckMsg, 'password')) {
+        if (!checkEmpty(password, setPasswordCheckMsg, 'password')) {
             setPasswordCheckOn(true);
             result.push(false);
         } else {
@@ -48,15 +48,13 @@ const LoginForm = () => {
     // === SUBMIT FORM ===
 
     const getLoginParams = () => {
-        if (validateForm()) {
-            const loginParams = {
-                email: email.trim(),
-                password: password.trim(),
-                remember: remember,
-            };
-            console.log(JSON.stringify(loginParams));
-            authorizeUser(loginParams);
+        const loginParams = {
+            email: email.trim(),
+            password: password.trim(),
+            remember: remember,
         };
+        console.log(JSON.stringify(loginParams));
+        authorizeUser(loginParams);
     };
 
     const authorizeUser = (loginParams) => {
@@ -79,7 +77,7 @@ const LoginForm = () => {
                 <div className="login-form__input-wrapper">
                     <Input
                         label="Email"
-                        placeholder="Enter e-mail"
+                        placeholder="Enter email"
                         value={email}
                         onChangeFunction={setEmail}
                         validation={emailCheckOn}
@@ -117,7 +115,7 @@ const LoginForm = () => {
                     type="submit"
                     action={(event) => {
                         event.preventDefault();
-                        getLoginParams();
+                        if (validateForm()) getLoginParams();                       
                     }}
                 />
                 <div className="login-form__sign-up-link-row">

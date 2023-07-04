@@ -17,17 +17,28 @@
             }
 
             &:focus {
-                border: 1px solid $main;
+                padding: 17px 15px;
+                border: 2px solid $main;
 
                 &+.input__label {
                     color: $main;
                 }
             }
         }
+
+        &.error {
+            .input__field {
+                padding: 17px 15px;
+                border: 2px solid $accent;
+
+                &+.input__label {
+                    color: $accent;
+                }
+            }
+        }
     }
 
     &--subscribe-form {
-
         .input__field {
             padding-left: 16px;
             padding-right: 16px;
@@ -36,7 +47,6 @@
             border-radius: 4px;
             background-color: #FFF;
         }
-
     }
 }
 

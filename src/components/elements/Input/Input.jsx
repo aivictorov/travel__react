@@ -1,9 +1,18 @@
 import './Input.scss';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction, validation = true, message, autocomplete = "on" }) => {
 
+    const inputRef = useRef();
+
+    useEffect(() => {
+        if (message) inputRef.current.classList.add('error');
+        if (!message) inputRef.current.classList.remove('error');
+     }, [message])
+
     return (
-        <div className={`input input--${style}`}>
+        <div className={`input input--${style}`} ref={inputRef}>
             <input
                 name={name}
                 className="input__field"
