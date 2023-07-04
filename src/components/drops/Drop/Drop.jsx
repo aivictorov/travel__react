@@ -1,7 +1,7 @@
 import './Drop.scss';
 import { useEffect } from 'react';
 
-const Drop = ({ name, style, isOpen, onClose, content }) => {
+const Drop = ({ name = "drop", style, isOpen, onClose, content }) => {
 
     let addClass = '';
     if (style) addClass = ' drop--' + style
@@ -11,7 +11,7 @@ const Drop = ({ name, style, isOpen, onClose, content }) => {
             if (event.key === 'Escape') onClose();
         };
 
-        document.addEventListener('click', (event) => {
+        document.addEventListener('mousedown', (event) => {
             if (Array.isArray(name)) {
                 if (!name.includes(event.target.name)) onClose();
             } else {
@@ -22,19 +22,20 @@ const Drop = ({ name, style, isOpen, onClose, content }) => {
         document.addEventListener('keydown', closeDropByKey);
 
         return () => {
-            document.removeEventListener('click', onClose);
+            document.removeEventListener('mousedown', onClose);
             document.removeEventListener('keydown', closeDropByKey);
         };
     }, []);
 
     if (!isOpen) return null;
-    
+
     if (content.type.name === "DropList" && content.props.list.length === 0) return null;
 
     return (
         <div
             className={'drop' + addClass}
             onClick={(event) => { event.stopPropagation() }}
+            onMouseDown={(event) => { event.stopPropagation() }}
         >
             {content}
         </div>

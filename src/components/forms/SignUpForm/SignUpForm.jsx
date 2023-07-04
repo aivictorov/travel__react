@@ -1,5 +1,6 @@
-import './SignUpForm.scss';
-import { useRef, useState } from 'react';
+// import './SignUpForm.scss';
+
+import { useState } from 'react';
 import Checkbox from './../../elements/Checkbox/Checkbox';
 import Modal from './../../modals/Modal/Modal';
 import ModalWindow from './../../modals/ModalWindow/ModalWindow';
@@ -8,116 +9,157 @@ import ButtonLink from '../../elements/ButtonLink/ButtonLink';
 import PrivacyPolicy from './../../modals/PrivacyPolicy/PrivacyPolicy';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../elements/Button/Button';
+import Input from '../../elements/Input/Input';
 
 const SignUpForm = () => {
-    const passwordRef = useRef();
-    const confirmPasswordRef = useRef();
-    const rememberCheckboxRef = useRef();
-
+    const navigate = useNavigate();
 
     const [openTermsModal, setOpenTermsModal] = useState(false);
     const [openPrivacyPolicyModal, setOpenPrivacyPolicyModal] = useState(false);
 
-    const navigate = useNavigate();
+    const [firstName, setFirstName] = useState('');
+    const [firstNameCheckOn, setFirstNameCheckOn] = useState(false);
+    const [firstNameCheckMsg, setFirstNameCheckMsg] = useState('');
 
+    const [lastName, setLastName] = useState('');
+    const [lastNameCheckOn, setLastNameCheckOn] = useState(false);
+    const [lastNameCheckMsg, setLastNameCheckMsg] = useState('');
+
+    const [email, setEmail] = useState('');
+    const [emailCheckOn, setEmailCheckOn] = useState(false);
+    const [emailCheckMsg, setEmailCheckMsg] = useState('');
+
+    const [phone, setPhone] = useState('');
+    const [phoneCheckOn, setPhoneCheckOn] = useState(false);
+    const [phoneCheckMsg, setPhoneCheckMsg] = useState('');
+
+    const [password, setPassword] = useState('');
+    const [passwordCheckOn, setPasswordCheckOn] = useState(false);
+    const [passwordCheckMsg, setPasswordCheckMsg] = useState('');
+
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [confirmPasswordCheckOn, setConfirmPasswordCheckOn] = useState(false);
+    const [confirmPasswordCheckMsg, setConfirmPasswordCheckMsg] = useState('');
+
+    const [agreement, setAgreement] = useState(true);
+
+    const getSignUpParams = () => {
+        // if (validateForm()) {
+            const signUpParams = {
+                firstName:firstName.trim(),
+                lastName:lastName.trim(),
+                email:email.trim(),
+                phone:phone.trim(),
+                password:password,
+                confirmPassword:confirmPassword,
+                agreement:agreement,
+            };
+            alert(JSON.stringify(signUpParams));
+        // };
+    };
 
     return (
         <div className="login-form">
             <div className="login-form__input-group">
                 <div className="login-form__input-group-row">
-                    <div className="input" style={{ width: 308 }}>
-                        <input
-                            className="input__field"
-                            type="text"
+                    <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
+                        <Input
+                            label="First Name"
                             placeholder="John"
+                            value={firstName}
+                            onChangeFunction={setFirstName}
+                            validation={firstNameCheckOn}
+                            message={firstNameCheckMsg}
                         />
-                        <div className="input__label">First Name</div>
                     </div>
-                    <div className="input" style={{ width: 308 }}>
-                        <input
-                            className="input__field"
-                            type="text"
+                    <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
+                        <Input
+                            label="Last Name"
                             placeholder="Doe"
+                            value={lastName}
+                            onChangeFunction={setLastName}
+                            validation={lastNameCheckOn}
+                            message={lastNameCheckMsg}
                         />
-                        <div className="input__label">Last Name</div>
                     </div>
                 </div>
+
                 <div className="login-form__input-group-row">
-                    <div className="input" style={{ width: 308 }}>
-                        <input
-                            className="input__field"
-                            type="text"
+                    <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
+                        <Input
+                            label="Email"
                             placeholder="Enter e-mail"
+                            value={email}
+                            onChangeFunction={setEmail}
+                            validation={emailCheckOn}
+                            message={emailCheckMsg}
                         />
-                        <div className="input__label">Email</div>
                     </div>
-                    <div className="input" style={{ width: 308 }}>
-                        <input
-                            className="input__field"
-                            type="text"
+                    <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
+                        <Input
+                            label="Phone Number"
                             placeholder="+79991234567"
+                            value={phone}
+                            onChangeFunction={setPhone}
+                            validation={phoneCheckOn}
+                            message={phoneCheckMsg}
                         />
-                        <div className="input__label">Phone Number</div>
                     </div>
                 </div>
 
                 <div className="login-form__input-group-row">
-                    <div className="input" style={{ width: "100%" }}>
-                        <input
-                            className="input__field"
-                            type="text"
-                            placeholder='Enter password'
-                            ref={passwordRef}
+
+                    <div className="login-form__input-wrapper">
+                        <Input
+                            label="Password"
+                            type="password"
+                            placeholder="Enter password"
+                            value={password}
+                            onChangeFunction={setPassword}
+                            validation={passwordCheckOn}
+                            message={passwordCheckMsg}
                         />
-                        <div className="input__label">Password</div>
-                        <button
-                            className="input__icon"
-                            type="button"
-                            onClick={() => {
-                                if (passwordRef.current.type === "password") {
-                                    passwordRef.current.type = "text";
-                                } else if (passwordRef.current.type === "text") {
-                                    passwordRef.current.type = "password"
-                                }
-                            }}
-                        >
-                            <svg width={24} height={24}>
-                                <use href="#eye-off"> </use>
-                            </svg>
-                        </button>
+                    </div>
+
+                    {/* <button
+                        className="input__icon"
+                        type="button"
+                        onClick={() => {
+                            if (passwordRef.current.type === "password") {
+                                passwordRef.current.type = "text";
+                            } else if (passwordRef.current.type === "text") {
+                                passwordRef.current.type = "password"
+                            }
+                        }}
+                    >
+                        <svg width={24} height={24}>
+                            <use href="#eye-off"> </use>
+                        </svg>
+                    </button> */}
+                </div>
+
+                <div className="login-form__input-group-row">
+                    <div className="login-form__input-wrapper">
+                        <Input
+                            label="Confirm Password"
+                            type="password"
+                            placeholder="Confirm password"
+                            value={confirmPassword}
+                            onChangeFunction={setConfirmPassword}
+                            validation={confirmPasswordCheckOn}
+                            message={confirmPasswordCheckMsg}
+                        />
                     </div>
                 </div>
-                <div className="login-form__input-group-row">
-                    <div className="input" style={{ width: "100%" }}>
-                        <input
-                            className="input__field"
-                            type="text"
-                            ref={confirmPasswordRef}
-                            placeholder='Confirm password'
 
-                        />
-                        <div className="input__label">Confirm Password</div>
-                        <button
-                            className="input__icon"
-                            type="button"
-                            onClick={() => {
-                                if (confirmPasswordRef.current.type === "password") {
-                                    confirmPasswordRef.current.type = "text";
-                                } else if (confirmPasswordRef.current.type === "text") {
-                                    confirmPasswordRef.current.type = "password"
-                                }
-                            }}
-                        >
-                            <svg width={24} height={24}>
-                                <use href="#eye-off"> </use>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div className="login-form__input-group-row">
 
+
+                <div className="login-form__input-group-row">
                     <Checkbox
-                        name={
+                        name="agreement"
+                        checked={agreement}
+                        onChangeFunction={setAgreement}
+                        text={
                             <>
                                 {"I agree to all the "}
                                 <ButtonLink
@@ -141,7 +183,6 @@ const SignUpForm = () => {
                                 />
                             </>
                         }
-                        ref={rememberCheckboxRef}
                     />
                 </div>
             </div>
@@ -150,7 +191,8 @@ const SignUpForm = () => {
                     text="Create account"
                     style="bold w100"
                     action={() => {
-                        if (!rememberCheckboxRef.current.checked) alert('ALERT');
+                        getSignUpParams()
+                        // if (!rememberCheckboxRef.current.checked) alert('ALERT');
                     }}
                 />
                 <div className="login-form__sign-up-link-row">

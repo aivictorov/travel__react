@@ -1,25 +1,30 @@
 import Button from './../../elements/Button/Button';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
+import users from './../../../data/users';
 
 const AccountTabsMain = () => {
 
+    const { userID } = useContext(AppContext);
+
+    const user = users.find((user) => {
+        return user.id === userID;
+    })
+
     const items = [
-        { name: 'Name', value: 'John Doe' },
-        { name: 'Email', value: 'John.doe@gmail.com' },
-        { name: 'Password', value: '************' },
-        { name: 'Phone number', value: '+1 000-000-0000' },
-        { name: 'Address', value: 'St 32 main downtown, Los Angeles, California, USA' },
-        { name: 'Date of birth', value: '01-01-1992' },
+        { name: 'Name', value: user.name },
+        { name: 'Email', value: user.email },
+        { name: 'Password', value: '********' },
+        { name: 'Phone number', value: user.phoneNumber },
+        { name: 'Address', value: user.address },
+        { name: 'Date of birth', value: user.dateOfBirth },
     ];
 
     let change = false;
     // change = true;
 
     return (
-        <div
-            className="account-tabs__content"
-            tab-content="account"
-            tab-group="account"
-        >
+        <div className="account-tabs__content">
             <h2 className="account-tabs__content-title">Account</h2>
             <ul className="account-info">
                 {items.map((item) => {

@@ -1,56 +1,108 @@
 import './LoginForm.scss';
-import { useContext, useRef } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from './../../../App';
 import Button from '../../elements/Button/Button';
 import Checkbox from './../../elements/Checkbox/Checkbox';
 import ButtonLink from './../../elements/ButtonLink/ButtonLink';
+import Input from '../../elements/Input/Input';
+import { checkEmail, checkNotEmpty, checkPasswordNotEmpty } from '../../../utils/validationFunctions';
+import users from './../../../data/users';
 
 const LoginForm = () => {
-    const { setUserAuth } = useContext(AppContext);
+    const { setUserID, setUserAuth } = useContext(AppContext);
     const navigate = useNavigate();
 
-    const inputPasswordRef = useRef();
+    const [email, setEmail] = useState('');
+    const [emailCheckOn, setEmailCheckOn] = useState(false);
+    const [emailCheckMsg, setEmailCheckMsg] = useState('');
+
+    const [password, setPassword] = useState('');
+    const [passwordCheckOn, setPasswordCheckOn] = useState(false);
+    const [passwordCheckMsg, setPasswordCheckMsg] = useState('');
+
+    const [remember, setRemember] = useState(false);
+
+    // === VALIDATION ===
+
+    function validateForm() {
+        let result = [];
+
+        if (!checkEmail(email, setEmailCheckMsg)) {
+            setEmailCheckOn(true);
+            result.push(false);
+        } else {
+            setEmailCheckOn(false);
+        };
+
+        if (!checkNotEmpty(password, setPasswordCheckMsg, 'password')) {
+            setPasswordCheckOn(true);
+            result.push(false);
+        } else {
+            setPasswordCheckOn(false);
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
+    const getLoginParams = () => {
+        if (validateForm()) {
+            const loginParams = {
+                email: email.trim(),
+                password: password.trim(),
+                remember: remember,
+            };
+            console.log(JSON.stringify(loginParams));
+            authorizeUser(loginParams);
+        };
+    };
+
+    const authorizeUser = (loginParams) => {
+        const user = users.find((user) => {
+            return loginParams.email === user.email;
+        });
+
+        if (user) {
+            setUserID(user.id);
+            setUserAuth(true)
+            navigate("/account");
+        } else {
+            console.log('User not found');
+        }
+    };
 
     return (
-        <div className="login-form">
+        <form className="login-form">
             <div className="login-form__input-group">
-                <div className="input" style={{ width: "100%" }}>
-                    <input
-                        className="input__field"
-                        type="text"
+                <div className="login-form__input-wrapper">
+                    <Input
+                        label="Email"
                         placeholder="Enter e-mail"
-                        // defaultValue="john.doe@gmail.com"
+                        value={email}
+                        onChangeFunction={setEmail}
+                        validation={emailCheckOn}
+                        message={emailCheckMsg}
                     />
-                    <div className="input__label">Email</div>
                 </div>
-                <div className="input" style={{ width: "100%" }}>
-                    <input
-                        ref={inputPasswordRef}
-                        className="input__field"
+                <div className="login-form__input-wrapper">
+                    <Input
+                        label="Password"
                         type="password"
                         placeholder='Enter password'
+                        value={password}
+                        onChangeFunction={setPassword}
+                        validation={passwordCheckOn}
+                        message={passwordCheckMsg}
                     />
-                    <div className="input__label">Password</div>
-                    <button
-                        className="input__icon"
-                        type="button"
-                        onClick={() => {
-                            if (inputPasswordRef.current.type === "password") {
-                                inputPasswordRef.current.type = "text";
-                            } else if (inputPasswordRef.current.type === "text") {
-                                inputPasswordRef.current.type = "password"
-                            }
-                        }}
-                    >
-                        <svg width={24} height={24}>
-                            <use href="#eye-off"> </use>
-                        </svg>
-                    </button>
                 </div>
                 <div className="login-form__input-group-row">
                     <Checkbox
-                        name="Remember me"
+                        name="remember"
+                        text="Remember me"
+                        checked={remember}
+                        onChangeFunction={setRemember}
                     />
                     <ButtonLink
                         text="Forgot Password"
@@ -61,15 +113,16 @@ const LoginForm = () => {
             <div className="login-form__button-group">
                 <Button
                     text="Login"
-                    action={() => {
-                        setUserAuth(true);
-                        navigate("/account");
+                    style="bold"
+                    type="submit"
+                    action={(event) => {
+                        event.preventDefault();
+                        getLoginParams();
                     }}
                 />
                 <div className="login-form__sign-up-link-row">
                     <span className="login-form__text">
-                        Don’t have an account?
-                        {" "}
+                        Don’t have an account?{" "}
                     </span>
                     <ButtonLink
                         text="Sign up"
@@ -78,7 +131,7 @@ const LoginForm = () => {
                     />
                 </div>
             </div>
-        </div>
+        </form>
     );
 }
 

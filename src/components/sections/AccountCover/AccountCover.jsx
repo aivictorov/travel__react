@@ -5,9 +5,17 @@ import Button from './../../elements/Button/Button';
 import UploadCover from './../../modals/UploadCover/UploadCover';
 import Modal from './../../modals/Modal/Modal';
 import ModalWindow from './../../modals/ModalWindow/ModalWindow';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from './../../../App';
+import users from './../../../data/users';
 
 const AccountCover = () => {
+    const { userID } = useContext(AppContext);
+
+    const user = users.find((user) => {
+        return user.id === userID;
+    })
+
     const [openModal, setOpenModal] = useState(false);
 
     return (
@@ -31,7 +39,7 @@ const AccountCover = () => {
                 <div className="account-cover__user">
                     <div className="account-cover__user-avatar">
                         <div className="account-cover__user-avatar-image">
-                            <img src={avatarImg} alt="user-avatar" />
+                            <img src={user.avatar} alt="user-avatar" />
                         </div>
                         <button
                             className="account-cover__user-avatar-edit-button"
@@ -40,8 +48,8 @@ const AccountCover = () => {
                             <svg width={24} height={24}><use href="#pen-icon" /></svg>
                         </button>
                     </div>
-                    <div className="account-cover__user-name">John Doe</div>
-                    <div className="account-cover__user-email">john.doe@gmail.com</div>
+                    <div className="account-cover__user-name">{user.name}</div>
+                    <div className="account-cover__user-email">{user.email}</div>
                 </div>
             </div>
         </section>

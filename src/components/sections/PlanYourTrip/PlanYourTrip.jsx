@@ -109,7 +109,6 @@ const PlanYourTrip = () => {
         },
     ];
 
-
     const tripCardsRef = useRef(null);
 
     function scrollToRef() {
@@ -131,7 +130,6 @@ const PlanYourTrip = () => {
                 <div
                     className="plan-your-trip__cards"
                     ref={tripCardsRef}
-
                 >
                     {cards.map((card, index) => {
                         if (index < numberOfCards) {

@@ -1,11 +1,11 @@
-import UserDroplistMenuItem from "./UserDroplistMenuItem";
+import UserMenuListItem from "./UserMenuListItem";
 
-const UserDroplistMenu = ({ data }) => {
+const UserMenuList = ({ data }) => {
     return (
-        <ul className="user-droplist__menu">
+        <ul className="user-menu-list">
             {data.map((item, index) => {
                 return (
-                    <UserDroplistMenuItem
+                    <UserMenuListItem
                         key={index}
                         item={item}
                     />
@@ -15,4 +15,4 @@ const UserDroplistMenu = ({ data }) => {
     );
 };
 
-export default UserDroplistMenu;
+export default UserMenuList;

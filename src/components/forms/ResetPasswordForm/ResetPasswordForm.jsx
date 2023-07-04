@@ -1,31 +1,41 @@
 import './ResetPasswordForm.scss';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from './../../elements/Button/Button';
+import Input from './../../elements/Input/Input';
 
 const ResetPasswordForm = () => {
     const navigate = useNavigate();
 
+    const [email, setEmail] = useState('');
+    const [emailCheckOn, setEmailCheckOn] = useState(false);
+    const [emailCheckMsg, setEmailCheckMsg] = useState('');
+
     return (
         <div className="login-form">
             <div className="login-form__input-group">
-                <div className="input" style={{ width: "100%" }}>
-                    <input
-                        className="input__field"
-                        type="text"
+                <div className="login-form__input-wrapper">
+                    <Input
+                        label="Email"
                         placeholder="Enter e-mail"
-                        // defaultValue="john.doe@gmail.com"
+                        value={email}
+                        onChangeFunction={setEmail}
+                        validation={emailCheckOn}
+                        message={emailCheckMsg}
                     />
-                    <div className="input__label">Email</div>
                 </div>
             </div>
             <div className="login-form__button-group">
-                <button
-                    className="button button--bold"
-                    type="button"
-                    style={{ width: "100%" }}
-                    onClick={() => { navigate('/verify-code') }}
-                >
-                    Submit
-                </button>
+                <Button
+                    text="Submit"
+                    style="bold"
+                    type="submit"
+                    action={(event) => {
+                        event.preventDefault();
+                        // getLoginParams();
+                        navigate('/verify-code')
+                    }}
+                />
             </div>
         </div>
     );

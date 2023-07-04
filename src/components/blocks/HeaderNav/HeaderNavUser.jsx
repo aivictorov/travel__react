@@ -1,34 +1,33 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../../App";
-import userAvatar from './../../../img/users/avatars/01.jpg'
-import UserDroplist from './../../drops/UserDroplist/UserDroplist';
+import UserDroplist from '../../drops/UserMenu/UserMenu';
+import { AppContext } from './../../../App';
+import users from './../../../data/users';
+import Drop from './../../drops/Drop/Drop';
+import UserMenu from './../../drops/UserMenu/UserMenu';
 
 const HeaderNavUser = () => {
-    const navigate = useNavigate(AppContext);
-    const { activeTabs, setActiveTabs } = useContext(AppContext);
+    const navigate = useNavigate();
+    const { activeTabs, setActiveTabs, userID, accountTabsRef } = useContext(AppContext);
 
-    const userDroplistRef = useRef(null);
+    const user = users.find((user) => {
+        return user.id === userID;
+    });
 
-    const toggleDropdown = () => {
-        userDroplistRef.current.classList.toggle('active');
-    }
+    const [openDropMenu, setOpenDropMenu] = useState(false);
 
-    useEffect(() => {
-        const closeDropdown = () => userDroplistRef.current.classList.remove('active');
+    let userName = user.name.split(' ');
+    userName[1] = userName[1].slice(0, 1) + '.'
+    userName = userName.join(' ');
 
-        const closeDropdownByKey = (event) => {
-            if (event.key === 'Escape') closeDropdown();
-        };
+    function scrollToRef(ref) {
+        ref.current.scrollIntoView({ block: 'start' });
+    };
 
-        document.addEventListener('click', closeDropdown);
-        document.addEventListener('keydown', closeDropdownByKey);
-
-        return () => {
-            document.removeEventListener('click', closeDropdown);
-            document.removeEventListener('keydown', closeDropdownByKey);
-        };
-    }, []);
+    function navigateToAccountAndScroll() {
+        navigate('/account');
+        setTimeout(() => { scrollToRef(accountTabsRef) }, 250);
+    };
 
     return (
         <div className="header-nav__right">
@@ -37,7 +36,7 @@ const HeaderNavUser = () => {
                     className="header-nav__item"
                     onClick={() => {
                         setActiveTabs({ ...activeTabs, accountTabs: 'favourites', accountTabsFav: 'flights' });
-                        navigate('/account');
+                        navigateToAccountAndScroll();
                     }}
                 >
                     <svg width={24} height={24}>
@@ -51,15 +50,14 @@ const HeaderNavUser = () => {
                 <button
                     className="header-nav__item"
                     type="button"
-                    dropdown-button="user"
-                    onClick={(event) => {
+                    onMouseDown={(event) => {
                         event.stopPropagation();
-                        toggleDropdown();
+                        setOpenDropMenu(!openDropMenu);
                     }}
                 >
                     <div className="header-nav__avatar">
                         <div className="header-nav__avatar-image">
-                            <img src={userAvatar} alt="user-avatar" />
+                            <img src={user.avatar} alt="user-avatar" />
                         </div>
                         <div className="header-nav__avatar-button">
                             <svg width={10} height={10}>
@@ -67,9 +65,20 @@ const HeaderNavUser = () => {
                             </svg>
                         </div>
                     </div>
-                    John D.
+                    {userName}
                 </button>
-                <UserDroplist ref={userDroplistRef} />
+
+                <Drop
+                    name="menu"
+                    style="menu"
+                    isOpen={openDropMenu}
+                    onClose={() => setOpenDropMenu(false)}
+                    content={<UserMenu />}
+                />
+
+
+
+
             </div>
         </div>
     );

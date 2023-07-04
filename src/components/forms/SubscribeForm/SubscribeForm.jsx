@@ -6,6 +6,7 @@ import Subscribe from './../../modals/Subscribe/Subscribe';
 import Modal from './../../modals/Modal/Modal';
 import ModalWindow from './../../modals/ModalWindow/ModalWindow';
 import Input from './../../elements/Input/Input';
+import { checkEmail } from '../../../utils/validationFunctions';
 
 const SubscribeForm = () => {
 
@@ -15,26 +16,26 @@ const SubscribeForm = () => {
     const [emailCheckOn, setEmailCheckOn] = useState(false);
     const [emailCheckMsg, setEmailCheckMsg] = useState('');
 
-    function checkEmail() {
-        let result = false;
-        const template = /^[A-Z][0-9A-Z._]+@[A-Z]+.[A-Z]{2,}$/i;
+    // function checkEmail() {
+    //     let result = false;
+    //     const template = /^[A-Z][0-9A-Z._]+@[A-Z]+.[A-Z]{2,}$/i;
 
-        if (!email.trim()) {
-            setEmailCheckMsg('Please, enter email');
-        } else if (!template.test(email.trim())) {
-            setEmailCheckMsg('Incorrect format of email');
-        } else {
-            setEmailCheckMsg('');
-            result = true;
-        };
+    //     if (!email.trim()) {
+    //         setEmailCheckMsg('Please, enter email');
+    //     } else if (!template.test(email.trim())) {
+    //         setEmailCheckMsg('Incorrect format of email');
+    //     } else {
+    //         setEmailCheckMsg('');
+    //         result = true;
+    //     };
 
-        return result;
-    }
+    //     return result;
+    // }
 
     function validateForm() {
         let result = [];
 
-        if (!checkEmail()) {
+        if (!checkEmail(email, setEmailCheckMsg)) {
             setEmailCheckOn(true);
             result.push(false);
         } else {
@@ -45,7 +46,7 @@ const SubscribeForm = () => {
     };
 
     useEffect(() => {
-        if (emailCheckOn) checkEmail();
+        if (emailCheckOn) checkEmail(email, setEmailCheckMsg);
     }, [email])
 
     return (

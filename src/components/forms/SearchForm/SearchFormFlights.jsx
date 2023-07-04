@@ -25,6 +25,12 @@ const SearchFormFlights = ({ layout }) => {
     const [passangers, setPassangers] = useState(flightSearchParams.passangers || 1);
     const [serviceClass, setServiceClass] = useState(flightSearchParams.class || 'economy');
 
+    const airports = [];
+
+    destinations.forEach((item) => {
+        airports.push(item.airport);
+    });
+
     function formatPassAndClass(passangers, serviceClass) {
         return `${passangers} ${(passangers === 1) ? 'Passenger' : 'Passengers'}, ${serviceClass.charAt(0).toUpperCase() + serviceClass.slice(1)}`
     }
@@ -44,9 +50,9 @@ const SearchFormFlights = ({ layout }) => {
     useEffect(() => {
         let list = [];
 
-        destinations.forEach((item) => {
-            if (from !== '' && item.airport.toLowerCase().includes(from.toLowerCase())) {
-                list.push(item.airport);
+        airports.forEach((item) => {
+            if (from !== '' && item.toLowerCase().includes(from.toLowerCase())) {
+                list.push(item);
             }
         });
 
@@ -60,9 +66,9 @@ const SearchFormFlights = ({ layout }) => {
     useEffect(() => {
         let list = [];
 
-        destinations.forEach((item) => {
-            if (to !== '' && item.airport.toLowerCase().includes(to.toLowerCase())) {
-                list.push(item.airport);
+        airports.forEach((item) => {
+            if (to !== '' && item.toLowerCase().includes(to.toLowerCase())) {
+                list.push(item);
             }
         });
 
@@ -86,7 +92,7 @@ const SearchFormFlights = ({ layout }) => {
 
         if (!from.trim()) {
             setFromCheckMsg('Please, enter airport');
-        } else if (!dropFromList.includes(from.trim())) {
+        } else if (!airports.includes(from.trim())) {
             setFromCheckMsg('Airport not found');
         } else {
             setFromCheckMsg('');
@@ -106,8 +112,6 @@ const SearchFormFlights = ({ layout }) => {
 
     function checkTo() {
         let result = false;
-
-console.log(dropToList.includes(to.trim()));
 
         if (!to.trim()) {
             setToCheckMsg('Please, enter airport');

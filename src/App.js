@@ -26,6 +26,7 @@ import hotels from './data/hotels';
 import airlines from './data/airlines';
 import reviews from './data/reviews';
 import users from './data/users';
+import { useRef } from 'react';
 
 export const AppContext = createContext(null);
 
@@ -53,25 +54,10 @@ function App() {
         }
     );
 
-    const [user, setUser] = useState(
-        {
-            id: 0,
-            name: 'John Doe',
-            email: 'John.doe@gmail.com',
-            password: '************',
-            phoneNumber: '+1 000-000-0000',
-            address: 'St 32 main downtown, Los Angeles, California, USA',
-            dateOfBirth: '01-01-1992',
-
-            favourites: {
-                flights: [1, 3, 17],
-                hotels: [1, 3],
-            }
-        }
-    );
+    const [userID, setUserID] = useState(-1);
+    const [userAuth, setUserAuth] = useState(false);
 
     const [userData, setUserData] = useState([1, 3, 17]);
-    const [userAuth, setUserAuth] = useState(false);
 
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
@@ -79,6 +65,8 @@ function App() {
         accountTabsBookings: 'flights',
         accountTabsFav: 'flights',
     });
+
+    const accountTabsRef = useRef(null);
 
     return (
         <AppContext.Provider value={{
@@ -89,9 +77,11 @@ function App() {
             users,
             flightSearchParams, setFlightSearchParams,
             hotelSearchParams, setHotelSearchParams,
-            userData, setUserData,
+            userID, setUserID,
             userAuth, setUserAuth,
-            activeTabs, setActiveTabs
+            userData, setUserData,
+            activeTabs, setActiveTabs,
+            accountTabsRef,
         }}>
             <div className="App">
                 <Router>

@@ -8,7 +8,7 @@ import { AppContext } from '../../../App';
 import Tabs from './../../elements/Tabs/Tabs';
 
 const AccountTabs = () => {
-    const { activeTabs, setActiveTabs } = useContext(AppContext);
+    const { activeTabs, setActiveTabs, accountTabsRef } = useContext(AppContext);
 
     const tabs = [
         {
@@ -42,7 +42,7 @@ const AccountTabs = () => {
     ]
 
     return (
-        <section className="account-tabs" tabs="account">
+        <section className="account-tabs" tabs="account" ref={accountTabsRef}>
             <div className="container">
                 <div className="account-tabs__tabs-wrapper">
                     <Tabs tabs={tabs} />

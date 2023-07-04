@@ -1,19 +1,32 @@
-import './UserDroplist.scss'
-import { forwardRef, useContext } from "react";
+import './UserMenu.scss'
+import { useContext, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from "../../../App";
-import UserDroplistMenu from './UserDroplistMenu';
-import userAvatar from './../../../img/users/avatars/01.jpg'
+import UserDroplistMenu from './UserMenuList';
 import userIcon from './../../../img/icons/user-dropdown/user.svg';
 import cardIcon from './../../../img/icons/user-dropdown/card.svg';
 import settingsIcon from './../../../img/icons/user-dropdown/settings.svg';
 import supportIcon from './../../../img/icons/user-dropdown/support.svg';
 import logoutIcon from './../../../img/icons/user-dropdown/logout.svg';
+import users from './../../../data/users';
 
-const UserDroplist = forwardRef(({ }, ref) => {
-    const { setUserAuth, activeTabs, setActiveTabs } = useContext(AppContext);
+const UserMenu = () => {
+    const { setUserAuth, activeTabs, setActiveTabs, userID, accountTabsRef } = useContext(AppContext);
+
+    const user = users.find((user) => {
+        return user.id === userID;
+    });
 
     const navigate = useNavigate();
+
+    function scrollToRef(ref) {
+        ref.current.scrollIntoView({ block: 'start' });
+    };
+
+    function navigateToAccountAndScroll() {
+        navigate('/account');
+        setTimeout(() => { scrollToRef(accountTabsRef) }, 250);
+    };
 
     const data1 = [
         {
@@ -21,17 +34,15 @@ const UserDroplist = forwardRef(({ }, ref) => {
             icon: userIcon,
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
-                navigate('/account');
-                
+                navigateToAccountAndScroll();
             }
         },
-
         {
             title: 'Bookings',
             icon: cardIcon,
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'flights' });
-                navigate('/account');
+                navigateToAccountAndScroll();
             }
         },
         {
@@ -39,10 +50,10 @@ const UserDroplist = forwardRef(({ }, ref) => {
             icon: settingsIcon,
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'payment' });
-                navigate('/account');
+                navigateToAccountAndScroll();
             }
         },
-    ]
+    ];
 
     const data2 = [
         {
@@ -50,7 +61,7 @@ const UserDroplist = forwardRef(({ }, ref) => {
             icon: supportIcon,
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
-                navigate('/account');
+                navigateToAccountAndScroll();
             }
         },
         {
@@ -60,30 +71,26 @@ const UserDroplist = forwardRef(({ }, ref) => {
                 setUserAuth(false);
             }
         },
-    ]
+    ];
+
+
+
 
     return (
-        <div
-            className="user-droplist"
-            dropdown="user"
-            ref={ref}
-            onClick={(event) => {
-                event.stopPropagation();
-            }}
-        >
-            <div className="user-droplist__header">
-                <div className="user-droplist__avatar">
-                    <img src={userAvatar} alt="user-avatar" />
+        <div className='user-menu'>
+            <div className="user-menu__header">
+                <div className="user-menu__avatar">
+                    <img src={user.avatar} alt="user-avatar" />
                 </div>
-                <div className="user-droplist__user">
-                    <div className="user-droplist__user-name">John Doe</div>
-                    <div className="user-droplist__user-status">Online</div>
+                <div className="user-menu__user">
+                    <div className="user-menu__user-name">{user.name}</div>
+                    <div className="user-menu__user-status">Online</div>
                 </div>
             </div>
             <UserDroplistMenu data={data1} />
             <UserDroplistMenu data={data2} />
         </div>
     );
-})
+}
 
-export default UserDroplist;
+export default UserMenu;
