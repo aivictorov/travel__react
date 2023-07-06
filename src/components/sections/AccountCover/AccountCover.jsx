@@ -1,20 +1,14 @@
 import './AccountCover.scss';
 import coverImg from "./../../../img/users/cover.jpg";
-import avatarImg from "./../../../img/users/avatars/01.jpg";
 import Button from './../../elements/Button/Button';
 import UploadCover from './../../modals/UploadCover/UploadCover';
 import Modal from './../../modals/Modal/Modal';
 import ModalWindow from './../../modals/ModalWindow/ModalWindow';
 import { useState, useContext } from 'react';
 import { AppContext } from './../../../App';
-import users from './../../../data/users';
 
 const AccountCover = () => {
-    const { userID } = useContext(AppContext);
-
-    const user = users.find((user) => {
-        return user.id === userID;
-    })
+    const { user } = useContext(AppContext);
 
     const [openModal, setOpenModal] = useState(false);
 

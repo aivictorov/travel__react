@@ -8,14 +8,9 @@ import cardIcon from './../../../img/icons/user-dropdown/card.svg';
 import settingsIcon from './../../../img/icons/user-dropdown/settings.svg';
 import supportIcon from './../../../img/icons/user-dropdown/support.svg';
 import logoutIcon from './../../../img/icons/user-dropdown/logout.svg';
-import users from './../../../data/users';
 
 const UserMenu = () => {
-    const { setUserAuth, activeTabs, setActiveTabs, userID, accountTabsRef } = useContext(AppContext);
-
-    const user = users.find((user) => {
-        return user.id === userID;
-    });
+    const { setUserAuth, activeTabs, setActiveTabs, user, accountTabsRef } = useContext(AppContext);
 
     const navigate = useNavigate();
 

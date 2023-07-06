@@ -14,11 +14,20 @@ const users = [
         phoneNumber: '+1 000-000-0000',
         address: 'St 32 main downtown, Los Angeles, California, USA',
         birthday: '01-01-1992',
-        favourites: {
-            flights: [1, 3],
-            hotels: [1, 2],
-        }
 
+        bookings: {
+            flights: [[1, 2], [5], [6], [8, 9]],
+            hotels: [0, 1],
+        },
+        favs: {
+            flights: [[3, 4], [7]],
+            hotels: [0, 1, 2]
+        },
+        cards: [
+            { number: 1234, validThru: '02/24' },
+            { number: 5678, validThru: '03/25' },
+            { number: 9012, validThru: '04/26' },
+        ]
     },
     {
         id: 1,
@@ -30,10 +39,19 @@ const users = [
         address: 'St 77 main downtown, Los Angeles, California, USA',
         birthday: '01-01-1977',
 
-        favourites: {
-            flights: [1, 2],
-            hotels: [2, 3],
-        }
+        bookings: {
+            flights: [[1, 2], [5], [6], [8, 9]],
+            hotels: [0, 1],
+        },
+        favs: {
+            flights: [[3, 4], [7]],
+            hotels: [0, 1, 2]
+        },
+        cards: [
+            { number: 1234, validThru: '02/24' },
+            { number: 5678, validThru: '03/25' },
+            { number: 9012, validThru: '04/26' },
+        ]
     },
 ];
 

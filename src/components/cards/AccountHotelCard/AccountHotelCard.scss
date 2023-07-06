@@ -1,6 +1,6 @@
 @import './../../../scss/base/_vars.scss';
 
-.account-booking-card {
+.account-hotel-card {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -11,7 +11,7 @@
     box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);
 }
 
-.account-booking-card__icon {
+.account-hotel-card__icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -28,7 +28,7 @@
     }
 }
 
-.account-booking-card__info {
+.account-hotel-card__info {
     display: flex;
     align-items: center;
 
@@ -42,13 +42,13 @@
     }
 }
 
-.account-booking-card__time {
+.account-hotel-card__time {
     display: flex;
     align-items: center;
     column-gap: 16px;
 }
 
-.account-booking-card__time-column {
+.account-hotel-card__time-column {
     display: flex;
     flex-direction: column;
     row-gap: 8px;
@@ -61,12 +61,12 @@
 }
 
 .account-booking-time-column-value,
-.account-booking-card__time-spacer {
+.account-hotel-card__time-spacer {
     font-weight: 600;
     font-size: 20px;
 }
 
-.account-booking-card__features {
+.account-hotel-card__features {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -75,14 +75,14 @@
     max-height: 78px;
 }
 
-.account-booking-card__feature {
+.account-hotel-card__feature {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     column-gap: 8px;
 }
 
-.account-booking-card__feature-icon {
+.account-hotel-card__feature-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,23 +98,23 @@
     }
 }
 
-.account-booking-card__feature-content {
+.account-hotel-card__feature-content {
     display: flex;
     flex-direction: column;
 }
 
-.account-booking-card__feature-title {
+.account-hotel-card__feature-title {
     font-weight: 600;
     font-size: 12px;
     color: transparentize($black, calc(1 - 0.6));
 }
 
-.account-booking-card__feature-value {
+.account-hotel-card__feature-value {
     font-weight: 500;
     font-size: 16px;
 }
 
-.account-booking-card__buttons { 
+.account-hotel-card__buttons { 
     display: flex;
     align-items: center;
     column-gap: 16px;

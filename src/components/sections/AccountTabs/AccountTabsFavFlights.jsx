@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import { AppContext } from '../../../App';
-import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';
+import FavFlightCard from './../../cards/FavFlightCard/FavFlightCard';
 
 const AccountTabsFavFlights = () => {
-    const { userData } = useContext(AppContext);
+    const { user } = useContext(AppContext);
+
+    console.log(user);
 
     return (
         <div
@@ -11,13 +13,9 @@ const AccountTabsFavFlights = () => {
             tab-content="flights"
             tab-group="favourites"
         >
-            {userData.map((item) => {
+            {user.favs.flights.map((item, index) => {
                 return (
-                    <AccountFlightCard
-                        layout="favourites"
-                        key={item}
-                        id={item}
-                    />
+                    <FavFlightCard key={index} ticket={[1, 2]}/>
                 )
             })}
         </div>

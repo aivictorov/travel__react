@@ -1,14 +1,25 @@
 import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
 
 const AccountTabsBookingsFlights = () => {
+    const { user } = useContext(AppContext);
+
     return (
         <div
             className="account-bookings__content"
             tab-content="flights"
             tab-group="bookings"
         >
-            <AccountFlightCard layout="bookings" />
-            <AccountFlightCard layout="bookings" />
+            {user.bookings.flights.map((item, index) => {
+                return (
+                    <AccountFlightCard
+                        key={index}
+                        ids={item}
+                        layout="bookings"
+                    />
+                );
+            })}
         </div>
     );
 }

@@ -10,7 +10,7 @@ import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
 import users from './../../../data/users';
 
 const LoginForm = () => {
-    const { setUserID, setUserAuth } = useContext(AppContext);
+    const { setUser, setUserID, setUserAuth } = useContext(AppContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -53,7 +53,7 @@ const LoginForm = () => {
             password: password.trim(),
             remember: remember,
         };
-        console.log(JSON.stringify(loginParams));
+        
         authorizeUser(loginParams);
     };
 
@@ -63,12 +63,17 @@ const LoginForm = () => {
         });
 
         if (user) {
-            setUserID(user.id);
-            setUserAuth(true)
-            navigate("/account");
+            if (loginParams.password === user.password) {
+                setUser(user);
+                setUserID(user.id)
+                setUserAuth(true)
+                navigate("/account");
+            } else {
+                console.log('Incorrect password');
+            }
         } else {
             console.log('User not found');
-        }
+        };
     };
 
     return (

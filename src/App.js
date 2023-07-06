@@ -19,14 +19,13 @@ import RunScripts from './utils/runScripts';
 import SVG from './SVG';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { createContext, useState } from 'react';
+import { createContext, useState, useRef } from 'react';
 
 import flights from './data/flights';
 import hotels from './data/hotels';
 import airlines from './data/airlines';
 import reviews from './data/reviews';
 import users from './data/users';
-import { useRef } from 'react';
 
 export const AppContext = createContext(null);
 
@@ -54,10 +53,30 @@ function App() {
         }
     );
 
+    const [user, setUser] = useState({
+        id: '',
+        name: '',
+        avatar: '',
+        email: '',
+        password: '',
+        phone: '',
+        adress: '',
+        birthday: '',
+        bookings: {
+            flights: [],
+            hotels: [], 
+        },
+        favs: {
+            flights: [],
+            hotels: [],
+        },
+        cards: [],
+    });
+
     const [userID, setUserID] = useState(-1);
     const [userAuth, setUserAuth] = useState(false);
 
-    const [userData, setUserData] = useState([1, 3, 17]);
+    // const [userData, setUserData] = useState([1, 3, 17]);
 
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
@@ -77,9 +96,10 @@ function App() {
             users,
             flightSearchParams, setFlightSearchParams,
             hotelSearchParams, setHotelSearchParams,
+            user, setUser,
             userID, setUserID,
             userAuth, setUserAuth,
-            userData, setUserData,
+            // userData, setUserData,
             activeTabs, setActiveTabs,
             accountTabsRef,
         }}>

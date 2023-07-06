@@ -1,18 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserDroplist from '../../drops/UserMenu/UserMenu';
 import { AppContext } from './../../../App';
-import users from './../../../data/users';
 import Drop from './../../drops/Drop/Drop';
 import UserMenu from './../../drops/UserMenu/UserMenu';
 
 const HeaderNavUser = () => {
     const navigate = useNavigate();
-    const { activeTabs, setActiveTabs, userID, accountTabsRef } = useContext(AppContext);
-
-    const user = users.find((user) => {
-        return user.id === userID;
-    });
+    const { activeTabs, setActiveTabs, user, accountTabsRef } = useContext(AppContext);
 
     const [openDropMenu, setOpenDropMenu] = useState(false);
 

@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../../../App";
 
 const FavCheckboxButton = ({ id }) => {
-    const { userData, setUserData } = useContext(AppContext);
+    // const { userData, setUserData } = useContext(AppContext);
 
     return (
         <div className="fav-checkbox">
@@ -11,15 +11,15 @@ const FavCheckboxButton = ({ id }) => {
                 <input
                     className="fav-checkbox__hidden visually-hidden"
                     type="checkbox"
-                    checked={userData.includes(id)}
+                    // checked={userData.includes(id)}
                     onChange={(event) => {
-                        if (event.target.checked) {
-                            setUserData([...userData, id])
-                        } else {
-                            setUserData(userData.filter((item) => {
-                                return item !== id
-                            }))
-                        }
+                        // if (event.target.checked) {
+                        //     setUserData([...userData, id])
+                        // } else {
+                        //     setUserData(userData.filter((item) => {
+                        //         return item !== id
+                        //     }))
+                        // }
                     }}
                 />
                 <div
