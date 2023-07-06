@@ -3,7 +3,7 @@ import { FlightListingContext } from "../../../pages/FlightListing";
 import ListingFilterHeader from './ListingFilterHeader';
 import DualRange from './../../elements/DualRange/DualRange';
 
-const ListingFilterDualRange = ({ name, title, min, max, format, changeFilter, resetTrigger}) => {
+const ListingFilterDualRange = ({ name, title, min, max, format, changeFilter, resetTrigger }) => {
 
     let formatValue, flag = true;
 
@@ -69,7 +69,9 @@ const ListingFilterDualRange = ({ name, title, min, max, format, changeFilter, r
                         min={min}
                         max={max}
                         valueOne={valueOne}
+                        setValueOne={setValueOne}
                         valueTwo={valueTwo}
+                        setValueTwo={setValueTwo}
                         valueOneFormatted={valueOneFormatted}
                         valueTwoFormatted={valueTwoFormatted}
                         actionOne={(event) => {

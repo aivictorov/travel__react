@@ -123,6 +123,7 @@ const SignUpForm = () => {
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
                         <Input
+                            style="form msgRight"
                             label="First Name"
                             placeholder="John"
                             value={firstName}
@@ -133,6 +134,7 @@ const SignUpForm = () => {
                     </div>
                     <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
                         <Input
+                            style="form msgRight"
                             label="Last Name"
                             placeholder="Doe"
                             value={lastName}
@@ -146,6 +148,7 @@ const SignUpForm = () => {
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
                         <Input
+                            style="form msgRight"
                             label="Email"
                             placeholder="Enter e-mail"
                             value={email}
@@ -156,6 +159,7 @@ const SignUpForm = () => {
                     </div>
                     <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
                         <Input
+                            style="form msgRight"
                             label="Phone Number"
                             placeholder="+79991234567"
                             value={phone}
@@ -170,6 +174,7 @@ const SignUpForm = () => {
 
                     <div className="login-form__input-wrapper">
                         <Input
+                            style="form msgRight"
                             label="Password"
                             type="password"
                             placeholder="Enter password"
@@ -198,6 +203,7 @@ const SignUpForm = () => {
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper">
                         <Input
+                            style="form msgRight"
                             label="Confirm Password"
                             type="password"
                             placeholder="Confirm password"

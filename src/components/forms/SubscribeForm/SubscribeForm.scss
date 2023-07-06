@@ -17,14 +17,12 @@
 .subscribe-form__title {
     margin-bottom: 25px;
     max-width: 360px;
-    // font-family: 'Trade Gothic LT Std';
     font-weight: 700;
     font-size: 44px;
 }
 
 .subscribe-form__subtitle {
     margin-bottom: 8px;
-    // font-family: 'Trade Gothic LT Std';
     font-weight: 700;
     font-size: 20px;
     color: transparentize($black, calc(1 - 0.8));

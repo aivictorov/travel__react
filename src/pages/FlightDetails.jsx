@@ -4,7 +4,7 @@ import FlightFeatures from "../components/sections/FlightFeatures/FlightFeatures
 import FlightPolicies from './../components/sections/FlightPolicies/FlightPolicies';
 import DetailsHeader from "../components/blocks/DetailsHeader/DetailsHeader";
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
-import FlightTicket from './../components/cards/FlightTicket/FlightTicket';
+import FlightBookingCard from './../components/cards/FlightBookingCard/FlightBookingCard';
 import FlightCover from './../components/sections/FlightCover/FlightCover';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppContext } from './../App';
@@ -42,9 +42,9 @@ const FlightDetails = () => {
                         <FlightCover cover={airline.cover} />
                         <FlightFeatures gallery={airline.gallery} />
                         <FlightPolicies />
-                        <FlightTicket flight={directFlight} direction="Direct"/>
+                        <FlightBookingCard flight={directFlight} direction="Direct"/>
                         {returnID &&
-                            <FlightTicket flight={returnFlight} direction="Return"/>
+                            <FlightBookingCard flight={returnFlight} direction="Return"/>
                         }
                     </div>
                     <div className="details__hotel-content"></div>

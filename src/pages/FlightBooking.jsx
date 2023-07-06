@@ -2,7 +2,7 @@ import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import Footer from './../components/sections/Footer/Footer';
 import BookingLogin from "../components/blocks/BookingLogin/BookingLogin";
 import BookingSummary from "../components/blocks/BookingSummary/BookingSummary";
-import FlightTicket from './../components/cards/FlightTicket/FlightTicket';
+import FlightBookingCard from './../components/cards/FlightBookingCard/FlightBookingCard';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
 import TrackNav from "../components/blocks/TrackNav/TrackNav";
 import { useContext } from "react";
@@ -27,9 +27,9 @@ const FlightBooking = () => {
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">
-                            <FlightTicket layout="booking" flight={directFlight} direction="Direct" />
+                            <FlightBookingCard layout="booking" flight={directFlight} direction="Direct" />
                             {returnID &&
-                                <FlightTicket layout="booking" flight={returnFlight} direction="Return" />
+                                <FlightBookingCard layout="booking" flight={returnFlight} direction="Return" />
                             }
                             <BookingPaymentMethods />
                             {!userAuth ? <BookingLogin /> : <BookingPaymentCards />}

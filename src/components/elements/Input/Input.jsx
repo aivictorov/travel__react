@@ -9,10 +9,20 @@ const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaul
     useEffect(() => {
         if (message) inputRef.current.classList.add('error');
         if (!message) inputRef.current.classList.remove('error');
-     }, [message])
+    }, [message])
+
+    let addClass = '';
+
+    if (style) {
+        const addClassArray = style.split([' ']);
+
+        if (addClassArray.length > 0) {
+            addClass = ' ' + addClassArray.map((item) => item = `input--${item}`).join(' ');
+        };
+    };
 
     return (
-        <div className={`input input--${style}`} ref={inputRef}>
+        <div className={'input' + addClass} ref={inputRef}>
             <input
                 name={name}
                 className="input__field"

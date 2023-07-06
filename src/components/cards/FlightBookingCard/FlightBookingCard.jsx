@@ -1,8 +1,8 @@
-import './FlightTicket.scss';
-import Price from './../../elements/Price/Price';
+import './FlightBookingCard.scss';
+import Price from '../../elements/Price/Price';
 import { formatTime, countDuration, formatWeekDay } from '../../../utils/dateTimeFunctions';
 
-const FlightTicket = ({ layout, direction, flight }) => {
+const FlightBookingCard = ({ layout, direction, flight }) => {
     let addClass = '';
     if (layout === 'booking') addClass = " flight-ticket--booking";
 
@@ -83,4 +83,4 @@ const FlightTicket = ({ layout, direction, flight }) => {
     );
 }
 
-export default FlightTicket;
+export default FlightBookingCard;

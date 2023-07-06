@@ -48,6 +48,12 @@
             background-color: #FFF;
         }
     }
+
+    &--msgRight {
+        .input__message {
+            text-align: right;
+        }
+    }
 }
 
 .input__label {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddCardButton from './../../modals/AddCard/AddCardButton';
+import './AccountTabsPayments.scss';
 
 const AccountTabsPayments = () => {
     // const cardsData = [

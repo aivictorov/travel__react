@@ -18,6 +18,7 @@ const VerifyCodeForm = () => {
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper">
                         <Input
+                            style="form msgRight"
                             name="code"
                             type="password"
                             label="Enter code"

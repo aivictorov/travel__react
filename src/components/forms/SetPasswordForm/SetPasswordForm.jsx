@@ -34,6 +34,7 @@ const SetPasswordForm = () => {
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper">
                         <Input
+                            style="form msgRight"
                             label="Re-enter password"
                             type="password"
                             placeholder="Re-enter password"

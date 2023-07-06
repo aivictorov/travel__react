@@ -76,6 +76,7 @@ const LoginForm = () => {
             <div className="login-form__input-group">
                 <div className="login-form__input-wrapper">
                     <Input
+                        style="form msgRight"
                         label="Email"
                         placeholder="Enter email"
                         value={email}
@@ -86,6 +87,7 @@ const LoginForm = () => {
                 </div>
                 <div className="login-form__input-wrapper">
                     <Input
+                        style="form msgRight"
                         label="Password"
                         type="password"
                         placeholder='Enter password'
@@ -115,7 +117,7 @@ const LoginForm = () => {
                     type="submit"
                     action={(event) => {
                         event.preventDefault();
-                        if (validateForm()) getLoginParams();                       
+                        if (validateForm()) getLoginParams();
                     }}
                 />
                 <div className="login-form__sign-up-link-row">

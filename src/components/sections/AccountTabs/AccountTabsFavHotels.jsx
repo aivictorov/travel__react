@@ -1,4 +1,4 @@
-import AccountTabsFavHotelsCard from "./AccountTabsFavHotelsCard";
+import AccountHotelCard from './../../cards/AccountHotelCard/AccountHotelCard';
 
 const AccountTabsFavHotels = () => {
     return (

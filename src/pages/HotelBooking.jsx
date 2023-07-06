@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import HotelReservation from './../components/cards/HotelReservation/HotelReservation';
+import HotelBookingCard from './../components/cards/HotelBookingCard/HotelBookingCard';
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
 import { AppContext } from './../App';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
@@ -34,7 +34,7 @@ const HotelBooking = () => {
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">
-                            <HotelReservation 
+                            <HotelBookingCard 
                                 hotel={hotel.name}
                                 room={room.name}
                                 price={room.price}

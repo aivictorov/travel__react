@@ -14,9 +14,9 @@ const AccountTabsFavFlights = () => {
             {userData.map((item) => {
                 return (
                     <AccountFlightCard
+                        layout="favourites"
                         key={item}
                         id={item}
-                        layout="favourites"
                     />
                 )
             })}

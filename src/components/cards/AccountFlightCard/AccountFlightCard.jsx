@@ -1,7 +1,7 @@
 import Button from '../../elements/Button/Button';
 import './AccountFlightCard.scss';
-import FavCheckboxButton from './../../elements/FavCheckboxButton/FavCheckboxButton';
-import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
+import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
+import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
 
 const AccountFlightCard = ({ layout }) => {
 

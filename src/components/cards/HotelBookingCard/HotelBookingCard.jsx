@@ -1,7 +1,7 @@
-import './HotelReservation.scss';
-import Price from './../../elements/Price/Price';
+import './HotelBookingCard.scss';
+import Price from '../../elements/Price/Price';
 
-const HotelReservation = ({ hotel, room, price }) => {
+const HotelBookingCard = ({ hotel, room, price }) => {
     return (
         <div className="hotel-reservation">
             <div className="hotel-reservation__top">
@@ -45,4 +45,4 @@ const HotelReservation = ({ hotel, room, price }) => {
     );
 }
 
-export default HotelReservation;
+export default HotelBookingCard;

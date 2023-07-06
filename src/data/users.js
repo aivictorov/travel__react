@@ -13,7 +13,7 @@ const users = [
         password: '123',
         phoneNumber: '+1 000-000-0000',
         address: 'St 32 main downtown, Los Angeles, California, USA',
-        dateOfBirth: '01-01-1992',
+        birthday: '01-01-1992',
         favourites: {
             flights: [1, 3],
             hotels: [1, 2],
@@ -28,7 +28,7 @@ const users = [
         password: '123',
         phoneNumber: '+7 777-000-0000',
         address: 'St 77 main downtown, Los Angeles, California, USA',
-        dateOfBirth: '01-01-1977',
+        birthday: '01-01-1977',
 
         favourites: {
             flights: [1, 2],

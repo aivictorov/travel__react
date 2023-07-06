@@ -1,4 +1,4 @@
-import AccountTabsBookingHotelsCard from './AccountTabsBookingsHotelsCard';
+import AccountHotelCard from './../../cards/AccountHotelCard/AccountHotelCard';
 
 const AccountTabsBookingsHotels = () => {
     return (
@@ -7,8 +7,8 @@ const AccountTabsBookingsHotels = () => {
             tab-content="hotels"
             tab-group="bookings"
         >
-            <AccountTabsBookingHotelsCard />
-            <AccountTabsBookingHotelsCard />
+            <AccountHotelCard />
+            <AccountHotelCard />
         </div>
     );
 }
