@@ -4,15 +4,15 @@ import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButto
 import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
 import flights from './../../../data/flights';
 import airlines from './../../../data/airlines';
+import { findFlight } from '../../../utils/searchFunctions';
+import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFunctions';
 
-const AccountFlightCard = ({ layout, ids }) => {
+import calendarIcon from './../../../img/icons/ticket/calendar.svg';
 
-    const features = [
-        { name: "Date", value: "A12" },
-        { name: "Flight time", value: "Newark(EWR)" },
-        { name: "Gate", value: "A12" },
-        { name: "Seat no.", value: "128" },
-    ];
+const AccountFlightCard = ({ layout, flightTicket }) => {
+
+    let ids = [flightTicket.direct ]
+    if (flightTicket.return) ids.push(flightTicket.return)
 
     return (
         <div className="account-flight-card">
@@ -20,6 +20,13 @@ const AccountFlightCard = ({ layout, ids }) => {
             {ids.map((id) => {
                 const flight = flights.find((item) => item.id === id)
                 const airlineLogo = airlines.find((item) => item.name === flight.airline).logo
+
+                const features = [
+                    { name: "Depart date", value: formatDate(flight.start) },
+                    { name: "Arrive date", value: formatDate(flight.end) },
+                    { name: "Flight time", value: countDuration(flight.start, flight.end) },
+                    { name: "Class", value: "economy" },
+                ];
 
                 return (
                     <div
@@ -39,7 +46,8 @@ const AccountFlightCard = ({ layout, ids }) => {
                                         {flight.from}
                                     </div>
                                     <div className="account-booking-time-column-value">
-                                        12:00 pm
+                                        {/* 12:00 pm */}
+                                        {formatTime(flight.start)}
                                     </div>
                                 </div>
                                 <div className="account-flight-card__time-spacer">—</div>
@@ -60,7 +68,7 @@ const AccountFlightCard = ({ layout, ids }) => {
                                             key={feature.name}
                                         >
                                             <div className="account-flight-card__feature-icon">
-                                                <img src="./img/icons/ticket/calendar.svg" alt="icon" />
+                                                <img src={calendarIcon} alt="icon" />
                                             </div>
                                             <div className="account-flight-card__feature-content">
                                                 <div className="account-flight-card__feature-title">

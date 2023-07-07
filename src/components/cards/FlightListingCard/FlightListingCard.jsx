@@ -5,12 +5,32 @@ import Rating from '../../elements/Rating/Rating';
 import { useNavigate } from 'react-router-dom';
 import Price from '../../elements/Price/Price';
 import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFunctions'
+import { findFlight } from '../../../utils/searchFunctions';
+import { AppContext } from './../../../App';
+import { useContext } from 'react';
 
-const FlightListingCard = ({ ticket }) => {
+const FlightListingCard = ({ flightTicket }) => {
+
+    const { user, setUser, setSelectedFlight } = useContext(AppContext);
+
+    // function addSelectedFlightTicket() {
+    //     setUser({
+    //         ...user,
+    //         selected: {
+    //             ...user.selected,
+    //             flights: flightTicket,
+    //         }
+    //     })
+    // };
+
+
     const navigate = useNavigate();
 
-    let flightsArray = [ticket.direct.id];
-    ticket.return.length !== 0 && flightsArray.push(ticket.return.id);
+    const directFlight = findFlight(flightTicket.direct);
+    const returnFlight = findFlight(flightTicket.return);
+
+    let flightsArray = [directFlight];
+    returnFlight && flightsArray.push(returnFlight);
 
     function formatString(start, end) {
         let startFormatted = formatTime(start);
@@ -25,14 +45,14 @@ const FlightListingCard = ({ ticket }) => {
         <div className="flight-card">
             <div className="flight-card__image">
                 <img
-                    src={ticket.direct.logo}
-                    alt={ticket.airline}
+                    src={directFlight.logo}
+                    alt={flightTicket.airline}
                 />
             </div>
             <div className="flight-card__content">
                 <div className="flight-card__header">
-                    <Rating value={ticket.rating} />
-                    <Price value={ticket.price} before="starting from" />
+                    <Rating value={flightTicket.rating} />
+                    <Price value={flightTicket.price} before="starting from" />
                 </div>
                 <ul className="flight-card__flights">
 
@@ -48,7 +68,7 @@ const FlightListingCard = ({ ticket }) => {
                                     <div className="flight__row">
                                         <div className="flight__column">
                                             <div className="flight__shedule">
-                                                {formatString(ticket.direct.start, ticket.direct.end)}
+                                                {formatString(directFlight.start, directFlight.end)}
                                             </div>
                                             <div className="flight__airline">
                                                 Emirates
@@ -60,7 +80,7 @@ const FlightListingCard = ({ ticket }) => {
                                             </div>
                                         </div>
                                         <div className="flight__column">
-                                            <div className="flight__duration">{countDuration(ticket.direct.start, ticket.direct.end)}</div>
+                                            <div className="flight__duration">{countDuration(directFlight.start, directFlight.end)}</div>
                                             <div className="flight__codes">EWR-BNA</div>
                                         </div>
                                     </div>
@@ -69,7 +89,7 @@ const FlightListingCard = ({ ticket }) => {
                         </div>
                     </li>
 
-                    {ticket.return.length !== 0 &&
+                    {returnFlight.length !== 0 &&
                         <li className="flight__row">
                             <div className="checkbox">
                                 <label className="checkbox__label checkbox__label--flight-card">
@@ -82,7 +102,7 @@ const FlightListingCard = ({ ticket }) => {
                                         <div className="flight__row">
                                             <div className="flight__column">
                                                 <div className="flight__shedule">
-                                                    {formatString(ticket.return.start, ticket.return.end)}
+                                                    {formatString(returnFlight.start, returnFlight.end)}
                                                 </div>
                                                 <div className="flight__airline">
                                                     Emirates
@@ -106,17 +126,23 @@ const FlightListingCard = ({ ticket }) => {
 
                 </ul>
                 <div className="flight-card__buttons">
-                    <FavCheckboxButton id={ticket.direct.id} />
+                    <FavCheckboxButton
+                        flightTicket={flightTicket}
+                    />
                     <div className="flight-card__button-wrapper">
                         <Button
                             text="View Details"
                             style="bold w100"
                             action={() => {
-                                if (flightsArray.length === 1) {
-                                    navigate(`/flight-details/${flightsArray[0]}`)
-                                } else if (flightsArray.length === 2) {
-                                    navigate(`/flight-details/${flightsArray[0]}/${flightsArray[1]}`)
-                                }
+                                setSelectedFlight(flightTicket);
+                                navigate('/flight-details');
+                                // if (flightsArray.length === 1) {
+                                //     setSelectedFlight(flightTicket);
+                                //     navigate(`/flight-details/${flightTicket.direct}`)
+                                // } else if (flightsArray.length === 2) {
+                                //     setSelectedFlight(flightTicket);
+                                //     navigate(`/flight-details/${flightTicket.direct}/${flightTicket.return}`)
+                                // }
                             }}
                         />
                     </div>

@@ -15,7 +15,7 @@ const AccountTabsBookingsFlights = () => {
                 return (
                     <AccountFlightCard
                         key={index}
-                        ids={item}
+                        flightTicket={item}
                         layout="bookings"
                     />
                 );

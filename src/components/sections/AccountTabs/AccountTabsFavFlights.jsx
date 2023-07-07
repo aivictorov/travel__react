@@ -5,17 +5,17 @@ import FavFlightCard from './../../cards/FavFlightCard/FavFlightCard';
 const AccountTabsFavFlights = () => {
     const { user } = useContext(AppContext);
 
-    console.log(user);
-
     return (
         <div
             className="account-bookings__content"
             tab-content="flights"
             tab-group="favourites"
         >
-            {user.favs.flights.map((item, index) => {
+            {user.favs.flights.map((flightTicket, index) => {
                 return (
-                    <FavFlightCard key={index} ticket={[1, 2]}/>
+                    <FavFlightCard
+                        key={index} flightTicket={flightTicket}
+                    />
                 )
             })}
         </div>

@@ -20,7 +20,7 @@ const users = [
             hotels: [0, 1],
         },
         favs: {
-            flights: [[3, 4], [7]],
+            flights: [],
             hotels: [0, 1, 2]
         },
         cards: [
@@ -40,11 +40,11 @@ const users = [
         birthday: '01-01-1977',
 
         bookings: {
-            flights: [[1, 2], [5], [6], [8, 9]],
+            flights: [],
             hotels: [0, 1],
         },
         favs: {
-            flights: [[3, 4], [7]],
+            flights: [],
             hotels: [0, 1, 2]
         },
         cards: [

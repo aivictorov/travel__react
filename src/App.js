@@ -64,7 +64,7 @@ function App() {
         birthday: '',
         bookings: {
             flights: [],
-            hotels: [], 
+            hotels: [],
         },
         favs: {
             flights: [],
@@ -76,7 +76,8 @@ function App() {
     const [userID, setUserID] = useState(-1);
     const [userAuth, setUserAuth] = useState(false);
 
-    // const [userData, setUserData] = useState([1, 3, 17]);
+    const [selectedFlight, setSelectedFlight] = useState('');
+    const [selectedHotel, setSelectedHotel] = useState('');
 
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
@@ -99,9 +100,10 @@ function App() {
             user, setUser,
             userID, setUserID,
             userAuth, setUserAuth,
-            // userData, setUserData,
             activeTabs, setActiveTabs,
             accountTabsRef,
+            selectedFlight, setSelectedFlight,
+            selectedHotel, setSelectedHotel
         }}>
             <div className="App">
                 <Router>
@@ -111,7 +113,8 @@ function App() {
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/flight-search" element={<FlightSearch />}></Route>
                         <Route path="/flight-listing" element={<FlightListing />}></Route>
-                        <Route path="/flight-details/:directID/:returnID?" element={<FlightDetails />}></Route>
+                        {/* <Route path="/flight-details/:directID/:returnID?" element={<FlightDetails />}></Route> */}
+                        <Route path="/flight-details" element={<FlightDetails />}></Route> 
                         <Route path="/flight-booking/:directID/:returnID?" element={<FlightBooking />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
                         <Route path="/hotel-listing" element={<HotelListing />}></Route>

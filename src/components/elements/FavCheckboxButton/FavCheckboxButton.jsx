@@ -2,8 +2,47 @@ import './FavCheckboxButton.scss';
 import { useContext } from "react";
 import { AppContext } from "../../../App";
 
-const FavCheckboxButton = ({ id }) => {
-    // const { userData, setUserData } = useContext(AppContext);
+const FavCheckboxButton = ({ flightTicket, hotelBooking }) => {
+    const { user, setUser } = useContext(AppContext);
+
+    // console.log(flightTicket, user.favs.flights);
+
+    function addFavFlight() {
+        setUser({
+            ...user,
+            favs: {
+                ...user.favs,
+                flights: [
+                    ...user.favs.flights,
+                    flightTicket
+                ],
+            }
+        })
+    };
+
+    function removeFavFlight() {
+        setUser({
+            ...user,
+            favs: {
+                ...user.favs,
+                flights: user.favs.flights.filter((flight) => {
+                    return JSON.stringify(flightTicket) !== JSON.stringify(flight);
+                })
+
+            }
+        })
+    };
+
+    let isChecked = false;
+    if (flightTicket) {
+        user.favs.flights.forEach((flight) => {
+            if (JSON.stringify(flightTicket) === JSON.stringify(flight)) {
+                isChecked = true;
+                return;
+            }
+        })
+    }
+    if (hotelBooking) isChecked = user.favs.hotels.includes(hotelBooking);
 
     return (
         <div className="fav-checkbox">
@@ -11,15 +50,13 @@ const FavCheckboxButton = ({ id }) => {
                 <input
                     className="fav-checkbox__hidden visually-hidden"
                     type="checkbox"
-                    // checked={userData.includes(id)}
+                    checked={isChecked}
                     onChange={(event) => {
-                        // if (event.target.checked) {
-                        //     setUserData([...userData, id])
-                        // } else {
-                        //     setUserData(userData.filter((item) => {
-                        //         return item !== id
-                        //     }))
-                        // }
+                        if (event.target.checked) {
+                            if (flightTicket) addFavFlight();
+                        } else {
+                            if (flightTicket) removeFavFlight();
+                        }
                     }}
                 />
                 <div

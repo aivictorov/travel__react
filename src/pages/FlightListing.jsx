@@ -13,7 +13,8 @@ import Tabs from "../components/elements/Tabs/Tabs";
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
-    const { flights, flightSearchParams } = useContext(AppContext);
+    const { flights, flightSearchParams, user } = useContext(AppContext);
+
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);
@@ -108,6 +109,27 @@ const FlightListing = () => {
         } else {
             flightTickets = createReturnTickets(directFlights, returnFlights);
         };
+        
+        function createOneWayTickets(directFlights) {
+            let results = [];
+
+            directFlights.forEach((directFlight) => {
+
+                const item = {
+                    direct: directFlight.id,
+                    return: [],
+                }
+
+                item.price = item.direct.price;
+                item.airline = item.direct.airline;
+                item.rating = item.direct.rating;
+                item.duration = item.direct.duration;
+
+                results.push(item);
+            });
+
+            return results;
+        };
 
         function createReturnTickets(directFlights, returnFlights) {
             let results = [];
@@ -119,38 +141,17 @@ const FlightListing = () => {
 
                 suitableReturnFlights.forEach((suitableReturnFlight) => {
                     const item = {
-                        direct: directFlight,
-                        return: suitableReturnFlight,
+                        direct: directFlight.id,
+                        return: suitableReturnFlight.id,
                     }
 
-                    item.price = item.direct.price + item.return.price;
-                    item.airline = item.direct.airline;
-                    item.rating = item.direct.rating;
-                    item.duration = item.direct.duration + item.return.duration;
+                    item.price = directFlight.price + suitableReturnFlight.price;
+                    item.airline = directFlight.airline;
+                    item.rating = directFlight.rating;
+                    item.duration = directFlight.duration + suitableReturnFlight.duration;
 
                     results.push(item);
                 });
-            });
-
-            return results;
-        };
-
-        function createOneWayTickets(directFlights) {
-            let results = [];
-
-            directFlights.forEach((directFlight) => {
-
-                const item = {
-                    direct: directFlight,
-                    return: [],
-                }
-
-                item.price = item.direct.price;
-                item.airline = item.direct.airline;
-                item.rating = item.direct.rating;
-                item.duration = item.direct.duration;
-
-                results.push(item);
             });
 
             return results;
@@ -326,7 +327,7 @@ const FlightListing = () => {
                 <br />
                 <br />
                 <p>SEARCH RESULTS </p>
-                {JSON.stringify(searchResults.length)}
+                {JSON.stringify(searchResults)}
                 <br />
                 <br />
                 <p>FILTER PARAMS </p>
@@ -339,6 +340,10 @@ const FlightListing = () => {
                 <br />
                 <p>FILTERED </p>
                 {JSON.stringify(filteredResults.length)}
+                <br />
+                <br />
+                <p>USER </p>
+                {JSON.stringify(user)}
                 <br />
                 <br />
             </>
@@ -383,7 +388,7 @@ const FlightListing = () => {
                                                 index < numberOfResults &&
                                                 <FlightListingCard
                                                     key={index}
-                                                    ticket={ticket}
+                                                    flightTicket={ticket}
                                                 />
                                             )
                                         })}
