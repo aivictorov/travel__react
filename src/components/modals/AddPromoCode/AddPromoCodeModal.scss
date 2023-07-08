@@ -1,10 +1,28 @@
-.add-promo-code {
-    display: flex;
-    flex-direction: column;
-    row-gap: 12px;
+@import './../../../scss/base/_vars.scss';
 
+.add-promo-code-modal {
+    max-width: 350px;
+}
+
+.add-promo-code-modal__title {
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.add-promo-code-modal__text {
+    margin-bottom: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $black;
 }
 
 .add-promo-code__input-wrapper {
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.add-promo-code__button-wrapper{
     width: 100%;
 }

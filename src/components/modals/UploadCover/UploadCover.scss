@@ -1,28 +1,28 @@
 @import './../../../scss/base/_vars.scss';
 
-.payment-info-modal {
+.upload-cover-modal {
     max-width: 350px;
 }
 
-.payment-info-modal__title {
+.upload-cover-modal__title {
     margin-bottom: 16px;
     font-weight: 700;
     font-size: 28px;
 }
 
-.payment-info-modal__text {
+.upload-cover-modal__text {
     margin-bottom: 24px;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
     color: $black;
-
-    p+p {
-        margin-top: 8px;
-    }
 }
 
-.payment-info__button-wrapper {
+.upload-cover__input-wrapper {
+    margin-bottom: 24px;
     width: 100%;
 }
 
+.upload-cover__button-wrapper {
+    width: 100%;
+}

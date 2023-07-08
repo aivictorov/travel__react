@@ -1,7 +1,7 @@
 import './SubscribeForm.scss'
 import mailboxImg from './../../../img/footer/mailbox.svg'
 import Button from '../../elements/Button/Button';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Subscribe from './../../modals/Subscribe/Subscribe';
 import Modal from './../../modals/Modal/Modal';
 import ModalWindow from './../../modals/ModalWindow/ModalWindow';
@@ -9,28 +9,11 @@ import Input from './../../elements/Input/Input';
 import { checkEmail } from '../../../utils/validationFunctions';
 
 const SubscribeForm = () => {
-
     const [openModal, setOpenModal] = useState(false);
 
     const [email, setEmail] = useState('');
     const [emailCheckOn, setEmailCheckOn] = useState(false);
     const [emailCheckMsg, setEmailCheckMsg] = useState('');
-
-    // function checkEmail() {
-    //     let result = false;
-    //     const template = /^[A-Z][0-9A-Z._]+@[A-Z]+.[A-Z]{2,}$/i;
-
-    //     if (!email.trim()) {
-    //         setEmailCheckMsg('Please, enter email');
-    //     } else if (!template.test(email.trim())) {
-    //         setEmailCheckMsg('Incorrect format of email');
-    //     } else {
-    //         setEmailCheckMsg('');
-    //         result = true;
-    //     };
-
-    //     return result;
-    // }
 
     function validateForm() {
         let result = [];
@@ -88,7 +71,12 @@ const SubscribeForm = () => {
                         <Modal
                             isOpen={openModal}
                             onClose={() => setOpenModal(false)}
-                            window={<ModalWindow content={<Subscribe />} />}
+                            window={<ModalWindow content={
+                                <Subscribe
+                                    email={email}
+                                    onClose={() => setOpenModal(false)}
+                                />
+                            } />}
                         />
                     </div>
                 </div>

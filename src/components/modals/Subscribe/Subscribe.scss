@@ -1,28 +1,23 @@
 @import './../../../scss/base/_vars.scss';
 
-.payment-info-modal {
-    max-width: 350px;
+.subscribe-modal {
+    max-width: 450px;
 }
 
-.payment-info-modal__title {
+.subscribe-modal__title {
     margin-bottom: 16px;
     font-weight: 700;
     font-size: 28px;
 }
 
-.payment-info-modal__text {
+.subscribe-modal__text {
     margin-bottom: 24px;
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
     color: $black;
-
-    p+p {
-        margin-top: 8px;
-    }
 }
 
-.payment-info__button-wrapper {
-    width: 100%;
+a.subscribe-modal__link {
+    text-decoration: underline;
 }
-

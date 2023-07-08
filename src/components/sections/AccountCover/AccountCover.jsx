@@ -9,7 +9,6 @@ import { AppContext } from './../../../App';
 
 const AccountCover = () => {
     const { user } = useContext(AppContext);
-
     const [openModal, setOpenModal] = useState(false);
 
     return (
@@ -26,7 +25,9 @@ const AccountCover = () => {
                         <Modal
                             isOpen={openModal}
                             onClose={() => setOpenModal(false)}
-                            window={<ModalWindow content={<UploadCover />} />}
+                            window={<ModalWindow content={
+                                <UploadCover onClose={() => setOpenModal(false)} />
+                            } />}
                         />
                     </div>
                 </div>

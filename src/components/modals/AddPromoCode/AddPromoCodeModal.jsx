@@ -6,11 +6,24 @@ const AddPromoCodeModal = () => {
 
     return (
         <div className='add-promo-code'>
-            <div>Enter promo code it the field:</div>
-            <div className="add-promo-code__input-wrapper">
-                <Input style='form'/>
+            <h2 className="add-promo-code-modal__title">
+                Enter promo code
+            </h2>
+            <div className="add-promo-code-modal__text">
+                Please, enter your promo code in the field:
             </div>
-            <Button text="Submit" style="dark" />
+            <div className="add-promo-code__input-wrapper">
+                <Input
+                    style='form'
+                    label='Promo code'
+                />
+            </div>
+            <div className="add-promo-code__button-wrapper">
+                <Button
+                    text="Submit"
+                    style="dark w100"
+                />
+            </div>
         </div>
     );
 }

@@ -74,7 +74,9 @@ const BookingPaymentMethods = () => {
             <Modal
                 isOpen={openModal}
                 onClose={() => setOpenModal(false)}
-                window={<ModalWindow content={<PaymentInfo />} />}
+                window={<ModalWindow content={
+                    <PaymentInfo onClose={() => setOpenModal(false)} />
+                } />}
             />
 
         </div>
