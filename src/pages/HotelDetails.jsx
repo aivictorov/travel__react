@@ -11,11 +11,14 @@ import Footer from "../components/sections/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useContext, useRef } from "react";
 import { AppContext } from "../App";
+import FavCheckboxButton from './../components/elements/FavCheckboxButton/FavCheckboxButton';
 
 const HotelDetails = () => {
-    const { hotelID } = useParams();
+    // const { hotelID } = useParams();
 
-    const { hotels } = useContext(AppContext);
+    const { hotels, selectedHotel } = useContext(AppContext);
+    const hotelID = selectedHotel.id;
+
     const hotel = hotels.find((hotel) => hotel.id == hotelID);
 
     const roomsRef = useRef(null);
@@ -37,6 +40,7 @@ const HotelDetails = () => {
                             title={hotel.name}
                             cover={hotel.cover}
                             action={scrollToRef}
+                            favButton={<FavCheckboxButton hotelBooking={hotel.id}/>}
                         />
                     </div>
                     <div className="details__flight-content"></div>

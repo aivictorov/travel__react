@@ -12,7 +12,7 @@ import ListingSort from './../components/blocks/ListingSort/ListingSort';
 import ButtonShowMore from './../components/elements/ButtonShowMore/ButtonShowMore';
 
 const HotelListing = () => {
-    const { hotels, hotelSearchParams } = useContext(AppContext);
+    const { hotels, hotelSearchParams, user } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);
@@ -66,10 +66,10 @@ const HotelListing = () => {
                     return room.dates.includes(date) === false
                 })
                 // console.log('Найдены ли отсутствующие даты среди доступных: ', dateNotFoundInRoom);
-                return dateNotFoundInRoom === -1 ?  true : false;
+                return dateNotFoundInRoom === -1 ? true : false;
             });
             // console.log('Найдены доступные комнаты: ', foundAvailableRoom);
-            return foundAvailableRoom !== -1 ?  true : false;
+            return foundAvailableRoom !== -1 ? true : false;
         });
 
         setSearchResults(newSearchResults);
@@ -226,6 +226,10 @@ const HotelListing = () => {
                 {JSON.stringify(filteredResults.length)}
                 <br />
                 <br />
+                <p>USER </p>
+                {JSON.stringify(user)}
+                <br />
+                <br />
             </>
 
             <HeaderInner />
@@ -266,7 +270,8 @@ const HotelListing = () => {
                                                 index < numberOfResults &&
                                                 <HotelListingCard
                                                     key={hotel.id}
-                                                    object={hotel}
+                                                    hotel={hotel.id}
+                                                    dates={hotelSearchParams.allDates}
                                                 />
                                             )
                                         })}

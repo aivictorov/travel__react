@@ -8,7 +8,7 @@ import Button from '../../elements/Button/Button';
 import Stars from './../../elements/Stars/Stars';
 import Price from './../../elements/Price/Price';
 
-const DetailsHeader = ({title = 'Emirates A380 Airbus', cover, action}) => {
+const DetailsHeader = ({ title = 'Emirates A380 Airbus', cover, action, favButton }) => {
     const navigate = useNavigate();
 
     return (
@@ -29,7 +29,7 @@ const DetailsHeader = ({title = 'Emirates A380 Airbus', cover, action}) => {
                 <div className="details-header__right">
                     <Price value={240} period="night" style="big" />
                     <div className="details-header__buttons">
-                        <FavCheckboxButton id={1} />
+                        {favButton}
                         <ButtonSquare
                             style="border small"
                             svgID="share"

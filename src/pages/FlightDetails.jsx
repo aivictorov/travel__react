@@ -35,13 +35,7 @@ const FlightDetails = () => {
                         </div>
                         <div className="details__header">
                             <DetailsHeader
-                                action={() => {
-                                    if (returnID) {
-                                        navigate(`/flight-booking/${directID}/${returnID}`)
-                                    } else {
-                                        navigate(`/flight-booking/${directID}`)
-                                    }
-                                }}
+                                action={() => navigate('/flight-booking')}
                             />
                         </div>
                         <div className="details__flight-content">

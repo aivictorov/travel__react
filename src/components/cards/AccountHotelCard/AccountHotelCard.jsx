@@ -1,16 +1,24 @@
 import './AccountHotelCard.scss';
-import hotels from './../../../data/hotels';
+import { findHotel } from '../../../utils/searchFunctions';
+import { dateStringToObject, formatWeekDay } from '../../../utils/dateTimeFunctions';
+import Button from './../../elements/Button/Button';
+import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
 
-const AccountHotelCard = ({ id }) => {
-    const hotel = hotels.find((item) => item.id === id);
+const AccountHotelCard = ({ hotelBooking }) => {
+    const hotel = findHotel(hotelBooking.id);
 
     return (
-        <>
-            {hotel.name}
-            <div className="account-hotel-card">
+        <div className="account-hotel-card">
+            <div className="account-hotel-card__title">
+                {hotel.name}
+            </div>
+            <div className="account-hotel-card__subtitle">
+                {hotel.rooms[0].name}
+            </div>
+            <div className="account-hotel-card__content">
                 <div className="account-hotel-card__icon">
                     <img
-                        src="./img/hotels/hotel-example-1/logo.jpg"
+                        src={hotel.logo}
                         alt="hotel-logo"
                     />
                 </div>
@@ -21,7 +29,7 @@ const AccountHotelCard = ({ id }) => {
                                 Check-in
                             </div>
                             <div className="account-booking-time-column-value">
-                                Thur, Dec 8
+                                {formatWeekDay(dateStringToObject(hotelBooking.dates[0]))}
                             </div>
                         </div>
                         <div className="account-hotel-card__time-spacer">—</div>
@@ -30,7 +38,8 @@ const AccountHotelCard = ({ id }) => {
                                 Check-out
                             </div>
                             <div className="account-booking-time-column-value">
-                                Fri, Dec 9
+                                {formatWeekDay(dateStringToObject(hotelBooking.dates[hotelBooking.dates.length - 1]))}
+
                             </div>
                         </div>
                     </div>
@@ -77,21 +86,14 @@ const AccountHotelCard = ({ id }) => {
                     </ul>
                 </div>
                 <div className="account-hotel-card__buttons">
-                    <button className="button" type="button">
-                        Download Ticket
-                    </button>
-                    <button
-                        className="square-button square-button--border"
-                        type="button"
-                        style={{ width: 48, height: 48 }}
-                    >
-                        <svg width={16} height={16}>
-                            <use href="#arrow-right" />
-                        </svg>
-                    </button>
+                    <Button text="Download Booking" />
+                    <ButtonSquare
+                        style="border small"
+                        svgID="arrow-right"
+                    />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

@@ -1,36 +1,31 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import AddCardButton from './../../modals/AddCard/AddCardButton';
 import './AccountTabsPayments.scss';
+import { AppContext } from './../../../App';
+import { countID } from "../../../utils/functions";
 
 const AccountTabsPayments = () => {
-    // const cardsData = [
-    //     { id: 0, number: 7132, valid: '10/22' },
-    //     { id: 1, number: 7132, valid: '10/22' },
-    //     { id: 2, number: 8132, valid: '05/24' }
-    // ];
+    const { user, setUser } = useContext(AppContext)
 
-    const cardsData = JSON.parse(localStorage.getItem('cards'));
+    function addCard(number, valid) {
+        const id = countID(user.cards)
 
-    const [cards, setCards] = useState(cardsData || []);
+        setUser({
+            ...user,
+            cards: [
+                ...user.cards,
+                { id: id + 1, number: number, valid: valid }
+            ]
+        })
+    };
 
     function deleteCard(id) {
-        const cardsNew = cards.filter((card) => id !== card.id);
-        setCards(cardsNew);
-        localStorage.setItem('cards', JSON.stringify(cardsNew));
-    }
-
-    function addCard(number) {
-        let id = 0;
-
-        cards.forEach((card) => {
-            if (card.id > id) {
-                id = card.id;
-            }
-        });
-        const cardsNew = [...cards, { id: id + 1, number: number, valid: '12/28' }]
-        setCards(cardsNew);
-        localStorage.setItem('cards', JSON.stringify(cardsNew));
-    }
+        console.log(id);
+        setUser({
+            ...user,
+            cards: user.cards.filter((card) => card.id !== id)
+        })
+    };
 
     return (
         <div
@@ -40,7 +35,7 @@ const AccountTabsPayments = () => {
         >
             <h2 className="account-tabs__content-title">Payment methods</h2>
             <div className="account-payment">
-                {cards.map((card) => {
+                {user.cards.map((card) => {
                     return (
                         <div
                             className="account-payment__card"

@@ -9,13 +9,41 @@ import BookingLogin from './../components/blocks/BookingLogin/BookingLogin';
 import BookingSummary from './../components/blocks/BookingSummary/BookingSummary';
 import { useParams } from 'react-router-dom';
 import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
+import Button from "../components/elements/Button/Button";
+import { useNavigate } from 'react-router-dom';
 
 const HotelBooking = () => {
-    const { userAuth, hotels } = useContext(AppContext);
-    const { hotelID, roomID } = useParams();
+    const { userAuth, hotels, selectedHotel, user, setUser, accountTabsRef, activeTabs, setActiveTabs } = useContext(AppContext);
+
+    const navigate= useNavigate();
+
+    const hotelID = selectedHotel.id;
+    const roomID = selectedHotel.room;
 
     const hotel = hotels.find((hotel) => hotel.id == hotelID)
     const room = hotel.rooms.find((room) => room.id == roomID)
+
+    function addBookedHotel() {
+        setUser({
+            ...user,
+            bookings: {
+                ...user.bookings,
+                hotels: [
+                    selectedHotel,
+                    ...user.bookings.hotels
+                ],
+            }
+        })
+    };
+
+    function scrollToRef(ref) {
+        ref.current.scrollIntoView({ block: 'start' });
+    };
+
+    function navigateToAccountAndScroll() {
+        navigate('/account');
+        setTimeout(() => { scrollToRef(accountTabsRef) }, 500);
+    };
 
     return (
         <>
@@ -34,7 +62,7 @@ const HotelBooking = () => {
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">
-                            <HotelBookingCard 
+                            <HotelBookingCard
                                 hotel={hotel.name}
                                 room={room.name}
                                 price={room.price}
@@ -47,6 +75,15 @@ const HotelBooking = () => {
                                 title={room.name}
                                 price={room.price}
                                 rating={hotel.rating}
+                            />
+                            <Button
+                                text="BOOK HOTEL"
+                                style="bold"
+                                action={() => {
+                                    addBookedHotel();
+                                    setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'hotels' });
+                                    navigateToAccountAndScroll();
+                                }}
                             />
                         </div>
                     </div>

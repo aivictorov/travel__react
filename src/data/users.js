@@ -16,17 +16,16 @@ const users = [
         birthday: '01-01-1992',
 
         bookings: {
-            flights: [[1, 2], [5], [6], [8, 9]],
-            hotels: [0, 1],
+            flights: [],
+            hotels: [],
         },
         favs: {
             flights: [],
-            hotels: [0, 1, 2]
+            hotels: []
         },
         cards: [
-            { number: 1234, validThru: '02/24' },
-            { number: 5678, validThru: '03/25' },
-            { number: 9012, validThru: '04/26' },
+            { id: 0, number: 1234, valid: '01/24' },
+            { id: 1, number: 5678, valid: '12/26' },
         ]
     },
     {
@@ -41,16 +40,15 @@ const users = [
 
         bookings: {
             flights: [],
-            hotels: [0, 1],
+            hotels: [],
         },
         favs: {
             flights: [],
-            hotels: [0, 1, 2]
+            hotels: []
         },
         cards: [
-            { number: 1234, validThru: '02/24' },
-            { number: 5678, validThru: '03/25' },
-            { number: 9012, validThru: '04/26' },
+            { id: 0, number: 1234, valid: '01/24' },
+            { id: 1, number: 5678, valid: '12/26' },
         ]
     },
 ];

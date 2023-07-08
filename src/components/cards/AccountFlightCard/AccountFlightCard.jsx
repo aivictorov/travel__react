@@ -9,9 +9,9 @@ import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFu
 
 import calendarIcon from './../../../img/icons/ticket/calendar.svg';
 
-const AccountFlightCard = ({ layout, flightTicket }) => {
+const AccountFlightCard = ({ flightTicket }) => {
 
-    let ids = [flightTicket.direct ]
+    let ids = [flightTicket.direct]
     if (flightTicket.return) ids.push(flightTicket.return)
 
     return (
@@ -25,7 +25,7 @@ const AccountFlightCard = ({ layout, flightTicket }) => {
                     { name: "Depart date", value: formatDate(flight.start) },
                     { name: "Arrive date", value: formatDate(flight.end) },
                     { name: "Flight time", value: countDuration(flight.start, flight.end) },
-                    { name: "Class", value: "economy" },
+                    { name: "Price", value: flight.price + '$' },
                 ];
 
                 return (
@@ -83,22 +83,13 @@ const AccountFlightCard = ({ layout, flightTicket }) => {
                                 })}
                             </ul>
                         </div>
-                        {layout === "bookings" &&
-                            <div className="account-flight-card__buttons">
-                                <Button text="Download Ticket" />
-                                <ButtonSquare
-                                    style="border small"
-                                    svgID="arrow-right"
-                                />
-                            </div>
-                        }
-                        {layout === "favourites" &&
-                            <div className="account-flight-card__buttons">
-                                <Button text="Flight Delails" />
-                                <FavCheckboxButton id={id} />
-                            </div>
-                        }
-
+                        <div className="account-flight-card__buttons">
+                            <Button text="Download Ticket" />
+                            <ButtonSquare
+                                style="border small"
+                                svgID="arrow-right"
+                            />
+                        </div>
                     </div>
                 )
             })}

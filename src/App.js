@@ -115,11 +115,14 @@ function App() {
                         <Route path="/flight-listing" element={<FlightListing />}></Route>
                         {/* <Route path="/flight-details/:directID/:returnID?" element={<FlightDetails />}></Route> */}
                         <Route path="/flight-details" element={<FlightDetails />}></Route> 
-                        <Route path="/flight-booking/:directID/:returnID?" element={<FlightBooking />}></Route>
+                        {/* <Route path="/flight-booking/:directID/:returnID?" element={<FlightBooking />}></Route> */}
+                        <Route path="/flight-booking" element={<FlightBooking />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
                         <Route path="/hotel-listing" element={<HotelListing />}></Route>
-                        <Route path="/hotel-details/:hotelID" element={<HotelDetails />}></Route>
-                        <Route path="/hotel-booking/:hotelID/:roomID" element={<HotelBooking />}></Route>
+                        {/* <Route path="/hotel-details/:hotelID" element={<HotelDetails />}></Route> */}
+                        <Route path="/hotel-details" element={<HotelDetails />}></Route>
+                        {/* <Route path="/hotel-booking/:hotelID/:roomID" element={<HotelBooking />}></Route> */}
+                        <Route path="/hotel-booking" element={<HotelBooking />}></Route>
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/sign-up" element={<SignUp />}></Route>
                         <Route path="/set-password" element={<SetPassword />}></Route>

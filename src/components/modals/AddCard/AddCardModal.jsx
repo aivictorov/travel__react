@@ -4,8 +4,8 @@ import Input from './../../elements/Input/Input';
 import Button from './../../elements/Button/Button';
 
 const AddCardModal = ({ addCard, onClose }) => {
-    const [cardNumber, setCardNumber] = useState('');
-    const [cardValidThru, setCardValidThru] = useState('');
+    const [number, setNumber] = useState('');
+    const [valid, setValid] = useState('');
 
     return (
         <>
@@ -14,21 +14,21 @@ const AddCardModal = ({ addCard, onClose }) => {
                 type="text"
                 label="Card Number"
                 placeholder="0000"
-                value={cardNumber}
-                onChangeFunction={setCardNumber}
+                value={number}
+                onChangeFunction={setNumber}
             />
             <Input
                 type="text"
                 label="Valid thru"
                 placeholder="10/27"
-                value={cardValidThru}
-                onChangeFunction={setCardValidThru}
+                value={valid}
+                onChangeFunction={setValid}
             />
             <Button
                 text="Add card"
                 action={() => {
-                    addCard(cardNumber);
-                    setCardNumber('');
+                    addCard(number, valid);
+                    setNumber('');
                     onClose();
                 }}
             />

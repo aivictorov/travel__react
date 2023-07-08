@@ -1,20 +1,6 @@
-// .project-nav-modal__content {
-//     margin: 0 auto;
-//     padding: 64px;
-//     width: 900px;
-//     border-radius: 12px;
-//     background-color: #FFF;
-//     cursor: default;
+@import './../../../scss/base/_vars.scss';
 
-//     &.center {
-//         position: absolute;
-//         left: 50%;
-//         top: 50%;
-//         transform: translate(-50%, -50%);
-//     }
-// }
-
-.project-nav-modal__content {
+.modal-window {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -25,8 +11,9 @@
     cursor: default;
 }
 
-.project-nav-modal__title {
-    margin-bottom: 32px;
+.modal-window__title {
+    margin-bottom: 48px;
+    font-size: 40px;
     font-weight: 700;
-    font-size: 20px;
+    color: $black;
 }

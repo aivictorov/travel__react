@@ -4,12 +4,14 @@ const ModalWindow = ({ content }) => {
 
     return (
         <div
-            className="project-nav-modal__content"
+            className="modal-window"
             onClick={(event) => {
                 event.stopPropagation()
             }}
         >
-            <div className="project-nav-modal__title">Структура проекта</div>
+            <div className="modal-window__title">
+                Структура проекта
+            </div>
             {content}
         </div>
     );

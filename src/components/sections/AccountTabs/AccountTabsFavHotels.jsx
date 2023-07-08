@@ -1,7 +1,7 @@
 // import AccountHotelCard from './../../cards/AccountHotelCard/AccountHotelCard';
-import FavHotelCard from './../../cards/FavHotelCard/FavHotelCard';
 import { useContext } from 'react';
 import { AppContext } from './../../../App';
+import HotelListingCard from '../../cards/HotelListingCard/HotelListingCard';
 
 const AccountTabsFavHotels = () => {
     const { user } = useContext(AppContext);
@@ -13,7 +13,7 @@ const AccountTabsFavHotels = () => {
             tab-group="favourites"
         >
             {user.favs.hotels.map((hotel, index) => {
-                return <FavHotelCard key={index} />
+                return <HotelListingCard key={index} hotel={hotel} />
             })}
         </div>
     );

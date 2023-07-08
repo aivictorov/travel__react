@@ -5,16 +5,14 @@ import { AppContext } from "../../../App";
 const FavCheckboxButton = ({ flightTicket, hotelBooking }) => {
     const { user, setUser } = useContext(AppContext);
 
-    // console.log(flightTicket, user.favs.flights);
-
     function addFavFlight() {
         setUser({
             ...user,
             favs: {
                 ...user.favs,
                 flights: [
-                    ...user.favs.flights,
-                    flightTicket
+                    flightTicket,
+                    ...user.favs.flights
                 ],
             }
         })
@@ -33,7 +31,33 @@ const FavCheckboxButton = ({ flightTicket, hotelBooking }) => {
         })
     };
 
+    function addFavHotel() {
+        setUser({
+            ...user,
+            favs: {
+                ...user.favs,
+                hotels: [
+                    hotelBooking,
+                    ...user.favs.hotels
+                ],
+            }
+        })
+    };
+
+    function removeFavHotel() {
+        setUser({
+            ...user,
+            favs: {
+                ...user.favs,
+                hotels: user.favs.hotels.filter((hotel) => {
+                    return JSON.stringify(hotelBooking) !== JSON.stringify(hotel);
+                })
+            }
+        })
+    };
+
     let isChecked = false;
+
     if (flightTicket) {
         user.favs.flights.forEach((flight) => {
             if (JSON.stringify(flightTicket) === JSON.stringify(flight)) {
@@ -42,6 +66,7 @@ const FavCheckboxButton = ({ flightTicket, hotelBooking }) => {
             }
         })
     }
+
     if (hotelBooking) isChecked = user.favs.hotels.includes(hotelBooking);
 
     return (
@@ -54,8 +79,10 @@ const FavCheckboxButton = ({ flightTicket, hotelBooking }) => {
                     onChange={(event) => {
                         if (event.target.checked) {
                             if (flightTicket) addFavFlight();
+                            if (hotelBooking) addFavHotel();
                         } else {
                             if (flightTicket) removeFavFlight();
+                            if (hotelBooking) removeFavHotel();
                         }
                     }}
                 />

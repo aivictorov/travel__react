@@ -15,7 +15,7 @@ const AccountTabsBookingsHotels = () => {
                 return (
                     <AccountHotelCard
                         key={index}
-                        id={item}
+                        hotelBooking={item}
                         layout="bookings"
                     />
                 );

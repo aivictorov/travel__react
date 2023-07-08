@@ -6,14 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 const HotelRooms = forwardRef(({ rooms }, ref) => {
-    const { hotelSearchParams } = useContext(AppContext);
+    const { hotelSearchParams, selectedHotel, setSelectedHotel } = useContext(AppContext);
     const navigate = useNavigate();
 
-    const { hotelID } = useParams();
-    console.log(hotelID);
+    const hotelID = selectedHotel.id;
 
     return (
-
         <section
             className="hotel-rooms"
             ref={ref}
@@ -21,6 +19,7 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
             <h2 className="hotel-rooms__title">Available rooms</h2>
             <ul className="hotel-rooms__list">
                 {rooms.map((room, index) => {
+                    console.log(room.id);
                     return (room.dates.includes(hotelSearchParams.checkIn) &&
                         <li
                             key={index}
@@ -45,8 +44,9 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
                                     <Button
                                         text="Book now"
                                         style="bold w100"
-                                        action={() => { 
-                                            navigate(`/hotel-booking/${hotelID}/${room.id}`) 
+                                        action={() => {
+                                            setSelectedHotel({ ...selectedHotel, room: room.id });
+                                            navigate('/hotel-booking')
                                         }}
                                     />
                                 </div>

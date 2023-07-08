@@ -6,9 +6,17 @@ import Rating from '../../elements/Rating/Rating';
 import FavCheckboxButton from './../../elements/FavCheckboxButton/FavCheckboxButton';
 import Button from './../../elements/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { findHotel } from '../../../utils/searchFunctions';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
 
-const HotelListingCard = ({ object }) => {
+const HotelListingCard = ({ hotel, dates }) => {
     const navigate = useNavigate();
+    const { setSelectedHotel } = useContext(AppContext);
+
+    console.log(dates);
+
+    const object = findHotel(hotel);
 
     const minPrice = object.rooms.reduce((prev, curr) => curr.price < prev ? curr.price : prev, object.rooms[0].price);
 
@@ -44,12 +52,17 @@ const HotelListingCard = ({ object }) => {
                     </div>
                 </div>
                 <div className="hotel-card__buttons">
-                    <FavCheckboxButton />
+                    <FavCheckboxButton
+                        hotelBooking={object.id}
+                    />
                     <div className="hotel-card__button-wrapper">
                         <Button
                             text="View Place"
                             style="bold w100"
-                            action={() => { navigate(`/hotel-details/${object.id}`) }}
+                            action={() => { 
+                                setSelectedHotel({id: object.id, room: null, dates: dates});
+                                navigate('/hotel-details');
+                            }}
                         />
                     </div>
                 </div>
