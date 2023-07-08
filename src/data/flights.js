@@ -1,8 +1,6 @@
 import airlines from './airlines';
 import destinations from './destinations';
 
-const cities = ['Istanbul', 'Sydney', 'Baku', 'Male', 'Paris', 'New York', 'London', 'Tokyo', 'Dubai']
-
 function generateFlights(count) {
     let flights = [];
 
