@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from './../../elements/Button/Button';
 import { useState } from 'react';
 import Input from './../../elements/Input/Input';
+import { checkEmpty } from '../../../utils/validationFunctions';
 
 const SetPasswordForm = () => {
     const navigate = useNavigate();
@@ -15,12 +16,46 @@ const SetPasswordForm = () => {
     const [confirmPasswordCheckOn, setConfirmPasswordCheckOn] = useState(false);
     const [confirmPasswordCheckMsg, setConfirmPasswordCheckMsg] = useState('');
 
+    // === VALIDATION ===
+
+    function validateForm() {
+        let result = [];
+
+        if (!checkEmpty(password, setPasswordCheckMsg)) {
+            setPasswordCheckOn(true);
+            result.push(false);
+        } else {
+            setPasswordCheckOn(false);
+        };
+
+        if (!checkEmpty(confirmPassword, setConfirmPasswordCheckMsg)) {
+            setConfirmPasswordCheckOn(true);
+            result.push(false);
+        } else {
+            setConfirmPasswordCheckOn(false);
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
+    const getFormParams = () => {
+        const formParams = {
+            password: password.trim(),
+            confirmPassword: confirmPassword.trim(),
+        };
+
+        alert(JSON.stringify(formParams));
+    };
+
     return (
         <div className="login-form">
             <div className="login-form__input-group">
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper">
                         <Input
+                            style="form msgRight"
                             label="Create Password"
                             type="password"
                             placeholder='Enter password'
@@ -53,8 +88,10 @@ const SetPasswordForm = () => {
                     type="submit"
                     action={(event) => {
                         event.preventDefault();
-                        // getLoginParams();
-                        navigate('/login')
+                        if (validateForm()) {
+                            getFormParams();
+                            navigate('/login');
+                        };
                     }}
                 />
             </div>

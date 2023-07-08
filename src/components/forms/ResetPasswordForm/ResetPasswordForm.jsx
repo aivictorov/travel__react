@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './../../elements/Button/Button';
 import Input from './../../elements/Input/Input';
+import { checkEmail } from '../../../utils/validationFunctions';
 
 const ResetPasswordForm = () => {
     const navigate = useNavigate();
@@ -11,8 +12,33 @@ const ResetPasswordForm = () => {
     const [emailCheckOn, setEmailCheckOn] = useState(false);
     const [emailCheckMsg, setEmailCheckMsg] = useState('');
 
+    // === VALIDATION ===
+
+    function validateForm() {
+        let result = [];
+
+        if (!checkEmail(email, setEmailCheckMsg)) {
+            setEmailCheckOn(true);
+            result.push(false);
+        } else {
+            setEmailCheckOn(false);
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
+    const getFormParams = () => {
+        const formParams = {
+            email: email.trim(),
+        };
+
+        alert(JSON.stringify(formParams));
+    };
+
     return (
-        <div className="login-form">
+        <form className="login-form">
             <div className="login-form__input-group">
                 <div className="login-form__input-wrapper">
                     <Input
@@ -33,12 +59,14 @@ const ResetPasswordForm = () => {
                     type="submit"
                     action={(event) => {
                         event.preventDefault();
-                        // getLoginParams();
-                        navigate('/verify-code')
+                        if (validateForm()) {
+                            getFormParams();
+                            navigate('/verify-code');
+                        }
                     }}
                 />
             </div>
-        </div>
+        </form>
     );
 }
 

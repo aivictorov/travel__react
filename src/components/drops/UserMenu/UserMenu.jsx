@@ -68,17 +68,14 @@ const UserMenu = () => {
         },
     ];
 
-
-
-
     return (
         <div className='user-menu'>
             <div className="user-menu__header">
                 <div className="user-menu__avatar">
-                    <img src={user.avatar} alt="user-avatar" />
+                    <img src={user.account.avatar} alt="user-avatar" />
                 </div>
                 <div className="user-menu__user">
-                    <div className="user-menu__user-name">{user.name}</div>
+                    <div className="user-menu__user-name">{user.account.name}</div>
                     <div className="user-menu__user-status">Online</div>
                 </div>
             </div>

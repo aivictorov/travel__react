@@ -1,5 +1,3 @@
-// import './SignUpForm.scss';
-
 import { useState } from 'react';
 import Checkbox from './../../elements/Checkbox/Checkbox';
 import Modal from './../../modals/Modal/Modal';
@@ -91,7 +89,6 @@ const SignUpForm = () => {
             setConfirmPasswordCheckOn(false);
         };
 
-
         if (!agreement) {
             result.push(false);
         } else {
@@ -103,8 +100,8 @@ const SignUpForm = () => {
 
     // === SUBMIT FORM ===
 
-    const getSignUpParams = () => {
-        const signUpParams = {
+    const getFormParams = () => {
+        const formParams = {
             firstName: firstName.trim(),
             lastName: lastName.trim(),
             email: email.trim(),
@@ -114,7 +111,7 @@ const SignUpForm = () => {
             agreement: agreement,
         };
 
-        alert(JSON.stringify(signUpParams));
+        alert(JSON.stringify(formParams));
     };
 
     return (
@@ -171,7 +168,6 @@ const SignUpForm = () => {
                 </div>
 
                 <div className="login-form__input-group-row">
-
                     <div className="login-form__input-wrapper">
                         <Input
                             style="form msgRight"
@@ -253,7 +249,9 @@ const SignUpForm = () => {
                     style="bold w100"
                     action={(event) => {
                         event.preventDefault();
-                        if (validateForm()) getSignUpParams();
+                        if (validateForm()) {
+                            getFormParams();
+                        };
                     }}
                 />
                 <div className="login-form__sign-up-link-row">

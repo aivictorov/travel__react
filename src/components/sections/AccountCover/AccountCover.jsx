@@ -33,7 +33,7 @@ const AccountCover = () => {
                 <div className="account-cover__user">
                     <div className="account-cover__user-avatar">
                         <div className="account-cover__user-avatar-image">
-                            <img src={user.avatar} alt="user-avatar" />
+                            <img src={user.account.avatar} alt="user-avatar" />
                         </div>
                         <button
                             className="account-cover__user-avatar-edit-button"
@@ -42,8 +42,8 @@ const AccountCover = () => {
                             <svg width={24} height={24}><use href="#pen-icon" /></svg>
                         </button>
                     </div>
-                    <div className="account-cover__user-name">{user.name}</div>
-                    <div className="account-cover__user-email">{user.email}</div>
+                    <div className="account-cover__user-name">{user.account.name}</div>
+                    <div className="account-cover__user-email">{user.account.email}</div>
                 </div>
             </div>
         </section>

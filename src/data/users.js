@@ -7,13 +7,16 @@ import userAvatar02 from './../img/users/avatars/02.jpg';
 const users = [
     {
         id: 0,
-        name: 'John Doe',
-        avatar: userAvatar01,
-        email: 'john.doe@gmail.com',
-        password: '123',
-        phoneNumber: '+1 000-000-0000',
-        address: 'St 32 main downtown, Los Angeles, California, USA',
-        birthday: '01-01-1992',
+        
+        account: {
+            name: 'John Doe',
+            avatar: userAvatar01,
+            email: 'john.doe@gmail.com',
+            password: '123',
+            phoneNumber: '+1 000-000-0000',
+            address: 'St 32 main downtown, Los Angeles, California, USA',
+            birthday: '01-01-1992',
+        },
 
         bookings: {
             flights: [],
@@ -30,13 +33,16 @@ const users = [
     },
     {
         id: 1,
-        name: 'Mark Smith',
-        avatar: userAvatar02,
-        email: 'mark.smith@gmail.com',
-        password: '123',
-        phoneNumber: '+7 777-000-0000',
-        address: 'St 77 main downtown, Los Angeles, California, USA',
-        birthday: '01-01-1977',
+
+        account: {
+            name: 'Mark Smith',
+            avatar: userAvatar02,
+            email: 'mark.smith@gmail.com',
+            password: '123',
+            phone: '+7 777-000-0000',
+            address: 'St 77 main downtown, Los Angeles, California, USA',
+            birthday: '01-01-1977',
+        },
 
         bookings: {
             flights: [],

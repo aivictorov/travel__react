@@ -2,49 +2,38 @@ import Button from './../../elements/Button/Button';
 import { useContext, useState } from 'react';
 import { AppContext } from './../../../App';
 import './AccountTabsMain.scss';
-import { useRef } from 'react';
 
 const AccountTabsMain = () => {
     const { user, setUser } = useContext(AppContext);
-
-    const [name, setName] = useState(user.name);
-    const [email, setEmail] = useState(user.email);
-    // const [password, setPassword] = useState(user.password);
-    // const [phone, setPhone] = useState(user.phone);
-    // const [adress, setAdress] = useState(user.adress);
-    // const [birthday, setBirthday] = useState(user.birthday);
-
+    const [userData, setUserData] = useState(user.account);
     const [edit, setEdit] = useState('');
 
     const items = [
-        {
-            name: 'name',
-            title: 'Name',
-            value: name,
-            setValue: setName,
-            acceptChanges: () => { setUser({ ...user, name: name }) },
-            cancelChanges: () => { setName(user.name) },
-        },
-        {
-            name: 'email',
-            title: 'Email',
-            value: email,
-            setValue: setEmail,
-            acceptChanges: () => { setUser({ ...user, email: email }) },
-            cancelChanges: () => { setEmail(user.email) },
-        },
-
-        // { title: 'Password', value: password, setValue: setPassword, edit: editPassword, setEditValue: setEditPassword },
-        // { title: 'Phone number', value: phone, setValue: setPhone, edit: editPhone, setEditValue: setEditPhone },
-        // { title: 'Adress', value: adress, setValue: setAdress, edit: editAdress, setEditValue: setEditAdress },
-        // { title: 'Date of birth', value: birthday, setValue: setBirthday, edit: editBirthday, setEditValue: setEditBirthday },
+        { name: 'name', title: 'Name' },
+        { name: 'email', title: 'Email' },
+        { name: 'password', title: 'Password' },
+        { name: 'phone', title: 'Phone number' },
+        { name: 'address', title: 'Address' },
+        { name: 'birthday', title: 'Date of birth' },
     ];
 
+    function startEdit(itemName) {
+        setUserData(user.account);
+        setEdit(itemName);
+    }
 
+    function acceptChanges() {
+        setUser({ ...user, account: userData });
+        setEdit('');
+    };
+
+    function cancelChanges() {
+        setUserData(user.account);
+        setEdit('');
+    };
 
     return (
         <div className="account-tabs__content">
-            {/* {JSON.stringify(user)} */}
             <h2 className="account-tabs__content-title">Account</h2>
             <ul className="account-info">
                 {items.map((item, index) => {
@@ -59,13 +48,14 @@ const AccountTabsMain = () => {
                                 </div>
                                 <div className="account-info__item-value">
                                     {edit !== item.name &&
-                                        user[item.name]
+                                        userData[item.name]
                                     }
                                     {edit === item.name &&
                                         <input
                                             type="text"
-                                            value={item.value}
-                                            onChange={(event) => item.setValue(event.target.value)}
+                                            value={userData[item.name]}
+                                            // onChange={item.setValue}
+                                            onChange={(event) => { setUserData({ ...userData, [item.name]: event.target.value }) }}
                                             autoFocus
                                         />
                                     }
@@ -86,7 +76,7 @@ const AccountTabsMain = () => {
                                             style="border w100"
                                             svgID="edit-icon"
                                             action={() => {
-                                                setEdit(item.name);
+                                                startEdit(item.name);
                                             }}
                                         />
                                     </div>
@@ -99,8 +89,7 @@ const AccountTabsMain = () => {
                                                 style="border w100"
                                                 svgID="upload-icon"
                                                 action={() => {
-                                                    item.acceptChanges();
-                                                    setEdit('')
+                                                    acceptChanges();
                                                 }}
                                             />
                                         </div>
@@ -110,8 +99,7 @@ const AccountTabsMain = () => {
                                                 style="border w100"
                                                 svgID="upload-icon"
                                                 action={() => {
-                                                    item.cancelChanges();
-                                                    setEdit('')
+                                                    cancelChanges();
                                                 }}
                                             />
                                         </div>
@@ -127,3 +115,4 @@ const AccountTabsMain = () => {
 }
 
 export default AccountTabsMain;
+

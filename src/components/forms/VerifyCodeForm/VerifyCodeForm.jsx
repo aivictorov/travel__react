@@ -4,6 +4,7 @@ import ButtonLink from './../../elements/ButtonLink/ButtonLink';
 import { useState } from 'react';
 import Input from './../../elements/Input/Input';
 import Button from './../../elements/Button/Button';
+import { checkEmpty } from '../../../utils/validationFunctions';
 
 const VerifyCodeForm = () => {
     const navigate = useNavigate();
@@ -11,6 +12,31 @@ const VerifyCodeForm = () => {
     const [code, setCode] = useState('');
     const [codeCheckOn, setCodeCheckOn] = useState(false);
     const [codeCheckMsg, setCodeCheckMsg] = useState('');
+
+    // === VALIDATION ===
+
+    function validateForm() {
+        let result = [];
+
+        if (!checkEmpty(code, setCodeCheckMsg)) {
+            setCodeCheckOn(true);
+            result.push(false);
+        } else {
+            setCodeCheckOn(false);
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
+    const getFormParams = () => {
+        const formParams = {
+            code: code.trim(),
+        };
+
+        alert(JSON.stringify(formParams));
+    };
 
     return (
         <div className="login-form">
@@ -44,8 +70,10 @@ const VerifyCodeForm = () => {
                     type="submit"
                     action={(event) => {
                         event.preventDefault();
-                        // getLoginParams();
-                        navigate('/set-password')
+                        if (validateForm()) {
+                            getFormParams();
+                            navigate('/set-password');
+                        };
                     }}
                 />
             </div>

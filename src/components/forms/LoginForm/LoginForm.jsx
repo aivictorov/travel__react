@@ -59,11 +59,11 @@ const LoginForm = () => {
 
     const authorizeUser = (loginParams) => {
         const user = users.find((user) => {
-            return loginParams.email === user.email;
+            return loginParams.email === user.account.email;
         });
 
         if (user) {
-            if (loginParams.password === user.password) {
+            if (loginParams.password === user.account.password) {
                 setUser(user);
                 setUserID(user.id)
                 setUserAuth(true)

@@ -45,7 +45,7 @@ const HotelReviews = () => {
                         >
                             <div className="hotel-reviews__item-image">
                                 <img
-                                    src={user.avatar}
+                                    src={user.account.avatar}
                                     alt="user-avatar"
                                 />
                             </div>
@@ -53,7 +53,7 @@ const HotelReviews = () => {
                                 <div className="hotel-reviews__item-title">
                                     <div className="hotel-reviews__item-rating">{`${review.rating} Amazing`}</div>
                                     <span>|</span>
-                                    <div className="hotel-reviews__item-author">{user.name}</div>
+                                    <div className="hotel-reviews__item-author">{user.account.name}</div>
                                 </div>
                                 <div className="hotel-reviews__item-text">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

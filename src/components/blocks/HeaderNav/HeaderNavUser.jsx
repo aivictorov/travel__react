@@ -10,7 +10,7 @@ const HeaderNavUser = () => {
 
     const [openDropMenu, setOpenDropMenu] = useState(false);
 
-    let userName = user.name.split(' ');
+    let userName = user.account.name.split(' ');
     userName[1] = userName[1].slice(0, 1) + '.'
     userName = userName.join(' ');
 
@@ -51,7 +51,7 @@ const HeaderNavUser = () => {
                 >
                     <div className="header-nav__avatar">
                         <div className="header-nav__avatar-image">
-                            <img src={user.avatar} alt="user-avatar" />
+                            <img src={user.account.avatar} alt="user-avatar" />
                         </div>
                         <div className="header-nav__avatar-button">
                             <svg width={10} height={10}>
