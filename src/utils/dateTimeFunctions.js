@@ -63,6 +63,12 @@ function buildDatesArray(dates) {
     return datesArray;
 }
 
+function formatDuration(duration) {
+    const hours = Math.floor(duration);
+    const minutes = Math.round((duration - Math.floor(duration)) * 60);
+    return `${hours}h ${minutes}m`;
+};
+
 // function countDefaultCheckIn() {
 //     const date = new Date();
 //     return formatDate(date);
@@ -107,8 +113,8 @@ function buildDatesArray(dates) {
 
 
 
-    // const [departDate, setDepartDate] = useState(today);
-    // const [returnDate, setReturnDate] = useState(tomorrow);
+// const [departDate, setDepartDate] = useState(today);
+// const [returnDate, setReturnDate] = useState(tomorrow);
 
 
 
@@ -120,6 +126,7 @@ export {
     dateStringToObject,
     daysFromToday,
     buildDatesArray,
+    formatDuration,
     // countDefaultCheckIn,
     // countDefaultCheckOut,
 }

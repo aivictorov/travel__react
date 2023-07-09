@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import HotelBookingCard from './../components/cards/HotelBookingCard/HotelBookingCard';
@@ -7,15 +7,17 @@ import { AppContext } from './../App';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
 import BookingLogin from './../components/blocks/BookingLogin/BookingLogin';
 import BookingSummary from './../components/blocks/BookingSummary/BookingSummary';
-import { useParams } from 'react-router-dom';
 import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
 import Button from "../components/elements/Button/Button";
 import { useNavigate } from 'react-router-dom';
+import DefaultModal from './../components/modals/DefaultModal/DefaultModal';
 
 const HotelBooking = () => {
     const { userAuth, hotels, selectedHotel, user, setUser, accountTabsRef, activeTabs, setActiveTabs } = useContext(AppContext);
 
-    const navigate= useNavigate();
+    const navigate = useNavigate();
+
+    const [openModal, setOpenModal] = useState(false);
 
     const hotelID = selectedHotel.id;
     const roomID = selectedHotel.room;
@@ -80,10 +82,20 @@ const HotelBooking = () => {
                                 text="BOOK HOTEL"
                                 style="bold"
                                 action={() => {
-                                    addBookedHotel();
-                                    setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'hotels' });
-                                    navigateToAccountAndScroll();
+                                    if (userAuth) {
+                                        addBookedHotel();
+                                        setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'hotels' });
+                                        navigateToAccountAndScroll();
+                                    } else {
+                                        setOpenModal(true)
+                                    }
                                 }}
+                            />
+                            <DefaultModal
+                                isOpen={openModal}
+                                onClose={() => setOpenModal(false)}
+                                title="Warning"
+                                text="Please, login or sign up to be able to make bookings."
                             />
                         </div>
                     </div>

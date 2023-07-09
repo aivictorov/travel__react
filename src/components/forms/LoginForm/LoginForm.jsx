@@ -10,7 +10,7 @@ import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
 import users from './../../../data/users';
 
 const LoginForm = () => {
-    const { setUser, setUserID, setUserAuth } = useContext(AppContext);
+    const { setUser, setUserAuth } = useContext(AppContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -65,7 +65,6 @@ const LoginForm = () => {
         if (user) {
             if (loginParams.password === user.account.password) {
                 setUser(user);
-                setUserID(user.id)
                 setUserAuth(true)
                 navigate("/account");
             } else {

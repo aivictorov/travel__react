@@ -8,21 +8,10 @@ import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFu
 import { findFlight } from '../../../utils/searchFunctions';
 import { AppContext } from './../../../App';
 import { useContext } from 'react';
+import Checkbox from '../../elements/Checkbox/Checkbox';
 
 const FlightListingCard = ({ flightTicket }) => {
-
-    const { user, setUser, setSelectedFlight } = useContext(AppContext);
-
-    // function addSelectedFlightTicket() {
-    //     setUser({
-    //         ...user,
-    //         selected: {
-    //             ...user.selected,
-    //             flights: flightTicket,
-    //         }
-    //     })
-    // };
-
+    const { setSelectedFlight, userAuth } = useContext(AppContext);
 
     const navigate = useNavigate();
 
@@ -56,79 +45,52 @@ const FlightListingCard = ({ flightTicket }) => {
                 </div>
                 <ul className="flight-card__flights">
 
-                    <li className="flight__row">
-                        <div className="checkbox">
-                            <label className="checkbox__label checkbox__label--flight-card">
-                                <input
-                                    className="checkbox__hidden visually-hidden"
-                                    type="checkbox"
+                    {flightsArray.map((flight, index) => {
+                        return (
+                            <li className="flight-card__flight" key={index} >
+                                <Checkbox
+                                    // name={""}
+                                    style="gray"
+                                    text={
+                                        <>
+                                            <div className="flight__row">
+                                                <div className="flight__column">
+                                                    <div className="flight__shedule">
+                                                        {formatString(flight.start, flight.end)}
+                                                    </div>
+                                                    <div className="flight__airline">
+                                                        Emirates
+                                                    </div>
+                                                </div>
+                                                <div className="flight__column">
+                                                    <div className="flight__transfers">
+                                                        non stop
+                                                    </div>
+                                                </div>
+                                                <div className="flight__column">
+                                                    <div className="flight__duration">{countDuration(flight.start, flight.end)}</div>
+                                                    <div className="flight__codes">EWR-BNA</div>
+                                                </div>
+                                            </div>
+                                        </>
+                                    }
+                                    onChangeFunction={() => { }}
+                                    // onChangeFunction={(event) => {
+                                    //     if (event.target.checked) {
+                                    //         setParams([...params, event.target.name])
+                                    //     } else {
+                                    //         setParams(params.filter((param) => param !== event.target.name))
+                                    //     };
+                                    // }}
                                 />
-                                <div className="checkbox__custom" />
-                                <div className="checkbox__value">
-                                    <div className="flight__row">
-                                        <div className="flight__column">
-                                            <div className="flight__shedule">
-                                                {formatString(directFlight.start, directFlight.end)}
-                                            </div>
-                                            <div className="flight__airline">
-                                                Emirates
-                                            </div>
-                                        </div>
-                                        <div className="flight__column">
-                                            <div className="flight__transfers">
-                                                non stop
-                                            </div>
-                                        </div>
-                                        <div className="flight__column">
-                                            <div className="flight__duration">{countDuration(directFlight.start, directFlight.end)}</div>
-                                            <div className="flight__codes">EWR-BNA</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </li>
-
-                    {returnFlight.length !== 0 &&
-                        <li className="flight__row">
-                            <div className="checkbox">
-                                <label className="checkbox__label checkbox__label--flight-card">
-                                    <input
-                                        className="checkbox__hidden visually-hidden"
-                                        type="checkbox"
-                                    />
-                                    <div className="checkbox__custom" />
-                                    <div className="checkbox__value">
-                                        <div className="flight__row">
-                                            <div className="flight__column">
-                                                <div className="flight__shedule">
-                                                    {formatString(returnFlight.start, returnFlight.end)}
-                                                </div>
-                                                <div className="flight__airline">
-                                                    Emirates
-                                                </div>
-                                            </div>
-                                            <div className="flight__column">
-                                                <div className="flight__transfers">
-                                                    non stop
-                                                </div>
-                                            </div>
-                                            <div className="flight__column">
-                                                <div className="flight__duration">2h 28m</div>
-                                                <div className="flight__codes">EWR-BNA</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </li>
-                    }
-
+                            </li>
+                        )
+                    })}
                 </ul>
                 <div className="flight-card__buttons">
-                    <FavCheckboxButton
+                    {userAuth && <FavCheckboxButton
                         flightTicket={flightTicket}
-                    />
+                    />}
                     <div className="flight-card__button-wrapper">
                         <Button
                             text="View Details"
@@ -136,13 +98,6 @@ const FlightListingCard = ({ flightTicket }) => {
                             action={() => {
                                 setSelectedFlight(flightTicket);
                                 navigate('/flight-details');
-                                // if (flightsArray.length === 1) {
-                                //     setSelectedFlight(flightTicket);
-                                //     navigate(`/flight-details/${flightTicket.direct}`)
-                                // } else if (flightsArray.length === 2) {
-                                //     setSelectedFlight(flightTicket);
-                                //     navigate(`/flight-details/${flightTicket.direct}/${flightTicket.return}`)
-                                // }
                             }}
                         />
                     </div>

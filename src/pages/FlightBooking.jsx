@@ -5,14 +5,17 @@ import BookingSummary from "../components/blocks/BookingSummary/BookingSummary";
 import FlightBookingCard from './../components/cards/FlightBookingCard/FlightBookingCard';
 import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
 import TrackNav from "../components/blocks/TrackNav/TrackNav";
-import { useContext } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
 import Button from './../components/elements/Button/Button';
 import { AppContext } from './../App';
+import DefaultModal from './../components/modals/DefaultModal/DefaultModal';
 
 const FlightBooking = () => {
     const { flights, airlines, userAuth, selectedFlight, accountTabsRef, setActiveTabs, activeTabs } = useContext(AppContext);
+
+    const [openModal, setOpenModal] = useState(false);
 
     const directID = selectedFlight.direct;
     const returnID = selectedFlight.return;
@@ -71,12 +74,22 @@ const FlightBooking = () => {
                                 text="BOOK FLIGHT"
                                 style="bold"
                                 action={() => {
-                                    addBookedFlight();
-                                    setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'flights' });
-                                    navigateToAccountAndScroll();
+
+                                    if (userAuth) {
+                                        addBookedFlight();
+                                        setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'flights' });
+                                        navigateToAccountAndScroll();
+                                    } else {
+                                        setOpenModal(true)
+                                    }
                                 }}
                             />
-
+                            <DefaultModal
+                                isOpen={openModal}
+                                onClose={() => setOpenModal(false)}
+                                title="Warning"
+                                text="Please, login or sign up to be able to make bookings."
+                            />
                         </div>
                     </div>
                 </div>

@@ -9,11 +9,12 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { AppContext } from "../App";
 import ListingSort from "../components/blocks/ListingSort/ListingSort";
 import Tabs from "../components/elements/Tabs/Tabs";
+import { formatDuration } from "../utils/dateTimeFunctions";
 
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
-    const { flights, flightSearchParams, user } = useContext(AppContext);
+    const { flights, flightSearchParams } = useContext(AppContext);
 
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
@@ -31,16 +32,17 @@ const FlightListing = () => {
 
     const [filters, setFilters] = useState(
         {
-            sort: 'price',
             ...filterParams,
             airlines: [],
             rating: filterParams.rating.min
         }
     );
 
+    const [sortType, setSortType] = useState('lowest price');
+
     const [resetTrigger, setResetTrigger] = useState(true);
 
-    const [sortType, setSortType] = useState('lowest price');
+    const [tabs, setTabs] = useState([]);
 
     const changeFilter = (filter) => {
         setFilters({ ...filters, ...filter });
@@ -109,7 +111,7 @@ const FlightListing = () => {
         } else {
             flightTickets = createReturnTickets(directFlights, returnFlights);
         };
-        
+
         function createOneWayTickets(directFlights) {
             let results = [];
 
@@ -162,7 +164,7 @@ const FlightListing = () => {
 
     // FILTERED SEARCH RESULTS
     useEffect(() => {
-        defineFilterParams()
+        defineFilterParams();
     }, [searchResults])
 
     function defineFilterParams() {
@@ -174,7 +176,7 @@ const FlightListing = () => {
         // Defining new params
         if (searchResults.length > 1) {
 
-            // New price filter params 
+            // Price filter params 
             minPrice = searchResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, searchResults[0].price);
             maxPrice = searchResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, searchResults[0].price);
 
@@ -209,6 +211,7 @@ const FlightListing = () => {
                 rating: filterParams.rating.min
             }
         );
+
         setResetTrigger(!resetTrigger);
     }, [filterParams])
 
@@ -263,8 +266,6 @@ const FlightListing = () => {
             });
         }
 
-        // Sorting by highest price
-
         if (sortType === 'highest price') {
             items.sort(function (a, b) {
                 if (a.price < b.price) {
@@ -293,61 +294,36 @@ const FlightListing = () => {
     };
 
     useEffect(() => {
+        if (filteredResults.length > 0) {
+            const cheapest = filteredResults.reduce((prev, curr) => curr.price < prev.price ? curr : prev, filteredResults[0]);
+
+            const fastest = filteredResults.reduce((prev, curr) => curr.duration < prev.duration ? curr : prev, filteredResults[0]);
+
+            cheapest && fastest && setTabs([
+                {
+                    title: 'Cheapest',
+                    subtitle: '$' + cheapest.price + ', ' + formatDuration(cheapest.duration),
+                    active: false,
+                    action: () => { setSortType('lowest price') },
+                },
+                {
+                    title: 'Fastest',
+                    subtitle: '$' + fastest.price + ', ' + formatDuration(fastest.duration),
+                    active: false,
+                    action: () => { setSortType('fastest') },
+                },
+            ]);
+        }
+    }, [filteredResults])
+
+    useEffect(() => {
         let items = [...filteredResults];
         let sorted = applySort(items)
         setFilteredResults(sorted);
     }, [sortType])
 
-    const tabs = [
-        {
-            title: 'Cheapest',
-            subtitle: '$99, 2h 00m',
-            active: false,
-            action: () => { setSortType('lowest price') },
-        },
-        {
-            title: 'Best',
-            subtitle: '$199, 3h 30m',
-            active: false,
-            action: () => { setSortType('highest price') },
-        },
-        {
-            title: 'Quickest',
-            subtitle: '$299, 5h 00m',
-            active: false,
-            action: () => { setSortType('lowest price') },
-        },
-    ];
-
     return (
         <>
-            <>
-                <p>SEARCH PARAMS </p>
-                {JSON.stringify(flightSearchParams)}
-                <br />
-                <br />
-                <p>SEARCH RESULTS </p>
-                {JSON.stringify(searchResults)}
-                <br />
-                <br />
-                <p>FILTER PARAMS </p>
-                {JSON.stringify(filterParams)}
-                <br />
-                <br />
-                <p>FILTERS </p>
-                {JSON.stringify(filters)}
-                <br />
-                <br />
-                <p>FILTERED </p>
-                {JSON.stringify(filteredResults.length)}
-                <br />
-                <br />
-                <p>USER </p>
-                {JSON.stringify(user)}
-                <br />
-                <br />
-            </>
-
             <HeaderInner />
             <main className="listing">
                 <div className="listing-form">

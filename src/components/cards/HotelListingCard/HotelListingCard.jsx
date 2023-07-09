@@ -12,9 +12,7 @@ import { AppContext } from './../../../App';
 
 const HotelListingCard = ({ hotel, dates }) => {
     const navigate = useNavigate();
-    const { setSelectedHotel } = useContext(AppContext);
-
-    console.log(dates);
+    const { setSelectedHotel, userAuth } = useContext(AppContext);
 
     const object = findHotel(hotel);
 
@@ -52,9 +50,9 @@ const HotelListingCard = ({ hotel, dates }) => {
                     </div>
                 </div>
                 <div className="hotel-card__buttons">
-                    <FavCheckboxButton
+                    {userAuth && <FavCheckboxButton
                         hotelBooking={object.id}
-                    />
+                    />}
                     <div className="hotel-card__button-wrapper">
                         <Button
                             text="View Place"

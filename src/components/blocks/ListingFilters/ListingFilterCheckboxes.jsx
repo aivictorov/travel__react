@@ -32,7 +32,7 @@ const ListingFilterCheckboxes = ({ name, title, items, changeFilter, resetTrigge
                                 <Checkbox
                                     key={index}
                                     name={item}
-                                    action={(event) => {
+                                    onChangeFunction={(event) => {
                                         if (event.target.checked) {
                                             setParams([...params, event.target.name])
                                         } else {

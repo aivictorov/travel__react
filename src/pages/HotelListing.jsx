@@ -12,7 +12,7 @@ import ListingSort from './../components/blocks/ListingSort/ListingSort';
 import ButtonShowMore from './../components/elements/ButtonShowMore/ButtonShowMore';
 
 const HotelListing = () => {
-    const { hotels, hotelSearchParams, user } = useContext(AppContext);
+    const { hotels, hotelSearchParams, user, recentSearches } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);
@@ -205,33 +205,6 @@ const HotelListing = () => {
 
     return (
         <>
-            <>
-                <p>SEARCH PARAMS </p>
-                {JSON.stringify(hotelSearchParams)}
-                <br />
-                <br />
-                <p>SEARCH RESULTS </p>
-                {JSON.stringify(searchResults.length)}
-                <br />
-                <br />
-                <p>FILTER PARAMS </p>
-                {JSON.stringify(filterParams)}
-                <br />
-                <br />
-                <p>FILTERS </p>
-                {JSON.stringify(filters)}
-                <br />
-                <br />
-                <p>FILTERED </p>
-                {JSON.stringify(filteredResults.length)}
-                <br />
-                <br />
-                <p>USER </p>
-                {JSON.stringify(user)}
-                <br />
-                <br />
-            </>
-
             <HeaderInner />
             <main className="listing">
                 <div className="listing-form">

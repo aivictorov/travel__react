@@ -12,6 +12,7 @@
 }
 
 .flight-card__image {
+    flex-shrink: 0;
     width: 160px;
 
     img {
@@ -27,7 +28,7 @@
     row-gap: 16px;
     padding-left: 24px;
     padding-right: 24px;
-    width: 80%;
+    width: 100%;
 }
 
 .flight-card__header {

@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import Checkbox from './../../elements/Checkbox/Checkbox';
-import Modal from './../../modals/Modal/Modal';
-import ModalWindow from './../../modals/ModalWindow/ModalWindow';
-import Terms from './../../modals/Terms/Terms';
 import ButtonLink from '../../elements/ButtonLink/ButtonLink';
-import PrivacyPolicy from './../../modals/PrivacyPolicy/PrivacyPolicy';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../elements/Button/Button';
 import Input from '../../elements/Input/Input';
 import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
+import DefaultModal from './../../modals/DefaultModal/DefaultModal';
 
 const SignUpForm = () => {
     const navigate = useNavigate();
@@ -222,20 +219,32 @@ const SignUpForm = () => {
                                     text="Terms"
                                     action={() => { setOpenTermsModal(true) }}
                                 />
-                                <Modal
+                                <DefaultModal
                                     isOpen={openTermsModal}
                                     onClose={() => setOpenTermsModal(false)}
-                                    window={<ModalWindow content={<Terms />} />}
+                                    title="Terms"
+                                    text={
+                                        <>
+                                            <p>When you use our services, you’re trusting us with your information. We understand this is a big responsibility and work hard to protect your information and put you in control.</p>
+                                            <p>This Privacy Policy is meant to help you understand what information we collect, why we collect it, and how you can update, manage, export, and delete your information.</p>
+                                        </>
+                                    }
                                 />
                                 {" and "}
                                 <ButtonLink
-                                    text="Privacy Policies"
+                                    text="Privacy policies"
                                     action={() => { setOpenPrivacyPolicyModal(true) }}
                                 />
-                                <Modal
+                                <DefaultModal
                                     isOpen={openPrivacyPolicyModal}
                                     onClose={() => setOpenPrivacyPolicyModal(false)}
-                                    window={<ModalWindow content={<PrivacyPolicy />} />}
+                                    title="Privacy Policy"
+                                    text={
+                                        <>
+                                            <p>When you use our services, you’re trusting us with your information. We understand this is a big responsibility and work hard to protect your information and put you in control.</p>
+                                            <p>This Privacy Policy is meant to help you understand what information we collect, why we collect it, and how you can update, manage, export, and delete your information.</p>
+                                        </>
+                                    }
                                 />
                             </>
                         }

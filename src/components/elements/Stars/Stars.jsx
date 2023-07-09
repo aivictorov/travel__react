@@ -19,7 +19,9 @@ const Stars = ({ number }) => {
                     )
                 })}
             </div>
-            <div className="stars__text">5 Star Hotel</div>
+            <div className="stars__text">
+                {number > 0 ? number + ' Star Hotel' : 'No stars'}
+            </div>
         </div>
     );
 }

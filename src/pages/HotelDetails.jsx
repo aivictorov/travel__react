@@ -14,8 +14,6 @@ import { AppContext } from "../App";
 import FavCheckboxButton from './../components/elements/FavCheckboxButton/FavCheckboxButton';
 
 const HotelDetails = () => {
-    // const { hotelID } = useParams();
-
     const { hotels, selectedHotel } = useContext(AppContext);
     const hotelID = selectedHotel.id;
 

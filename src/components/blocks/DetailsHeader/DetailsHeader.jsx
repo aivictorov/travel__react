@@ -7,9 +7,12 @@ import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
 import Button from '../../elements/Button/Button';
 import Stars from './../../elements/Stars/Stars';
 import Price from './../../elements/Price/Price';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
 
-const DetailsHeader = ({ title = 'Emirates A380 Airbus', cover, action, favButton }) => {
+const DetailsHeader = ({ title = 'Emirates A380 Airbus', action, favButton }) => {
     const navigate = useNavigate();
+    const { userAuth } = useContext(AppContext);
 
     return (
         <div className="details-header">
@@ -27,9 +30,13 @@ const DetailsHeader = ({ title = 'Emirates A380 Airbus', cover, action, favButto
                     </div>
                 </div>
                 <div className="details-header__right">
-                    <Price value={240} period="night" style="big" />
+                    <Price
+                        value={240}
+                        period="night"
+                        style="big"
+                    />
                     <div className="details-header__buttons">
-                        {favButton}
+                        {userAuth && favButton}
                         <ButtonSquare
                             style="border small"
                             svgID="share"

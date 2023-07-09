@@ -15,7 +15,7 @@ import RoomsAndGuests from './../../drops/RoomsAndGuests/RoomsAndGuests';
 const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();
 
-    const { hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
+    const { hotelSearchParams, setHotelSearchParams, recentSearches, setRecentSearches, } = useContext(AppContext);
 
     const [destination, setDestination] = useState(hotelSearchParams.destination || '');
 

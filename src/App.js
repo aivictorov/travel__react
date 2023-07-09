@@ -15,7 +15,6 @@ import ResetPassword from './pages/ResetPassword';
 import VerifyCode from './pages/VerifyCode';
 import Account from './pages/Account';
 import ScrollToTop from './utils/scrollToTop';
-import RunScripts from './utils/runScripts';
 import SVG from './SVG';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -26,6 +25,8 @@ import hotels from './data/hotels';
 import airlines from './data/airlines';
 import reviews from './data/reviews';
 import users from './data/users';
+import { useEffect } from 'react';
+import Test from './Test';
 
 export const AppContext = createContext(null);
 
@@ -73,7 +74,11 @@ function App() {
         cards: [],
     });
 
-    const [userID, setUserID] = useState(-1);
+    const [recentSearches, setRecentSearches] = useState({
+        flights: [],
+        hotels: [],
+    });
+
     const [userAuth, setUserAuth] = useState(false);
 
     const [selectedFlight, setSelectedFlight] = useState('');
@@ -88,6 +93,22 @@ function App() {
 
     const accountTabsRef = useRef(null);
 
+    useEffect(() => {
+        if (hotelSearchParams.destination !== '' &&
+            hotelSearchParams.checkIn !== '' &&
+            hotelSearchParams.checkOut !== ''
+        ) {
+            const newRecentHotelSearches = [...recentSearches['hotels']]
+            newRecentHotelSearches.unshift(hotelSearchParams)
+            newRecentHotelSearches.splice(4)
+
+            setRecentSearches({
+                ...recentSearches,
+                hotels: newRecentHotelSearches
+            });
+        };
+    }, [hotelSearchParams])
+
     return (
         <AppContext.Provider value={{
             flights,
@@ -98,14 +119,15 @@ function App() {
             flightSearchParams, setFlightSearchParams,
             hotelSearchParams, setHotelSearchParams,
             user, setUser,
-            userID, setUserID,
             userAuth, setUserAuth,
             activeTabs, setActiveTabs,
             accountTabsRef,
             selectedFlight, setSelectedFlight,
-            selectedHotel, setSelectedHotel
+            selectedHotel, setSelectedHotel,
+            recentSearches, setRecentSearches,
         }}>
             <div className="App">
+                {/* <Test /> */}
                 <Router>
                     <ScrollToTop />
                     <SVG />
@@ -114,7 +136,7 @@ function App() {
                         <Route path="/flight-search" element={<FlightSearch />}></Route>
                         <Route path="/flight-listing" element={<FlightListing />}></Route>
                         {/* <Route path="/flight-details/:directID/:returnID?" element={<FlightDetails />}></Route> */}
-                        <Route path="/flight-details" element={<FlightDetails />}></Route> 
+                        <Route path="/flight-details" element={<FlightDetails />}></Route>
                         {/* <Route path="/flight-booking/:directID/:returnID?" element={<FlightBooking />}></Route> */}
                         <Route path="/flight-booking" element={<FlightBooking />}></Route>
                         <Route path="/hotel-search" element={<HotelSearch />}></Route>
@@ -130,7 +152,6 @@ function App() {
                         <Route path="/verify-code" element={<VerifyCode />}></Route>
                         <Route path="/account" element={<Account />}></Route>
                     </Routes>
-                    <RunScripts />
                 </Router>
             </div>
         </AppContext.Provider>

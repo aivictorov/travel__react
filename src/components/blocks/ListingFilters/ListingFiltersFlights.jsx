@@ -4,6 +4,8 @@ import ListingFilterCheckboxes from './ListingFilterCheckboxes';
 
 const ListingFiltersFlights = ({ filterParams, changeFilter, resetTrigger }) => {
 
+    // console.log(filterParams);
+    
     return (
         <>
             <ListingFilterDualRange

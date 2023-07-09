@@ -30,7 +30,6 @@ const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumbe
                         value={sortType}
                         onChange={(event) => { setSortType(event.target.value) }}
                     >
-                        <option value="recommended">Recommended</option>
                         <option value="lowest price">Lowest price</option>
                         <option value="highest price">Highest price</option>
                         <option value="fastest">Fastest</option>

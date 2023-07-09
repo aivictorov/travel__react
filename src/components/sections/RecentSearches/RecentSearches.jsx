@@ -1,11 +1,15 @@
 import './RecentSearches.scss'
 import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
-import recentSearchImg01 from './../../../img/sections/recent-searches/01.jpg';
-import recentSearchImg02 from './../../../img/sections/recent-searches/02.jpg';
-import recentSearchImg03 from './../../../img/sections/recent-searches/03.jpg';
-import recentSearchImg04 from './../../../img/sections/recent-searches/04.jpg';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
+import RecentSearchesCard from './RecentSearchesCard';
 
-const RecentSearches = () => {
+const RecentSearches = ({ layout = 'hotels' }) => {
+    const { recentSearches } = useContext(AppContext);
+
+    if (layout === 'flights' && recentSearches.flights.length === 0) return null
+    if (layout === 'hotels' && recentSearches.hotels.length === 0) return null
+
     return (
         <section className="recent-searches">
             <div className="container">
@@ -13,54 +17,24 @@ const RecentSearches = () => {
                     title="Your recent searches"
                 />
                 <div className="recent-searches__cards">
-                    <div className="recent-search-card">
-                        <div className="recent-search-card__image">
-                            <img
-                                src={recentSearchImg01}
-                                alt="Istanbul, Turkey"
+
+                    {layout === 'flights' && recentSearches.flights.map((searchParams, index) => {
+                        return (
+                            <RecentSearchesCard
+                                key={index}
+                                searchParams={searchParams}
                             />
-                        </div>
-                        <div className="recent-search-card__content">
-                            <div className="recent-search-card__title">Istanbul, Turkey</div>
-                            <div className="recent-search-card__subtitle">325 places</div>
-                        </div>
-                    </div>
-                    <div className="recent-search-card">
-                        <div className="recent-search-card__image">
-                            <img
-                                src={recentSearchImg02}
-                                alt="Sydney, Australia"
+                        )
+                    })}
+
+                    {layout === 'hotels' && recentSearches.hotels.map((searchParams, index) => {
+                        return (
+                            <RecentSearchesCard
+                                key={index}
+                                searchParams={searchParams}
                             />
-                        </div>
-                        <div className="recent-search-card__content">
-                            <div className="recent-search-card__title">Sydney, Australia</div>
-                            <div className="recent-search-card__subtitle">325 places</div>
-                        </div>
-                    </div>
-                    <div className="recent-search-card">
-                        <div className="recent-search-card__image">
-                            <img
-                                src={recentSearchImg03}
-                                alt="Baku, Azerbaijan"
-                            />
-                        </div>
-                        <div className="recent-search-card__content">
-                            <div className="recent-search-card__title">Baku, Azerbaijan</div>
-                            <div className="recent-search-card__subtitle">325 places</div>
-                        </div>
-                    </div>
-                    <div className="recent-search-card">
-                        <div className="recent-search-card__image">
-                            <img
-                                src={recentSearchImg04}
-                                alt="Malé, Maldives"
-                            />
-                        </div>
-                        <div className="recent-search-card__content">
-                            <div className="recent-search-card__title">Malé, Maldives</div>
-                            <div className="recent-search-card__subtitle">325 places</div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
             </div>
         </section>

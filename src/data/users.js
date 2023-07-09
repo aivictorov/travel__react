@@ -13,7 +13,7 @@ const users = [
             avatar: userAvatar01,
             email: 'john.doe@gmail.com',
             password: '123',
-            phoneNumber: '+1 000-000-0000',
+            phone: '+1 000-000-0000',
             address: 'St 32 main downtown, Los Angeles, California, USA',
             birthday: '01-01-1992',
         },

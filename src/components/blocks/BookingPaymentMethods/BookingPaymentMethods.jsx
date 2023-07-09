@@ -1,8 +1,7 @@
 import Modal from '../../modals/Modal/Modal';
 import './BookingPaymentMethods.scss'
 import { useState } from 'react';
-import PaymentInfo from '../../modals/PaymentInfo/PaymentInfo';
-import ModalWindow from '../../modals/ModalWindow/ModalWindow';
+import DefaultModal from './../../modals/DefaultModal/DefaultModal';
 
 const BookingPaymentMethods = () => {
 
@@ -71,13 +70,19 @@ const BookingPaymentMethods = () => {
                 More info
             </button>
 
-            <Modal
+            <DefaultModal
                 isOpen={openModal}
                 onClose={() => setOpenModal(false)}
-                window={<ModalWindow content={
-                    <PaymentInfo onClose={() => setOpenModal(false)} />
-                } />}
+                title="Payment information"
+                text={
+                    <>
+                        <p>When you use our services, you’re trusting us with your information. We understand this is a big responsibility and work hard to protect your information and put you in control.</p>
+                        <p>This Privacy Policy is meant to help you understand what information we collect, why we collect it, and how you can update, manage, export, and delete your information.</p>
+                    </>
+                }
             />
+
+
 
         </div>
     );

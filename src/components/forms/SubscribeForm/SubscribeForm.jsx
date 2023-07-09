@@ -2,11 +2,9 @@ import './SubscribeForm.scss'
 import mailboxImg from './../../../img/footer/mailbox.svg'
 import Button from '../../elements/Button/Button';
 import { useState, useEffect } from 'react';
-import Subscribe from './../../modals/Subscribe/Subscribe';
-import Modal from './../../modals/Modal/Modal';
-import ModalWindow from './../../modals/ModalWindow/ModalWindow';
 import Input from './../../elements/Input/Input';
 import { checkEmail } from '../../../utils/validationFunctions';
+import DefaultModal from './../../modals/DefaultModal/DefaultModal';
 
 const SubscribeForm = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -68,15 +66,11 @@ const SubscribeForm = () => {
                                 };
                             }}
                         />
-                        <Modal
+                        <DefaultModal
                             isOpen={openModal}
                             onClose={() => setOpenModal(false)}
-                            window={<ModalWindow content={
-                                <Subscribe
-                                    email={email}
-                                    onClose={() => setOpenModal(false)}
-                                />
-                            } />}
+                            title="Subscribe"
+                            text="Thank you! Your e-mail address has been successfully subscribed to our newsletter!"
                         />
                     </div>
                 </div>
