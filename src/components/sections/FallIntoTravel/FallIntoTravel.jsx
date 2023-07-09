@@ -5,7 +5,8 @@ import travelImg03 from './../../../img/sections/fall-into-travel/03.jpg';
 import travelImg04 from './../../../img/sections/fall-into-travel/04.jpg';
 import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 import FallIntoTravelCard from './FallIntoTravelCard';
-const FallIntoTravel = () => {
+
+const FallIntoTravel = ({ layout = "flights" }) => {
 
     return (
         <section className="fall-into-travel">
@@ -16,10 +17,38 @@ const FallIntoTravel = () => {
                     button="See All"
                 />
                 <div className="fall-into-travel__cards">
-                    <FallIntoTravelCard title="Melbourne" text="An amazing journey" price="700" img={travelImg01} />
-                    <FallIntoTravelCard title="Paris" text="A Paris Adventure" price="600" img={travelImg02} />
-                    <FallIntoTravelCard title="London" text="London eye adventure" price="350" img={travelImg03} />
-                    <FallIntoTravelCard title="Columbia" text="Amazing streets" price="700" img={travelImg04} />
+                    <FallIntoTravelCard
+                        layout={layout}
+                        city="New York"
+                        title="USA"
+                        text="An amazing journey"
+                        price="700"
+                        img={travelImg01}
+                    />
+                    <FallIntoTravelCard
+                        layout={layout}
+                        city="Paris"
+                        title="Paris"
+                        text="A Paris Adventure"
+                        price="600"
+                        img={travelImg02}
+                    />
+                    <FallIntoTravelCard
+                        layout={layout}
+                        city="London"
+                        title="London"
+                        text="London eye adventure"
+                        price="350"
+                        img={travelImg03}
+                    />
+                    <FallIntoTravelCard
+                        layout={layout}
+                        city="Rome"
+                        title="Italy"
+                        text="Amazing streets"
+                        price="700"
+                        img={travelImg04}
+                    />
                 </div>
             </div>
         </section>

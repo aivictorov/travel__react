@@ -5,8 +5,16 @@ import tourImg03 from './../../../img/sections/last-minute-tours/03.jpg';
 import tourImg04 from './../../../img/sections/last-minute-tours/04.jpg';
 import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 import Button from '../../elements/Button/Button';
+import destinations from './../../../data/destinations';
+import { buildDatesArray, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './../../../App';
+import { useContext } from 'react';
 
-const LastMinuteTours = () => {
+const LastMinuteTours = ({ layout = 'flights' }) => {
+    const navigate = useNavigate();
+
+    const { flightSearchParams, setFlightSearchParams, hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
 
     const gallery = [tourImg01, tourImg02, tourImg03, tourImg04];
 
@@ -30,15 +38,41 @@ const LastMinuteTours = () => {
                         </div>
                         <div className="last-minute-tours__card-text">
                             <p>
-                                Traveling is a unique experience as it's the best way to unplug
-                                from the pushes and pulls of daily life. It helps us to forget
-                                about our problems, frustrations, and fears at home. During our
-                                journey, we experience life in different ways. We explore new
-                                places, cultures, cuisines, traditions, and ways of living.
+                                Traveling is a unique experience as it's the best way to unplug from the pushes and pulls of daily life. It helps us to forget about our problems, frustrations, and fears at home. During our journey, we experience life in different ways. We explore new places, cultures, cuisines, traditions, and ways of living.
                             </p>
                         </div>
                         <div className="last-minute-tours__card-button">
-                            <Button text="Book flight" style="light w100" />
+                            <Button
+                                text={layout === "flights" ? "Book flight" : "Book hotel"}
+                                style="light w100"
+                                action={() => {
+                                    const destination = destinations.find((item) => item.city === "Colombo")
+
+                                    if (layout === "flights") {
+                                        setFlightSearchParams({
+                                            ...flightSearchParams,
+                                            from: destinations[0].airport,
+                                            to: destination.airport,
+                                            depart: formatDate(daysFromToday(1)),
+                                            return: formatDate(daysFromToday(3)),
+                                            passangers: 1,
+                                            class: "economy"
+                                        });
+                                        navigate("/flight-listing");
+                                    } else if (layout === "hotels") {
+                                        setHotelSearchParams({
+                                            ...hotelSearchParams,
+                                            destination: destination.city,
+                                            checkIn: formatDate(daysFromToday(1)),
+                                            checkOut: formatDate(daysFromToday(3)),
+                                            allDates: buildDatesArray([daysFromToday(1), daysFromToday(3)]),
+                                            rooms: 1,
+                                            guests: 1
+                                        });
+                                        navigate("/hotel-listing");
+                                    }
+                                }}
+                            />
                         </div>
                     </div>
 

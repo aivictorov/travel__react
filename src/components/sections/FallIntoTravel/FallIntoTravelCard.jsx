@@ -2,11 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../../../App';
 import Button from '../../elements/Button/Button';
+import destinations from './../../../data/destinations';
+import { buildDatesArray, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions';
 
-const FallIntoTravelCard = ({ title, text, price, img }) => {
-
-    const { setSearchParams } = useContext(AppContext);
+const FallIntoTravelCard = ({ layout, city, title, text, price, img }) => {
     const navigate = useNavigate();
+
+    const { flightSearchParams, setFlightSearchParams, hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
 
     return (
         <div className="fall-into-travel-card">
@@ -26,12 +28,37 @@ const FallIntoTravelCard = ({ title, text, price, img }) => {
                     </div>
                 </div>
                 <Button
-                    text="Book flight"
+                    text={layout === "flights" ? "Book flight" : "Book hotel"}
+                    style="w100"
                     action={() => {
-                        setSearchParams({ from: 'All', to: title });
-                        navigate("/flight-listing");
+                        const destination = destinations.find((item) => item.city === city)
+
+                        if (layout === "flights") {
+                            setFlightSearchParams({
+                                ...flightSearchParams,
+                                from: destinations[0].airport,
+                                to: destination.airport,
+                                depart: formatDate(daysFromToday(1)),
+                                return: formatDate(daysFromToday(3)),
+                                passangers: 1,
+                                class: "economy"
+                            });
+                            navigate("/flight-listing");
+                        } else if (layout === "hotels") {
+                            setHotelSearchParams({
+                                ...hotelSearchParams,
+                                destination: destination.city,
+                                checkIn: formatDate(daysFromToday(1)),
+                                checkOut: formatDate(daysFromToday(3)),
+                                allDates: buildDatesArray([daysFromToday(1), daysFromToday(3)]),
+                                rooms: 1,
+                                guests: 1
+                            });
+                            navigate("/hotel-listing");
+                        }
                     }}
                 />
+
             </div>
         </div>
     );

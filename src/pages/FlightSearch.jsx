@@ -12,8 +12,8 @@ const FlightSearch = () => {
             <main>
                 <SliderInnerFlights />
                 <PlacesOnMap />
-                <FallIntoTravel />
-                <LastMinuteTours />
+                <FallIntoTravel layout='flights' />
+                <LastMinuteTours layout='flights' />
             </main>
             <Footer />
         </>

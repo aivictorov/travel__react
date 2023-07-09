@@ -6,8 +6,7 @@ import image02 from './../img/hotels/hotel-example-1/gallery/02.jpg';
 import image03 from './../img/hotels/hotel-example-1/gallery/03.jpg';
 import image04 from './../img/hotels/hotel-example-1/gallery/04.jpg';
 import image05 from './../img/hotels/hotel-example-1/gallery/05.jpg';
-
-const cities = ['Istanbul', 'Sydney', 'Baku', 'Male', 'Paris', 'New York', 'London', 'Tokyo', 'Dubai']
+import destinations from './destinations';
 
 function generateHotels(count) {
     let hotels = [];
@@ -15,7 +14,7 @@ function generateHotels(count) {
     for (let index = 0; index < count; index++) {
         const id = index;
         const name = `Hotel ### ${index} ###`
-        const city = cities[Math.floor(Math.random() * cities.length)];
+        const city = destinations[Math.floor(Math.random() * destinations.length)].city;
         const stars = Math.floor(Math.random() * 5);
         const rating = (Math.random() * 5).toFixed(1);
 

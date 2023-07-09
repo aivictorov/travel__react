@@ -3,6 +3,7 @@ import './SearchForm.scss';
 import SearchFormFlights from './SearchFormFlights';
 import SearchFormHotels from './SearchFormHotels';
 import { AppContext } from '../../../App';
+import SearchFormTabs from './SearchFormTabs';
 
 const SearchForm = ({ page }) => {
     const { activeTabs, setActiveTabs } = useContext(AppContext);
@@ -10,39 +11,10 @@ const SearchForm = ({ page }) => {
     if (page === 'home') {
         return (
             <div
-                className="search-form"
+                className="search-form search-form--home"
                 tabs="search"
             >
-                <div className="search-form__tabs">
-                    <button
-                        className="search-form__link"
-                        type="button"
-                        tab-button="flight-search"
-                        tab-group="search"
-                        onClick={() => {
-                            setActiveTabs({ ...activeTabs, searchForm: 'flights' });
-                        }}
-                    >
-                        <svg width={24} height={24}>
-                            <use href="#flight-icon" />
-                        </svg>
-                        Flights
-                    </button>
-                    <button
-                        className="search-form__link"
-                        type="button"
-                        tab-button="hotel-search"
-                        tab-group="search"
-                        onClick={() => {
-                            setActiveTabs({ ...activeTabs, searchForm: 'hotels' });
-                        }}
-                    >
-                        <svg width={24} height={24}>
-                            <use href="#hotel-icon" />
-                        </svg>
-                        Stays
-                    </button>
-                </div>
+                <SearchFormTabs />
                 {activeTabs.searchForm === 'flights' && <SearchFormFlights layout="full" />}
                 {activeTabs.searchForm === 'hotels' && <SearchFormHotels layout="full" />}
             </div>

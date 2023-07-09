@@ -18,6 +18,7 @@ const destinations = [
         image: img01
     },
     {
+        id: 2,
         airport: 'Paris Charles de Gaulle',
         city: 'Paris',
         country: 'France',
@@ -25,6 +26,7 @@ const destinations = [
         image: img02
     },
     {
+        id: 3,
         airport: 'Baku Heydar Aliyev International',
         city: 'Baku',
         country: 'Azerbaijan',
@@ -32,6 +34,7 @@ const destinations = [
         image: img03
     },
     {
+        id: 4,
         airport: 'Sydney',
         city: 'Sydney',
         country: 'Australia',
@@ -39,6 +42,7 @@ const destinations = [
         image: img04
     },
     {
+        id: 5,
         airport: 'Colombo Bandaranayake',
         city: 'Colombo',
         country: 'Sri Lanka',
@@ -46,6 +50,7 @@ const destinations = [
         image: img05
     },
     {
+        id: 6,
         airport: 'New York John F. Kennedy',
         city: 'New York',
         country: 'USA',
@@ -53,25 +58,76 @@ const destinations = [
         image: img06
     },
     {
+        id: 7,
         airport: 'London Heathrow',
         city: 'London',
-        country: 'Turkey',
+        country: 'Great Britain',
         code: 'LHR',
         image: img07
     },
     {
+        id: 8,
         airport: 'Tokyo Narita',
         city: 'Tokyo',
-        country: 'Turkey',
+        country: 'Japan',
         code: 'NRT',
         image: img08
     },
     {
+        id: 9,
         airport: 'Dubai',
         city: 'Dubai',
-        country: 'Turkey',
+        country: 'UAE',
         code: 'DXB',
         image: img09
+    },
+    {
+        id: 10,
+        airport: 'Saint Petersburg',
+        city: 'Saint Petersburg',
+        country: 'Russia',
+        code: 'LED',
+        image: img01
+    },
+    {
+        id: 11,
+        airport: 'Batumi',
+        city: 'Batumi',
+        country: 'Georgia',
+        code: 'BUS',
+        image: img02
+    },
+    {
+        id: 12,
+        airport: 'Yerevan',
+        city: 'Yerevan',
+        country: 'Armenia',
+        code: 'EVN',
+        image: img03
+    },
+    {
+        id: 13,
+        airport: 'Phuket',
+        city: 'Phuket',
+        country: 'Thailand',
+        code: 'HKT',
+        image: img04
+    },
+    {
+        id: 14,
+        airport: 'Beijing Capital',
+        city: 'Beijing',
+        country: 'China',
+        code: 'PEK',
+        image: img05
+    },
+    {
+        id: 15,
+        airport: 'Rome Fiumicino',
+        city: 'Rome',
+        country: 'Italy',
+        code: 'FCO',
+        image: img06
     },
 ]
 

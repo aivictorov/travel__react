@@ -12,8 +12,8 @@ const HotelSearch = () => {
             <main>
                 <SliderInnerHotels />
                 <RecentSearches />
-                <FallIntoTravel />
-                <LastMinuteTours />
+                <FallIntoTravel layout='hotels' />
+                <LastMinuteTours  layout='hotels' />
             </main>
             <Footer />
         </>

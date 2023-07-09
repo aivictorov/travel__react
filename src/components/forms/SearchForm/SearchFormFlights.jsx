@@ -56,7 +56,7 @@ const SearchFormFlights = ({ layout }) => {
             }
         });
 
-        setDropFromList(list);
+        setDropFromList(list.sort());
     }, [from])
 
     // 2. Drop "To"
@@ -72,7 +72,7 @@ const SearchFormFlights = ({ layout }) => {
             }
         });
 
-        setDropToList(list);
+        setDropToList(list.sort());
     }, [to])
 
     // 3. Drop "Calendar"
@@ -274,7 +274,7 @@ const SearchFormFlights = ({ layout }) => {
                         label="Passenger & Class"
                         placeholder="1 Passenger, Economy"
                         value={formatPassAndClass(passangers, serviceClass)}
-                        onChangeFunction={(event) => { changePassAndClass(event.target.value) }}
+                        onChangeFunction={() => { }}
                         onFocusFunction={() => setOpenDropPassAndClass(true)}
                     />
                     <Drop

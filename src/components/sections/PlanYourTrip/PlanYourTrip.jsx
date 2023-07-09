@@ -28,10 +28,8 @@ const PlanYourTrip = () => {
                         if (index < numberOfCards) {
                             return (
                                 <PlanYourTripCard
-                                    key={item.id}
-                                    title={`${item.city}, ${item.country}`}
-                                    img={item.image}
-                                    from={item.city}
+                                    key={index}
+                                    destination={item}
                                 />
                             )
                         }

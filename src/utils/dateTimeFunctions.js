@@ -40,25 +40,28 @@ function dateStringToObject(dateString) {
     return date;
 }
 
-// function buildDatesArray() {
-//     const checkInArray = checkIn.split(['.']);
-//     const checkOutArray = checkOut.split(['.']);
-//     const checkInDate = new Date(checkInArray[2], parseInt(checkInArray[1]) - 1, checkInArray[0], 0, 0, 0, 0);
-//     const checkOutDate = new Date(checkOutArray[2], parseInt(checkOutArray[1]) - 1, checkOutArray[0], 0, 0, 0, 0);
-//     const duration = Math.floor((checkOutDate - checkInDate) / 1000 / 60 / 60 / 24);
+function daysFromToday(days) {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    return date;
+};
 
-//     let dates = [];
+function buildDatesArray(dates) {
+    const checkInDate = dates[0];
+    const checkOutDate = dates[1];
+    const duration = Math.floor((checkOutDate - checkInDate) / 1000 / 60 / 60 / 24);
 
-//     for (let index = 0; index < duration; index++) {
-//         let date = new Date(checkInDate);
-//         date.setDate(date.getDate() + index);
-//         const formatted = formatDate(date);
-//         dates.push(formatted)
-//     }
+    let datesArray = [];
 
-//     return dates;
-// }
+    for (let index = 0; index < duration; index++) {
+        let date = new Date(checkInDate);
+        date.setDate(date.getDate() + index);
+        const formatted = formatDate(date);
+        datesArray.push(formatted)
+    }
 
+    return datesArray;
+}
 
 // function countDefaultCheckIn() {
 //     const date = new Date();
@@ -100,11 +103,7 @@ function dateStringToObject(dateString) {
 
 
 
-    function daysFromToday(days) {
-        const date = new Date();
-        date.setDate(date.getDate() + days);
-        return date;
-    };
+
 
 
 
@@ -120,7 +119,7 @@ export {
     countDuration,
     dateStringToObject,
     daysFromToday,
-    // buildDatesArray,
+    buildDatesArray,
     // countDefaultCheckIn,
     // countDefaultCheckOut,
 }

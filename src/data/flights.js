@@ -45,6 +45,6 @@ function generateFlights(count) {
     return flights;
 };
 
-const flights = generateFlights(25000);
+const flights = generateFlights(100000);
 
 export default flights;

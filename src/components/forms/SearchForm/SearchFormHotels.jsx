@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../../App';
 import Input from '../../elements/Input/Input';
 import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
-import { dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
+import { buildDatesArray, dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
 import destinations from './../../../data/destinations';
 import DropList from './../../drops/DropList/DropList';
 import Drop from './../../drops/Drop/Drop';
@@ -40,27 +40,7 @@ const SearchFormHotels = ({ layout }) => {
     }
 
     useEffect(() => {
-        const datesArray = buildDatesArray(dates);
-
-        function buildDatesArray(dates) {
-            const checkInDate = dates[0];
-            const checkOutDate = dates[1];
-            const duration = Math.floor((checkOutDate - checkInDate) / 1000 / 60 / 60 / 24);
-
-            let datesArray = [];
-
-            for (let index = 0; index < duration; index++) {
-                let date = new Date(checkInDate);
-                date.setDate(date.getDate() + index);
-                const formatted = formatDate(date);
-                datesArray.push(formatted)
-            }
-
-            return datesArray;
-        }
-
-        setAllDates(datesArray)
-
+        setAllDates(buildDatesArray(dates))
     }, [dates])
 
     const getSearchParams = (event) => {
@@ -180,7 +160,7 @@ const SearchFormHotels = ({ layout }) => {
                         label="Rooms & Guests"
                         placeholder="1 Room, 2 Guests"
                         value={formatRoomsAndGuests(rooms, guests)}
-                        onChangeFunction={(event) => { changeRoomsAndGuests(event.target.value) }}
+                        onChangeFunction={() => { }}
                         onFocusFunction={() => setOpenDropRoomsAndGuests(true)}
                     />
                     <Drop
