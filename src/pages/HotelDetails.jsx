@@ -10,12 +10,11 @@ import HotelOverview from "../components/sections/HotelOverview/HotelOverview";
 import HotelReviews from "../components/sections/HotelReviews/HotelReviews";
 import HotelRooms from './../components/sections/HotelRooms/HotelRooms';
 import TrackNav from "../components/blocks/TrackNav/TrackNav";
+import { findHotel } from "../utils/searchFunctions";
 
 const HotelDetails = () => {
-    const { hotels, selectedHotel } = useContext(AppContext);
-    const hotelID = selectedHotel.id;
-
-    const hotel = hotels.find((hotel) => hotel.id == hotelID);
+    const { selectedHotel } = useContext(AppContext);
+    const hotel = findHotel(selectedHotel.id);
 
     const roomsRef = useRef(null);
 

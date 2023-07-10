@@ -65,6 +65,7 @@ const HotelBooking = () => {
                         </div>
                         <div className="booking__right">
                             <BookingSummary
+                                layout='hotel'
                                 title={room.name}
                                 price={room.price}
                                 rating={hotel.rating}

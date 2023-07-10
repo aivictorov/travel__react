@@ -68,7 +68,11 @@ const FlightBooking = () => {
                             {!userAuth ? <BookingLogin /> : <BookingPaymentCards />}
                         </div>
                         <div className="booking__right">
-                            <BookingSummary logo={directFlight.logo} rating={directFlight.rating} />
+                            <BookingSummary
+                                layout='flight'
+                                logo={directFlight.logo}
+                                rating={directFlight.rating}
+                            />
 
                             <Button
                                 text="BOOK FLIGHT"
