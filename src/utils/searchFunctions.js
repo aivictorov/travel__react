@@ -9,4 +9,12 @@ function findHotel(id) {
     return hotels.find((hotel) => hotel.id === id);
 }
 
-export { findFlight, findHotel }
+function findRoom(hotel, id) {
+    return hotel.rooms.find((room) => room.id === id);
+}
+
+export {
+    findFlight,
+    findHotel,
+    findRoom,
+}

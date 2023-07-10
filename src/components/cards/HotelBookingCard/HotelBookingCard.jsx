@@ -1,25 +1,33 @@
 import './HotelBookingCard.scss';
+import { useContext } from 'react';
+import { AppContext } from './../../../App';
 import Price from '../../elements/Price/Price';
+import { findHotel, findRoom } from '../../../utils/searchFunctions';
+import { dateStringToObject, formatWeekDay } from '../../../utils/dateTimeFunctions';
 
-const HotelBookingCard = ({ hotel, room, price }) => {
+const HotelBookingCard = () => {
+    const { selectedHotel } = useContext(AppContext);
+    const hotel = findHotel(selectedHotel.id);
+    const room = findRoom(hotel, selectedHotel.room);
+    
     return (
         <div className="hotel-reservation">
             <div className="hotel-reservation__top">
                 <div className="hotel-reservation__title">
-                    {room}
+                    {room.name}
                 </div>
-                <Price value={price} period="night" style="big" />
+                <Price value={room.price} period="night" style="big" />
             </div>
             <div className="hotel-reservation__middle">
                 <div className="hotel-reservation__image">
                     <img
-                        src="./img/hotels/hotel-example-1/logo.jpg"
+                        src={hotel.logo}
                         alt="hotel-logo"
                     />
                 </div>
                 <div className="hotel-reservation__about">
                     <div className="hotel-reservation__about-title">
-                        {hotel}
+                        {hotel.name}
                     </div>
                     <div className="hotel-reservation__about-adress">
                         Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437
@@ -28,7 +36,7 @@ const HotelBookingCard = ({ hotel, room, price }) => {
             </div>
             <div className="hotel-reservation__bottom">
                 <div className="hotel-reservation__begin">
-                    <span>Thursday, Dec 8</span>
+                    <span>{formatWeekDay(dateStringToObject(selectedHotel.dates[0]))}</span>
                     <span>Check-In</span>
                 </div>
                 <div className="hotel-reservation__spacer">
@@ -37,7 +45,7 @@ const HotelBookingCard = ({ hotel, room, price }) => {
                     </svg>
                 </div>
                 <div className="hotel-reservation__end">
-                    <span>Friday, Dec 9</span>
+                    <span>{formatWeekDay(dateStringToObject(selectedHotel.dates[1]))}</span>
                     <span>Check-Out</span>
                 </div>
             </div>

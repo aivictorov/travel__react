@@ -2,7 +2,6 @@ import './BookingSummary.scss'
 import Rating from '../../elements/Rating/Rating';
 
 const BookingSummary = ({ title = "Emirates A380 Airbus", logo, price = 240, rating }) => {
-
     const discount = Math.round(0.1 * price);
     const taxes = Math.round(0.18 * price);
     const serviceFee = Math.round(0.01 * price);

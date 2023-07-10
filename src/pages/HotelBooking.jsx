@@ -11,19 +11,17 @@ import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import HotelBookingCard from './../components/cards/HotelBookingCard/HotelBookingCard';
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
+import { findHotel, findRoom } from "../utils/searchFunctions";
 
 const HotelBooking = () => {
-    const { userAuth, hotels, selectedHotel, user, setUser, accountTabsRef, activeTabs, setActiveTabs } = useContext(AppContext);
+    const { userAuth, selectedHotel, user, setUser, accountTabsRef, activeTabs, setActiveTabs } = useContext(AppContext);
 
     const navigate = useNavigate();
 
     const [openModal, setOpenModal] = useState(false);
 
-    const hotelID = selectedHotel.id;
-    const roomID = selectedHotel.room;
-
-    const hotel = hotels.find((hotel) => hotel.id == hotelID)
-    const room = hotel.rooms.find((room) => room.id == roomID)
+    const hotel = findHotel(selectedHotel.id)
+    const room = findRoom(hotel, selectedHotel.room)
 
     function addBookedHotel() {
         setUser({
@@ -49,13 +47,6 @@ const HotelBooking = () => {
 
     return (
         <>
-            {hotelID}
-            <br />
-            {roomID}
-            <br />
-            {JSON.stringify(room)}
-            <br />
-
             <HeaderInner />
             <main className="booking">
                 <div className="container">
