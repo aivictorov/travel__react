@@ -1,12 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import Logo from "../components/blocks/Logo/Logo";
 import loginImg from './../img/login/slider/01.jpg';
-import VerifyCodeForm from './../components/forms/VerifyCodeForm/VerifyCodeForm';
 import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
+import Logo from "../components/blocks/Logo/Logo";
+import VerifyCodeForm from './../components/forms/VerifyCodeForm/VerifyCodeForm';
 
 const VerifyCode = () => {
-    const navigate = useNavigate();
-
     return (
         <>
             <main className="login">

@@ -1,10 +1,10 @@
 import './FallIntoTravel.scss';
+import FallIntoTravelCard from './FallIntoTravelCard';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 import travelImg01 from './../../../img/sections/fall-into-travel/01.jpg';
 import travelImg02 from './../../../img/sections/fall-into-travel/02.jpg';
 import travelImg03 from './../../../img/sections/fall-into-travel/03.jpg';
 import travelImg04 from './../../../img/sections/fall-into-travel/04.jpg';
-import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
-import FallIntoTravelCard from './FallIntoTravelCard';
 
 const FallIntoTravel = ({ layout = "flights" }) => {
 

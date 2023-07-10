@@ -1,4 +1,3 @@
-// import AccountHotelCard from './../../cards/AccountHotelCard/AccountHotelCard';
 import { useContext } from 'react';
 import { AppContext } from './../../../App';
 import HotelListingCard from '../../cards/HotelListingCard/HotelListingCard';

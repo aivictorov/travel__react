@@ -1,8 +1,8 @@
+import './AccountTabsBookings.scss';
 import { useContext } from "react";
 import { AppContext } from './../../../App';
 import AccountTabsBookingsFlights from "./AccountTabsBookingsFlights";
 import AccountTabsBookingsHotels from "./AccountTabsBookingsHotels";
-import './AccountTabsBookings.scss';
 import Tabs from './../../elements/Tabs/Tabs';
 
 const AccountTabsBookings = () => {

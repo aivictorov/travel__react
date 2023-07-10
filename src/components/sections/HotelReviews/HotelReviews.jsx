@@ -1,8 +1,7 @@
 import './HotelReviews.scss';
-import { useContext } from 'react';
-import { AppContext } from './../../../App';
+import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { AppContext } from './../../../App';
 
 const HotelReviews = () => {
     const { reviews, users } = useContext(AppContext);

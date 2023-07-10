@@ -1,9 +1,9 @@
 import './RecentSearchesCard.scss';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './../../../App';
 import destinations from './../../../data/destinations';
 import { dateStringToObject, formatWeekDay } from '../../../utils/dateTimeFunctions';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AppContext } from './../../../App';
 
 const RecentSearchesCard = ({ searchParams }) => {
     const { setHotelSearchParams } = useContext(AppContext);

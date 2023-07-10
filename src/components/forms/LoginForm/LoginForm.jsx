@@ -3,11 +3,11 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from './../../../App';
 import Button from '../../elements/Button/Button';
-import Checkbox from './../../elements/Checkbox/Checkbox';
 import ButtonLink from './../../elements/ButtonLink/ButtonLink';
+import Checkbox from './../../elements/Checkbox/Checkbox';
 import Input from '../../elements/Input/Input';
-import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
 import users from './../../../data/users';
+import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
 
 const LoginForm = () => {
     const { setUser, setUserAuth } = useContext(AppContext);

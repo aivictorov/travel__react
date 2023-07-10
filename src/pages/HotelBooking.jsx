@@ -1,16 +1,16 @@
 import { useContext, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './../App';
+import BookingLogin from './../components/blocks/BookingLogin/BookingLogin';
+import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
+import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
+import BookingSummary from './../components/blocks/BookingSummary/BookingSummary';
+import Button from "../components/elements/Button/Button";
+import DefaultModal from './../components/modals/DefaultModal/DefaultModal';
 import Footer from "../components/sections/Footer/Footer";
 import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import HotelBookingCard from './../components/cards/HotelBookingCard/HotelBookingCard';
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
-import { AppContext } from './../App';
-import BookingPaymentCards from './../components/blocks/BookingPaymentCards/BookingPaymentCards';
-import BookingLogin from './../components/blocks/BookingLogin/BookingLogin';
-import BookingSummary from './../components/blocks/BookingSummary/BookingSummary';
-import BookingPaymentMethods from './../components/blocks/BookingPaymentMethods/BookingPaymentMethods';
-import Button from "../components/elements/Button/Button";
-import { useNavigate } from 'react-router-dom';
-import DefaultModal from './../components/modals/DefaultModal/DefaultModal';
 
 const HotelBooking = () => {
     const { userAuth, hotels, selectedHotel, user, setUser, accountTabsRef, activeTabs, setActiveTabs } = useContext(AppContext);

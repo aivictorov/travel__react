@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { FlightListingContext } from "../../../pages/FlightListing";
-import ListingFilterHeader from './ListingFilterHeader';
+import { useEffect, useState } from "react";
 import Checkbox from "../../elements/Checkbox/Checkbox";
+import ListingFilterHeader from './ListingFilterHeader';
 
 const ListingFilterCheckboxes = ({ name, title, items, changeFilter, resetTrigger }) => {
 

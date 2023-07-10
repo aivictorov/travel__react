@@ -1,12 +1,9 @@
 import './Price.scss';
+import { addClass } from '../../../utils/functions';
 
 const Price = ({value, period, style, before, after}) => {
 
-    let addClass = '';
-
-    if (style === 'big') {
-        addClass = ' price__value--big';
-    }
+    let add = addClass('price__value', style);
 
     return (
         <div className="price">
@@ -17,7 +14,7 @@ const Price = ({value, period, style, before, after}) => {
             }
             <div className="price__main">
                 <span
-                    className={`price__value${addClass}`}
+                    className={'price__value' + add}
                 >
                     {`$${value}`}
                 </span>

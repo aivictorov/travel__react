@@ -1,10 +1,10 @@
 import './AccountTabs.scss';
+import { useContext } from 'react';
+import { AppContext } from '../../../App';
 import AccountTabsMain from './AccountTabsMain';
 import AccountTabsBookings from './AccountTabsBookings';
 import AccountTabsFav from './AccountTabsFav';
 import AccountTabsPayments from './AccountTabsPayments';
-import { useContext } from 'react';
-import { AppContext } from '../../../App';
 import Tabs from './../../elements/Tabs/Tabs';
 
 const AccountTabs = () => {

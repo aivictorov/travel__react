@@ -1,8 +1,8 @@
-import { useContext } from 'react';
 import './SearchForm.scss';
+import { useContext } from 'react';
+import { AppContext } from '../../../App';
 import SearchFormFlights from './SearchFormFlights';
 import SearchFormHotels from './SearchFormHotels';
-import { AppContext } from '../../../App';
 import SearchFormTabs from './SearchFormTabs';
 
 const SearchForm = ({ page }) => {

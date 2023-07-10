@@ -1,5 +1,4 @@
 import './FooterSocialIcons.scss';
-
 import facebookIcon from './../../../img/icons/social/facebook.svg';
 import instagramIcon from './../../../img/icons/social/instagram.svg';
 import twitterIcon from './../../../img/icons/social/twitter.svg';

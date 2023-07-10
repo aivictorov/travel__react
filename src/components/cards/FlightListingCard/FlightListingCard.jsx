@@ -1,14 +1,14 @@
 import './FlightListingCard.scss';
-import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
-import Button from '../../elements/Button/Button';
-import Rating from '../../elements/Rating/Rating';
-import { useNavigate } from 'react-router-dom';
-import Price from '../../elements/Price/Price';
-import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFunctions'
-import { findFlight } from '../../../utils/searchFunctions';
-import { AppContext } from './../../../App';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './../../../App';
+import Button from '../../elements/Button/Button';
 import Checkbox from '../../elements/Checkbox/Checkbox';
+import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
+import Price from '../../elements/Price/Price';
+import Rating from '../../elements/Rating/Rating';
+import { countDuration, formatTime } from '../../../utils/dateTimeFunctions'
+import { findFlight } from '../../../utils/searchFunctions';
 
 const FlightListingCard = ({ flightTicket }) => {
     const { setSelectedFlight, userAuth } = useContext(AppContext);

@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom';
 import './SearchFormHotels.scss';
-import SearchFormButtons from "./SearchFormButtons";
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../App';
 import Input from '../../elements/Input/Input';
 import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
-import { buildDatesArray, dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
-import destinations from './../../../data/destinations';
 import DropList from './../../drops/DropList/DropList';
 import Drop from './../../drops/Drop/Drop';
 import DropCalendar from './../../drops/DropCalendar/DropCalendar';
 import RoomsAndGuests from './../../drops/RoomsAndGuests/RoomsAndGuests';
+import SearchFormButtons from "./SearchFormButtons";
+import destinations from './../../../data/destinations';
+import { buildDatesArray, dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
 
 const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();

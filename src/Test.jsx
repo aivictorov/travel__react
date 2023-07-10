@@ -21,18 +21,18 @@ const Test = () => {
 
     return (
         <>
-            <p>Flight Search Params</p>
+            {/* <p>Flight Search Params</p>
             {JSON.stringify(flightSearchParams)}
-            <br /><br />
+            <br /><br /> */}
 
-            <p>Hotel Search Params</p>
+            {/* <p>Hotel Search Params</p>
             {JSON.stringify(hotelSearchParams)}
-            <br /><br />
+            <br /><br /> */}
 
             <p>User</p>
             {JSON.stringify(user)}
-            <br />
-            {userAuth.toString()}
+            {/* <br />
+            {userAuth.toString()} */}
             <br /><br />
 
             <p>Selected flight & hotel</p>
@@ -41,13 +41,13 @@ const Test = () => {
             {JSON.stringify(selectedHotel)}
             <br /><br />    
 
-            <p>Recent searches</p>
+            {/* <p>Recent searches</p>
             {JSON.stringify(recentSearches)}
-            <br /><br />
+            <br /><br /> */}
 
-            <p>Active tabs</p>
+            {/* <p>Active tabs</p>
             {JSON.stringify(activeTabs)}
-            <br /><br />
+            <br /><br /> */}
         </>
     );
 }

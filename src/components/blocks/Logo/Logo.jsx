@@ -1,7 +1,7 @@
-import { NavLink } from "react-router-dom";
 import './Logo.scss';
+import { NavLink } from "react-router-dom";
 
-const Logo = ({mainColor, accentColor}) => {
+const Logo = ({ mainColor, accentColor }) => {
 
     return (
         <NavLink to="/" className="logo" >

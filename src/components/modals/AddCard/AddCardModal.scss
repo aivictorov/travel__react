@@ -1,0 +1,11 @@
+@import './../../../scss/base/_vars.scss';
+
+.add-card-modal {
+    max-width: 400px;
+}
+
+.add-card-modal__title {
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 28px;
+}

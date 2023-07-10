@@ -1,8 +1,8 @@
 import Logo from "../components/blocks/Logo/Logo";
-import loginImg from './../img/login/slider/01.jpg';
-import SignUpForm from './../components/forms/SignUpForm/SignUpForm';
 import LoginWith from "../components/blocks/LoginWith/LoginWith";
 import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
+import SignUpForm from './../components/forms/SignUpForm/SignUpForm';
+import loginImg from './../img/login/slider/01.jpg';
 
 const SignUp = () => {
     return (

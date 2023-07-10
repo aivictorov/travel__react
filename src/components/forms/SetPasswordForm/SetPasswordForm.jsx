@@ -1,7 +1,7 @@
 import './SetPasswordForm.scss'
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './../../elements/Button/Button';
-import { useState } from 'react';
 import Input from './../../elements/Input/Input';
 import { checkEmpty } from '../../../utils/validationFunctions';
 

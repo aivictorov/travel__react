@@ -1,8 +1,8 @@
 import './RecentSearches.scss'
-import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 import { useContext } from 'react';
 import { AppContext } from './../../../App';
 import RecentSearchesCard from './RecentSearchesCard';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 
 const RecentSearches = ({ layout = 'hotels' }) => {
     const { recentSearches } = useContext(AppContext);

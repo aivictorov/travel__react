@@ -1,11 +1,11 @@
 import './AccountCover.scss';
-import coverImg from "./../../../img/users/cover.jpg";
-import Button from './../../elements/Button/Button';
-import UploadCover from './../../modals/UploadCover/UploadCover';
-import Modal from './../../modals/Modal/Modal';
-import ModalWindow from './../../modals/ModalWindow/ModalWindow';
 import { useState, useContext } from 'react';
 import { AppContext } from './../../../App';
+import Button from './../../elements/Button/Button';
+import Modal from './../../modals/Modal/Modal';
+import ModalWindow from './../../modals/ModalWindow/ModalWindow';
+import UploadCover from './../../modals/UploadCover/UploadCover';
+import coverImg from "./../../../img/users/cover.jpg";
 
 const AccountCover = () => {
     const { user } = useContext(AppContext);

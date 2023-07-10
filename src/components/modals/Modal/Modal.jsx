@@ -1,6 +1,6 @@
-import ReactDOM from "react-dom";
 import './Modal.scss';
 import { useEffect } from 'react';
+import ReactDOM from "react-dom";
 
 const Modal = ({ isOpen, onClose, window }) => {
     

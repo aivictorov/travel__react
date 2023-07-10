@@ -1,6 +1,6 @@
-import AccountHotelCard from './../../cards/AccountHotelCard/AccountHotelCard';
-import { AppContext } from './../../../App';
 import { useContext } from 'react';
+import { AppContext } from './../../../App';
+import AccountHotelCard from './../../cards/AccountHotelCard/AccountHotelCard';
 
 const AccountTabsBookingsHotels = () => {
     const { user } = useContext(AppContext);

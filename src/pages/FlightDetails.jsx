@@ -1,23 +1,20 @@
-import Footer from "../components/sections/Footer/Footer";
-import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import FlightFeatures from "../components/sections/FlightFeatures/FlightFeatures";
-import FlightPolicies from './../components/sections/FlightPolicies/FlightPolicies';
+import { useContext } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { AppContext } from './../App';
 import DetailsHeader from "../components/blocks/DetailsHeader/DetailsHeader";
-import TrackNav from './../components/blocks/TrackNav/TrackNav';
 import FlightBookingCard from './../components/cards/FlightBookingCard/FlightBookingCard';
 import FlightCover from './../components/sections/FlightCover/FlightCover';
-import { useNavigate, useParams } from 'react-router-dom';
-import { AppContext } from './../App';
-import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import FlightFeatures from "../components/sections/FlightFeatures/FlightFeatures";
+import FlightPolicies from './../components/sections/FlightPolicies/FlightPolicies';
+import Footer from "../components/sections/Footer/Footer";
+import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
+import TrackNav from './../components/blocks/TrackNav/TrackNav';
 
 const FlightDetails = () => {
     const navigate = useNavigate();
     const { flights, airlines, selectedFlight } = useContext(AppContext);
 
     if (selectedFlight) {
-
-        // const { directID, returnID } = useParams();
         const directID = selectedFlight.direct;
         const returnID = selectedFlight.return;
 
@@ -35,7 +32,7 @@ const FlightDetails = () => {
                         </div>
                         <div className="details__header">
                             <DetailsHeader
-                                action={() => navigate('/flight-booking')}
+                                layout="flight"
                             />
                         </div>
                         <div className="details__flight-content">

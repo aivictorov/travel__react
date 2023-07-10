@@ -1,11 +1,31 @@
 import './AccountHotelCard.scss';
-import { findHotel } from '../../../utils/searchFunctions';
-import { dateStringToObject, formatWeekDay } from '../../../utils/dateTimeFunctions';
 import Button from './../../elements/Button/Button';
 import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
+import { dateStringToObject, formatWeekDay } from '../../../utils/dateTimeFunctions';
+import { findHotel } from '../../../utils/searchFunctions';
+import timeIcon from './../../../img/icons/ticket/time.svg'
 
 const AccountHotelCard = ({ hotelBooking }) => {
     const hotel = findHotel(hotelBooking.id);
+    const room = hotel.rooms.find((room) => room.id === hotelBooking.room);
+
+    const features = [
+        {
+            title: 'Check-In',
+            value: '12:00pm',
+            icon: timeIcon,
+        },
+        {
+            title: 'Check-Out',
+            value: '11:30am',
+            icon: timeIcon,
+        },
+        {
+            title: 'Room №',
+            value: 'On arrival',
+            icon: timeIcon,
+        },
+    ]
 
     return (
         <div className="account-hotel-card">
@@ -13,7 +33,7 @@ const AccountHotelCard = ({ hotelBooking }) => {
                 {hotel.name}
             </div>
             <div className="account-hotel-card__subtitle">
-                {hotel.rooms[0].name}
+                {room.name}
             </div>
             <div className="account-hotel-card__content">
                 <div className="account-hotel-card__icon">
@@ -44,45 +64,23 @@ const AccountHotelCard = ({ hotelBooking }) => {
                         </div>
                     </div>
                     <ul className="account-hotel-card__features">
-                        <li className="account-hotel-card__feature">
-                            <div className="account-hotel-card__feature-icon">
-                                <img src="./img/icons/ticket/time.svg" alt="icon" />
-                            </div>
-                            <div className="account-hotel-card__feature-content">
-                                <div className="account-hotel-card__feature-title">
-                                    Check-In
-                                </div>
-                                <div className="account-hotel-card__feature-value">
-                                    12:00pm
-                                </div>
-                            </div>
-                        </li>
-                        <li className="account-hotel-card__feature">
-                            <div className="account-hotel-card__feature-icon">
-                                <img src="./img/icons/ticket/time.svg" alt="icon" />
-                            </div>
-                            <div className="account-hotel-card__feature-content">
-                                <div className="account-hotel-card__feature-title">
-                                    Check-Out
-                                </div>
-                                <div className="account-hotel-card__feature-value">
-                                    11:30am
-                                </div>
-                            </div>
-                        </li>
-                        <li className="account-hotel-card__feature">
-                            <div className="account-hotel-card__feature-icon">
-                                <img src="./img/icons/ticket/seat.svg" alt="icon" />
-                            </div>
-                            <div className="account-hotel-card__feature-content">
-                                <div className="account-hotel-card__feature-title">
-                                    Room №
-                                </div>
-                                <div className="account-hotel-card__feature-value">
-                                    On arrival
-                                </div>
-                            </div>
-                        </li>
+                        {features.map((feature) => {
+                            return (
+                                <li className="account-hotel-card__feature">
+                                    <div className="account-hotel-card__feature-icon">
+                                        <img src={feature.icon} alt="icon" />
+                                    </div>
+                                    <div className="account-hotel-card__feature-content">
+                                        <div className="account-hotel-card__feature-title">
+                                            {feature.title}
+                                        </div>
+                                        <div className="account-hotel-card__feature-value">
+                                            {feature.value}
+                                        </div>
+                                    </div>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </div>
                 <div className="account-hotel-card__buttons">

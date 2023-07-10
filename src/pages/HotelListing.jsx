@@ -1,15 +1,13 @@
-import HeaderInner from './../components/sections/HeaderInner/HeaderInner';
-import SearchForm from "../components/forms/SearchForm/SearchForm";
-import HotelListingCard from '../components/cards/HotelListingCard/HotelListingCard';
-import Footer from "../components/sections/Footer/Footer";
-import Button from './../components/elements/Button/Button';
-import Tabs from './../components/elements/Tabs/Tabs';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AppContext } from './../App';
-import { useEffect } from 'react';
+import ButtonShowMore from './../components/elements/ButtonShowMore/ButtonShowMore';
+import Footer from "../components/sections/Footer/Footer";
+import HeaderInner from './../components/sections/HeaderInner/HeaderInner';
+import HotelListingCard from '../components/cards/HotelListingCard/HotelListingCard';
 import ListingFilters from './../components/blocks/ListingFilters/ListingFilters';
 import ListingSort from './../components/blocks/ListingSort/ListingSort';
-import ButtonShowMore from './../components/elements/ButtonShowMore/ButtonShowMore';
+import SearchForm from "../components/forms/SearchForm/SearchForm";
+import Tabs from './../components/elements/Tabs/Tabs';
 
 const HotelListing = () => {
     const { hotels, hotelSearchParams, user, recentSearches } = useContext(AppContext);
@@ -55,20 +53,10 @@ const HotelListing = () => {
         })
 
         newSearchResults = newSearchResults.filter((item) => {
-            // console.log('Фильтруем весь отель: ');
-            // console.log('Будем проверять каждую комнату до первой подходящей: ');
             const foundAvailableRoom = item.rooms.findIndex((room) => {
-                // console.log('Проверяем комнату: ');
-                // console.log('Доступные даты: ', room.dates);
-                // console.log('Требуемые даты', hotelSearchParams.dates);
-                // console.log('Будем проверять каждую требуемую дату до первой ошибки: ');
-                const dateNotFoundInRoom = hotelSearchParams.allDates.findIndex((date) => {
-                    return room.dates.includes(date) === false
-                })
-                // console.log('Найдены ли отсутствующие даты среди доступных: ', dateNotFoundInRoom);
+                const dateNotFoundInRoom = hotelSearchParams.allDates.findIndex((date) => room.dates.includes(date) === false)
                 return dateNotFoundInRoom === -1 ? true : false;
             });
-            // console.log('Найдены доступные комнаты: ', foundAvailableRoom);
             return foundAvailableRoom !== -1 ? true : false;
         });
 

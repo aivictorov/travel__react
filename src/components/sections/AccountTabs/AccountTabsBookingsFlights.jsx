@@ -1,6 +1,6 @@
-import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';
 import { useContext } from 'react';
 import { AppContext } from './../../../App';
+import AccountFlightCard from './../../cards/AccountFlightCard/AccountFlightCard';
 
 const AccountTabsBookingsFlights = () => {
     const { user } = useContext(AppContext);

@@ -1,7 +1,7 @@
-import Button from '../../elements/Button/Button';
-import Location from '../../elements/Location/Location';
 import './HotelLocation.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Button from '../../elements/Button/Button';
+import Location from '../../elements/Location/Location';
 
 const HotelLocation = ({ address }) => {
     const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import './VerifyCodeForm.scss'
-import { useNavigate } from 'react-router-dom';
-import ButtonLink from './../../elements/ButtonLink/ButtonLink';
 import { useState } from 'react';
-import Input from './../../elements/Input/Input';
+import { useNavigate } from 'react-router-dom';
 import Button from './../../elements/Button/Button';
+import ButtonLink from './../../elements/ButtonLink/ButtonLink';
+import Input from './../../elements/Input/Input';
 import { checkEmpty } from '../../../utils/validationFunctions';
 
 const VerifyCodeForm = () => {

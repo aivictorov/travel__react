@@ -1,9 +1,9 @@
 import './SearchFormButtons.scss';
-import Button from "../../elements/Button/Button";
-import ModalWindow from './../../modals/ModalWindow/ModalWindow';
-import Modal from './../../modals/Modal/Modal';
-import AddPromoCodeModal from './../../modals/AddPromoCode/AddPromoCodeModal';
 import { useState } from 'react';
+import AddPromoCodeModal from './../../modals/AddPromoCode/AddPromoCodeModal';
+import Button from "../../elements/Button/Button";
+import Modal from './../../modals/Modal/Modal';
+import ModalWindow from './../../modals/ModalWindow/ModalWindow';
 
 const SearchFormButtons = ({ layout, action }) => {
 

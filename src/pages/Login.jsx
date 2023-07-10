@@ -1,11 +1,11 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import Logo from './../components/blocks/Logo/Logo';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
-import LoginSlider from '../components/blocks/LoginSlider/LoginSlider';
+import Logo from './../components/blocks/Logo/Logo';
 import LoginForm from '../components/forms/LoginForm/LoginForm';
-import LoginWith from '../components/blocks/LoginWith/LoginWith';
 import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
+import LoginSlider from '../components/blocks/LoginSlider/LoginSlider';
+import LoginWith from '../components/blocks/LoginWith/LoginWith';
 
 const Login = () => {
     const navigate = useNavigate();

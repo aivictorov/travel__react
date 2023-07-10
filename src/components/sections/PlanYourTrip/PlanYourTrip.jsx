@@ -1,7 +1,7 @@
 import './PlanYourTrip.scss';
+import { useState, useRef } from 'react';
 import PlanYourTripCard from './PlanYourTripCard';
 import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
-import { useState, useRef } from 'react';
 import destinations from './../../../data/destinations';
 import { scrollToRef } from '../../../utils/functions';
 

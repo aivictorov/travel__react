@@ -7,7 +7,7 @@ import userAvatar02 from './../img/users/avatars/02.jpg';
 const users = [
     {
         id: 0,
-        
+
         account: {
             name: 'John Doe',
             avatar: userAvatar01,
@@ -17,14 +17,42 @@ const users = [
             address: 'St 32 main downtown, Los Angeles, California, USA',
             birthday: '01-01-1992',
         },
-
         bookings: {
-            flights: [],
-            hotels: [],
+            flights: [
+                {
+                    direct: 1,
+                    return: 2,
+                    price: 200,
+                    airline: "Emirates",
+                    rating: "4.5",
+                    duration: 7.0
+                }
+            ],
+            hotels: [
+                {
+                    id: 1,
+                    room: 1,
+                    dates: [
+                        "11.07.2023",
+                        "12.07.2023"
+                    ]
+                }
+            ]
         },
         favs: {
-            flights: [],
-            hotels: []
+            flights: [
+                {
+                    direct: 1,
+                    return: 2,
+                    price: 200,
+                    airline: "Emirates",
+                    rating: "4.5",
+                    duration: 12.5
+                }
+            ],
+            hotels: [
+                1
+            ]
         },
         cards: [
             { id: 0, number: 1234, valid: '01/24' },
@@ -33,7 +61,6 @@ const users = [
     },
     {
         id: 1,
-
         account: {
             name: 'Mark Smith',
             avatar: userAvatar02,
@@ -52,10 +79,7 @@ const users = [
             flights: [],
             hotels: []
         },
-        cards: [
-            { id: 0, number: 1234, valid: '01/24' },
-            { id: 1, number: 5678, valid: '12/26' },
-        ]
+        cards: []
     },
 ];
 

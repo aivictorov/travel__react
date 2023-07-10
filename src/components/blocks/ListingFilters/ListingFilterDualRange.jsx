@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { FlightListingContext } from "../../../pages/FlightListing";
-import ListingFilterHeader from './ListingFilterHeader';
+import { useEffect, useState } from "react";
 import DualRange from './../../elements/DualRange/DualRange';
+import ListingFilterHeader from './ListingFilterHeader';
 
 const ListingFilterDualRange = ({ name, title, min, max, format, changeFilter, resetTrigger }) => {
 

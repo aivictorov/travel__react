@@ -1,13 +1,13 @@
 import './ButtonLink.scss';
+import { addClass } from '../../../utils/functions';
 
 const ButtonLink = ({ text, style, action }) => {
 
-    let addClass = '';
-    if (style === 'bold') addClass = ' button-link--bold'
+    const add = addClass('button-link', style)
 
     return (
         <button
-            className={"button-link" + addClass}
+            className={"button-link" + add}
             type="button"
             onClick={action}
         >

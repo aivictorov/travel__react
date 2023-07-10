@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../App';
 import Button from '../../elements/Button/Button';
 import destinations from './../../../data/destinations';

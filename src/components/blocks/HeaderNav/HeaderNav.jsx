@@ -1,10 +1,10 @@
 import './HeaderNav.scss';
-import Logo from '../Logo/Logo';
-import HeaderNavLogin from './HeaderNavLogin';
-import HeaderNavUser from './HeaderNavUser';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../../../App';
+import Logo from '../Logo/Logo';
+import HeaderNavLogin from './HeaderNavLogin';
+import HeaderNavUser from './HeaderNavUser';
 
 const HeaderNav = ({ style }) => {
     const { userAuth } = useContext(AppContext)

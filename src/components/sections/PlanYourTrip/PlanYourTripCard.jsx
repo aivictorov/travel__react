@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import './PlanYourTripCard.scss';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../App';
 import destinations from './../../../data/destinations';
 import { buildDatesArray, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions';
-
 
 const PlanYourTripCard = ({ destination }) => {
     const navigate = useNavigate();

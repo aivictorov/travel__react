@@ -1,7 +1,7 @@
-import Button from './../../elements/Button/Button';
+import './AccountTabsMain.scss';
 import { useContext, useState } from 'react';
 import { AppContext } from './../../../App';
-import './AccountTabsMain.scss';
+import Button from './../../elements/Button/Button';
 
 const AccountTabsMain = () => {
     const { user, setUser } = useContext(AppContext);

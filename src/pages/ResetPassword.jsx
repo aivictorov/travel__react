@@ -1,9 +1,9 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import Logo from './../components/blocks/Logo/Logo';
-import loginImg from './../img/login/slider/01.jpg';
-import ResetPasswordForm from './../components/forms/ResetPasswordForm/ResetPasswordForm';
+import { useNavigate } from 'react-router-dom';
 import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
 import LoginWith from '../components/blocks/LoginWith/LoginWith';
+import Logo from './../components/blocks/Logo/Logo';
+import ResetPasswordForm from './../components/forms/ResetPasswordForm/ResetPasswordForm';
+import loginImg from './../img/login/slider/01.jpg';
 
 const ResetPassword = () => {
     const navigate = useNavigate();

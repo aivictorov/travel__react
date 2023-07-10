@@ -2,6 +2,7 @@ import Modal from '../../modals/Modal/Modal';
 import './BookingPaymentMethods.scss'
 import { useState } from 'react';
 import DefaultModal from './../../modals/DefaultModal/DefaultModal';
+import { addClass } from '../../../utils/functions';
 
 const BookingPaymentMethods = () => {
 
@@ -29,11 +30,12 @@ const BookingPaymentMethods = () => {
     return (
         <div className="booking-payment-methods">
             {methods.map((item, index) => {
-                const addClass = "payment-radio--" + item.style
+                const add = addClass("payment-radio", item.style)
+
                 return (
                     <div
                         key={index}
-                        className={`payment-radio ${addClass}`}
+                        className={'payment-radio' + add}
                     >
                         <input
                             className="payment-radio__input visually-hidden"

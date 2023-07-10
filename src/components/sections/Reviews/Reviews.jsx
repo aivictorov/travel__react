@@ -1,6 +1,6 @@
 import './Reviews.scss';
-import SectionHeader from './../../blocks/SectionHeader/SectionHeader';
 import ReviewCard from "./ReviewCard";
+import SectionHeader from './../../blocks/SectionHeader/SectionHeader';
 import reviewCardImg01 from './../../../img/sections/reviews-section/01.jpg';
 import reviewCardImg02 from './../../../img/sections/reviews-section/02.jpg';
 import reviewCardImg03 from './../../../img/sections/reviews-section/02.jpg';

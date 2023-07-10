@@ -1,10 +1,10 @@
 import './Drop.scss';
 import { useEffect } from 'react';
+import { addClass } from '../../../utils/functions';
 
 const Drop = ({ name = "drop", style, isOpen, onClose, content }) => {
 
-    let addClass = '';
-    if (style) addClass = ' drop--' + style
+    const add = addClass('drop', style);
 
     useEffect(() => {
         const closeDropByKey = (event) => {
@@ -33,7 +33,7 @@ const Drop = ({ name = "drop", style, isOpen, onClose, content }) => {
 
     return (
         <div
-            className={'drop' + addClass}
+            className={'drop' + add}
             onClick={(event) => { event.stopPropagation() }}
             onMouseDown={(event) => { event.stopPropagation() }}
         >

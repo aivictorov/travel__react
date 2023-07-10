@@ -1,5 +1,5 @@
-import { NavLink, useNavigate } from 'react-router-dom';
 import './FlightsAndHotelsCard.scss';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../elements/Button/Button';
 
 const FlightsAndHotelsCard = ({ title, description, btnText, style }) => {

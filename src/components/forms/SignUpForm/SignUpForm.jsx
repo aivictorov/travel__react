@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import Checkbox from './../../elements/Checkbox/Checkbox';
-import ButtonLink from '../../elements/ButtonLink/ButtonLink';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../elements/Button/Button';
+import ButtonLink from '../../elements/ButtonLink/ButtonLink';
+import Checkbox from './../../elements/Checkbox/Checkbox';
+import DefaultModal from './../../modals/DefaultModal/DefaultModal';
 import Input from '../../elements/Input/Input';
 import { checkEmail, checkEmpty } from '../../../utils/validationFunctions';
-import DefaultModal from './../../modals/DefaultModal/DefaultModal';
 
 const SignUpForm = () => {
     const navigate = useNavigate();
@@ -276,7 +276,6 @@ const SignUpForm = () => {
                 </div>
             </div>
         </form>
-
     );
 }
 

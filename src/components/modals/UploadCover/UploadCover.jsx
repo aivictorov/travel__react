@@ -1,6 +1,6 @@
+import './UploadCover.scss';
 import Button from '../../elements/Button/Button';
 import InputFile from '../../elements/InputFile/InputFile';
-import './UploadCover.scss';
 
 const UploadCover = ({onClose}) => {
 

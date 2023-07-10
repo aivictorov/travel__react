@@ -1,6 +1,5 @@
 import './ListingFilterRadioButtons.scss';
-import { useContext, useState } from "react";
-import { FlightListingContext } from "../../../pages/FlightListing";
+import { useState } from "react";
 import ListingFilterHeader from './ListingFilterHeader';
 
 const ListingFilterRadioButtons = ({ name, title, min, max, changeFilter, resetTrigger }) => {

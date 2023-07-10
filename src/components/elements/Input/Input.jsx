@@ -1,6 +1,6 @@
 import './Input.scss';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import { useRef, useEffect } from 'react';
+import { addClass } from '../../../utils/functions';
 
 const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction, validation = true, message, autocomplete = "on" }) => {
 
@@ -11,18 +11,10 @@ const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaul
         if (!message) inputRef.current.classList.remove('error');
     }, [message])
 
-    let addClass = '';
-
-    if (style) {
-        const addClassArray = style.split([' ']);
-
-        if (addClassArray.length > 0) {
-            addClass = ' ' + addClassArray.map((item) => item = `input--${item}`).join(' ');
-        };
-    };
+    const add = addClass('input', style);
 
     return (
-        <div className={'input' + addClass} ref={inputRef}>
+        <div className={'input' + add} ref={inputRef}>
             <input
                 name={name}
                 className="input__field"

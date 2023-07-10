@@ -1,14 +1,14 @@
 import './HotelListingCard.scss';
-import Price from './../../elements/Price/Price';
-import Location from '../../elements/Location/Location';
-import Stars from '../../elements/Stars/Stars';
-import Rating from '../../elements/Rating/Rating';
-import FavCheckboxButton from './../../elements/FavCheckboxButton/FavCheckboxButton';
-import Button from './../../elements/Button/Button';
-import { useNavigate } from 'react-router-dom';
-import { findHotel } from '../../../utils/searchFunctions';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from './../../../App';
+import Button from './../../elements/Button/Button';
+import FavCheckboxButton from './../../elements/FavCheckboxButton/FavCheckboxButton';
+import Location from '../../elements/Location/Location';
+import Price from './../../elements/Price/Price';
+import Rating from '../../elements/Rating/Rating';
+import Stars from '../../elements/Stars/Stars';
+import { findHotel } from '../../../utils/searchFunctions';
 
 const HotelListingCard = ({ hotel, dates }) => {
     const navigate = useNavigate();

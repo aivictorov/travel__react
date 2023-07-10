@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import Logo from "../components/blocks/Logo/Logo";
-import loginImg from './../img/login/slider/01.jpg';
-import SetPasswordForm from './../components/forms/SetPasswordForm/SetPasswordForm';
 import LoginHeader from './../components/blocks/LoginHeader/LoginHeader';
+import Logo from "../components/blocks/Logo/Logo";
+import SetPasswordForm from './../components/forms/SetPasswordForm/SetPasswordForm';
+import loginImg from './../img/login/slider/01.jpg';
 
 const SetPassword = () => {
     const navigate = useNavigate();

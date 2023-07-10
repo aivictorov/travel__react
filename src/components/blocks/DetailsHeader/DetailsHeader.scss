@@ -1,3 +1,5 @@
+@import './../../../scss/base/_vars.scss';
+
 .details-header {
     display: flex;
     flex-direction: column;
@@ -33,6 +35,17 @@
     display: flex;
     flex-direction: column;
     row-gap: 8px;
+}
+
+
+.details-header__carrier {
+    font-weight: 500;
+
+    span {
+        font-weight: 600;
+    }
+
+    a {color: $accent}
 }
 
 .details-header__right {

@@ -1,5 +1,5 @@
-import Rating from '../../elements/Rating/Rating';
 import './BookingSummary.scss'
+import Rating from '../../elements/Rating/Rating';
 
 const BookingSummary = ({ title = "Emirates A380 Airbus", logo, price = 240, rating }) => {
 

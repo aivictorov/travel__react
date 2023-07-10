@@ -1,5 +1,5 @@
-import { addClass } from '../../../utils/functions';
 import './Button.scss';
+import { addClass } from '../../../utils/functions';
 
 const Button = ({ text, type, style, icon, svgID, action }) => {
     const add = addClass('button', style);

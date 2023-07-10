@@ -1,18 +1,28 @@
 import './DetailsHeader.scss';
-import { useNavigate } from 'react-router-dom';
-import Location from './../../elements/Location/Location';
-import Rating from './../../elements/Rating/Rating';
-import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
-import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
-import Button from '../../elements/Button/Button';
-import Stars from './../../elements/Stars/Stars';
-import Price from './../../elements/Price/Price';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from './../../../App';
+import Button from '../../elements/Button/Button';
+import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
+import Carrier from './../../elements/Carrier/Carrier';
+import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
+import Location from './../../elements/Location/Location';
+import Price from './../../elements/Price/Price';
+import Rating from './../../elements/Rating/Rating';
+import Stars from './../../elements/Stars/Stars';
+import { findFlight, findHotel } from '../../../utils/searchFunctions';
 
-const DetailsHeader = ({ title = 'Emirates A380 Airbus', action, favButton }) => {
+const DetailsHeader = ({ layout, roomsRef }) => {
     const navigate = useNavigate();
-    const { userAuth } = useContext(AppContext);
+    const { userAuth, selectedHotel, selectedFlight } = useContext(AppContext);
+
+    let hotel, flight;
+    if (layout === 'flight') flight = findFlight(selectedFlight.direct);
+    if (layout === 'hotel') hotel = findHotel(selectedHotel.id);
+
+    function scrollToRef() {
+        roomsRef.current.scrollIntoView({ block: 'center' });
+    };
 
     return (
         <div className="details-header">
@@ -20,33 +30,63 @@ const DetailsHeader = ({ title = 'Emirates A380 Airbus', action, favButton }) =>
                 <div className="details-header__left">
                     <div className="details-header__main">
                         <div className="details-header__main-title">
-                            {title}
+                            {layout === 'flight' &&
+                                `${flight.from} - ${flight.to} (Round-trip)`
+                            }
+                            {layout === 'hotel' &&
+                                hotel.name
+                            }
                         </div>
-                        <Stars number={5} />
+                        {layout === 'hotel' &&
+                            <Stars number={5} />
+                        }
                     </div>
                     <div className="details-header__details">
-                        <Location text="Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437" />
-                        <Rating value={3.2} />
+                        {layout === 'hotel' &&
+                            <>
+                                <Location text="Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437" />
+                                <Rating value={3.2} />
+                            </>
+                        }
+                        {layout === 'flight' &&
+                            <>
+                                <Carrier
+                                    text="Carrier: The Emirates Group. Dubai, United Arab Emirates"
+                                />
+                                <Rating value={3.2} />
+                            </>
+                        }
                     </div>
                 </div>
                 <div className="details-header__right">
                     <Price
                         value={240}
-                        period="night"
+                        // period="night"
                         style="big"
                     />
                     <div className="details-header__buttons">
-                        {userAuth && favButton}
+                        {layout === 'hotel' && userAuth &&
+                            <FavCheckboxButton hotelBooking={hotel.id} />
+                        }
                         <ButtonSquare
                             style="border small"
                             svgID="share"
                         />
                         <div className="details-header__button-wrapper">
-                            <Button
-                                text="Book now"
-                                style="bold w100"
-                                action={action}
-                            />
+                            {layout === 'flight' &&
+                                <Button
+                                    text="Book now"
+                                    style="bold w100"
+                                    action={() => navigate('/flight-booking')}
+                                />
+                            }
+                            {layout === 'hotel' &&
+                                <Button
+                                    text="Book now"
+                                    style="bold w100"
+                                    action={scrollToRef}
+                                />
+                            }
                         </div>
                     </div>
                 </div>

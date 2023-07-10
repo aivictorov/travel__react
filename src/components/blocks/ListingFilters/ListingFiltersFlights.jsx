@@ -1,10 +1,8 @@
+import ListingFilterCheckboxes from './ListingFilterCheckboxes';
 import ListingFilterDualRange from './ListingFilterDualRange';
 import ListingFilterRadioButtons from './ListingFilterRadioButtons';
-import ListingFilterCheckboxes from './ListingFilterCheckboxes';
 
 const ListingFiltersFlights = ({ filterParams, changeFilter, resetTrigger }) => {
-
-    // console.log(filterParams);
     
     return (
         <>
@@ -32,11 +30,6 @@ const ListingFiltersFlights = ({ filterParams, changeFilter, resetTrigger }) => 
                 changeFilter={changeFilter}
                 resetTrigger={resetTrigger}
             />
-            {/* <ListingFilterDualRange
-                name='time'
-                title='Departure time'
-                format='time'
-            /> */}
         </>
     );
 }

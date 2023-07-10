@@ -1,22 +1,13 @@
 import './ButtonSquare.scss';
+import { addClass } from '../../../utils/functions';
 
 const ButtonSquare = ({ type, style, svgID, action }) => {
-    let addClass = '';
-    let addClassArray = [];
-
-    if (style) {
-        addClassArray = style.split([' ']);
-
-        if (addClassArray.length > 0) {
-            addClass = ' ' + addClassArray.map((item) => item = `square-buttonNew--${item}`).join(' ');
-        };
-    };
-    
-    const iconSize = addClassArray.includes('small') ? 20 : 24;
+    const add = addClass('square-button', style)
+    const iconSize = add.includes('small') ? 20 : 24;
 
     return (
         <button
-            className={'square-buttonNew' + addClass}
+            className={'square-button' + add}
             type={type || 'button'}
             onClick={action}
         >

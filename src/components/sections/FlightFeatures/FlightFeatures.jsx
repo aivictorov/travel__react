@@ -1,5 +1,5 @@
-import Checkbox from '../../elements/Checkbox/Checkbox';
 import './FlightFeatures.scss';
+import Checkbox from '../../elements/Checkbox/Checkbox';
 
 const FlightFeatures = ({ gallery }) => {
 

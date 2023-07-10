@@ -1,13 +1,12 @@
 import './LoginWith.scss';
+import { addClass } from '../../../utils/functions';
 
 const LoginWith = ({ layout }) => {
-    let addClass = '';
-    if (layout === "booking") addClass = ' login-with--booking'
-
+    const add = addClass('login-with', layout);
     const buttons = ['facebook-icon', 'google-icon', 'apple-icon']
 
     return (
-        <div className={`login-with${addClass}`}>
+        <div className={'login-with' + add}>
             <div className="login-with__header">
                 <div className="login-with__text">
                     Or login with

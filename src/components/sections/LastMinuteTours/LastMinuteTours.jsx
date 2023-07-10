@@ -1,15 +1,15 @@
 import './LastMinuteTours.scss'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from './../../../App';
+import Button from '../../elements/Button/Button';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
+import destinations from './../../../data/destinations';
+import { buildDatesArray, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions';
 import tourImg01 from './../../../img/sections/last-minute-tours/01.jpg';
 import tourImg02 from './../../../img/sections/last-minute-tours/02.jpg';
 import tourImg03 from './../../../img/sections/last-minute-tours/03.jpg';
 import tourImg04 from './../../../img/sections/last-minute-tours/04.jpg';
-import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
-import Button from '../../elements/Button/Button';
-import destinations from './../../../data/destinations';
-import { buildDatesArray, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions';
-import { useNavigate } from 'react-router-dom';
-import { AppContext } from './../../../App';
-import { useContext } from 'react';
 
 const LastMinuteTours = ({ layout = 'flights' }) => {
     const navigate = useNavigate();

@@ -1,4 +1,5 @@
 import './PlacesOnMap.scss';
+import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 import mapImg from './../../../img/sections/places-on-map/map.svg';
 import labelImg01 from './../../../img/sections/places-on-map/labels/01.jpg';
 import labelImg02 from './../../../img/sections/places-on-map/labels/02.jpg';
@@ -6,7 +7,6 @@ import labelImg03 from './../../../img/sections/places-on-map/labels/03.jpg';
 import labelImg04 from './../../../img/sections/places-on-map/labels/04.jpg';
 import labelImg05 from './../../../img/sections/places-on-map/labels/05.jpg';
 import labelArrowImg from './../../../img/sections/places-on-map/arrow-small.svg';
-import SectionHeader from '../../blocks/SectionHeader/SectionHeader';
 
 const PlacesOnMap = () => {
     return (

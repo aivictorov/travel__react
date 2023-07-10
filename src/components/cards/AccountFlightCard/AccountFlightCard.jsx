@@ -1,10 +1,8 @@
-import Button from '../../elements/Button/Button';
 import './AccountFlightCard.scss';
-import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
+import Button from '../../elements/Button/Button';
 import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
 import flights from './../../../data/flights';
 import airlines from './../../../data/airlines';
-import { findFlight } from '../../../utils/searchFunctions';
 import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFunctions';
 
 import calendarIcon from './../../../img/icons/ticket/calendar.svg';
@@ -46,7 +44,6 @@ const AccountFlightCard = ({ flightTicket }) => {
                                         {flight.from}
                                     </div>
                                     <div className="account-booking-time-column-value">
-                                        {/* 12:00 pm */}
                                         {formatTime(flight.start)}
                                     </div>
                                 </div>

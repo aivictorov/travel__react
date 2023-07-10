@@ -1,10 +1,10 @@
 import './SubscribeForm.scss'
-import mailboxImg from './../../../img/footer/mailbox.svg'
-import Button from '../../elements/Button/Button';
 import { useState, useEffect } from 'react';
+import Button from '../../elements/Button/Button';
+import DefaultModal from './../../modals/DefaultModal/DefaultModal';
 import Input from './../../elements/Input/Input';
 import { checkEmail } from '../../../utils/validationFunctions';
-import DefaultModal from './../../modals/DefaultModal/DefaultModal';
+import mailboxImg from './../../../img/footer/mailbox.svg'
 
 const SubscribeForm = () => {
     const [openModal, setOpenModal] = useState(false);

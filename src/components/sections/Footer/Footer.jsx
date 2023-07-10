@@ -1,7 +1,7 @@
 import './Footer.scss'
-import Logo from '../../blocks/Logo/Logo';
 import FooterSocialIcons from './FooterSocialIcons';
 import FooterNav from './FooterNav';
+import Logo from '../../blocks/Logo/Logo';
 import SubscribeForm from './../../forms/SubscribeForm/SubscribeForm';
 
 const Footer = () => {

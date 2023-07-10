@@ -1,5 +1,5 @@
-import { addClass } from '../../../utils/functions';
 import './Checkbox.scss';
+import { addClass } from '../../../utils/functions';
 
 const Checkbox = ({ name, text, style, checked, onChangeFunction }) => {
     if (!text) text = name;

@@ -1,16 +1,16 @@
 import './SearchFormFlights.scss';
-import SearchFormButtons from "./SearchFormButtons";
-import Input from './../../elements/Input/Input';
-import { AppContext } from './../../../App';
-import { useState, useContext, useEffect, useRef } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from './../../../App';
 import ButtonSquare from './../../elements/ButtonSquare/ButtonSquare';
-import destinations from './../../../data/destinations'
-import { dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
 import Drop from './../../drops/Drop/Drop';
 import DropList from '../../drops/DropList/DropList';
-import PassAndClass from './../../drops/PassAndClass/PassAndClass';
 import DropCalendar from './../../drops/DropCalendar/DropCalendar';
+import Input from './../../elements/Input/Input';
+import PassAndClass from './../../drops/PassAndClass/PassAndClass';
+import SearchFormButtons from "./SearchFormButtons";
+import destinations from './../../../data/destinations'
+import { dateStringToObject, daysFromToday, formatDate } from '../../../utils/dateTimeFunctions'
 
 const SearchFormFlights = ({ layout }) => {
     const navigate = useNavigate();

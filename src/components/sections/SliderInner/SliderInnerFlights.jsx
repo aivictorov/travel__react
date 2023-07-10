@@ -1,6 +1,6 @@
 import './SliderInner.scss';
-import bgImg from './../../../img/flights/header.jpg';
 import SearchForm from '../../forms/SearchForm/SearchForm';
+import bgImg from './../../../img/flights/header.jpg';
 
 const SliderInnerFlights = () => {
     return (

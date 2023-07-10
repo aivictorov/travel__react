@@ -1,8 +1,8 @@
 import './AddCardButton.scss';
-import AddCardModal from './AddCardModal';
 import { useState } from 'react';
-import ModalWindow from './../ModalWindow/ModalWindow';
+import AddCardModal from './AddCardModal';
 import Modal from './../Modal/Modal';
+import ModalWindow from './../ModalWindow/ModalWindow';
 
 const AddCardButton = ({ addCard }) => {
 

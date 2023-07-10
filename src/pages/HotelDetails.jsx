@@ -1,17 +1,15 @@
-import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import TrackNav from "../components/blocks/TrackNav/TrackNav";
-import DetailsHeader from "../components/blocks/DetailsHeader/DetailsHeader";
-import HotelOverview from "../components/sections/HotelOverview/HotelOverview";
-import HotelRooms from './../components/sections/HotelRooms/HotelRooms';
-import HotelLocation from './../components/sections/HotelLocation/HotelLocation';
-import HotelReviews from "../components/sections/HotelReviews/HotelReviews";
-import HotelGallery from "../components/sections/HotelGallery/HotelGallery";
-import HotelAmenities from './../components/sections/HotelAmenities/HotelAmenities';
-import Footer from "../components/sections/Footer/Footer";
-import { useParams } from "react-router-dom";
 import { useContext, useRef } from "react";
 import { AppContext } from "../App";
-import FavCheckboxButton from './../components/elements/FavCheckboxButton/FavCheckboxButton';
+import DetailsHeader from "../components/blocks/DetailsHeader/DetailsHeader";
+import Footer from "../components/sections/Footer/Footer";
+import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
+import HotelAmenities from './../components/sections/HotelAmenities/HotelAmenities';
+import HotelGallery from "../components/sections/HotelGallery/HotelGallery";
+import HotelLocation from './../components/sections/HotelLocation/HotelLocation';
+import HotelOverview from "../components/sections/HotelOverview/HotelOverview";
+import HotelReviews from "../components/sections/HotelReviews/HotelReviews";
+import HotelRooms from './../components/sections/HotelRooms/HotelRooms';
+import TrackNav from "../components/blocks/TrackNav/TrackNav";
 
 const HotelDetails = () => {
     const { hotels, selectedHotel } = useContext(AppContext);
@@ -20,10 +18,6 @@ const HotelDetails = () => {
     const hotel = hotels.find((hotel) => hotel.id == hotelID);
 
     const roomsRef = useRef(null);
-
-    function scrollToRef() {
-        roomsRef.current.scrollIntoView({ block: 'center' });
-    };
 
     return (
         <>
@@ -35,10 +29,8 @@ const HotelDetails = () => {
                     </div>
                     <div className="details__header">
                         <DetailsHeader
-                            title={hotel.name}
-                            cover={hotel.cover}
-                            action={scrollToRef}
-                            favButton={<FavCheckboxButton hotelBooking={hotel.id}/>}
+                            layout="hotel"
+                            roomsRef={roomsRef}
                         />
                     </div>
                     <div className="details__flight-content"></div>

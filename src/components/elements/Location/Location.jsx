@@ -1,12 +1,12 @@
 import './Location.scss';
 import { NavLink } from 'react-router-dom';
+import { addClass } from '../../../utils/functions';
 
 const Location = ({ text, style, link }) => {
-    let addClass = '';
-    if (style === 'small') addClass = ' location--small'
+    let add = addClass('location', style);
 
     return (
-        <div className={`location${addClass}`}>
+        <div className={'location' + add}>
             <div className="location__icon">
                 <svg width={18} height={18}>
                     <use href="#location" />

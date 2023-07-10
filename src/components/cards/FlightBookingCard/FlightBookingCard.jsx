@@ -1,10 +1,10 @@
 import './FlightBookingCard.scss';
 import Price from '../../elements/Price/Price';
 import { formatTime, countDuration, formatWeekDay } from '../../../utils/dateTimeFunctions';
+import { addClass } from '../../../utils/functions';
 
 const FlightBookingCard = ({ layout, direction, flight }) => {
-    let addClass = '';
-    if (layout === 'booking') addClass = " flight-ticket--booking";
+    const add = addClass('flight-ticket', layout)
 
     const weekDay = formatWeekDay(flight.start);
 
@@ -17,13 +17,13 @@ const FlightBookingCard = ({ layout, direction, flight }) => {
     ];
 
     return (
-        <div className={`flight-ticket${addClass}`}>
+        <div className={'flight-ticket' + add}>
             {layout === 'booking' &&
                 <div className="flight-ticket__header">
                     <div className="flight-ticket__title">
                         Emirates A380 Airbus
                     </div>
-                    <Price value="240" period="night" style="big" />
+                    <Price value="240" style="big" />
                 </div>
             }
             <div className="flight-ticket__content">

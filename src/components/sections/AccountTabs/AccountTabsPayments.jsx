@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import AddCardButton from './../../modals/AddCard/AddCardButton';
 import './AccountTabsPayments.scss';
+import { useContext } from "react";
 import { AppContext } from './../../../App';
+import AddCardButton from './../../modals/AddCard/AddCardButton';
 import { countID } from "../../../utils/functions";
 
 const AccountTabsPayments = () => {
@@ -20,7 +20,6 @@ const AccountTabsPayments = () => {
     };
 
     function deleteCard(id) {
-        console.log(id);
         setUser({
             ...user,
             cards: user.cards.filter((card) => card.id !== id)

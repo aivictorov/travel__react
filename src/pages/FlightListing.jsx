@@ -1,13 +1,12 @@
-import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
-import SearchForm from "../components/forms/SearchForm/SearchForm";
-import ListingFilters from "../components/blocks/ListingFilters/ListingFilters";
-import FlightListingCard from "../components/cards/FlightListingCard/FlightListingCard";
-import ButtonShowMore from "../components/elements/ButtonShowMore/ButtonShowMore";
-import Footer from "../components/sections/Footer/Footer";
-
 import { useState, useEffect, createContext, useContext } from "react";
 import { AppContext } from "../App";
+import ButtonShowMore from "../components/elements/ButtonShowMore/ButtonShowMore";
+import FlightListingCard from "../components/cards/FlightListingCard/FlightListingCard";
+import Footer from "../components/sections/Footer/Footer";
+import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
+import ListingFilters from "../components/blocks/ListingFilters/ListingFilters";
 import ListingSort from "../components/blocks/ListingSort/ListingSort";
+import SearchForm from "../components/forms/SearchForm/SearchForm";
 import Tabs from "../components/elements/Tabs/Tabs";
 import { formatDuration } from "../utils/dateTimeFunctions";
 
