@@ -8,7 +8,7 @@ const Header = () => {
             <div className="bg-wrapper">
                 <div className="header__bg">
                     <HeaderNav
-                        style=""
+                        style="main"
                     />
                     <div className="header__content">
                         <div className="container">

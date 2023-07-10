@@ -121,7 +121,7 @@ const SignUpForm = () => {
                             label="First Name"
                             placeholder="John"
                             value={firstName}
-                            onChangeFunction={setFirstName}
+                            onChangeFunction={(event) => setFirstName(event.target.value)}
                             validation={firstNameCheckOn}
                             message={firstNameCheckMsg}
                         />
@@ -132,7 +132,7 @@ const SignUpForm = () => {
                             label="Last Name"
                             placeholder="Doe"
                             value={lastName}
-                            onChangeFunction={setLastName}
+                            onChangeFunction={(event) => setLastName(event.target.value)} 
                             validation={lastNameCheckOn}
                             message={lastNameCheckMsg}
                         />
@@ -146,7 +146,7 @@ const SignUpForm = () => {
                             label="Email"
                             placeholder="Enter e-mail"
                             value={email}
-                            onChangeFunction={setEmail}
+                            onChangeFunction={(event) => setEmail(event.target.value)} 
                             validation={emailCheckOn}
                             message={emailCheckMsg}
                         />
@@ -157,7 +157,7 @@ const SignUpForm = () => {
                             label="Phone Number"
                             placeholder="+79991234567"
                             value={phone}
-                            onChangeFunction={setPhone}
+                            onChangeFunction={(event) => setPhone(event.target.value)}
                             validation={phoneCheckOn}
                             message={phoneCheckMsg}
                         />
@@ -172,7 +172,7 @@ const SignUpForm = () => {
                             type="password"
                             placeholder="Enter password"
                             value={password}
-                            onChangeFunction={setPassword}
+                            onChangeFunction={(event) => setPassword(event.target.value)}
                             validation={passwordCheckOn}
                             message={passwordCheckMsg}
                         />
@@ -201,7 +201,7 @@ const SignUpForm = () => {
                             type="password"
                             placeholder="Confirm password"
                             value={confirmPassword}
-                            onChangeFunction={setConfirmPassword}
+                            onChangeFunction={(event) => setConfirmPassword(event.target.value)}
                             validation={confirmPasswordCheckOn}
                             message={confirmPasswordCheckMsg}
                         />

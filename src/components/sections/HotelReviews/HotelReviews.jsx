@@ -1,14 +1,12 @@
 import './HotelReviews.scss';
 import { useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
 import { AppContext } from './../../../App';
 
 const HotelReviews = () => {
-    const { reviews, users } = useContext(AppContext);
-    const { hotelID } = useParams();
+    const { reviews, users, selectedHotel } = useContext(AppContext);
 
     const reviewsList = reviews.filter((review) => {
-        return review.hotelID == hotelID;
+        return review.hotelID === selectedHotel.id;
     })
 
     const [page, setPage] = useState(1);

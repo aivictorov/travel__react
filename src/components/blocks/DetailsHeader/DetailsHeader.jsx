@@ -16,9 +16,15 @@ const DetailsHeader = ({ layout, roomsRef }) => {
     const navigate = useNavigate();
     const { userAuth, selectedHotel, selectedFlight } = useContext(AppContext);
 
-    let hotel, flight;
-    if (layout === 'flight') flight = findFlight(selectedFlight.direct);
-    if (layout === 'hotel') hotel = findHotel(selectedHotel.id);
+    let hotel, flight, price;
+    if (layout === 'flight') {
+        flight = findFlight(selectedFlight.direct);
+        price = selectedFlight.price;
+    }
+    if (layout === 'hotel') {
+        hotel = findHotel(selectedHotel.id);
+        price = hotel.rooms.reduce((prev, curr) => curr.price < prev ? curr.price : prev, hotel.rooms[0].price);
+    }
 
     function scrollToRef() {
         roomsRef.current.scrollIntoView({ block: 'center' });
@@ -60,7 +66,7 @@ const DetailsHeader = ({ layout, roomsRef }) => {
                 </div>
                 <div className="details-header__right">
                     <Price
-                        value={240}
+                        value={price}
                         style="big"
                     />
                     <div className="details-header__buttons">

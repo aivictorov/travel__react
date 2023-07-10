@@ -10,7 +10,7 @@ import SearchForm from "../components/forms/SearchForm/SearchForm";
 import Tabs from './../components/elements/Tabs/Tabs';
 
 const HotelListing = () => {
-    const { hotels, hotelSearchParams, user, recentSearches } = useContext(AppContext);
+    const { hotels, hotelSearchParams } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);
@@ -28,10 +28,11 @@ const HotelListing = () => {
             rating: filterParams.rating.min
         }
     );
+    const [sortType, setSortType] = useState('lowest price');
+
+    const [tabs, setTabs] = useState([]);
 
     const [resetTrigger, setResetTrigger] = useState(true);
-
-    const [sortType, setSortType] = useState('lowest price');
 
     const changeFilter = (filter) => {
         setFilters({ ...filters, ...filter });
@@ -41,24 +42,20 @@ const HotelListing = () => {
     useEffect(() => {
         let newSearchResults = [...hotels];
 
-        if (hotelSearchParams.destination !== 'All') {
-            newSearchResults = newSearchResults.filter((item) => {
-                return hotelSearchParams.destination === item.city
-            });
-        };
+        newSearchResults = newSearchResults.filter((item) => {
+            return hotelSearchParams.destination === item.city
+        });
+
+        newSearchResults.forEach((item) => {
+            item.rooms = item.rooms.filter((room) => room.dates.includes(...hotelSearchParams.allDates))
+        });
+
+        newSearchResults = newSearchResults.filter((item) => item.rooms.length > 0);
 
         newSearchResults = newSearchResults.map((item) => {
             const price = item.rooms.reduce((prev, curr) => curr.price < prev ? curr.price : prev, item.rooms[0].price);
             return item = { ...item, price: price }
         })
-
-        newSearchResults = newSearchResults.filter((item) => {
-            const foundAvailableRoom = item.rooms.findIndex((room) => {
-                const dateNotFoundInRoom = hotelSearchParams.allDates.findIndex((date) => room.dates.includes(date) === false)
-                return dateNotFoundInRoom === -1 ? true : false;
-            });
-            return foundAvailableRoom !== -1 ? true : false;
-        });
 
         setSearchResults(newSearchResults);
     }, [hotelSearchParams]);
@@ -168,27 +165,37 @@ const HotelListing = () => {
     };
 
     useEffect(() => {
+        if (filteredResults.length > 0) {
+            const cheapestPrice = filteredResults.reduce((prev, curr) => curr.price < prev ? curr.price : prev, filteredResults[0].price);
+
+            const mostExpensivePrice = filteredResults.reduce((prev, curr) => curr.price > prev ? curr.price : prev, filteredResults[0].price);
+
+            cheapestPrice && mostExpensivePrice && setTabs([
+                {
+                    title: 'Cheapest',
+                    subtitle: '$' + cheapestPrice,
+                    active: false,
+                    action: () => { setSortType('lowest price') },
+                },
+                {
+                    title: 'Most expensive',
+                    subtitle: '$' + mostExpensivePrice,
+                    active: false,
+                    action: () => { setSortType('highest price') },
+                },
+            ]);
+        }
+    }, [filteredResults])
+
+    useEffect(() => {
         let items = [...filteredResults];
         let sorted = applySort(items)
         setFilteredResults(sorted);
     }, [sortType])
 
-    const tabs = [
-        {
-            title: 'Hotels',
-            subtitle: '257 places',
-            active: false,
-        },
-        {
-            title: 'Motels',
-            subtitle: '51 places',
-            active: false,
-        },
-        {
-            title: 'Resorts',
-            subtitle: '72 places',
-            active: false,
-        },
+    const sortTypes = [
+        { value: "lowest price", name: "Lowest price" },
+        { value: "highest price", name: "Highest price" },
     ];
 
     return (
@@ -215,6 +222,7 @@ const HotelListing = () => {
                                 <div className="listing-content__right-wrapper">
                                     <Tabs tabs={tabs} />
                                     <ListingSort
+                                        sortTypes={sortTypes}
                                         filteredResults={filteredResults}
                                         searchResults={searchResults}
                                         numberOfResults={numberOfResults}

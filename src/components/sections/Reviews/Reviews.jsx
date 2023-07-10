@@ -109,9 +109,8 @@ const Reviews = () => {
                     >
                         {reviewCards.map((reviewCard) => {
                             return (
-                                <SwiperSlide>
+                                <SwiperSlide key={reviewCard.id}>
                                     <ReviewCard
-                                        key={reviewCard.id}
                                         title={reviewCard.title}
                                         description={reviewCard.description}
                                         author={reviewCard.author}

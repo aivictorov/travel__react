@@ -2,16 +2,26 @@
 
 .track-nav {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    column-gap: 8px;
+    font-weight: 500;
 }
 
-a.track-link{
-    font-weight: 500;
+.track-nav__link,
+a.track-nav__link {
+    position: relative;
+    margin-right: 32px;
     color: $accent;
 
-    &--active{
-        color: $black;
+    &::after {
+        content: '';
+        position: absolute;
+        right: -8px;
+        bottom: 0;
+        width: 16px;
+        height: 100%;
+        transform: translateX(100%);
+        background-image: url('./../../../img/icons/arrow-right.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
     }
 }

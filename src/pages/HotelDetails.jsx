@@ -24,7 +24,7 @@ const HotelDetails = () => {
             <main className="details">
                 <div className="container">
                     <div className="details__nav">
-                        <TrackNav />
+                        <TrackNav layout="hotels" />
                     </div>
                     <div className="details__header">
                         <DetailsHeader

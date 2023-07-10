@@ -1,5 +1,5 @@
 import './AddCardModal.scss'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from './../../elements/Button/Button';
 import Checkbox from '../../elements/Checkbox/Checkbox';
 import Input from './../../elements/Input/Input';
@@ -45,6 +45,34 @@ const AddCardModal = ({ addCard, onClose }) => {
             setCardNumberCheckOn(false);
         };
 
+        if (!checkEmpty(expDate, setExpDateCheckMsg, 'exp. date')) {
+            setExpDateCheckOn(true);
+            result.push(false);
+        } else {
+            setExpDateCheckOn(false);
+        };
+
+        if (!checkEmpty(cvc, setCvcCheckMsg, 'CVC')) {
+            setCvcCheckOn(true);
+            result.push(false);
+        } else {
+            setCvcCheckOn(false);
+        };
+
+        if (!checkEmpty(name, setNameCheckMsg, 'name')) {
+            setNameCheckOn(true);
+            result.push(false);
+        } else {
+            setNameCheckOn(false);
+        };    
+        
+        if (!checkEmpty(country, setCountryCheckMsg, 'country')) {
+            setCountryCheckOn(true);
+            result.push(false);
+        } else {
+            setCountryCheckOn(false);
+        };         
+
         return !result.includes(false);
     };
 
@@ -62,7 +90,13 @@ const AddCardModal = ({ addCard, onClose }) => {
                                 label="Card Number"
                                 placeholder="1234 5678 9012 3456"
                                 value={cardNumber}
-                                onChangeFunction={setCardNumber}
+                                onChangeFunction={(event) => {
+                                    let string = event.target.value
+                                    string = string.replaceAll(' ', '');
+                                    string = string.replace(/(\d{4})/g, '$1 ');
+                                    string = string.substring(0, 19);
+                                    setCardNumber(string);
+                                }}
                                 validation={cardNumberCheckOn}
                                 message={cardNumberCheckMsg}
                             />
@@ -76,7 +110,13 @@ const AddCardModal = ({ addCard, onClose }) => {
                                 label="Exp. Date"
                                 placeholder="12/24"
                                 value={expDate}
-                                onChangeFunction={setExpDate}
+                                onChangeFunction={(event) => {
+                                    let string = event.target.value
+                                    string = string.replaceAll('/', '');
+                                    string = string.replace(/(\d{2})/g, '$1/');
+                                    string = string.substring(0, 5);
+                                    setExpDate(string);
+                                }}
                                 validation={expDateCheckOn}
                                 message={expDateCheckMsg}
                             />
@@ -88,7 +128,11 @@ const AddCardModal = ({ addCard, onClose }) => {
                                 type="password"
                                 placeholder="123"
                                 value={cvc}
-                                onChangeFunction={setCvc}
+                                onChangeFunction={(event) => {
+                                    let string = event.target.value
+                                    string = string.substring(0, 3);
+                                    setCvc(string);
+                                }}
                                 validation={cvcCheckOn}
                                 message={cvcCheckMsg}
                             />
@@ -103,7 +147,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                                 type="text"
                                 placeholder="John Doe"
                                 value={name}
-                                onChangeFunction={setName}
+                                onChangeFunction={(event) => setName(event.target.value)}
                                 validation={nameCheckOn}
                                 message={nameCheckMsg}
                             />
@@ -117,7 +161,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                                 type="text"
                                 placeholder="United States"
                                 value={country}
-                                onChangeFunction={setCountry}
+                                onChangeFunction={(event) => setCountry(event.target.value)}
                                 validation={countryCheckOn}
                                 message={countryCheckMsg}
                             />
@@ -140,7 +184,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                         action={(event) => {
                             event.preventDefault();
                             if (validateForm()) {
-                                addCard(cardNumber, expDate);
+                                addCard(cardNumber.substring(15, 19), expDate);
                                 onClose();
                             };
                         }}

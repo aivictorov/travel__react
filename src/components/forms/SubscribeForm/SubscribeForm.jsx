@@ -46,7 +46,7 @@ const SubscribeForm = () => {
                             style="subscribe-form"
                             placeholder="Your email address"
                             value={email}
-                            onChangeFunction={setEmail}
+                            onChangeFunction={(event) => setEmail(event.target.value)}
                             validation={emailCheckOn}
                             message={emailCheckMsg}
                         />

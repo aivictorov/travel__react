@@ -39,9 +39,9 @@ const FlightListing = () => {
 
     const [sortType, setSortType] = useState('lowest price');
 
-    const [resetTrigger, setResetTrigger] = useState(true);
-
     const [tabs, setTabs] = useState([]);
+    
+    const [resetTrigger, setResetTrigger] = useState(true);
 
     const changeFilter = (filter) => {
         setFilters({ ...filters, ...filter });
@@ -321,6 +321,12 @@ const FlightListing = () => {
         setFilteredResults(sorted);
     }, [sortType])
 
+    const sortTypes = [
+        { value: "lowest price", name: "Lowest price" },
+        { value: "highest price", name: "Highest price" },
+        { value: "fastest", name: "Fastest" }
+    ];
+
     return (
         <>
             <HeaderInner />
@@ -347,6 +353,7 @@ const FlightListing = () => {
                                         <Tabs tabs={tabs} />
                                     }
                                     <ListingSort
+                                        sortTypes={sortTypes}
                                         filteredResults={filteredResults}
                                         searchResults={searchResults}
                                         numberOfResults={numberOfResults}

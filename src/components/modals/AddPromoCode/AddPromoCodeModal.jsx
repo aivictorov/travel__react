@@ -14,8 +14,8 @@ const AddPromoCodeModal = () => {
             </div>
             <div className="add-promo-code__input-wrapper">
                 <Input
-                    style='form'
-                    label='Promo code'
+                    style="form"
+                    label="Promo code"
                 />
             </div>
             <div className="add-promo-code__button-wrapper">

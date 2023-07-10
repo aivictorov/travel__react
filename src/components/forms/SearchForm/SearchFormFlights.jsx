@@ -182,8 +182,7 @@ const SearchFormFlights = ({ layout }) => {
                         label="From"
                         placeholder="Sydney"
                         value={from}
-                        onChangeFunction={setFrom}
-                        onFocusFunction={() => setOpenDropFrom(true)}
+                        onChangeFunction={(event) => setFrom(event.target.value)} onFocusFunction={() => setOpenDropFrom(true)}
                         validation={fromCheckOn}
                         message={fromCheckMsg}
                         autocomplete="off"
@@ -210,7 +209,7 @@ const SearchFormFlights = ({ layout }) => {
                         label="To"
                         placeholder="Istanbul"
                         value={to}
-                        onChangeFunction={setTo}
+                        onChangeFunction={(event) => setTo(event.target.value)}
                         onFocusFunction={() => setOpenDropTo(true)}
                         validation={toCheckOn}
                         message={toCheckMsg}

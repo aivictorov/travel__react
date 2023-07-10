@@ -5,7 +5,7 @@ const ModalWindow = ({ content }) => {
     return (
         <div
             className="modal-window"
-            onClick={(event) => {
+            onMouseDown={(event) => {
                 event.stopPropagation()
             }}
         >

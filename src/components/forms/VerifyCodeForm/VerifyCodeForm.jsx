@@ -50,7 +50,7 @@ const VerifyCodeForm = () => {
                             label="Enter code"
                             placeholder="Enter code"
                             value={code}
-                            onChangeFunction={setCode}
+                            onChangeFunction={(event) => setCode(event.target.value)}
                             validation={codeCheckOn}
                             message={codeCheckMsg}
                         />

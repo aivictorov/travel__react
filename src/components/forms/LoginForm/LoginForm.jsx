@@ -84,7 +84,7 @@ const LoginForm = () => {
                         label="Email"
                         placeholder="Enter email"
                         value={email}
-                        onChangeFunction={setEmail}
+                        onChangeFunction={(event) => setEmail(event.target.value)}
                         validation={emailCheckOn}
                         message={emailCheckMsg}
                     />
@@ -96,7 +96,7 @@ const LoginForm = () => {
                         type="password"
                         placeholder='Enter password'
                         value={password}
-                        onChangeFunction={setPassword}
+                        onChangeFunction={(event) => setPassword(event.target.value) }
                         validation={passwordCheckOn}
                         message={passwordCheckMsg}
                     />

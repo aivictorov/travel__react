@@ -1,6 +1,6 @@
 import './ListingSort.scss';
 
-const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumberOfResults, sortType, setSortType, resetTrigger, setResetTrigger }) => {
+const ListingSort = ({ sortTypes, filteredResults, searchResults, numberOfResults, setNumberOfResults, sortType, setSortType, resetTrigger, setResetTrigger }) => {
     return (
         <div className="listing-sort">
             <div className="listing-sort__left">
@@ -30,9 +30,13 @@ const ListingSort = ({ filteredResults, searchResults, numberOfResults, setNumbe
                         value={sortType}
                         onChange={(event) => { setSortType(event.target.value) }}
                     >
-                        <option value="lowest price">Lowest price</option>
-                        <option value="highest price">Highest price</option>
-                        <option value="fastest">Fastest</option>
+                        {sortTypes.map((item, index) => {
+                            return (
+                                <option key={index} value={item.value}>
+                                    {item.name}
+                                </option>
+                            )
+                        })}
                     </select>
                 </div>
                 <div className="listing-sort__item">

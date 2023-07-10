@@ -16,7 +16,7 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
             <h2 className="hotel-rooms__title">Available rooms</h2>
             <ul className="hotel-rooms__list">
                 {rooms.map((room, index) => {
-                    return (room.dates.includes(hotelSearchParams.checkIn) &&
+                    return (room.dates.includes(...hotelSearchParams.allDates) &&
                         <li
                             key={index}
                             className="hotel-rooms__item"

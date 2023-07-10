@@ -22,7 +22,7 @@ const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaul
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 value={value}
-                onChange={(event) => onChangeFunction(event.target.value)}
+                onChange={onChangeFunction}
                 onFocus={onFocusFunction}
                 onClick={onClickFunction}
                 autoComplete={autocomplete}

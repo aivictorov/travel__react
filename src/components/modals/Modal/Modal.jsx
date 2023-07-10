@@ -19,13 +19,11 @@ const Modal = ({ isOpen, onClose, window }) => {
         return ReactDOM.createPortal(
 
             <div
-                className="project-nav-modal"
-                onClick={onClose}
+                className="modal"
+                onMouseDown={onClose}
             >
-
                 {window}
-
-                <div className="project-nav-modal__close-button">
+                <div className="modal__close-button">
                     <svg
                         width="30"
                         height="30"

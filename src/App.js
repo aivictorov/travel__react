@@ -76,7 +76,52 @@ function App() {
 
     const [recentSearches, setRecentSearches] = useState({
         flights: [],
-        hotels: [],
+        hotels: [
+            {
+                destination: "Paris",
+                checkIn: "11.07.2023",
+                checkOut: "13.07.2023",
+                allDates: [
+                    "11.07.2023",
+                    "12.07.2023"
+                ],
+                rooms: 1,
+                guests: 1
+            },
+            {
+                destination: "London",
+                checkIn: "11.07.2023",
+                checkOut: "13.07.2023",
+                allDates: [
+                    "11.07.2023",
+                    "12.07.2023"
+                ],
+                rooms: 1,
+                guests: 1
+            },
+            {
+                destination: "Tokyo",
+                checkIn: "11.07.2023",
+                checkOut: "13.07.2023",
+                allDates: [
+                    "11.07.2023",
+                    "12.07.2023"
+                ],
+                rooms: 1,
+                guests: 1
+            },
+            {
+                destination: "New York",
+                checkIn: "11.07.2023",
+                checkOut: "13.07.2023",
+                allDates: [
+                    "11.07.2023",
+                    "12.07.2023"
+                ],
+                rooms: 1,
+                guests: 1
+            }
+        ],
     });
 
     const [userAuth, setUserAuth] = useState(false);

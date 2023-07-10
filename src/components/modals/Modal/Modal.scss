@@ -1,4 +1,4 @@
-.project-nav-modal {
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     transition: opacity .2s ease-in;
 }
 
-.project-nav-modal__close-button {
+.modal__close-button {
     position: absolute;
     top: 10px;
     right: 10px;

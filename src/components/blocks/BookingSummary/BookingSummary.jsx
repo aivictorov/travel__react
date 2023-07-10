@@ -13,7 +13,7 @@ const BookingSummary = ({ layout }) => {
         flight = findFlight(selectedFlight.direct);
         title = flight.airline;
         logo = findAirline(flight.airline).logo;
-        price = flight.price;
+        price = selectedFlight.price;
         rating = flight.rating;
     }
 

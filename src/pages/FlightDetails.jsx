@@ -11,15 +11,11 @@ import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import TrackNav from './../components/blocks/TrackNav/TrackNav';
 
 const FlightDetails = () => {
-    const navigate = useNavigate();
     const { flights, airlines, selectedFlight } = useContext(AppContext);
 
     if (selectedFlight) {
-        const directID = selectedFlight.direct;
-        const returnID = selectedFlight.return;
-
-        const directFlight = flights.find((flight) => flight.id == directID);
-        const returnFlight = flights.find((flight) => flight.id == returnID);
+        const directFlight = flights.find((flight) => flight.id === selectedFlight.direct);
+        const returnFlight = flights.find((flight) => flight.id === selectedFlight.return);
         const airline = airlines.find((airline) => airline.name == directFlight.airline);
 
         return (
@@ -28,7 +24,7 @@ const FlightDetails = () => {
                 <main className="details">
                     <div className="container">
                         <div className="details__nav">
-                            <TrackNav />
+                            <TrackNav layout="flights" />
                         </div>
                         <div className="details__header">
                             <DetailsHeader
@@ -40,7 +36,7 @@ const FlightDetails = () => {
                             <FlightFeatures gallery={airline.gallery} />
                             <FlightPolicies />
                             <FlightBookingCard flight={directFlight} direction="Direct" />
-                            {returnID &&
+                            {selectedFlight.return &&
                                 <FlightBookingCard flight={returnFlight} direction="Return" />
                             }
                         </div>
@@ -53,7 +49,6 @@ const FlightDetails = () => {
     } else {
         return <Navigate to="/" />;
     };
-
 }
 
 export default FlightDetails;

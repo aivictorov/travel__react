@@ -46,7 +46,7 @@ const ResetPasswordForm = () => {
                         label="Email"
                         placeholder="Enter e-mail"
                         value={email}
-                        onChangeFunction={setEmail}
+                        onChangeFunction={(event) => setEmail(event.target.value)}
                         validation={emailCheckOn}
                         message={emailCheckMsg}
                     />

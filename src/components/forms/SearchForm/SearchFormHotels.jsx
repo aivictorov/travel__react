@@ -99,7 +99,7 @@ const SearchFormHotels = ({ layout }) => {
                         label="Destination"
                         placeholder="Istanbul, Turkey"
                         value={destination}
-                        onChangeFunction={setDestination}
+                        onChangeFunction={(event) => setDestination(event.target.value)}
                         onFocusFunction={() => setOpenDropDestination(true)}
                     />
                     <Drop

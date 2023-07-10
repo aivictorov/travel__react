@@ -23,7 +23,10 @@ const FlightBookingCard = ({ layout, direction, flight }) => {
                     <div className="flight-ticket__title">
                         Emirates A380 Airbus
                     </div>
-                    <Price value="240" style="big" />
+                    <Price
+                        value={flight.price}
+                        style="big"
+                    />
                 </div>
             }
             <div className="flight-ticket__content">
@@ -65,7 +68,7 @@ const FlightBookingCard = ({ layout, direction, flight }) => {
                 </div>
                 <div className="flight-ticket__content-bottom">
                     <div className="flight-ticket__time">
-                        <span>{formatTime(flight.start)} pm</span>
+                        <span>{formatTime(flight.start)}</span>
                         <span>{flight.from} (EWR)</span>
                     </div>
                     <div className="flight-ticket__spacer">
@@ -74,7 +77,7 @@ const FlightBookingCard = ({ layout, direction, flight }) => {
                         </svg>
                     </div>
                     <div className="flight-ticket__time">
-                        <span>{formatTime(flight.end)} pm</span>
+                        <span>{formatTime(flight.end)}</span>
                         <span>{flight.to} (EWR)</span>
                     </div>
                 </div>

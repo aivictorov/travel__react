@@ -60,7 +60,7 @@ const SetPasswordForm = () => {
                             type="password"
                             placeholder='Enter password'
                             value={password}
-                            onChangeFunction={setPassword}
+                            onChangeFunction={(event) => setPassword(event.target.value)}
                             validation={passwordCheckOn}
                             message={passwordCheckMsg}
                         />
@@ -74,7 +74,7 @@ const SetPasswordForm = () => {
                             type="password"
                             placeholder="Re-enter password"
                             value={confirmPassword}
-                            onChangeFunction={setConfirmPassword}
+                            onChangeFunction={(event) => setConfirmPassword(event.target.value)}
                             validation={confirmPasswordCheckOn}
                             message={confirmPasswordCheckMsg}
                         />
