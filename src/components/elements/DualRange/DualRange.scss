@@ -33,8 +33,6 @@
 		outline: none;
 		pointer-events: none;
 
-		// track 
-
 		&::-webkit-slider-runnable-track {
 			-webkit-appearance: none;
 			height: 6px;
@@ -43,8 +41,6 @@
 		&::-moz-range-track {
 			-moz-appearance: none;
 		}
-
-		// thumb 
 
 		&::-webkit-slider-thumb {
 			-webkit-appearance: none;

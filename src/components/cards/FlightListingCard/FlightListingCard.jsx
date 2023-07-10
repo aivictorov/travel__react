@@ -49,7 +49,6 @@ const FlightListingCard = ({ flightTicket }) => {
                         return (
                             <li className="flight-card__flight" key={index} >
                                 <Checkbox
-                                    // name={""}
                                     style="gray"
                                     text={
                                         <>
@@ -75,13 +74,6 @@ const FlightListingCard = ({ flightTicket }) => {
                                         </>
                                     }
                                     onChangeFunction={() => { }}
-                                    // onChangeFunction={(event) => {
-                                    //     if (event.target.checked) {
-                                    //         setParams([...params, event.target.name])
-                                    //     } else {
-                                    //         setParams(params.filter((param) => param !== event.target.name))
-                                    //     };
-                                    // }}
                                 />
                             </li>
                         )

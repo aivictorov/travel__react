@@ -8,6 +8,7 @@
     left: 0;
     top: 127px;
     padding: 10px;
+    max-width: 120px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background-color: #000;
@@ -16,13 +17,6 @@
     z-index: 999;
     transform: translateX(-87.5%);
     transition: transform .3s ease-in, color 0s linear 0.3s;
-
-        max-width: 120px;
-
-
-    // span {
-    //     max-width: 100px;
-    // }
 
     &:hover {
         color: #FFF;

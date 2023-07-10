@@ -54,7 +54,6 @@ const AccountTabsMain = () => {
                                         <input
                                             type="text"
                                             value={userData[item.name]}
-                                            // onChange={item.setValue}
                                             onChange={(event) => { setUserData({ ...userData, [item.name]: event.target.value }) }}
                                             autoFocus
                                         />
@@ -62,13 +61,6 @@ const AccountTabsMain = () => {
                                 </div>
                             </div>
                             <div className="account-info__item-right">
-                                {/* {item.name === 'Email' &&
-                                    <Button
-                                        text="Add another email"
-                                        style="border"
-                                        svgID="add-circle-icon"
-                                    />
-                                } */}
                                 {edit !== item.name &&
                                     <div className="account-info__button-wrapper">
                                         <Button

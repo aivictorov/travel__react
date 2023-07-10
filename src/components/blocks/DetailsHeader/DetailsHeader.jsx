@@ -61,7 +61,6 @@ const DetailsHeader = ({ layout, roomsRef }) => {
                 <div className="details-header__right">
                     <Price
                         value={240}
-                        // period="night"
                         style="big"
                     />
                     <div className="details-header__buttons">

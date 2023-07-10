@@ -17,7 +17,6 @@
         background-color: darken($main, 10%);
     }
 
-    // style
     &--light {
         background-color: #FFF;
 
@@ -55,7 +54,6 @@
         }
     }
 
-    // fit
     &--w100 {
         width: 100%;
         padding-left: unset;
@@ -68,7 +66,6 @@
         padding-bottom: unset;
     }
 
-    // text
     &--bold {
         font-weight: 600;
     }
