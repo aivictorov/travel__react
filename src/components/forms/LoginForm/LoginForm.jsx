@@ -80,7 +80,7 @@ const LoginForm = () => {
             <div className="login-form__input-group">
                 <div className="login-form__input-wrapper">
                     <Input
-                        style="form msgRight"
+                        classes="form msgRight"
                         label="Email"
                         placeholder="Enter email"
                         value={email}
@@ -91,7 +91,7 @@ const LoginForm = () => {
                 </div>
                 <div className="login-form__input-wrapper">
                     <Input
-                        style="form msgRight"
+                        classes="form msgRight"
                         label="Password"
                         type="password"
                         placeholder='Enter password'
@@ -117,7 +117,7 @@ const LoginForm = () => {
             <div className="login-form__button-group">
                 <Button
                     text="Login"
-                    style="bold"
+                    classes="bold"
                     type="submit"
                     action={(event) => {
                         event.preventDefault();
@@ -130,7 +130,7 @@ const LoginForm = () => {
                     </span>
                     <ButtonLink
                         text="Sign up"
-                        style="bold"
+                        classes="bold"
                         action={() => { navigate('/sign-up') }}
                     />
                 </div>

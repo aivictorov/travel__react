@@ -64,7 +64,7 @@ const HeaderNavUser = () => {
 
                 <Drop
                     name="menu"
-                    style="menu"
+                    classes="menu"
                     isOpen={openDropMenu}
                     onClose={() => setOpenDropMenu(false)}
                     content={<UserMenu />}

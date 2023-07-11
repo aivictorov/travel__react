@@ -12,7 +12,7 @@ const SectionHeader = ({ title, text, button, action }) => {
             </div>
             {button &&
                 <div className="section-header__right section-header__button-wrapper">
-                    <Button text={button} style="border h100" action={action} />
+                    <Button text={button} classes="border h100" action={action} />
                 </div>
             }
         </div>

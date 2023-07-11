@@ -1,5 +1,5 @@
 import './AddCardModal.scss'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from './../../elements/Button/Button';
 import Checkbox from '../../elements/Checkbox/Checkbox';
 import Input from './../../elements/Input/Input';
@@ -14,10 +14,6 @@ const AddCardModal = ({ addCard, onClose }) => {
     const [expDate, setExpDate] = useState('');
     const [expDateCheckOn, setExpDateCheckOn] = useState(false);
     const [expDateCheckMsg, setExpDateCheckMsg] = useState('');
-
-    const [email, setEmail] = useState('');
-    const [emailCheckOn, setEmailCheckOn] = useState(false);
-    const [emailCheckMsg, setEmailCheckMsg] = useState('');
 
     const [cvc, setCvc] = useState('');
     const [cvcCheckOn, setCvcCheckOn] = useState(false);
@@ -86,7 +82,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                     <div className="login-form__input-group-row">
                         <div className="login-form__input-wrapper">
                             <Input
-                                style="form msgRight"
+                                classes="form msgRight"
                                 label="Card Number"
                                 placeholder="1234 5678 9012 3456"
                                 value={cardNumber}
@@ -106,7 +102,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                     <div className="login-form__input-group-row">
                         <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
                             <Input
-                                style="form msgRight"
+                                classes="form msgRight"
                                 label="Exp. Date"
                                 placeholder="12/24"
                                 value={expDate}
@@ -123,7 +119,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                         </div>
                         <div className="login-form__input-wrapper login-form__input-wrapper--w1_2">
                             <Input
-                                style="form msgRight"
+                                classes="form msgRight"
                                 label="CVC"
                                 type="password"
                                 placeholder="123"
@@ -142,7 +138,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                     <div className="login-form__input-group-row">
                         <div className="login-form__input-wrapper">
                             <Input
-                                style="form msgRight"
+                                classes="form msgRight"
                                 label="Name on Card"
                                 type="text"
                                 placeholder="John Doe"
@@ -156,7 +152,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                     <div className="login-form__input-group-row">
                         <div className="login-form__input-wrapper">
                             <Input
-                                style="form msgRight"
+                                classes="form msgRight"
                                 label="Country or Region"
                                 type="text"
                                 placeholder="United States"
@@ -180,7 +176,7 @@ const AddCardModal = ({ addCard, onClose }) => {
                     <Button
                         text="Create account"
                         type="submit"
-                        style="dark bold w100"
+                        classes="dark bold w100"
                         action={(event) => {
                             event.preventDefault();
                             if (validateForm()) {

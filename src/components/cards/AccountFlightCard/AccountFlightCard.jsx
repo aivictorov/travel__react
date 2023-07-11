@@ -85,7 +85,7 @@ const AccountFlightCard = ({ flightTicket }) => {
                         <div className="account-flight-card__buttons">
                             <Button text="Download Ticket" />
                             <ButtonSquare
-                                style="border small"
+                                classes="border small"
                                 svgID="arrow-right"
                             />
                         </div>

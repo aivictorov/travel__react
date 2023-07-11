@@ -67,28 +67,28 @@ const DetailsHeader = ({ layout, roomsRef }) => {
                 <div className="details-header__right">
                     <Price
                         value={price}
-                        style="big"
+                        classes="big"
                     />
                     <div className="details-header__buttons">
                         {layout === 'hotel' && userAuth &&
                             <FavCheckboxButton hotelBooking={hotel.id} />
                         }
                         <ButtonSquare
-                            style="border small"
+                            classes="border small"
                             svgID="share"
                         />
                         <div className="details-header__button-wrapper">
                             {layout === 'flight' &&
                                 <Button
                                     text="Book now"
-                                    style="bold w100"
+                                    classes="bold w100"
                                     action={() => navigate('/flight-booking')}
                                 />
                             }
                             {layout === 'hotel' &&
                                 <Button
                                     text="Book now"
-                                    style="bold w100"
+                                    classes="bold w100"
                                     action={scrollToRef}
                                 />
                             }

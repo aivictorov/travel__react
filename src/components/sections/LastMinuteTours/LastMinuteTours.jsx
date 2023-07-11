@@ -44,7 +44,7 @@ const LastMinuteTours = ({ layout = 'flights' }) => {
                         <div className="last-minute-tours__card-button">
                             <Button
                                 text={layout === "flights" ? "Book flight" : "Book hotel"}
-                                style="light w100"
+                                classes="light w100"
                                 action={() => {
                                     const destination = destinations.find((item) => item.city === "Colombo")
 

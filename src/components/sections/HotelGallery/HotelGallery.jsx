@@ -19,7 +19,7 @@ const HotelGallery = ({ id = 0 }) => {
                 )
             })}
             <div className="hotel-gallery__button">
-                <Button text="View all photos" style="bold" />
+                <Button text="View all photos" classes="bold" />
             </div>
         </section>
     );

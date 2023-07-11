@@ -86,7 +86,7 @@ const AccountHotelCard = ({ hotelBooking }) => {
                 <div className="account-hotel-card__buttons">
                     <Button text="Download Booking" />
                     <ButtonSquare
-                        style="border small"
+                        classes="border small"
                         svgID="arrow-right"
                     />
                 </div>

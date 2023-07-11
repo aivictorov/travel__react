@@ -9,14 +9,14 @@ const FlightsAndHotels = () => {
             title: 'Flights',
             description: 'Search Flights & Places Hire to our most popular destinations',
             btnText: 'Show Filghts',
-            style: 'flights',
+            layout: 'flights',
         },
         {
             id: 1,
             title: 'Hotels',
             description: 'Search Hotels & Places Hire to our most popular destinations',
             btnText: 'Show Hotels',
-            style: 'hotels',
+            layout: 'hotels',
         },
     ]
 
@@ -31,7 +31,7 @@ const FlightsAndHotels = () => {
                                 title={flightsAndHotelsCard.title}
                                 description={flightsAndHotelsCard.description}
                                 btnText={flightsAndHotelsCard.btnText}
-                                style={flightsAndHotelsCard.style}
+                                layout={flightsAndHotelsCard.layout}
                             />
                         )
                     })}

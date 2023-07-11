@@ -40,7 +40,7 @@ const FlightListingCard = ({ flightTicket }) => {
                         return (
                             <li className="flight-card__flight" key={index} >
                                 <Checkbox
-                                    style="gray"
+                                    classes="gray"
                                     text={
                                         <>
                                             <div className="flight__row">
@@ -77,7 +77,7 @@ const FlightListingCard = ({ flightTicket }) => {
                     <div className="flight-card__button-wrapper">
                         <Button
                             text="View Details"
-                            style="bold w100"
+                            classes="bold w100"
                             action={() => {
                                 setSelectedFlight(flightTicket);
                                 navigate('/flight-details');

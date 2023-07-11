@@ -1,8 +1,8 @@
 import './Button.scss';
 import { addClass } from '../../../utils/functions';
 
-const Button = ({ text, type, style, icon, svgID, action }) => {
-    const add = addClass('button', style);
+const Button = ({ text, type, classes, icon, svgID, action }) => {
+    const add = addClass('button', classes);
 
     return (
         <button

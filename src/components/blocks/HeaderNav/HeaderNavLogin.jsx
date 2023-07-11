@@ -11,7 +11,7 @@ const HeaderNavLogin = ({ btnStyle }) => {
             </NavLink>
 
             <div className="header-nav__button-wrapper">
-                <Button text="Sign Up" style={`${btnStyle} bold w100`} action={() => { navigate('/sign-up') }} />
+                <Button text="Sign Up" classes={`${btnStyle} bold w100`} action={() => { navigate('/sign-up') }} />
             </div>
         </div>
     );

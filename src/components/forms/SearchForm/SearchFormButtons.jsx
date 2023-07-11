@@ -14,7 +14,7 @@ const SearchFormButtons = ({ layout, action }) => {
             <div className="search-form__add-button-wrapper">
                 <Button
                     text='Add Promo Code'
-                    style="transparent w100"
+                    classes="transparent w100"
                     svgID="add-icon"
                     action={() => setOpenModal(true)}
                 />

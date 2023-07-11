@@ -15,7 +15,7 @@ import { buildDatesArray, dateStringToObject, daysFromToday, formatDate } from '
 const SearchFormHotels = ({ layout }) => {
     const navigate = useNavigate();
 
-    const { hotelSearchParams, setHotelSearchParams, recentSearches, setRecentSearches, } = useContext(AppContext);
+    const { hotelSearchParams, setHotelSearchParams } = useContext(AppContext);
 
     const [destination, setDestination] = useState(hotelSearchParams.destination || '');
 
@@ -29,36 +29,19 @@ const SearchFormHotels = ({ layout }) => {
     const [rooms, setRooms] = useState(hotelSearchParams.rooms || 1);
     const [guests, setGuests] = useState(hotelSearchParams.guests || 2);
 
+    const cities = [];
+
+    destinations.forEach((item) => {
+        cities.push(item.city);
+    });
+
     function formatRoomsAndGuests(rooms, guests) {
         return `${rooms} ${(rooms === 1) ? 'Room' : 'Rooms'}, ${guests} ${(guests === 1) ? 'Guest' : 'Guests'}`
-    }
-
-    function changeRoomsAndGuests(value) {
-        let valueArray = value.split(', ');
-        setRooms(parseInt(valueArray[0]));
-        setGuests(parseInt(valueArray[1]));
     }
 
     useEffect(() => {
         setAllDates(buildDatesArray(dates))
     }, [dates])
-
-    const getSearchParams = (event) => {
-        event.preventDefault();
-
-        const newSearchParams = {
-            ...hotelSearchParams,
-            destination: destination,
-            checkIn: formatDate(dates[0]),
-            checkOut: formatDate(dates[1]),
-            allDates: allDates,
-            rooms: rooms,
-            guests: guests,
-        };
-
-        setHotelSearchParams(newSearchParams);
-        navigate("/hotel-listing");
-    }
 
     // DROPS
 
@@ -84,6 +67,65 @@ const SearchFormHotels = ({ layout }) => {
     // 3. Drop "RoomsAndGuests"
     const [openDropRoomsAndGuests, setOpenDropRoomsAndGuests] = useState(false);
 
+    // === VALIDATION ===
+
+    // 1. Check "FROM"
+    const [destinationCheckOn, setDestinationCheckOn] = useState(false);
+    const [destinationCheckMsg, setDestinationCheckMsg] = useState('');
+
+    function checkDestination() {
+        let result = false;
+
+        if (!destination.trim()) {
+            setDestinationCheckMsg('Please, enter city');
+        } else if (!cities.includes(destination.trim())) {
+            setDestinationCheckMsg('City not found');
+        } else {
+            setDestinationCheckMsg('');
+            result = true;
+        };
+
+        return result;
+    };
+
+    useEffect(() => {
+        if (destinationCheckOn) checkDestination();
+    }, [destination]);
+
+    // 2. Form validation
+    function validateForm() {
+        let result = [];
+
+        if (!checkDestination()) {
+            setDestinationCheckOn(true);
+            result.push(false);
+        } else {
+            setDestinationCheckOn(false);
+        };
+
+        return !result.includes(false);
+    };
+
+    // === SUBMIT FORM ===
+
+    const getSearchParams = (event) => {
+        event.preventDefault();
+        if (validateForm()) {
+            const newSearchParams = {
+                ...hotelSearchParams,
+                destination: destination.trim(),
+                checkIn: formatDate(dates[0]),
+                checkOut: formatDate(dates[1]),
+                allDates: allDates,
+                rooms: rooms,
+                guests: guests,
+            };
+
+            setHotelSearchParams(newSearchParams);
+            navigate("/hotel-listing");
+        };
+    };
+
     return (
         <form
             className="search-form__content"
@@ -101,10 +143,13 @@ const SearchFormHotels = ({ layout }) => {
                         value={destination}
                         onChangeFunction={(event) => setDestination(event.target.value)}
                         onFocusFunction={() => setOpenDropDestination(true)}
+                        validation={destinationCheckOn}
+                        message={destinationCheckMsg}
+                        autocomplete="off"
                     />
                     <Drop
                         name="destination"
-                        style="search"
+                        classes="search"
                         isOpen={openDropDestination}
                         onClose={() => setOpenDropDestination(false)}
                         isEmpty={dropDestinationsList.length === 0}
@@ -130,7 +175,7 @@ const SearchFormHotels = ({ layout }) => {
                     />
                     <Drop
                         name={["checkIn", "checkOut"]}
-                        style="calendar"
+                        classes="calendar"
                         isOpen={openDropCalendar}
                         onClose={() => setOpenDropCalendar(false)}
                         content={
@@ -166,7 +211,7 @@ const SearchFormHotels = ({ layout }) => {
                     />
                     <Drop
                         name="roomsAndGuests"
-                        style="search"
+                        classes="search"
                         isOpen={openDropRoomsAndGuests}
                         onClose={() => setOpenDropRoomsAndGuests(false)}
                         content={
@@ -181,7 +226,7 @@ const SearchFormHotels = ({ layout }) => {
                 </div>
 
                 <ButtonSquare
-                    style=""
+                    classes=""
                     svgID="search-icon"
                     action={getSearchParams}
                 />

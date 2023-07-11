@@ -2,7 +2,7 @@ import './Input.scss';
 import { useRef, useEffect } from 'react';
 import { addClass } from '../../../utils/functions';
 
-const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction, validation = true, message, autocomplete = "on" }) => {
+const Input = ({ name, classes = 'form', type = 'text', label, placeholder, defaultValue, value, onChangeFunction, onFocusFunction, onClickFunction, validation = true, message, autocomplete = "on" }) => {
 
     const inputRef = useRef();
 
@@ -11,7 +11,7 @@ const Input = ({ name, style = 'form', type = 'text', label, placeholder, defaul
         if (!message) inputRef.current.classList.remove('error');
     }, [message])
 
-    const add = addClass('input', style);
+    const add = addClass('input', classes);
 
     return (
         <div className={'input' + add} ref={inputRef}>

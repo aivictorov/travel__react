@@ -42,7 +42,7 @@ const ResetPasswordForm = () => {
             <div className="login-form__input-group">
                 <div className="login-form__input-wrapper">
                     <Input
-                        style="form msgRight"
+                        classes="form msgRight"
                         label="Email"
                         placeholder="Enter e-mail"
                         value={email}
@@ -55,7 +55,7 @@ const ResetPasswordForm = () => {
             <div className="login-form__button-group">
                 <Button
                     text="Submit"
-                    style="bold"
+                    classes="bold"
                     type="submit"
                     action={(event) => {
                         event.preventDefault();

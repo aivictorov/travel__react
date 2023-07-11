@@ -6,7 +6,7 @@ const HeaderInner = () => {
         <header className="header-inner">
             <div className="container">
                 <HeaderNav
-                    style="inner-page"
+                    classes="inner-page"
                 />
             </div>
         </header>

@@ -65,7 +65,7 @@ const AccountTabsMain = () => {
                                     <div className="account-info__button-wrapper">
                                         <Button
                                             text="Change"
-                                            style="border w100"
+                                            classes="border w100"
                                             svgID="edit-icon"
                                             action={() => {
                                                 startEdit(item.name);
@@ -78,7 +78,7 @@ const AccountTabsMain = () => {
                                         <div className="account-info__button-wrapper">
                                             <Button
                                                 text="Save"
-                                                style="border w100"
+                                                classes="border w100"
                                                 svgID="upload-icon"
                                                 action={() => {
                                                     acceptChanges();
@@ -88,7 +88,7 @@ const AccountTabsMain = () => {
                                         <div className="account-info__button-wrapper">
                                             <Button
                                                 text="Cancel"
-                                                style="border w100"
+                                                classes="border w100"
                                                 svgID="upload-icon"
                                                 action={() => {
                                                     cancelChanges();

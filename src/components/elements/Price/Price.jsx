@@ -1,9 +1,9 @@
 import './Price.scss';
 import { addClass } from '../../../utils/functions';
 
-const Price = ({value, period, style, before, after}) => {
+const Price = ({value, period, classes, before, after}) => {
 
-    let add = addClass('price__value', style);
+    let add = addClass('price__value', classes);
 
     return (
         <div className="price">

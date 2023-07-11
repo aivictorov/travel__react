@@ -12,11 +12,11 @@ function scrollToRef(ref, position) {
     ref.current.scrollIntoView({ block: position });
 };
 
-function addClass(name, style) {
+function addClass(name, classes) {
     let classString = '';
 
-    if (style) {
-        const classArray = style.split([' ']);
+    if (classes) {
+        const classArray = classes.split([' ']);
     
         if (classArray.length > 0) {
             classString = ' ' + classArray.map((item) => item = `${name}--${item}`).join(' ');

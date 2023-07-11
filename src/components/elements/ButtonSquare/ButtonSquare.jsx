@@ -1,8 +1,8 @@
 import './ButtonSquare.scss';
 import { addClass } from '../../../utils/functions';
 
-const ButtonSquare = ({ type, style, svgID, action }) => {
-    const add = addClass('square-button', style)
+const ButtonSquare = ({ type, classes, svgID, action }) => {
+    const add = addClass('square-button', classes)
     const iconSize = add.includes('small') ? 20 : 24;
 
     return (

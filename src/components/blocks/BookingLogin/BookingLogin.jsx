@@ -19,7 +19,7 @@ const BookingLogin = () => {
                     We’ll call or text you to confirm your number. Standard message
                     and data rates apply.
                 </div>
-                <Button text="Continue" style="w100" />
+                <Button text="Continue" classes="w100" />
             </form>
 
             <LoginWith layout="booking" />

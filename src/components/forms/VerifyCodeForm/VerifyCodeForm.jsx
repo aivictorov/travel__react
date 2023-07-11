@@ -44,7 +44,7 @@ const VerifyCodeForm = () => {
                 <div className="login-form__input-group-row">
                     <div className="login-form__input-wrapper">
                         <Input
-                            style="form msgRight"
+                            classes="form msgRight"
                             name="code"
                             type="password"
                             label="Enter code"
@@ -66,7 +66,7 @@ const VerifyCodeForm = () => {
             <div className="login-form__button-group">
                 <Button
                     text="Verify"
-                    style="bold"
+                    classes="bold"
                     type="submit"
                     action={(event) => {
                         event.preventDefault();

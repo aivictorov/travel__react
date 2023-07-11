@@ -43,7 +43,7 @@ const SubscribeForm = () => {
                     <div className="subscribe-form__input-wrapper">
                         <Input
                             type="email"
-                            style="subscribe-form"
+                            classes="subscribe-form"
                             placeholder="Your email address"
                             value={email}
                             onChangeFunction={(event) => setEmail(event.target.value)}
@@ -55,7 +55,7 @@ const SubscribeForm = () => {
                         <Button
                             text="Subscribe"
                             type="submit"
-                            style="dark bold h100"
+                            classes="dark bold h100"
                             action={(event) => {
                                 event.preventDefault();
                                 if (validateForm()) {

@@ -16,7 +16,7 @@ const HotelBookingCard = () => {
                 <div className="hotel-reservation__title">
                     {room.name}
                 </div>
-                <Price value={room.price} period="night" style="big" />
+                <Price value={room.price} period="night" classes="big" />
             </div>
             <div className="hotel-reservation__middle">
                 <div className="hotel-reservation__image">

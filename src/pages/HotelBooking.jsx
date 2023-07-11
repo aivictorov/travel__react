@@ -73,7 +73,7 @@ const HotelBooking = () => {
                                 />
                                 <Button
                                     text="BOOK HOTEL"
-                                    style="bold"
+                                    classes="bold"
                                     action={() => {
                                         if (userAuth) {
                                             addBookedHotel();

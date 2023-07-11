@@ -1,10 +1,10 @@
 import './Checkbox.scss';
 import { addClass } from '../../../utils/functions';
 
-const Checkbox = ({ name, text, style, checked, onChangeFunction }) => {
+const Checkbox = ({ name, text, classes, checked, onChangeFunction }) => {
     if (!text) text = name;
 
-    const add = addClass('checkbox', style);
+    const add = addClass('checkbox', classes);
 
     return (
         <div className={'checkbox' + add}>

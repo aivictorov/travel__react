@@ -1,16 +1,16 @@
 import './FlightsAndHotelsCard.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../elements/Button/Button';
 
-const FlightsAndHotelsCard = ({ title, description, btnText, style }) => {
+const FlightsAndHotelsCard = ({ title, description, btnText, layout }) => {
     const navigate = useNavigate();
 
     let link = '/';
-    if (style === 'flights') link += 'flight-search';
-    if (style === 'hotels') link += 'hotel-search';
+    if (layout === 'flights') link += 'flight-search';
+    if (layout === 'hotels') link += 'hotel-search';
 
     return (
-        <div className={`flights-and-hotels-card flights-and-hotels-card--${style}`}>
+        <div className={`flights-and-hotels-card flights-and-hotels-card--${layout}`}>
             <div className="flights-and-hotels-card__title">
                 {title}
             </div>

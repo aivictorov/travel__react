@@ -2,8 +2,8 @@ import './Location.scss';
 import { NavLink } from 'react-router-dom';
 import { addClass } from '../../../utils/functions';
 
-const Location = ({ text, style, link }) => {
-    let add = addClass('location', style);
+const Location = ({ text, classes, link }) => {
+    let add = addClass('location', classes);
 
     return (
         <div className={'location' + add}>

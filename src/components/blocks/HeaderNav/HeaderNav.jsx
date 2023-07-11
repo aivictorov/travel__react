@@ -6,14 +6,14 @@ import Logo from '../Logo/Logo';
 import HeaderNavLogin from './HeaderNavLogin';
 import HeaderNavUser from './HeaderNavUser';
 
-const HeaderNav = ({ style }) => {
+const HeaderNav = ({ classes }) => {
     const { userAuth } = useContext(AppContext)
 
-    const btnStyle = style === "inner-page" ? 'dark' : 'light'
+    const btnStyle = classes === "inner-page" ? 'dark' : 'light'
 
     let mainColor, accentColor;
 
-    if (style === 'inner-page') {
+    if (classes === 'inner-page') {
         mainColor = "#000";
         accentColor = "#8DD3BB";
     } else {
@@ -22,7 +22,7 @@ const HeaderNav = ({ style }) => {
     };
 
     return (
-        <div className={`header-nav` + (style && ` header-nav--${style}`)}>
+        <div className={`header-nav` + (classes && ` header-nav--${classes}`)}>
             <div className="header-nav__left">
                 <NavLink className="header-nav__item" to="/flight-search">
                     <svg width={24} height={24}>

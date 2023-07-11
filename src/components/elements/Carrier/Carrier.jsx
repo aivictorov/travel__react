@@ -2,8 +2,8 @@ import './Carrier.scss';
 import { addClass } from '../../../utils/functions';
 import { NavLink } from 'react-router-dom';
 
-const Carrier = ({ text, style, link }) => {
-    const add = addClass('carrier', style)
+const Carrier = ({ text, classes, link }) => {
+    const add = addClass('carrier', classes)
 
     return (
         <div className={'carrier' + add}>

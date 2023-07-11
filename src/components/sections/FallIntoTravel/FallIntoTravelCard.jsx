@@ -29,7 +29,7 @@ const FallIntoTravelCard = ({ layout, city, title, text, price, img }) => {
                 </div>
                 <Button
                     text={layout === "flights" ? "Book flight" : "Book hotel"}
-                    style="w100"
+                    classes="w100"
                     action={() => {
                         const destination = destinations.find((item) => item.city === city)
 

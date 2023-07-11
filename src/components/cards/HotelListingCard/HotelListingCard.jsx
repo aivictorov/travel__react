@@ -32,7 +32,7 @@ const HotelListingCard = ({ hotel, dates }) => {
                         <div className="hotel-card__details">
                             <Location
                                 text={object.address}
-                                style="small"
+                                classes="small"
                             />
                             <Stars number={object.stars} />
                             <Rating value={object.rating} />
@@ -56,7 +56,7 @@ const HotelListingCard = ({ hotel, dates }) => {
                     <div className="hotel-card__button-wrapper">
                         <Button
                             text="View Place"
-                            style="bold w100"
+                            classes="bold w100"
                             action={() => { 
                                 setSelectedHotel({id: object.id, room: null, dates: dates});
                                 navigate('/hotel-details');

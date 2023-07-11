@@ -1,9 +1,9 @@
 import './ButtonLink.scss';
 import { addClass } from '../../../utils/functions';
 
-const ButtonLink = ({ text, style, action }) => {
+const ButtonLink = ({ text, classes, action }) => {
 
-    const add = addClass('button-link', style)
+    const add = addClass('button-link', classes)
 
     return (
         <button

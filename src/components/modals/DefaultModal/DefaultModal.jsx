@@ -22,7 +22,7 @@ const DefaultModal = ({ isOpen, onClose, title, text }) => {
                             <div className="default-modal__button-wrapper">
                                 <Button
                                     text="OK"
-                                    style="dark w100"
+                                    classes="dark w100"
                                     action={onClose}
                                 />
                             </div>

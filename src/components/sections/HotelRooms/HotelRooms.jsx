@@ -39,7 +39,7 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
                                 <div className="hotel-rooms__item-button-wrapper">
                                     <Button
                                         text="Book now"
-                                        style="bold w100"
+                                        classes="bold w100"
                                         action={() => {
                                             setSelectedHotel({ ...selectedHotel, room: room.id });
                                             navigate('/hotel-booking')

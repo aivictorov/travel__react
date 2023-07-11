@@ -25,7 +25,7 @@ const FlightBookingCard = ({ layout, direction, flight }) => {
                     </div>
                     <Price
                         value={flight.price}
-                        style="big"
+                        classes="big"
                     />
                 </div>
             }

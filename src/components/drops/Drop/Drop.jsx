@@ -2,9 +2,9 @@ import './Drop.scss';
 import { useEffect } from 'react';
 import { addClass } from '../../../utils/functions';
 
-const Drop = ({ name = "drop", style, isOpen, onClose, isEmpty, content }) => {
+const Drop = ({ name = "drop", classes, isOpen, onClose, isEmpty, content }) => {
 
-    const add = addClass('drop', style);
+    const add = addClass('drop', classes);
 
     useEffect(() => {
         const closeDropByKey = (event) => {

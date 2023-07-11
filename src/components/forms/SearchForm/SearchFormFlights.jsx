@@ -35,12 +35,6 @@ const SearchFormFlights = ({ layout }) => {
         return `${passangers} ${(passangers === 1) ? 'Passenger' : 'Passengers'}, ${serviceClass.charAt(0).toUpperCase() + serviceClass.slice(1)}`
     }
 
-    function changePassAndClass(value) {
-        let valueArray = value.split(', ');
-        setPassangers(parseInt(valueArray[0]));
-        setServiceClass(valueArray[1]);
-    }
-
     // === DROPS ===
 
     // 1. Drop "From"
@@ -192,7 +186,7 @@ const SearchFormFlights = ({ layout }) => {
                     />
                     <Drop
                         name="from"
-                        style="search"
+                        classes="search"
                         isOpen={openDropFrom}
                         onClose={() => setOpenDropFrom(false)}
                         isEmpty={dropFromList.length === 0}
@@ -221,7 +215,7 @@ const SearchFormFlights = ({ layout }) => {
                     />
                     <Drop
                         name="to"
-                        style="search"
+                        classes="search"
                         isOpen={openDropTo}
                         onClose={() => setOpenDropTo(false)}
                         isEmpty={dropToList.length === 0}
@@ -247,7 +241,7 @@ const SearchFormFlights = ({ layout }) => {
                     />
                     <Drop
                         name={["depart", "return"]}
-                        style="calendar"
+                        classes="calendar"
                         isOpen={openDropCalendar}
                         onClose={() => setOpenDropCalendar(false)}
                         content={
@@ -283,7 +277,7 @@ const SearchFormFlights = ({ layout }) => {
                     />
                     <Drop
                         name="passAndClass"
-                        style="search"
+                        classes="search"
                         isOpen={openDropPassAndClass}
                         onClose={() => setOpenDropPassAndClass(false)}
                         content={

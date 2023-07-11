@@ -13,16 +13,15 @@ import HeaderInner from "../components/sections/HeaderInner/HeaderInner";
 import TrackNav from "../components/blocks/TrackNav/TrackNav";
 
 const FlightBooking = () => {
-    const { flights, airlines, user, setUser, userAuth, selectedFlight, accountTabsRef, setActiveTabs, activeTabs } = useContext(AppContext);
+    const { flights, user, setUser, userAuth, selectedFlight, accountTabsRef, setActiveTabs, activeTabs } = useContext(AppContext);
 
     const navigate = useNavigate();
 
     const [openModal, setOpenModal] = useState(false);
 
     if (selectedFlight) {
-        const directFlight = flights.find((flight) => flight.id == selectedFlight.direct);
-        const returnFlight = flights.find((flight) => flight.id == selectedFlight.return);
-        const airline = airlines.find((airline) => airline.name == directFlight.airline);
+        const directFlight = flights.find((flight) => flight.id === selectedFlight.direct);
+        const returnFlight = flights.find((flight) => flight.id === selectedFlight.return);
 
         function addBookedFlight() {
             setUser({
@@ -72,7 +71,7 @@ const FlightBooking = () => {
 
                                 <Button
                                     text="BOOK FLIGHT"
-                                    style="bold"
+                                    classes="bold"
                                     action={() => {
 
                                         if (userAuth) {

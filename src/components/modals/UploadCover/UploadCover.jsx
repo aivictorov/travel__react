@@ -18,7 +18,7 @@ const UploadCover = ({onClose}) => {
             <div className="upload-cover__button-wrapper">
                 <Button
                     text="Submit"
-                    style="dark w100"
+                    classes="dark w100"
                     action={onClose}
                 />
             </div>

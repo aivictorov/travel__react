@@ -1,4 +1,3 @@
-import Modal from '../../modals/Modal/Modal';
 import './BookingPaymentMethods.scss'
 import { useState } from 'react';
 import DefaultModal from './../../modals/DefaultModal/DefaultModal';
@@ -12,14 +11,14 @@ const BookingPaymentMethods = () => {
         {
             title: "Pay in full",
             description: "Pay the total and you are all set",
-            style: "h80",
+            classes: "h80",
             id: "full-payment",
             value: "full",
         },
         {
             title: "Pay part now, part later",
             description: "Pay $207.43 now, and the rest ($207.43) will be automatically charged to the same payment method on Nov 14, 2022. No extra fees.",
-            style: "h100",
+            classes: "h100",
             id: "partial-payment",
             value: "partial",
         },
@@ -30,7 +29,7 @@ const BookingPaymentMethods = () => {
     return (
         <div className="booking-payment-methods">
             {methods.map((item, index) => {
-                const add = addClass("payment-radio", item.style)
+                const add = addClass("payment-radio", item.classes)
 
                 return (
                     <div

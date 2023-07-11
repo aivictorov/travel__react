@@ -33,7 +33,7 @@ const AddPromoCodeModal = ({ onClose }) => {
             </div>
             <div className="add-promo-code__input-wrapper">
                 <Input
-                    style="form"
+                    classes="form"
                     label="Promo code"
                     value={code}
                     onChangeFunction={(event) => setCode(event.target.value)}
@@ -44,7 +44,7 @@ const AddPromoCodeModal = ({ onClose }) => {
             <div className="add-promo-code__button-wrapper">
                 <Button
                     text="Submit"
-                    style="dark w100"
+                    classes="dark w100"
                     action={(event) => {
                         event.preventDefault();
                         if (validateForm()) {
