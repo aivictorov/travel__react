@@ -17,7 +17,7 @@ const BookingLogin = () => {
                 />
                 <div className="booking-login-form__notice">
                     We’ll call or text you to confirm your number. Standard message
-                    and data rates apply. <a href="#!">Privacy Policy</a>
+                    and data rates apply. <a href="#">Privacy Policy</a>
                 </div>
                 <Button text="Continue" style="w100" />
             </form>

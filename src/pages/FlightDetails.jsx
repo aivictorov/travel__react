@@ -24,7 +24,7 @@ const FlightDetails = () => {
                 <main className="details">
                     <div className="container">
                         <div className="details__nav">
-                            {/* <TrackNav layout="flights" /> */}
+                            <TrackNav layout="flights" />
                         </div>
                         <div className="details__header">
                             <DetailsHeader

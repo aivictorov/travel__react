@@ -10,7 +10,7 @@ const ReviewCard = ({ title, description, author, object, img }) => {
                 <div className="reviews-section-card__text">
                     {description}
                 </div>
-                <a className="reviews-section-card__link" href="#!">
+                <a className="reviews-section-card__link" href="#">
                     View more
                 </a>
             </div>

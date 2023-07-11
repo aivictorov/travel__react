@@ -45,7 +45,7 @@ const AddCardModal = ({ addCard, onClose }) => {
             setCardNumberCheckOn(false);
         };
 
-        if (!checkEmpty(expDate, setExpDateCheckMsg, 'exp. date')) {
+        if (!checkEmpty(expDate, setExpDateCheckMsg, 'date')) {
             setExpDateCheckOn(true);
             result.push(false);
         } else {

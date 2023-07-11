@@ -7,28 +7,28 @@ const FooterNav = () => {
             {
                 title: 'Our Destinations',
                 items: [
-                    { title: 'Canada', link: '#!' },
-                    { title: 'Alaska', link: '#!' },
-                    { title: 'France', link: '#!' },
-                    { title: 'Iceland', link: '#!' },
+                    { title: 'Canada', link: '#' },
+                    { title: 'Alaska', link: '#' },
+                    { title: 'France', link: '#' },
+                    { title: 'Iceland', link: '#' },
                 ]
             },
             {
                 title: 'Our Activities',
                 items: [
-                    { title: 'Northern Lights', link: '#!' },
-                    { title: 'Cruising & sailing', link: '#!' },
-                    { title: 'Multi-activities', link: '#!' },
-                    { title: 'Kayaing', link: '#!' },
+                    { title: 'Northern Lights', link: '#' },
+                    { title: 'Cruising & sailing', link: '#' },
+                    { title: 'Multi-activities', link: '#' },
+                    { title: 'Kayaing', link: '#' },
                 ]
             },
             {
                 title: 'Travel Blogs',
                 items: [
-                    { title: 'Bali Travel Guide', link: '#!' },
-                    { title: 'Sri Lanks Travel Guide ', link: '#!' },
-                    { title: 'Peru Travel Guide', link: '#!' },
-                    { title: 'Bali Travel Guide', link: '#!' },
+                    { title: 'Bali Travel Guide', link: '#' },
+                    { title: 'Sri Lanks Travel Guide ', link: '#' },
+                    { title: 'Peru Travel Guide', link: '#' },
+                    { title: 'Bali Travel Guide', link: '#' },
                 ]
             },
 
@@ -36,16 +36,16 @@ const FooterNav = () => {
             {
                 title: 'About Us',
                 items: [
-                    { title: 'Our Story', link: '#!' },
-                    { title: 'Work with us', link: '#!' },
+                    { title: 'Our Story', link: '#' },
+                    { title: 'Work with us', link: '#' },
                 ]
             },
 
             {
                 title: 'Contact Us',
                 items: [
-                    { title: 'Our Story', link: '#!' },
-                    { title: 'Work with us', link: '#!' },
+                    { title: 'Our Story', link: '#' },
+                    { title: 'Work with us', link: '#' },
                 ]
             },
         ];

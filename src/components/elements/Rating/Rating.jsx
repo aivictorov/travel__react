@@ -27,7 +27,7 @@ const Rating = ({ value }) => {
                 <span className="rating__text">
                     <strong>{descriprion}</strong>
                 </span>
-                <a className="rating__link" href="#!">
+                <a className="rating__link" href="#">
                     54 reviews
                 </a>
             </div>

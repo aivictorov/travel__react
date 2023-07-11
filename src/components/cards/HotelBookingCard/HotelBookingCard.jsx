@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { AppContext } from './../../../App';
 import Price from '../../elements/Price/Price';
 import { findHotel, findRoom } from '../../../utils/searchFunctions';
-import { dateStringToObject, formatWeekDay } from '../../../utils/dateTimeFunctions';
+import { dateStringToObject, formatFullWeekDay } from '../../../utils/dateTimeFunctions';
 
 const HotelBookingCard = () => {
     const { selectedHotel } = useContext(AppContext);
@@ -36,7 +36,7 @@ const HotelBookingCard = () => {
             </div>
             <div className="hotel-reservation__bottom">
                 <div className="hotel-reservation__begin">
-                    <span>{formatWeekDay(dateStringToObject(selectedHotel.dates[0]))}</span>
+                    <span>{formatFullWeekDay(dateStringToObject(selectedHotel.dates[0]))}</span>
                     <span>Check-In</span>
                 </div>
                 <div className="hotel-reservation__spacer">
@@ -45,7 +45,7 @@ const HotelBookingCard = () => {
                     </svg>
                 </div>
                 <div className="hotel-reservation__end">
-                    <span>{formatWeekDay(dateStringToObject(selectedHotel.dates[1]))}</span>
+                    <span>{formatFullWeekDay(dateStringToObject(selectedHotel.dates[1]))}</span>
                     <span>Check-Out</span>
                 </div>
             </div>

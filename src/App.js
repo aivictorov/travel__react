@@ -45,7 +45,7 @@ function App() {
 
     const [hotelSearchParams, setHotelSearchParams] = useState(
         {
-            destination: 'Paris',
+            destination: '',
             checkIn: '',
             checkOut: '',
             allDates: [],

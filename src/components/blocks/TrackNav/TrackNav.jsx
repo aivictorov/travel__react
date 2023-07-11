@@ -7,26 +7,30 @@ const TrackNav = ({ layout }) => {
 
     if (layout === 'flights') {
         links = [
+            { name: 'Home', link: '/' },
             { name: 'Flight Search', link: '/flight-search' },
-            { name: 'Flight Listing', link: '/flight-listing' },
-            { name: 'Flight Details', link: '/flight-details' },
-            { name: 'Flight Booking', link: '/flight-booking' },
+            { name: 'Listing', link: '/flight-listing' },
+            { name: 'Details', link: '/flight-details' },
+            { name: 'Booking', link: '/flight-booking' },
         ]
     }
 
     if (layout === 'hotels') {
         links = [
+            { name: 'Home', link: '/' },
             { name: 'Hotel Search', link: '/hotel-search' },
-            { name: 'Hotel Listing', link: '/hotel-listing' },
-            { name: 'Hotel Details', link: '/hotel-details' },
-            { name: 'Hotel Booking', link: '/hotel-booking' },
+            { name: 'Listing', link: '/hotel-listing' },
+            { name: 'Details', link: '/hotel-details' },
+            { name: 'Booking', link: '/hotel-booking' },
         ]
     }
 
     let lastIndex = links.length;
 
+
     links.forEach((item, index) => {
-        if (item.link === window.location.pathname) {
+        // if (item.link === window.location.pathname) {
+        if (item.link === window.location.hash.substring(1)) {
             item.link = '';
             lastIndex = index;
         }

@@ -16,6 +16,19 @@ function formatWeekDay(date) {
     return dateString;
 };
 
+// Get Date Object, return Date String like "01.01.2022"
+function formatFullWeekDay(date) {
+    let dateString = formatWeekDay(date);
+
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    days.forEach((day) => { 
+        dateString = dateString.replace(day.substring(0, 3), day)
+    })
+
+    return dateString;
+};
+
 // Get Date Object, return Time String like "15:30"
 function formatTime(date) {
     let hours = date.getHours();
@@ -26,6 +39,7 @@ function formatTime(date) {
     return timeString;
 }
 
+// Get Date Objects, return string '(+1)' if flight ends the next day"
 function nextDaySign(start, end) {
     let nextDay = '';
     if (end.getDate() > start.getDate()) nextDay = '(+1)'
@@ -40,6 +54,7 @@ function countDuration(start, end) {
     return duration;
 };
 
+// Get Date String like "01.01.2022, return Date Object"
 function dateStringToObject(dateString) {
     const dateArray = dateString.split(['.']);
     const date = new Date(dateArray[2], parseInt(dateArray[1]) - 1, dateArray[0], 0, 0, 0, 0);
@@ -80,6 +95,7 @@ export {
     formatTime,
     nextDaySign,
     formatWeekDay,
+    formatFullWeekDay,
     countDuration,
     dateStringToObject,
     daysFromToday,
