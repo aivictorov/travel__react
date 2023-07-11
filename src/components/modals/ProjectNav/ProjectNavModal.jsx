@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const ProjectNavModal = () => {
     return (
         <>
-            {/* <div className="project-nav-modal__title">Структура проекта</div> */}
+            <div className="project-nav-modal__title">Структура проекта</div>
             <ul className="project-nav-modal__list">
                 <li>
                     <div className="project-nav-modal__list-title">Main page</div>
@@ -38,7 +38,7 @@ const ProjectNavModal = () => {
                 </li>
             </ul>
             <div className="project-nav-modal__notice">
-                * - авторизованный пользователь
+                * - authorized user
             </div>
         </>
     );

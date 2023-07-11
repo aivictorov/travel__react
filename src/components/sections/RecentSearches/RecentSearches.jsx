@@ -17,7 +17,6 @@ const RecentSearches = ({ layout = 'hotels' }) => {
                     title="Your recent searches"
                 />
                 <div className="recent-searches__cards">
-
                     {layout === 'flights' && recentSearches.flights.map((searchParams, index) => {
                         return (
                             <RecentSearchesCard
@@ -26,7 +25,6 @@ const RecentSearches = ({ layout = 'hotels' }) => {
                             />
                         )
                     })}
-
                     {layout === 'hotels' && recentSearches.hotels.map((searchParams, index) => {
                         return (
                             <RecentSearchesCard

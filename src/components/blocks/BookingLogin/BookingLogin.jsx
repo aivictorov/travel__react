@@ -13,11 +13,11 @@ const BookingLogin = () => {
                 <input
                     className="booking-login-form__input"
                     type="text"
-                    defaultValue="Phone Number"
+                    placeholder="Phone Number"
                 />
                 <div className="booking-login-form__notice">
                     We’ll call or text you to confirm your number. Standard message
-                    and data rates apply. <a href="#">Privacy Policy</a>
+                    and data rates apply.
                 </div>
                 <Button text="Continue" style="w100" />
             </form>
