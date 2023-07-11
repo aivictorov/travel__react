@@ -107,6 +107,7 @@ const SearchFormHotels = ({ layout }) => {
                         style="search"
                         isOpen={openDropDestination}
                         onClose={() => setOpenDropDestination(false)}
+                        isEmpty={dropDestinationsList.length === 0}
                         content={
                             <DropList
                                 list={dropDestinationsList}

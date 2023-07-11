@@ -26,6 +26,12 @@ function formatTime(date) {
     return timeString;
 }
 
+function nextDaySign(start, end) {
+    let nextDay = '';
+    if (end.getDate() > start.getDate()) nextDay = '(+1)'
+    return nextDay;
+};
+
 // Get Start Date Object & End Date Object, return Duration String like "2h 28m"
 function countDuration(start, end) {
     let hours = parseInt((end - start) / 1000 / 60 / 60);
@@ -69,64 +75,14 @@ function formatDuration(duration) {
     return `${hours}h ${minutes}m`;
 };
 
-// function countDefaultCheckIn() {
-//     const date = new Date();
-//     return formatDate(date);
-// };
-
-// function countDefaultCheckOut() {
-//     const date = new Date();
-//     date.setDate(date.getDate() + 3);
-//     return formatDate(date);
-// };
-
-// function formatDate(dateObj) {
-//     let day = dateObj.getDate();
-//     if (day.toString().length === 1) day = '0' + day.toString();
-//     let month = dateObj.getMonth() + 1;
-//     if (month.toString().length === 1) month = '0' + month.toString();
-//     const year = dateObj.getFullYear();
-//     const dateString = `${day}.${month}.${year}`;
-//     return dateString;
-// };
-
-// const defaultCheckIn = countDefaultCheckIn();
-// const defaultCheckOut = countDefaultCheckOut();
-
-
-// function formatString(start, end) {
-//     let startFormatted = formatTime(start);
-//     let endFormatted = formatTime(end);
-//     let nextDay = '';
-//     if (end.getDate() > start.getDate()) nextDay = ' (+1)'
-//     const resultString = `${startFormatted} - ${endFormatted}${nextDay}`
-//     return resultString;
-// };
-
-// start.toISOString().substring(0, 1000),
-// end.toISOString().substring(0, 1000) ,   
-
-
-
-
-
-
-
-
-// const [departDate, setDepartDate] = useState(today);
-// const [returnDate, setReturnDate] = useState(tomorrow);
-
-
-
 export {
     formatDate,
     formatTime,
+    nextDaySign,
     formatWeekDay,
     countDuration,
     dateStringToObject,
     daysFromToday,
     buildDatesArray,
     formatDuration,
-    // countDefaultCheckIn,
-    // countDefaultCheckOut,
 }

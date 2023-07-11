@@ -51,7 +51,7 @@ const HotelBooking = () => {
             <main className="booking">
                 <div className="container">
                     <div className="booking__nav">
-                        <TrackNav layout="hotels" />
+                        {/* <TrackNav layout="hotels" /> */}
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">

@@ -3,7 +3,7 @@ import Button from '../../elements/Button/Button';
 import ButtonSquare from '../../elements/ButtonSquare/ButtonSquare';
 import flights from './../../../data/flights';
 import airlines from './../../../data/airlines';
-import { countDuration, formatDate, formatTime } from '../../../utils/dateTimeFunctions';
+import { countDuration, formatDate, formatTime, nextDaySign } from '../../../utils/dateTimeFunctions';
 
 import calendarIcon from './../../../img/icons/ticket/calendar.svg';
 
@@ -53,7 +53,9 @@ const AccountFlightCard = ({ flightTicket }) => {
                                         {flight.to}
                                     </div>
                                     <div className="account-booking-time-column-value">
-                                        12:00 pm
+                                        {formatTime(flight.end)}
+                                        {" "}
+                                        {nextDaySign(flight.start, flight.end)}
                                     </div>
                                 </div>
                             </div>

@@ -24,7 +24,7 @@ const HotelRooms = forwardRef(({ rooms }, ref) => {
                             <div className="hotel-rooms__item-left">
                                 <div className="hotel-rooms__item-image">
                                     <img
-                                        src="./img/hotels/hotel-example-1/rooms/01.jpg"
+                                        src={room.coverSmall}
                                         alt="available room"
                                     />
                                 </div>

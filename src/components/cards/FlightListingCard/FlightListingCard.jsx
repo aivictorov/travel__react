@@ -7,7 +7,7 @@ import Checkbox from '../../elements/Checkbox/Checkbox';
 import FavCheckboxButton from '../../elements/FavCheckboxButton/FavCheckboxButton';
 import Price from '../../elements/Price/Price';
 import Rating from '../../elements/Rating/Rating';
-import { countDuration, formatTime } from '../../../utils/dateTimeFunctions'
+import { countDuration, formatTime, nextDaySign } from '../../../utils/dateTimeFunctions'
 import { findFlight } from '../../../utils/searchFunctions';
 
 const FlightListingCard = ({ flightTicket }) => {
@@ -20,15 +20,6 @@ const FlightListingCard = ({ flightTicket }) => {
 
     let flightsArray = [directFlight];
     returnFlight && flightsArray.push(returnFlight);
-
-    function formatString(start, end) {
-        let startFormatted = formatTime(start);
-        let endFormatted = formatTime(end);
-        let nextDay = '';
-        if (end.getDate() > start.getDate()) nextDay = ' (+1)'
-        const resultString = `${startFormatted} - ${endFormatted}${nextDay}`
-        return resultString;
-    };
 
     return (
         <div className="flight-card">
@@ -55,7 +46,7 @@ const FlightListingCard = ({ flightTicket }) => {
                                             <div className="flight__row">
                                                 <div className="flight__column">
                                                     <div className="flight__shedule">
-                                                        {formatString(flight.start, flight.end)}
+                                                        {`${formatTime(flight.start)} - ${formatTime(flight.end)} ${nextDaySign(flight.start, flight.end)}`}
                                                     </div>
                                                     <div className="flight__airline">
                                                         Emirates

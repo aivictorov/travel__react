@@ -56,7 +56,7 @@ const FlightBooking = () => {
             <main className="booking">
                 <div className="container">
                     <div className="booking__nav">
-                        <TrackNav layout="flights" />
+                        {/* <TrackNav layout="flights" /> */}
                     </div>
                     <div className="booking__row">
                         <div className="booking__left">

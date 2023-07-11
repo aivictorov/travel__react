@@ -59,6 +59,8 @@ const SearchFormFlights = ({ layout }) => {
         setDropFromList(list.sort());
     }, [from])
 
+
+
     // 2. Drop "To"
     const [openDropTo, setOpenDropTo] = useState(false);
     const [dropToList, setDropToList] = useState([]);
@@ -182,7 +184,8 @@ const SearchFormFlights = ({ layout }) => {
                         label="From"
                         placeholder="Sydney"
                         value={from}
-                        onChangeFunction={(event) => setFrom(event.target.value)} onFocusFunction={() => setOpenDropFrom(true)}
+                        onChangeFunction={(event) => setFrom(event.target.value)}
+                        onFocusFunction={() => setOpenDropFrom(true)}
                         validation={fromCheckOn}
                         message={fromCheckMsg}
                         autocomplete="off"
@@ -192,6 +195,7 @@ const SearchFormFlights = ({ layout }) => {
                         style="search"
                         isOpen={openDropFrom}
                         onClose={() => setOpenDropFrom(false)}
+                        isEmpty={dropFromList.length === 0}
                         content={
                             <DropList
                                 list={dropFromList}
@@ -220,6 +224,7 @@ const SearchFormFlights = ({ layout }) => {
                         style="search"
                         isOpen={openDropTo}
                         onClose={() => setOpenDropTo(false)}
+                        isEmpty={dropToList.length === 0}
                         content={
                             <DropList
                                 list={dropToList}

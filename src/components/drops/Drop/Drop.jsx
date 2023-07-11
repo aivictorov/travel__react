@@ -2,7 +2,7 @@ import './Drop.scss';
 import { useEffect } from 'react';
 import { addClass } from '../../../utils/functions';
 
-const Drop = ({ name = "drop", style, isOpen, onClose, content }) => {
+const Drop = ({ name = "drop", style, isOpen, onClose, isEmpty, content }) => {
 
     const add = addClass('drop', style);
 
@@ -28,8 +28,7 @@ const Drop = ({ name = "drop", style, isOpen, onClose, content }) => {
     }, []);
 
     if (!isOpen) return null;
-
-    if (content.type.name === "DropList" && content.props.list.length === 0) return null;
+    if (isEmpty) return null;
 
     return (
         <div

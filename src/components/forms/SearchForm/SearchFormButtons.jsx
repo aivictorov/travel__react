@@ -23,7 +23,9 @@ const SearchFormButtons = ({ layout, action }) => {
             <Modal
                 isOpen={openModal}
                 onClose={() => setOpenModal(false)}
-                window={<ModalWindow content={<AddPromoCodeModal />} />}
+                window={<ModalWindow content={
+                    <AddPromoCodeModal onClose={() => setOpenModal(false)} />
+                } />}
             />
 
             {layout === 'flights' &&

@@ -1,4 +1,7 @@
 import './scss/main.scss';
+import { createContext, useState, useRef } from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Home from "./pages/Home";
 import FlightBooking from './pages/FlightBooking';
 import FlightDetails from './pages/FlightDetails';
@@ -16,9 +19,6 @@ import VerifyCode from './pages/VerifyCode';
 import Account from './pages/Account';
 import ScrollToTop from './utils/scrollToTop';
 import SVG from './SVG';
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { createContext, useState, useRef } from 'react';
 
 import flights from './data/flights';
 import hotels from './data/hotels';

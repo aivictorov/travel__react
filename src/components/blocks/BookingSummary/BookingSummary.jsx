@@ -21,7 +21,7 @@ const BookingSummary = ({ layout }) => {
         hotel = findHotel(selectedHotel.id);
         room = findRoom(hotel, selectedHotel.room);
         title = hotel.name;
-        logo = hotel.gallery[0];
+        logo = hotel.coverSmall;
         price = room.price;
         rating = hotel.rating;
     }
