@@ -36,8 +36,6 @@ const Test = () => {
             <br /><br />
 
             <p>Selected flight & hotel</p>
-            {JSON.stringify(recentSearches)}
-            <br />
             {JSON.stringify(selectedFlight)}
             <br />
             {JSON.stringify(selectedHotel)}
