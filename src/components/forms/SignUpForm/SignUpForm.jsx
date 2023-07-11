@@ -37,7 +37,7 @@ const SignUpForm = () => {
     const [confirmPasswordCheckOn, setConfirmPasswordCheckOn] = useState(false);
     const [confirmPasswordCheckMsg, setConfirmPasswordCheckMsg] = useState('');
 
-    const [agreement, setAgreement] = useState(true);
+    const [agreement, setAgreement] = useState(false);
 
     // === VALIDATION ===
 
@@ -132,7 +132,7 @@ const SignUpForm = () => {
                             label="Last Name"
                             placeholder="Doe"
                             value={lastName}
-                            onChangeFunction={(event) => setLastName(event.target.value)} 
+                            onChangeFunction={(event) => setLastName(event.target.value)}
                             validation={lastNameCheckOn}
                             message={lastNameCheckMsg}
                         />
@@ -146,7 +146,7 @@ const SignUpForm = () => {
                             label="Email"
                             placeholder="Enter e-mail"
                             value={email}
-                            onChangeFunction={(event) => setEmail(event.target.value)} 
+                            onChangeFunction={(event) => setEmail(event.target.value)}
                             validation={emailCheckOn}
                             message={emailCheckMsg}
                         />
@@ -211,7 +211,7 @@ const SignUpForm = () => {
                     <Checkbox
                         name="agreement"
                         checked={agreement}
-                        onChangeFunction={setAgreement}
+                        onChangeFunction={(event) => setAgreement(event.target.checked)}
                         text={
                             <>
                                 {"I agree to all the "}

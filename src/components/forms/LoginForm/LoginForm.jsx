@@ -53,7 +53,7 @@ const LoginForm = () => {
             password: password.trim(),
             remember: remember,
         };
-        
+
         authorizeUser(loginParams);
     };
 
@@ -96,7 +96,7 @@ const LoginForm = () => {
                         type="password"
                         placeholder='Enter password'
                         value={password}
-                        onChangeFunction={(event) => setPassword(event.target.value) }
+                        onChangeFunction={(event) => setPassword(event.target.value)}
                         validation={passwordCheckOn}
                         message={passwordCheckMsg}
                     />
@@ -106,7 +106,7 @@ const LoginForm = () => {
                         name="remember"
                         text="Remember me"
                         checked={remember}
-                        onChangeFunction={setRemember}
+                        onChangeFunction={(event) => setRemember(event.target.checked)}
                     />
                     <ButtonLink
                         text="Forgot Password"
