@@ -11,31 +11,33 @@ const RecentSearchesCard = ({ searchParams }) => {
     const navigate = useNavigate();
 
     return (
-        <button
-            className="recent-search-card"
-            onClick={() => {
-                setHotelSearchParams(searchParams);
-                navigate("/hotel-listing");
-            }}
-        >
-            <div className="recent-search-card__image">
-                <img
-                    src={destination.image}
-                    alt={`${destination.city}, ${destination.country}`}
-                />
-            </div>
-            <div className="recent-search-card__content">
-                <div className="recent-search-card__title">
-                    {`${destination.city}, ${destination.country}`}
+        <div className="recent-search-card-wrapper">
+            <button
+                className="recent-search-card"
+                onClick={() => {
+                    setHotelSearchParams(searchParams);
+                    navigate("/hotel-listing");
+                }}
+            >
+                <div className="recent-search-card__image">
+                    <img
+                        src={destination.image}
+                        alt={`${destination.city}, ${destination.country}`}
+                    />
                 </div>
-                <div className="recent-search-card__subtitle">
-                    {formatWeekDay(dateStringToObject(searchParams.checkIn))}
-                    {' - '}
-                    {formatWeekDay(dateStringToObject(searchParams.checkOut))}
-                    {/* 325 places */}
+                <div className="recent-search-card__content">
+                    <div className="recent-search-card__title">
+                        {`${destination.city}, ${destination.country}`}
+                    </div>
+                    <div className="recent-search-card__subtitle">
+                        {formatWeekDay(dateStringToObject(searchParams.checkIn))}
+                        {' - '}
+                        {formatWeekDay(dateStringToObject(searchParams.checkOut))}
+                        {/* 325 places */}
+                    </div>
                 </div>
-            </div>
-        </button>
+            </button>
+        </div>
     );
 }
 

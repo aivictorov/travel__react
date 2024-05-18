@@ -224,12 +224,13 @@ const SearchFormHotels = ({ layout }) => {
                         }
                     />
                 </div>
-
-                <ButtonSquare
-                    classes=""
-                    svgID="search-icon"
-                    action={getSearchParams}
-                />
+                <div className="search-form__field-wrapper">
+                    <ButtonSquare
+                        classes=""
+                        svgID="search-icon"
+                        action={getSearchParams}
+                    />
+                </div>
             </div>
 
             {layout !== 'short' &&

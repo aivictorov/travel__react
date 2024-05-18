@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .modal-window {
     position: absolute;
@@ -9,4 +10,15 @@
     border-radius: 12px;
     background-color: #FFF;
     cursor: default;
+
+    @include bp(600px) {
+        top: 50%;
+        left: 15px;
+        right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // border-radius: 0;
+        transform: translate(0, -50%);
+    }
 }

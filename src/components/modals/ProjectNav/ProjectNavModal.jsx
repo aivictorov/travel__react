@@ -38,7 +38,7 @@ const ProjectNavModal = () => {
                 </li>
             </ul>
             <div className="project-nav-modal__notice">
-                * - authorized user
+                * - authorized user (use email: 'john.doe@gmail.com' and password: '123')
             </div>
         </>
     );
