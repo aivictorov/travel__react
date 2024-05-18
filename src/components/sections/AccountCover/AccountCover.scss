@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .account-cover {
     position: relative;
@@ -24,6 +25,11 @@
     position: absolute;
     right: 26px;
     bottom: 26px;
+
+    @include bp(800px) {
+        top: 26px;
+        bottom: unset;
+    }
 }
 
 .account-cover__user {
