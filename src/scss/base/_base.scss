@@ -1,42 +1,30 @@
-/* Base styles */
+@import './../../scss/base/_mixins.scss';
 
 html {
 	min-height: 100vh;
-	/* sticky footer */
 	scroll-behavior: smooth;
 }
 
 body {
-	min-height: 100vh;
-	/* sticky footer */
 	display: flex;
-	/* sticky footer */
 	flex-direction: column;
-	/* sticky footer */
-
-	background-color: $background;
-
-	overflow-x: hidden;
-	
+	min-height: 100vh;
 	font-family: $montserrat;
-	color: $black;
 	font-size: 14px;
 	line-height: 1.2;
-
 	text-rendering: optimizeSpeed;
-	//text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
+	color: $black;
+	background-color: $background;
+	overflow-x: hidden;
 }
 
 body>* {
 	flex-shrink: 0;
-	/* sticky footer */
 }
-
-/* Grid styles */
 
 .container {
 	margin-left: auto;
@@ -50,10 +38,12 @@ body>* {
 .container-right {
 	margin-left: calc((100% - 1262px) / 2);
 	padding-left: 15px;
-	width: 100%;
 	overflow-x: hidden;
-}
 
+	@include bp(1262px) {
+		margin-left: 0;
+	}
+}
 
 .bg-wrapper {
 	max-width: 1440px;
@@ -62,9 +52,12 @@ body>* {
 	margin-right: auto;
 	padding-left: 30px;
 	padding-right: 30px;
-}
 
-/* Utility */
+	@include bp(1322px) {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
 
 .none {
 	display: none !important;
@@ -72,7 +65,7 @@ body>* {
 
 .no-scroll {
 	overflow-y: hidden;
-    padding-right: 17px;
+	padding-right: 17px;
 }
 
 .visually-hidden {
@@ -86,9 +79,6 @@ body>* {
 	font-size: 0;
 }
 
-/* Sticky Footer */
-
 .footer {
 	margin-top: auto;
-	/* sticky footer */
 }

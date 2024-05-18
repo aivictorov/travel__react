@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .subscribe-form {
     position: relative;
@@ -54,10 +55,12 @@
     position: absolute;
     right: 24px;
     bottom: 0;
+width: 30%;
+
 
     img {
-        width: 400px;
-        height: 305px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
     }
 }

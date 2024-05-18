@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .footer {
     position: relative;
@@ -13,17 +14,30 @@
 
 .footer__row {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    margin: -12px;
+
+    @include bp(700px) {
+        flex-direction: column;
+    }
 }
 
 .footer__left {
     display: flex;
     flex-direction: column;
-    row-gap: 24px;
+    flex-shrink: 0;
+    padding: 12px;
 }
 
-// .footer__right {}
+.footer__right {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px;
+    width: 100%;
+
+    @include bp(700px) {
+        justify-content: flex-start;
+    }
+}
 
 .footer__form-wrapper {
     position: absolute;

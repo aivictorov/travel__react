@@ -13,7 +13,7 @@ const FlightSearch = () => {
             <main>
                 <SliderInnerFlights />
                 <RecentSearches layout='flights'/>
-                <PlacesOnMap />
+                {/* <PlacesOnMap /> */}
                 <FallIntoTravel layout='flights' />
                 <LastMinuteTours layout='flights' />
             </main>

@@ -1,14 +1,38 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .footer-nav {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
-    column-gap: 24px;
+    margin: -12px;
+    width: 100%;
+
+    @include bp(1000px) {
+        flex-wrap: wrap;
+        max-width: 510px;
+    }
+
+    @include bp(700px) {
+        justify-content: flex-start;
+        max-width: 100%;
+    }
 }
 
 .footer-nav__column {
-    width: calc((972px - 4 * 24px) / 5);
+    padding: 12px;
+    width: 170px;
+
+    @include bp(700px) {
+        width: calc(100% / 3);
+    }
+
+    @include bp(600px) {
+        width: 50%;
+    }
+
+    @include bp(400px) {
+        width: 100%;
+    }
 }
 
 .footer-nav__title {

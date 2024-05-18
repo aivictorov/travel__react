@@ -31,12 +31,11 @@
 }
 
 .search-form__fields {
+    margin: -12px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 24px;
+    flex-wrap: wrap;
 }
 
 .search-form__field-wrapper {
-    position: relative;
+    padding: 12px;
 }

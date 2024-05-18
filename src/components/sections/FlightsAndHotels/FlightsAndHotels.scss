@@ -1,10 +1,5 @@
-// .flights-and-hotels {
-    // padding-top: 80px;
-// }
-
 .flights-and-hotels__cards {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    column-gap: 24px;
+    flex-wrap: wrap;
+    margin: -12px;
 }
