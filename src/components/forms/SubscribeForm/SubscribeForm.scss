@@ -43,11 +43,11 @@
     column-gap: 16px;
 }
 
-.subscribe-form__input-wrapper{
+.subscribe-form__input-wrapper {
     width: 100%;
 }
 
-.subscribe-form__button-wrapper{
+.subscribe-form__button-wrapper {
     height: 56px;
 }
 
@@ -55,8 +55,11 @@
     position: absolute;
     right: 24px;
     bottom: 0;
-width: 30%;
+    width: 30%;
 
+    @include bp(1000px) {
+        display: none;
+    }
 
     img {
         width: 100%;

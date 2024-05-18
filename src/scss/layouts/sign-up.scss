@@ -1,3 +1,5 @@
+@import './../../scss/base/_mixins.scss';
+
 .sign-up {
     padding-top: 104px;
     padding-bottom: 104px;
@@ -12,14 +14,26 @@
     justify-content: space-between;
     align-items: flex-start;
     column-gap: 104px;
+
+    @include bp(1000px) {
+        column-gap: 44px;
+    }
 }
 
 .sign-up__left {
-    width: 488px;
+    flex-basis: 42.6%;
+
+    @include bp(700px) {
+        display: none;
+    }
 }
 
 .sign-up__right {
-    width: 640px;
+    flex-basis: 57.4%;
+
+    @include bp(700px) {
+    flex-basis: 100%;
+    }
 }
 
 .sign-up__logo {

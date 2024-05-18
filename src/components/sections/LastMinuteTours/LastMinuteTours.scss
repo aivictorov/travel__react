@@ -1,22 +1,49 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .last-minute-tours {
     padding-top: 80px;
 }
 
-.last-minute-tours__content {
+.last-minute-tours__row {
     display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    column-gap: 24px;
+    margin: -12px;
+
+    @include bp(800px) {
+        flex-direction: column;
+    }
 }
+
+.last-minute-tours__left {
+    padding: 12px;
+    width: calc(576 / 1256 * 100%);
+
+    @include bp(1000px) {
+        width: 430px;
+        flex-shrink: 0;
+    }
+
+    @include bp(800px) {
+        width: 100%;
+    }
+}
+
+.last-minute-tours__right {
+    padding: 12px;
+    width: calc(680 / 1256 * 100%);
+
+    @include bp(1000px) {
+        width: auto;
+    }
+}
+
 
 .last-minute-tours__card {
     display: flex;
     flex-direction: column;
     row-gap: 24px;
     padding: 24px;
-    width: 552px;
+    width: 100%;
     height: 424px;
     border-radius: 20px;
     background-color: $main;
@@ -62,20 +89,22 @@
 .last-minute-tours__gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    column-gap: 20px;
-    row-gap: 24px;
-    width: 656px;
-    height: 424px;
+    height: calc(100% + 24px);
+    margin: -12px -10px;
+}
+
+.last-minute-tours__image-wrapper {
+    padding: 12px 10px;
+    width: 50%;
 }
 
 .last-minute-tours__image {
-    width: 318px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     border: 2px solid #8DD3BB;
     border-radius: 12px;
     overflow: hidden;
+
 
     img {
         width: 100%;

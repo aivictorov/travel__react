@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .flight-card {
     display: flex;
@@ -12,8 +13,11 @@
 }
 
 .flight-card__image {
-    flex-shrink: 0;
-    width: 160px;
+    max-width: 160px;
+
+    @include bp(1000px) {
+        display: none;
+    }
 
     img {
         width: 100%;
@@ -66,12 +70,20 @@
     flex-direction: column;
     row-gap: 4px;
 
-    &:first-child{
+    &:first-child {
         width: 198px;
+
+        @include bp(1000px) {
+            width: unset;
+        }
     }
 
-    &:nth-child(2){
+    &:nth-child(2) {
         width: 92px;
+
+        @include bp(700px) {
+            display: none;
+        }
     }
 }
 
@@ -116,6 +128,6 @@
     column-gap: 16px;
 }
 
-.flight-card__button-wrapper{
+.flight-card__button-wrapper {
     width: 100%;
 }

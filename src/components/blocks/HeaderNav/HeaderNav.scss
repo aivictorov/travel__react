@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .header-nav {
     position: relative;
@@ -43,6 +44,12 @@
     display: flex;
     align-items: center;
     column-gap: 32px;
+}
+
+.header-nav__left{
+    @include bp(1000px) {
+        display: none;
+    }
 }
 
 a.header-nav__item,
@@ -105,4 +112,11 @@ a.header-nav__item,
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
+    @include bp(1000px) {
+        position: static;
+        left: unset;
+        top: unset;
+        transform: unset;
+    }
 }

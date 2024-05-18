@@ -38,15 +38,15 @@ const HeaderNav = ({ classes }) => {
                 </NavLink>
             </div>
 
-            {!userAuth && <HeaderNavLogin btnStyle={btnStyle} />}
-            {userAuth && <HeaderNavUser btnStyle={btnStyle} />}
-
             <div className="header-nav__logo">
                 <Logo
                     mainColor={mainColor}
                     accentColor={accentColor}
                 />
             </div>
+
+            {!userAuth && <HeaderNavLogin btnStyle={btnStyle} />}
+            {userAuth && <HeaderNavUser btnStyle={btnStyle} />}
         </div>
     );
 }

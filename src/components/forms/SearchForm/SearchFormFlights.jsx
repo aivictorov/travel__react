@@ -291,11 +291,13 @@ const SearchFormFlights = ({ layout }) => {
                     />
                 </div>
 
-                <ButtonSquare
-                    type="submit"
-                    svgID="search-icon"
-                    action={getSearchParams}
-                />
+                <div className="search-form__field-wrapper">
+                    <ButtonSquare
+                        type="submit"
+                        svgID="search-icon"
+                        action={getSearchParams}
+                    />
+                </div>
             </div>
 
             {layout !== 'short' &&

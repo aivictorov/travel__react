@@ -23,7 +23,7 @@ const ListingSort = ({ sortTypes, filteredResults, searchResults, numberOfResult
                 }
             </div>
             <div className="listing-sort__right">
-                <div className="listing-sort__item">
+                {/* <div className="listing-sort__item">
                     Sort by:
                     <select
                         className="listing-sort__select"
@@ -38,7 +38,7 @@ const ListingSort = ({ sortTypes, filteredResults, searchResults, numberOfResult
                             )
                         })}
                     </select>
-                </div>
+                </div> */}
                 <div className="listing-sort__item">
                     Display by:
                     <select
