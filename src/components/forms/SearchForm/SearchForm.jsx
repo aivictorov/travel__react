@@ -3,10 +3,27 @@ import { useContext } from 'react';
 import { AppContext } from '../../../App';
 import SearchFormFlights from './SearchFormFlights';
 import SearchFormHotels from './SearchFormHotels';
-import SearchFormTabs from './SearchFormTabs';
+import Tabs from './../../elements/Tabs/Tabs';
 
 const SearchForm = ({ page }) => {
     const { activeTabs, setActiveTabs } = useContext(AppContext);
+
+    const tabs = [
+        {
+            name: 'flights',
+            title: 'Flights',
+            svgID: 'flight-icon',
+            active: activeTabs.searchForm === 'flights',
+            action: () => { setActiveTabs({ ...activeTabs, searchForm: 'flights' }) },
+        },
+        {
+            name: 'hotels',
+            title: 'Stays',
+            svgID: 'hotel-icon',
+            active: activeTabs.searchForm === 'hotels',
+            action: () => { setActiveTabs({ ...activeTabs, searchForm: 'hotels' }) },
+        }
+    ]
 
     if (page === 'home') {
         return (
@@ -14,7 +31,7 @@ const SearchForm = ({ page }) => {
                 className="search-form search-form--home"
                 tabs="search"
             >
-                <SearchFormTabs />
+                <Tabs tabs={tabs} style="main" />
                 {activeTabs.searchForm === 'flights' && <SearchFormFlights layout="full" />}
                 {activeTabs.searchForm === 'hotels' && <SearchFormHotels layout="full" />}
             </div>

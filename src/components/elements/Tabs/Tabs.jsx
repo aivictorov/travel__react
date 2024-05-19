@@ -1,14 +1,15 @@
 import './Tabs.scss';
 
-const Tabs = ({ tabs }) => {
+const Tabs = ({ tabs, style = "" }) => {
+
     return (tabs.length > 0 &&
-        <div className="tabs">
+        <div className={`tabs${style ? ' tabs--' + style : ""}`}>
             {tabs.map((tab, index) => {
                 return (
-                    <div className="tabs__item-wrapper">
+                    <div className={`tabs__item-wrapper${style ? ' tabs__item-wrapper--' + style : ""}`}>
                         <button
                             key={index}
-                            className={`tabs__item ${tab.active ? 'active' : null}`}
+                            className={`tabs__item${tab.active ? ' active' : ""}`}
                             type="button"
                             onClick={tab.action}
                         >

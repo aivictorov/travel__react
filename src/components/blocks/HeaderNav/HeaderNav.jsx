@@ -5,6 +5,7 @@ import { AppContext } from '../../../App';
 import Logo from '../Logo/Logo';
 import HeaderNavLogin from './HeaderNavLogin';
 import HeaderNavUser from './HeaderNavUser';
+import MobileNavIcon from './../../elements/MobileNavIcon/MobileNavIcon';
 
 const HeaderNav = ({ classes }) => {
     const { userAuth } = useContext(AppContext)
@@ -36,6 +37,7 @@ const HeaderNav = ({ classes }) => {
                     </svg>
                     Find stays
                 </NavLink>
+                <MobileNavIcon />
             </div>
 
             <div className="header-nav__logo">

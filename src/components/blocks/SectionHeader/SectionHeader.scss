@@ -1,7 +1,10 @@
+@import './../../../scss/base/_mixins.scss';
+
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 10px;
     margin-bottom: 40px;
 }
 
@@ -21,6 +24,14 @@
     font-weight: 400;
     font-size: 16px;
     color: rgba(17, 34, 17, 0.75);
+}
+
+.section-header__right {
+    flex-shrink: 0;
+
+    @include bp(700px) {
+        display: none;
+    }
 }
 
 .section-header__button-wrapper {

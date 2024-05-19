@@ -76,11 +76,12 @@
 .input__message {
     position: absolute;
     left: 0;
-    bottom: -4px;
+    bottom: -1px;
     transform: translateY(100%);
     padding-left: 16px;
     padding-right: 16px;
     width: 100%;
     color: $accent;
     font-weight: 500;
+    font-size: 11px;
 }

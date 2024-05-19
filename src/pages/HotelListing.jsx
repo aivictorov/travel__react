@@ -183,6 +183,12 @@ const HotelListing = () => {
                     active: false,
                     action: () => { setSortType('highest price') },
                 },
+                {
+                    title: 'Filters',
+                    subtitle: "",
+                    active: false,
+                    action: () => { },
+                },
             ]);
         }
     }, [filteredResults])

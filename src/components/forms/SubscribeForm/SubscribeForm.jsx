@@ -33,7 +33,7 @@ const SubscribeForm = () => {
     return (
         <form className="subscribe-form">
             <div className="subscribe-form__content">
-                <div className="subscribe-form__title">Subscribe Newsletter</div>
+                <div className="subscribe-form__title">Subscribe<br />Newsletter</div>
                 <div className="subscribe-form__subtitle">The Travel</div>
                 <div className="subscribe-form__text">
                     Get inspired! Receive travel discounts, tips and behind the scenes

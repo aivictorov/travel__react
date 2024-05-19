@@ -37,7 +37,6 @@
     }
 }
 
-
 .last-minute-tours__card {
     display: flex;
     flex-direction: column;
@@ -59,6 +58,10 @@
     max-width: 300px;
     font-weight: 700;
     font-size: 40px;
+
+    @include bp(500px) {
+        font-size: 28px;
+    }
 }
 
 .last-minute-tours__card-price {
