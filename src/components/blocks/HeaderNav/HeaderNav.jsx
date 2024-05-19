@@ -5,7 +5,7 @@ import { AppContext } from '../../../App';
 import Logo from '../Logo/Logo';
 import HeaderNavLogin from './HeaderNavLogin';
 import HeaderNavUser from './HeaderNavUser';
-import MobileNavIcon from './../../elements/MobileNavIcon/MobileNavIcon';
+import MobileNavIcon from './../../elements/MobileNav/MobileNavIcon';
 
 const HeaderNav = ({ classes }) => {
     const { userAuth } = useContext(AppContext)

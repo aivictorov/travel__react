@@ -1,33 +1,43 @@
 import './MobileNavIcon.scss';
 import { useState, useContext } from 'react';
 import { NavLink } from "react-router-dom";
-import Modal from './../../modals/Modal/Modal';
-import ModalWindow from './../../modals/ModalWindow/ModalWindow';
+import MobileNav from './MobileNav';
 import UserMenu from './../../drops/UserMenu/UserMenu';
 import { AppContext } from '../../../App';
 
 const MobileNavIcon = () => {
     const { userAuth } = useContext(AppContext)
-    const [openModal, setOpenModal] = useState(false);
+    const [openMobileNav, setOpenMobileNav] = useState(false);
 
     return (
         <>
             <div
-                className="mobile-nav-icon"
+                className={`mobile-nav-icon${openMobileNav ? " mobile-nav-icon--active" : ""}`}
                 onMouseDown={(event) => {
                     event.stopPropagation();
-                    setOpenModal(!openModal);
+                    setOpenMobileNav(!openMobileNav);
                 }}
             >
                 <div className="mobile-nav-icon__middle"></div>
             </div>
 
             {!userAuth &&
-                <Modal
-                    isOpen={openModal}
-                    onClose={() => setOpenModal(false)}
-                    window={<ModalWindow content={
+                <MobileNav
+                    isOpen={openMobileNav}
+                    onClose={() => setOpenMobileNav(false)}
+                    content={
                         <div className="">
+                            <NavLink className="" to="/flight-search">
+                                Find flights
+                            </NavLink>
+                            <br />
+                            <br />
+                            <NavLink className="" to="/hotel-search">
+                                Find stay
+                            </NavLink>
+                            <br />
+                            <br />
+                            <br />
                             <NavLink className="" to="/login">
                                 Login
                             </NavLink>
@@ -37,19 +47,17 @@ const MobileNavIcon = () => {
                                 Sign Up
                             </NavLink>
                         </div>
-                    } />}
+                    }
                 />
             }
 
             {userAuth &&
-                <Modal
-                    isOpen={openModal}
-                    onClose={() => setOpenModal(false)}
-                    window={<ModalWindow content={<UserMenu />} />}
+                <MobileNav
+                    isOpen={openMobileNav}
+                    onClose={() => setOpenMobileNav(false)}
+                    content={<UserMenu />}
                 />
             }
-
-
 
         </>
     );

@@ -58,10 +58,11 @@ $height: 2 * $spacer + 3 * $line-height;
 .mobile-nav-icon.mobile-nav-icon--active .mobile-nav-icon__middle {
     background-color: transparent;
 
+
     &::before,
     &::after {
         top: 0;
-        background-color: #FFF;
+        background-color: #000;
         transition: top .2s linear,
             transform .2s ease-in .2s;
     }

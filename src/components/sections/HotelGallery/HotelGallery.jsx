@@ -9,17 +9,19 @@ const HotelGallery = ({ id = 0 }) => {
 
     return (
         <section className="hotel-gallery">
-            {hotel.gallery.map((image, index) => {
-                return (
-                    <div className="hotel-gallery__item">
-                        <img
-                            key={index}
-                            src={image}
-                            alt={hotel.name}
-                        />
-                    </div>
-                )
-            })}
+            <div className="hotel-gallery__list">
+                {hotel.gallery.map((image, index) => {
+                    return (
+                        <div className="hotel-gallery__item">
+                            <img
+                                key={index}
+                                src={image}
+                                alt={hotel.name}
+                            />
+                        </div>
+                    )
+                })}
+            </div>
             <div className="hotel-gallery__button">
                 <Button text="View all photos" classes="bold" />
             </div>

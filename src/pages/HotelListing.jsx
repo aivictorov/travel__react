@@ -9,7 +9,12 @@ import ListingSort from './../components/blocks/ListingSort/ListingSort';
 import SearchForm from "../components/forms/SearchForm/SearchForm";
 import Tabs from './../components/elements/Tabs/Tabs';
 
+import MobileNav from '../components/elements/MobileNav/MobileNav';
+
 const HotelListing = () => {
+
+    const [openMobileNav, setOpenMobileNav] = useState(false);
+
     const { hotels, hotelSearchParams } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
@@ -187,7 +192,7 @@ const HotelListing = () => {
                     title: 'Filters',
                     subtitle: "",
                     active: false,
-                    action: () => { },
+                    action: () => { setOpenMobileNav(true) },
                 },
             ]);
         }
@@ -217,6 +222,18 @@ const HotelListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
+
+                                < MobileNav
+                                    isOpen={openMobileNav}
+                                    onClose={() => setOpenMobileNav(false)}
+                                    content={<ListingFilters
+                                        layout="hotels"
+                                        filterParams={filterParams}
+                                        changeFilter={changeFilter}
+                                        resetTrigger={resetTrigger}
+                                    />}
+                                />
+
                                 <ListingFilters
                                     layout="hotels"
                                     filterParams={filterParams}

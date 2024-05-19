@@ -11,7 +11,7 @@ const HotelLocation = ({ address }) => {
                 <h2 className="hotel-location__title">Location/Map</h2>
                 <NavLink to="https://goo.gl/maps/FvWwt6AEmrsMRzEp6" target="_blank">
                     <Button
-                        text="View on google maps"
+                        text="View on map"
                         classes="bold"
                     />
                 </NavLink>

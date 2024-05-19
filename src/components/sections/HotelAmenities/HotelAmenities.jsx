@@ -7,7 +7,7 @@ const HotelAmenities = ({ amenities }) => {
     return (
         <section className="hotel-amenities">
             <h2 className="hotel-amenities__title">Amenities</h2>
-            <ul className="hotel-amenities__list" style={{ maxHeight: 240 }}>
+            <ul className="hotel-amenities__list">
                 {amenities.map((item, index) => {
                     return (
                         index < numberOfResults &&

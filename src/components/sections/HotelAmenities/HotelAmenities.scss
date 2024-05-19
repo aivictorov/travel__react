@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 // .hotel-amenities {}
 
@@ -9,12 +10,22 @@
 }
 
 .hotel-amenities__list {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     row-gap: 24px;
     column-gap: 20px;
+
+    @include bp(1100px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include bp(800px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include bp(500px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .hotel-amenities__item {
@@ -22,10 +33,11 @@
     justify-content: flex-start;
     align-items: center;
     column-gap: 8px;
-    width: calc((100% - 2 * 20px) / 3);
+    // width: calc((100% - 2 * 20px) / 3);
 }
 
 .hotel-amenities__item-icon {
+    flex-shrink: 0;
     width: 24px;
     height: 24px;
     overflow: hidden;

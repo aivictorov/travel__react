@@ -10,9 +10,14 @@ import SearchForm from "../components/forms/SearchForm/SearchForm";
 import Tabs from "../components/elements/Tabs/Tabs";
 import { formatDuration } from "../utils/dateTimeFunctions";
 
+import MobileNav from '../components/elements/MobileNav/MobileNav';
+
+
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
+    const [openMobileNav, setOpenMobileNav] = useState(false);
+
     const { flights, flightSearchParams } = useContext(AppContext);
 
     const [searchResults, setSearchResults] = useState([]);
@@ -40,7 +45,7 @@ const FlightListing = () => {
     const [sortType, setSortType] = useState('lowest price');
 
     const [tabs, setTabs] = useState([]);
-    
+
     const [resetTrigger, setResetTrigger] = useState(true);
 
     const changeFilter = (filter) => {
@@ -311,6 +316,12 @@ const FlightListing = () => {
                     active: false,
                     action: () => { setSortType('fastest') },
                 },
+                {
+                    title: 'Filters',
+                    subtitle: "",
+                    active: false,
+                    action: () => { setOpenMobileNav(true) },
+                },
             ]);
         }
     }, [filteredResults])
@@ -340,6 +351,17 @@ const FlightListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
+                                < MobileNav
+                                    isOpen={openMobileNav}
+                                    onClose={() => setOpenMobileNav(false)}
+                                    content={<ListingFilters
+                                        layout="flights"
+                                        filterParams={filterParams}
+                                        changeFilter={changeFilter}
+                                        resetTrigger={resetTrigger}
+                                    />}
+                                />
+
                                 <ListingFilters
                                     layout="flights"
                                     filterParams={filterParams}

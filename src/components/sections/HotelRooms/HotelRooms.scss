@@ -20,6 +20,11 @@
     justify-content: space-between;
     align-items: center;
 
+    @include bp(700px) {
+        flex-direction: column;
+        row-gap: 8px;
+    }
+
     &:not(:last-child) {
         padding-bottom: 16px;
         border-bottom: 0.5px solid transparentize($color: $black, $amount: calc(1 - 0.25));
@@ -33,6 +38,7 @@
 }
 
 .hotel-rooms__item-image {
+    flex-shrink: 0;
     width: 48px;
     height: 48px;
     border-radius: 4px;

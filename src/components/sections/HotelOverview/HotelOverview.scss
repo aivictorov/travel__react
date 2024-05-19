@@ -21,9 +21,10 @@
 
 .hotel-overview__badge-list {
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
     column-gap: 16px;
+    row-gap: 16px;
 }
 
 .hotel-overview__first-badge {
@@ -31,8 +32,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 16px;
-    width: 160px;
-    height: 145px;
+    width: 150px;
+    height: 140px;
     border-radius: 12px;
     background-color: $main;
 }
@@ -63,8 +64,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 16px;
-    width: 160px;
-    height: 145px;
+    width: 150px;
+    height: 140px;
     border-radius: 12px;
     background-color: transparent;
     border: 1px solid $main;

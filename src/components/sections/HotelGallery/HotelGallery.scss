@@ -1,36 +1,34 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .hotel-gallery {
     position: relative;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    row-gap: 8px;
-    column-gap: 8px;
-    max-height: calc(550px + 64px + 1px);
+    row-gap: 16px;
+}
+
+.hotel-gallery__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    @include bp(700px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .hotel-gallery__item {
-    overflow: hidden;
-
     &:first-child {
-        flex-basis: 50%;
-        height: 550px;
-        border-top-left-radius: 12px;
-        border-bottom-left-radius: 12px;
-    }
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 2;
 
-    &:not(:first-child) {
-        flex-basis: 25%;
-        height: 271px;
-    }
-
-    &:nth-child(4) {
-        border-top-right-radius: 12px;
-    }
-
-    &:nth-child(5) {
-        border-bottom-right-radius: 12px;
+        @include bp(700px) {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 1;
+        }
     }
 
     img {
@@ -42,6 +40,16 @@
 
 .hotel-gallery__button {
     position: absolute;
-    right: 16px;
-    bottom: calc(64px + 16px);
+    left: 16px;
+    bottom: 16px;
+
+    @include bp(500px) {
+        position: static;
+        left: unset;
+        bottom: unset;
+
+        &>button {
+            width: 100%;
+        }
+    }
 }
