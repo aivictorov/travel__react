@@ -14,7 +14,7 @@
     align-items: stretch;
     column-gap: 40px;
 
-    @include bp(800px) {
+    @include bp(900px) {
         flex-direction: column-reverse;
         row-gap: 40px;
     }

@@ -31,31 +31,33 @@ const AccountFlightCard = ({ flightTicket }) => {
                         className="account-flight-card__flight"
                         key={id}
                     >
-                        <div className="account-flight-card__icon">
-                            <img
-                                src={airlineLogo}
-                                alt={flight.airline}
-                            />
-                        </div>
-                        <div className="account-flight-card__info">
-                            <div className="account-flight-card__time">
-                                <div className="account-flight-card__time-column">
-                                    <div className="account-booking-time-column-title">
-                                        {flight.from}
-                                    </div>
-                                    <div className="account-booking-time-column-value">
-                                        {formatTime(flight.start)}
-                                    </div>
+                        <div className="account-flight-card__content">
+                            <div className="account-flight-card__main">
+                                <div className="account-flight-card__icon">
+                                    <img
+                                        src={airlineLogo}
+                                        alt={flight.airline}
+                                    />
                                 </div>
-                                <div className="account-flight-card__time-spacer">—</div>
-                                <div className="account-flight-card__time-column">
-                                    <div className="account-booking-time-column-title">
-                                        {flight.to}
+                                <div className="account-flight-card__time">
+                                    <div className="account-flight-card__time-column">
+                                        <div className="account-booking-time-column-title">
+                                            {flight.from}
+                                        </div>
+                                        <div className="account-booking-time-column-value">
+                                            {formatTime(flight.start)}
+                                        </div>
                                     </div>
-                                    <div className="account-booking-time-column-value">
-                                        {formatTime(flight.end)}
-                                        {" "}
-                                        {nextDaySign(flight.start, flight.end)}
+                                    <div className="account-flight-card__time-spacer">—</div>
+                                    <div className="account-flight-card__time-column">
+                                        <div className="account-booking-time-column-title">
+                                            {flight.to}
+                                        </div>
+                                        <div className="account-booking-time-column-value">
+                                            {formatTime(flight.end)}
+                                            {" "}
+                                            {nextDaySign(flight.start, flight.end)}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

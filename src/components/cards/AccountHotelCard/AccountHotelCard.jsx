@@ -29,37 +29,41 @@ const AccountHotelCard = ({ hotelBooking }) => {
 
     return (
         <div className="account-hotel-card">
-            <div className="account-hotel-card__title">
-                {hotel.name}
-            </div>
-            <div className="account-hotel-card__subtitle">
-                {room.name}
-            </div>
-            <div className="account-hotel-card__content">
-                <div className="account-hotel-card__icon">
-                    <img
-                        src={hotel.logo}
-                        alt="hotel-logo"
-                    />
+            <div className="account-hotel-card__header">
+                <div className="account-hotel-card__title">
+                    {hotel.name}
                 </div>
-                <div className="account-hotel-card__info">
-                    <div className="account-hotel-card__time">
-                        <div className="account-hotel-card__time-column">
-                            <div className="account-booking-time-column-title">
-                                Check-in
-                            </div>
-                            <div className="account-booking-time-column-value">
-                                {formatWeekDay(dateStringToObject(hotelBooking.dates[0]))}
-                            </div>
+                <div className="account-hotel-card__subtitle">
+                    {room.name}
+                </div>
+            </div>
+            <div className="account-hotel-card__body">
+                <div className="account-hotel-card__content">
+                    <div className="account-hotel-card__main">
+                        <div className="account-hotel-card__icon">
+                            <img
+                                src={hotel.logo}
+                                alt="hotel-logo"
+                            />
                         </div>
-                        <div className="account-hotel-card__time-spacer">—</div>
-                        <div className="account-hotel-card__time-column">
-                            <div className="account-booking-time-column-title">
-                                Check-out
+                        <div className="account-hotel-card__time">
+                            <div className="account-hotel-card__time-column">
+                                <div className="account-booking-time-column-title">
+                                    Check-in
+                                </div>
+                                <div className="account-booking-time-column-value">
+                                    {formatWeekDay(dateStringToObject(hotelBooking.dates[0]))}
+                                </div>
                             </div>
-                            <div className="account-booking-time-column-value">
-                                {formatWeekDay(dateStringToObject(hotelBooking.dates[hotelBooking.dates.length - 1]))}
+                            <div className="account-hotel-card__time-spacer">—</div>
+                            <div className="account-hotel-card__time-column">
+                                <div className="account-booking-time-column-title">
+                                    Check-out
+                                </div>
+                                <div className="account-booking-time-column-value">
+                                    {formatWeekDay(dateStringToObject(hotelBooking.dates[hotelBooking.dates.length - 1]))}
 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,6 +95,8 @@ const AccountHotelCard = ({ hotelBooking }) => {
                     />
                 </div>
             </div>
+
+
         </div>
     );
 }
