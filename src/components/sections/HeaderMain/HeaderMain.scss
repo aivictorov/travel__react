@@ -53,18 +53,31 @@
     font-weight: 700;
     font-size: 45px;
     text-transform: capitalize;
+
+    @include bp(500px) {
+        font-size: 34px;
+    }
 }
 
 .header__title {
     font-weight: 700;
     font-size: 80px;
     text-transform: uppercase;
+
+    @include bp(500px) {
+        font-size: 60px;
+    }
 }
 
 .header__text {
     margin-top: 16px;
     font-weight: 600;
     font-size: 20px;
+
+    
+    @include bp(500px) {
+        font-size: 15px;
+    }
 }
 
 .header__form-wrapper {

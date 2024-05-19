@@ -71,6 +71,11 @@
     align-items: center;
     column-gap: 32px;
     width: 480px;
+
+    @include bp(700px) {
+        flex-direction: column;
+        width: unset;
+    }
 }
 
 .account-flight-card__time-column {

@@ -1,8 +1,6 @@
 @import './../../../scss/base/_vars.scss';
 
 .track-nav {
-    display: flex;
-    align-items: center;
     font-weight: 500;
 }
 
@@ -24,4 +22,8 @@ a.track-nav__link {
         background-size: contain;
         background-repeat: no-repeat;
     }
+}
+
+.track-nav__last {
+    display: inline-block;
 }

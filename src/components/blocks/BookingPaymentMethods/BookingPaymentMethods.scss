@@ -18,13 +18,13 @@
 .payment-radio {
     position: relative;
     
-    &--h80 {
-        height: 80px;
-    }
+    // &--h80 {
+    //     height: 80px;
+    // }
 
-    &--h100 {
-        height: 100px;
-    }
+    // &--h100 {
+    //     height: 100px;
+    // }
 }
 
 .payment-radio__input {
@@ -46,11 +46,11 @@
 }
 
 .payment-radio__label {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
     display: flex;
     flex-direction: column;
     row-gap: 8px;

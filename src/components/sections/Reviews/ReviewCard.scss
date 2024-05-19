@@ -1,23 +1,23 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 .reviews-section-card {
     display: flex;
     flex-direction: column;
-
     position: relative;
     flex-shrink: 0;
-
     margin-right: 26px;
     margin-bottom: 26px;
-
     padding: 24px;
-
     width: 425px;
     height: 582px;
-
     background: #FFF;
     box-shadow: 2px 4px 16px rgba(17, 34, 17, 0.1);
     border-radius: 20px;
+
+    @include bp(485px) {
+        width: 320px;
+    }
 
     &::before {
         content: "";
@@ -30,6 +30,10 @@
         background-color: #CDEAE1;
         border-radius: 20px;
         z-index: -1;
+
+        @include bp(485px) {
+            width: 320px;
+        }
     }
 }
 
