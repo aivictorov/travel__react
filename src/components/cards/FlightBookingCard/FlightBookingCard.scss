@@ -61,6 +61,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
+
+    flex-wrap: wrap;
 }
 
 .flight-ticket__airline {
@@ -121,6 +123,8 @@
     justify-content: center;
     align-items: center;
     column-gap: 80px;
+
+    flex-wrap: wrap;
 }
 
 .flight-ticket__time {

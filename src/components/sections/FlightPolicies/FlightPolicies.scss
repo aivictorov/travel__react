@@ -1,4 +1,5 @@
 @import './../../../scss/base/_vars.scss';
+@import './../../../scss/base/_mixins.scss';
 
 // .flight-policies {}
 
@@ -19,10 +20,14 @@
 .flight-policies__list {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    align-content: flex-start;
     column-gap: 16px;
     row-gap: 16px;
+    width: 100%;
+
+    @include bp(1000px) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
 }
 
 .flight-policies__item {
@@ -30,15 +35,16 @@
     justify-content: flex-start;
     align-items: center;
     column-gap: 16px;
+    flex-basis: calc(50% - 8px);
 }
 
 .flight-policies__item-icon {
+    flex-shrink: 0;
     width: 24px;
     height: 24px;
 }
 
 .flight-policies__item-title {
-    min-width: 500px;
     font-weight: 500;
     font-size: 16px;
 }

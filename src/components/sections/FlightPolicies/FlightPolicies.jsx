@@ -7,7 +7,7 @@ const FlightPolicies = () => {
                 <h2 className="flight-policies__title">
                     Emirates Airlines Policies
                 </h2>
-                <ul className="flight-policies__list" style={{ maxHeight: 80 }}>
+                <ul className="flight-policies__list">
                     <li className="flight-policies__item">
                         <div className="flight-policies__item-icon">
                             <svg width={24} height={24}>
