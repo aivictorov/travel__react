@@ -28,62 +28,60 @@ const AccountFlightCard = ({ flightTicket }) => {
 
                 return (
                     <div
-                        className="account-flight-card__flight"
                         key={id}
+                        className="account-flight-card__flight"
                     >
-                        <div className="account-flight-card__content">
-                            <div className="account-flight-card__main">
-                                <div className="account-flight-card__icon">
-                                    <img
-                                        src={airlineLogo}
-                                        alt={flight.airline}
-                                    />
-                                </div>
-                                <div className="account-flight-card__time">
-                                    <div className="account-flight-card__time-column">
-                                        <div className="account-booking-time-column-title">
-                                            {flight.from}
-                                        </div>
-                                        <div className="account-booking-time-column-value">
-                                            {formatTime(flight.start)}
-                                        </div>
+                        <div className="account-flight-card__main">
+                            <div className="account-flight-card__icon">
+                                <img
+                                    src={airlineLogo}
+                                    alt={flight.airline}
+                                />
+                            </div>
+                            <div className="account-flight-card__time">
+                                <div className="account-flight-card__time-column">
+                                    <div className="account-booking-time-column-title">
+                                        {flight.from}
                                     </div>
-                                    <div className="account-flight-card__time-spacer">—</div>
-                                    <div className="account-flight-card__time-column">
-                                        <div className="account-booking-time-column-title">
-                                            {flight.to}
-                                        </div>
-                                        <div className="account-booking-time-column-value">
-                                            {formatTime(flight.end)}
-                                            {" "}
-                                            {nextDaySign(flight.start, flight.end)}
-                                        </div>
+                                    <div className="account-booking-time-column-value">
+                                        {formatTime(flight.start)}
+                                    </div>
+                                </div>
+                                <div className="account-flight-card__time-spacer">—</div>
+                                <div className="account-flight-card__time-column">
+                                    <div className="account-booking-time-column-title">
+                                        {flight.to}
+                                    </div>
+                                    <div className="account-booking-time-column-value">
+                                        {formatTime(flight.end)}
+                                        {" "}
+                                        {nextDaySign(flight.start, flight.end)}
                                     </div>
                                 </div>
                             </div>
-                            <ul className="account-flight-card__features">
-                                {features.map((feature) => {
-                                    return (
-                                        <li
-                                            className="account-flight-card__feature"
-                                            key={feature.name}
-                                        >
-                                            <div className="account-flight-card__feature-icon">
-                                                <img src={calendarIcon} alt="icon" />
-                                            </div>
-                                            <div className="account-flight-card__feature-content">
-                                                <div className="account-flight-card__feature-title">
-                                                    {feature.name}
-                                                </div>
-                                                <div className="account-flight-card__feature-value">
-                                                    {feature.value}
-                                                </div>
-                                            </div>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
                         </div>
+                        <ul className="account-flight-card__features">
+                            {features.map((feature) => {
+                                return (
+                                    <li
+                                        className="account-flight-card__feature"
+                                        key={feature.name}
+                                    >
+                                        <div className="account-flight-card__feature-icon">
+                                            <img src={calendarIcon} alt="icon" />
+                                        </div>
+                                        <div className="account-flight-card__feature-content">
+                                            <div className="account-flight-card__feature-title">
+                                                {feature.name}
+                                            </div>
+                                            <div className="account-flight-card__feature-value">
+                                                {feature.value}
+                                            </div>
+                                        </div>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                         <div className="account-flight-card__buttons">
                             <Button text="Download Ticket" />
                             <ButtonSquare

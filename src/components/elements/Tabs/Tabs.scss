@@ -11,6 +11,10 @@
 
     @include bp(900px) {
         flex-wrap: wrap;
+
+        .tabs__item-wrapper {
+            flex-basis: 50%;
+        }
     }
 
     &--main {
@@ -24,10 +28,6 @@
 .tabs__item-wrapper {
     padding: 16px 0 16px 24px;
     flex-basis: 100%;
-
-    @include bp(900px) {
-        flex-basis: 50%;
-    }
 
     &:last-child {
         .tabs__item {

@@ -68,9 +68,9 @@ const AccountHotelCard = ({ hotelBooking }) => {
                         </div>
                     </div>
                     <ul className="account-hotel-card__features">
-                        {features.map((feature) => {
+                        {features.map((feature, index) => {
                             return (
-                                <li className="account-hotel-card__feature">
+                                <li className="account-hotel-card__feature" key={index}>
                                     <div className="account-hotel-card__feature-icon">
                                         <img src={feature.icon} alt="icon" />
                                     </div>

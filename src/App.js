@@ -1,5 +1,5 @@
 import './scss/main.scss';
-import { createContext, useState, useRef } from 'react';
+import { createContext, useState, useRef, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from "./pages/Home";
@@ -25,8 +25,7 @@ import hotels from './data/hotels';
 import airlines from './data/airlines';
 import reviews from './data/reviews';
 import users from './data/users';
-import { useEffect } from 'react';
-import Test from './Test';
+// import Test from './Test';
 
 export const AppContext = createContext(null);
 
@@ -129,6 +128,18 @@ function App() {
     const [selectedFlight, setSelectedFlight] = useState('');
     const [selectedHotel, setSelectedHotel] = useState('');
 
+    const [openMobileNav, setOpenMobileNav] = useState(false);
+
+    useEffect(() => {
+        if (openMobileNav) {
+            document.body.classList.add('no-scroll');
+            window.scrollTo(0, 0);
+        };
+        if (!openMobileNav) {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [openMobileNav])
+
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
         accountTabs: 'main',
@@ -166,6 +177,7 @@ function App() {
             user, setUser,
             userAuth, setUserAuth,
             activeTabs, setActiveTabs,
+            openMobileNav, setOpenMobileNav,
             accountTabsRef,
             selectedFlight, setSelectedFlight,
             selectedHotel, setSelectedHotel,

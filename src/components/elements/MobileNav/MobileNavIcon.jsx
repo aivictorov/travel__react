@@ -1,13 +1,12 @@
 import './MobileNavIcon.scss';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { NavLink } from "react-router-dom";
 import MobileNav from './MobileNav';
 import UserMenu from './../../drops/UserMenu/UserMenu';
 import { AppContext } from '../../../App';
 
 const MobileNavIcon = () => {
-    const { userAuth } = useContext(AppContext)
-    const [openMobileNav, setOpenMobileNav] = useState(false);
+    const { userAuth, openMobileNav, setOpenMobileNav } = useContext(AppContext)
 
     return (
         <>

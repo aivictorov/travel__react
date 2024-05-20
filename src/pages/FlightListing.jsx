@@ -16,9 +16,7 @@ import MobileNav from '../components/elements/MobileNav/MobileNav';
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
-    const [openMobileNav, setOpenMobileNav] = useState(false);
-
-    const { flights, flightSearchParams } = useContext(AppContext);
+    const { flights, flightSearchParams, openMobileNav, setOpenMobileNav } = useContext(AppContext);
 
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
@@ -337,6 +335,8 @@ const FlightListing = () => {
         { value: "highest price", name: "Highest price" },
         { value: "fastest", name: "Fastest" }
     ];
+
+
 
     return (
         <>

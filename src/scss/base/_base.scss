@@ -67,6 +67,10 @@ body>* {
 .no-scroll {
 	overflow-y: hidden;
 	padding-right: 17px;
+
+	@include bp(800px) {
+		padding-right: 0;
+	}
 }
 
 .visually-hidden {
