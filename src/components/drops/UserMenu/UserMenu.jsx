@@ -10,7 +10,7 @@ import supportIcon from './../../../img/icons/user-dropdown/support.svg';
 import logoutIcon from './../../../img/icons/user-dropdown/logout.svg';
 
 const UserMenu = () => {
-    const { setUserAuth, activeTabs, setActiveTabs, user, accountTabsRef } = useContext(AppContext);
+    const { setUserAuth, activeTabs, setActiveTabs, user, accountTabsRef, openMobileNav, setOpenMobileNav } = useContext(AppContext);
 
     const navigate = useNavigate();
 
@@ -30,6 +30,7 @@ const UserMenu = () => {
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
                 navigateToAccountAndScroll();
+                if (openMobileNav) setOpenMobileNav(!openMobileNav);
             }
         },
         {
@@ -38,6 +39,7 @@ const UserMenu = () => {
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'bookings', accountTabsBookings: 'flights' });
                 navigateToAccountAndScroll();
+                if (openMobileNav) setOpenMobileNav(!openMobileNav);
             }
         },
         {
@@ -46,6 +48,7 @@ const UserMenu = () => {
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'payment' });
                 navigateToAccountAndScroll();
+                if (openMobileNav) setOpenMobileNav(!openMobileNav);
             }
         },
     ];
@@ -57,6 +60,7 @@ const UserMenu = () => {
             action: () => {
                 setActiveTabs({ ...activeTabs, accountTabs: 'main' });
                 navigateToAccountAndScroll();
+                if (openMobileNav) setOpenMobileNav(!openMobileNav);
             }
         },
         {
@@ -64,6 +68,7 @@ const UserMenu = () => {
             icon: logoutIcon,
             action: () => {
                 setUserAuth(false);
+                if (openMobileNav) setOpenMobileNav(!openMobileNav);
             }
         },
     ];

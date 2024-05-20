@@ -40,19 +40,19 @@ const AccountFlightCard = ({ flightTicket }) => {
                             </div>
                             <div className="account-flight-card__time">
                                 <div className="account-flight-card__time-column">
-                                    <div className="account-booking-time-column-title">
+                                    <div className="account-flight-time-column-title">
                                         {flight.from}
                                     </div>
-                                    <div className="account-booking-time-column-value">
+                                    <div className="account-flight-time-column-value">
                                         {formatTime(flight.start)}
                                     </div>
                                 </div>
                                 <div className="account-flight-card__time-spacer">—</div>
                                 <div className="account-flight-card__time-column">
-                                    <div className="account-booking-time-column-title">
+                                    <div className="account-flight-time-column-title">
                                         {flight.to}
                                     </div>
-                                    <div className="account-booking-time-column-value">
+                                    <div className="account-flight-time-column-value">
                                         {formatTime(flight.end)}
                                         {" "}
                                         {nextDaySign(flight.start, flight.end)}

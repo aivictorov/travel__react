@@ -18,7 +18,7 @@ const MobileNav = ({ isOpen, onClose, content }) => {
     return ReactDOM.createPortal(
         <div
             className="mobile-nav"
-            onMouseDown={onClose}
+        // onMouseDown={onClose}
         >
             <div
                 className="mobile-nav-window"

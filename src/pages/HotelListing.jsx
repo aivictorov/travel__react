@@ -13,9 +13,7 @@ import MobileNav from '../components/elements/MobileNav/MobileNav';
 
 const HotelListing = () => {
 
-    const [openMobileNav, setOpenMobileNav] = useState(false);
-
-    const { hotels, hotelSearchParams } = useContext(AppContext);
+    const { hotels, hotelSearchParams, openMobileNav, setOpenMobileNav } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);

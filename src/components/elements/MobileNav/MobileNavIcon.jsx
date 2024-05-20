@@ -6,7 +6,7 @@ import UserMenu from './../../drops/UserMenu/UserMenu';
 import { AppContext } from '../../../App';
 
 const MobileNavIcon = () => {
-    const { userAuth, openMobileNav, setOpenMobileNav } = useContext(AppContext)
+    const { userAuth, openMobileNav, setOpenMobileNav } = useContext(AppContext);
 
     return (
         <>
@@ -25,24 +25,24 @@ const MobileNavIcon = () => {
                     isOpen={openMobileNav}
                     onClose={() => setOpenMobileNav(false)}
                     content={
-                        <div className="">
-                            <NavLink className="" to="/flight-search">
+                        <div className="mobile-nav-links">
+                            <NavLink to='/flight-search' onClick={() => setOpenMobileNav(false)}>
                                 Find flights
                             </NavLink>
                             <br />
                             <br />
-                            <NavLink className="" to="/hotel-search">
+                            <NavLink to='/hotel-search' onClick={() => setOpenMobileNav(false)}>
                                 Find stay
                             </NavLink>
                             <br />
                             <br />
                             <br />
-                            <NavLink className="" to="/login">
+                            <NavLink to="/login" onClick={() => setOpenMobileNav(false)}>
                                 Login
                             </NavLink>
                             <br />
                             <br />
-                            <NavLink className="" to="/sign-up">
+                            <NavLink to="/sign-up" onClick={() => setOpenMobileNav(false)}>
                                 Sign Up
                             </NavLink>
                         </div>
