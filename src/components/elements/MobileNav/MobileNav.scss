@@ -15,7 +15,6 @@
     background-color: #fff;
     overflow-y: auto;
     z-index: 9999;
-    cursor: pointer;
     transition: opacity .2s ease-in;
 
     @include bp(800px) {

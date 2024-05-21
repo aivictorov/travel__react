@@ -13,7 +13,7 @@
         flex-wrap: wrap;
 
         .tabs__item-wrapper {
-            flex-basis: 50%;
+            width: 50%;
         }
 
         .tabs__item-wrapper {
@@ -35,7 +35,7 @@
 
 .tabs__item-wrapper {
     padding: 16px 0 16px 24px;
-    flex-basis: 100%;
+    width: 100%;
 
     &:last-child {
         .tabs__item {
@@ -44,7 +44,7 @@
     }
 
     &--main {
-        flex-basis: unset;
+        width: unset;
     }
 }
 

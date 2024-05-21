@@ -148,6 +148,34 @@ function App() {
 
     const accountTabsRef = useRef(null);
 
+
+
+
+
+    useEffect(() => {
+        if (flightSearchParams.from !== '' &&
+            flightSearchParams.to !== '' &&
+            flightSearchParams.depart !== '' &&
+            flightSearchParams.return !== ''
+            // flightSearchParams.passangers !== '' &&
+            // flightSearchParams.class !== '' 
+        ) {
+            const newRecentFlghtSearches = [...recentSearches['flights']]
+            newRecentFlghtSearches.unshift(flightSearchParams)
+            newRecentFlghtSearches.splice(4)
+
+            setRecentSearches({
+                ...recentSearches,
+                flights: newRecentFlghtSearches
+            });
+        };
+    }, [flightSearchParams])
+
+
+
+
+
+
     useEffect(() => {
         if (hotelSearchParams.destination !== '' &&
             hotelSearchParams.checkIn !== '' &&

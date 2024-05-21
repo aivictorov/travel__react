@@ -21,6 +21,7 @@ const RecentSearches = ({ layout = 'hotels' }) => {
                         return (
                             <RecentSearchesCard
                                 key={index}
+                                layout="flights"
                                 searchParams={searchParams}
                             />
                         )
@@ -29,6 +30,7 @@ const RecentSearches = ({ layout = 'hotels' }) => {
                         return (
                             <RecentSearchesCard
                                 key={index}
+                                layout="hotels"
                                 searchParams={searchParams}
                             />
                         )
