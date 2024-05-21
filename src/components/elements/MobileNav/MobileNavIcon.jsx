@@ -7,9 +7,8 @@ import UserMenu from './../../drops/UserMenu/UserMenu';
 import { AppContext } from '../../../App';
 
 const MobileNavIcon = ({ classes }) => {
-    const { userAuth } = useContext(AppContext);
+    const { userAuth, setNoScroll } = useContext(AppContext);
     const [openDropMenu, setOpenDropMenu] = useState(false);
-
     const [openMobileNav, setOpenMobileNav] = useState(false);
 
     return (
@@ -43,23 +42,38 @@ const MobileNavIcon = ({ classes }) => {
                 onClose={() => setOpenMobileNav(false)}
                 content={
                     <div className="mobile-nav-links">
-                        <NavLink to='/flight-search' onClick={() => setOpenMobileNav(false)}>
+                        <NavLink to='/flight-search'
+                            onClick={
+                                () => {
+                                    setOpenMobileNav(false);
+                                    setNoScroll(false);
+                                }
+                            }>
                             Find flights
                         </NavLink>
-                        <br />
-                        <br />
-                        <NavLink to='/hotel-search' onClick={() => setOpenMobileNav(false)}>
-                            Find stay
+                        <NavLink to='/hotel-search' onClick={
+                            () => {
+                                setOpenMobileNav(false);
+                                setNoScroll(false);
+                            }
+                        }>
+                            Find stays
                         </NavLink>
-                        <br />
-                        <br />
-                        <br />
-                        <NavLink to="/login" onClick={() => setOpenMobileNav(false)}>
+                        <div></div>
+                        <NavLink to="/login" onClick={
+                            () => {
+                                setOpenMobileNav(false);
+                                setNoScroll(false);
+                            }
+                        }>
                             Login
                         </NavLink>
-                        <br />
-                        <br />
-                        <NavLink to="/sign-up" onClick={() => setOpenMobileNav(false)}>
+                        <NavLink to="/sign-up" onClick={
+                            () => {
+                                setOpenMobileNav(false);
+                                setNoScroll(false);
+                            }
+                        }>
                             Sign Up
                         </NavLink>
                     </div>

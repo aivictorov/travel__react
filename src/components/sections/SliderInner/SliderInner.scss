@@ -56,6 +56,10 @@
 .slider-inner__title {
     font-weight: 700;
     font-size: 45px;
+
+    @include bp(470px) {
+        font-size: 35px;
+    }
 }
 
 .slider-inner__text {

@@ -43,6 +43,15 @@ const UserMenu = () => {
             }
         },
         {
+            title: 'Favourites',
+            icon: settingsIcon,
+            action: () => {
+                setActiveTabs({ ...activeTabs, accountTabs: 'favourites', accountTabsFav: 'flights' });
+                navigateToAccountAndScroll();
+                if (openMobileNav) setOpenMobileNav(!openMobileNav);
+            }
+        },
+        {
             title: 'Payments',
             icon: settingsIcon,
             action: () => {

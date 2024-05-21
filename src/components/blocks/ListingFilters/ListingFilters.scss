@@ -57,4 +57,11 @@
         flex-direction: row;
         column-gap: 16px;
     }
+
+    &--wrap {
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 16px;
+        row-gap: 8px;
+    }
 }

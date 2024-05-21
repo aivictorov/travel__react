@@ -30,7 +30,7 @@ const ListingFilterRadioButtons = ({ name, title, min, max, changeFilter, resetT
 
                 {displayFilter &&
                     <div
-                        className="filter-item__content filter-item__content--row"
+                        className="filter-item__content filter-item__content--wrap"
                         accordeon-content="Rating"
                     >
                         {buttons.map((button) => {
