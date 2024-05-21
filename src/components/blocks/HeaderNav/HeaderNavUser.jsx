@@ -69,10 +69,6 @@ const HeaderNavUser = () => {
                     onClose={() => setOpenDropMenu(false)}
                     content={<UserMenu />}
                 />
-
-
-
-
             </div>
         </div>
     );

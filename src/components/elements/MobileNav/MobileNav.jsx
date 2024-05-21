@@ -1,8 +1,16 @@
 import './MobileNav.scss';
-import { useEffect } from 'react';
 import ReactDOM from "react-dom";
+import { useEffect, useContext } from "react";
+import { AppContext } from "./../../../App";
 
-const MobileNav = ({ isOpen, onClose, content }) => {
+const MobileNav = ({ classes, isOpen, onClose, content }) => {
+
+    const { setNoScroll } = useContext(AppContext);
+
+    useEffect(() => {
+        isOpen ? setNoScroll(true) : setNoScroll(false);
+    }, [isOpen]);
+
     useEffect(() => {
         function closeModalByKey(event) {
             if (event.key === 'Escape') onClose();
@@ -17,8 +25,7 @@ const MobileNav = ({ isOpen, onClose, content }) => {
 
     return ReactDOM.createPortal(
         <div
-            className="mobile-nav"
-        // onMouseDown={onClose}
+            className={`mobile-nav${classes === 'main' ? " mobile-nav--main" : ""}`}
         >
             <div
                 className="mobile-nav-window"

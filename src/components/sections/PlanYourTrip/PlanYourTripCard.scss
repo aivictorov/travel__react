@@ -1,7 +1,7 @@
 @import './../../../scss/base/_vars.scss';
 @import './../../../scss/base/_mixins.scss';
 
-.plan-your-trip-card-wrapper{
+.plan-your-trip-card-wrapper {
     padding: 16px;
     width: calc(100% / 3);
 
@@ -28,6 +28,7 @@
 }
 
 .plan-your-trip-card__image {
+    flex-shrink: 0;
     width: 90px;
     height: 90px;
     border-radius: 8px;
@@ -51,9 +52,10 @@
 
 .plan-your-trip-card__links {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
     column-gap: 8px;
+    row-gap: 8px;
 }
 
 .plan-your-trip-card__link {

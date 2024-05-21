@@ -13,10 +13,12 @@ import MobileNav from '../components/elements/MobileNav/MobileNav';
 
 const HotelListing = () => {
 
-    const { hotels, hotelSearchParams, openMobileNav, setOpenMobileNav } = useContext(AppContext);
+    const { hotels, hotelSearchParams } = useContext(AppContext);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);
+
+    const [openMobileNav, setOpenMobileNav] = useState(false);
 
     const [filterParams, setFilterParams] = useState(
         {
@@ -224,12 +226,14 @@ const HotelListing = () => {
                                 < MobileNav
                                     isOpen={openMobileNav}
                                     onClose={() => setOpenMobileNav(false)}
-                                    content={<ListingFilters
-                                        layout="hotels"
-                                        filterParams={filterParams}
-                                        changeFilter={changeFilter}
-                                        resetTrigger={resetTrigger}
-                                    />}
+                                    content={
+                                        <ListingFilters
+                                            layout="hotels"
+                                            filterParams={filterParams}
+                                            changeFilter={changeFilter}
+                                            resetTrigger={resetTrigger}
+                                        />
+                                    }
                                 />
 
                                 <ListingFilters

@@ -37,7 +37,7 @@ const HeaderNav = ({ classes }) => {
                     </svg>
                     Find stays
                 </NavLink>
-                <MobileNavIcon />
+                <MobileNavIcon classes={classes} />
             </div>
 
             <div className="header-nav__logo">

@@ -128,19 +128,17 @@ function App() {
     const [selectedFlight, setSelectedFlight] = useState('');
     const [selectedHotel, setSelectedHotel] = useState('');
 
-    const [openMobileNav, setOpenMobileNav] = useState(false);
+    const [noScroll, setNoScroll] = useState('');
 
     useEffect(() => {
-        console.log(openMobileNav)
-
-        if (openMobileNav) {
+        if (noScroll) {
             document.body.classList.add('no-scroll');
             window.scrollTo(0, 0);
         };
-        if (!openMobileNav) {
+        if (!noScroll) {
             document.body.classList.remove('no-scroll');
         };
-    }, [openMobileNav])
+    }, [noScroll])
 
     const [activeTabs, setActiveTabs] = useState({
         searchForm: 'flights',
@@ -179,7 +177,7 @@ function App() {
             user, setUser,
             userAuth, setUserAuth,
             activeTabs, setActiveTabs,
-            openMobileNav, setOpenMobileNav,
+            noScroll, setNoScroll,
             accountTabsRef,
             selectedFlight, setSelectedFlight,
             selectedHotel, setSelectedHotel,

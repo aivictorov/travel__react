@@ -4,7 +4,7 @@ import AddCardButton from './../../modals/AddCard/AddCardButton';
 const BookingPaymentCards = () => {
     return (
         <div className="booking-payment-cards">
-            <div className="payment-radio" style={{ height: 80 }}>
+            <div className="payment-radio">
                 <input
                     className="payment-radio__input visually-hidden"
                     type="radio"

@@ -6,10 +6,10 @@
     z-index: 99;
 
     &--search {
-        left: 0;
-        bottom: 0;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
         padding: 12px 18px;
-        width: 100%;
         border: 1px solid #79747E;
         border-radius: 6px;
         font-size: 16px;
@@ -17,8 +17,8 @@
     }
 
     &--calendar {
-        left: 0;
-        bottom: 0;
+        left: 12px;
+        bottom: 12px;
         max-width: 300px;
         border-radius: 6px;
         font-size: 16px;
@@ -33,6 +33,11 @@
         border-radius: 12px;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
         background-color: #FFFFFF;
-        transform: translate(-10px, calc(100% + 10px));
+        transform: translate(0, calc(100% + 5px));
+    }
+
+    &--right {
+        left: unset;
+        right: 12px;
     }
 }

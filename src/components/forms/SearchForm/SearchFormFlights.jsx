@@ -72,7 +72,8 @@ const SearchFormFlights = ({ layout }) => {
     }, [to])
 
     // 3. Drop "Calendar"
-    const [openDropCalendar, setOpenDropCalendar] = useState(false);
+    const [openDropCalendarFrom, setOpenDropCalendarFrom] = useState(false);
+    const [openDropCalendarTo, setOpenDropCalendarTo] = useState(false);
 
     // 4. Drop "PassAndClass"
     const [openDropPassAndClass, setOpenDropPassAndClass] = useState(false);
@@ -237,13 +238,14 @@ const SearchFormFlights = ({ layout }) => {
                         placeholder="Istanbul"
                         value={formatDate(dates[0])}
                         onChangeFunction={() => { }}
-                        onFocusFunction={() => setOpenDropCalendar(true)}
+                        onFocusFunction={() => setOpenDropCalendarFrom(true)}
                     />
+
                     <Drop
-                        name={["depart", "return"]}
+                        name={["depart"]}
                         classes="calendar"
-                        isOpen={openDropCalendar}
-                        onClose={() => setOpenDropCalendar(false)}
+                        isOpen={openDropCalendarFrom}
+                        onClose={() => setOpenDropCalendarFrom(false)}
                         content={
                             <DropCalendar
                                 dates={dates}
@@ -261,7 +263,19 @@ const SearchFormFlights = ({ layout }) => {
                         placeholder="Istanbul"
                         value={formatDate(dates[1])}
                         onChangeFunction={() => { }}
-                        onFocusFunction={() => setOpenDropCalendar(true)}
+                        onFocusFunction={() => setOpenDropCalendarTo(true)}
+                    />
+                    <Drop
+                        name={["return"]}
+                        classes="calendar right"
+                        isOpen={openDropCalendarTo}
+                        onClose={() => setOpenDropCalendarTo(false)}
+                        content={
+                            <DropCalendar
+                                dates={dates}
+                                setDates={setDates}
+                            />
+                        }
                     />
                 </div>
 

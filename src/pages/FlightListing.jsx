@@ -16,11 +16,13 @@ import MobileNav from '../components/elements/MobileNav/MobileNav';
 export const FlightListingContext = createContext(null);
 
 const FlightListing = () => {
-    const { flights, flightSearchParams, openMobileNav, setOpenMobileNav } = useContext(AppContext);
+    const { flights, flightSearchParams } = useContext(AppContext);
 
     const [searchResults, setSearchResults] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
     const [numberOfResults, setNumberOfResults] = useState(3);
+
+    const [openMobileNav, setOpenMobileNav] = useState(false);
 
     const [filterParams, setFilterParams] = useState(
         {

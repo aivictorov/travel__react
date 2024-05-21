@@ -9,6 +9,7 @@ $spacer: 9px;
 $height: 2 * $spacer + 3 * $line-height;
 
 .mobile-nav-icon {
+    position: relative;
     display: none;
     width: $width;
     height: $height;

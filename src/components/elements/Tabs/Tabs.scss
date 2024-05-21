@@ -15,6 +15,14 @@
         .tabs__item-wrapper {
             flex-basis: 50%;
         }
+
+        .tabs__item-wrapper {
+            &:nth-child(even) {
+                .tabs__item {
+                    border: none;
+                }
+            }
+        }
     }
 
     &--main {
@@ -49,7 +57,6 @@
     display: flex;
     align-items: center;
     column-gap: 8px;
-
     border-right: 1px solid #D7E2EE;
     text-align: left;
 
