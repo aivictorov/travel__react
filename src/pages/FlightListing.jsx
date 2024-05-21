@@ -353,7 +353,7 @@ const FlightListing = () => {
                     <div className="container">
                         <div className="listing-content__row">
                             <div className="listing-content__left">
-                                < MobileNav
+                                <MobileNav
                                     isOpen={openMobileNav}
                                     onClose={() => setOpenMobileNav(false)}
                                     content={<ListingFilters

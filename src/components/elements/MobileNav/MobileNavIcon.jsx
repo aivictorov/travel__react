@@ -18,7 +18,10 @@ const MobileNavIcon = ({ classes }) => {
                 className={`mobile-nav-icon${openMobileNav ? " mobile-nav-icon--active" : ""}`}
                 onMouseDown={(event) => {
                     event.stopPropagation();
-                    if (!userAuth) setOpenMobileNav(!openMobileNav);
+                    if (!userAuth) {
+                        setOpenMobileNav(!openMobileNav);
+                        window.scrollTo(0, 0);
+                    };
                     if (userAuth) setOpenDropMenu(!openDropMenu);
 
                 }}
@@ -62,15 +65,6 @@ const MobileNavIcon = ({ classes }) => {
                     </div>
                 }
             />
-
-            {/* {userAuth &&
-                <MobileNav
-                    isOpen={openMobileNav}
-                    onClose={() => setOpenMobileNav(false)}
-                    content={<UserMenu />}
-                />
-            } */}
-
         </>
     );
 }

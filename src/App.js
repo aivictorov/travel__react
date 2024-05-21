@@ -133,7 +133,6 @@ function App() {
     useEffect(() => {
         if (noScroll) {
             document.body.classList.add('no-scroll');
-            window.scrollTo(0, 0);
         };
         if (!noScroll) {
             document.body.classList.remove('no-scroll');
